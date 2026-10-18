@@ -1,5 +1,7 @@
 # Время — часы для рабочего стола macOS
 
+[Русский](README.md) · [English](README.en.md)
+
 **Время 2.4.4** — приложение с часами для рабочего стола и режимом «Поверх окон». В нём 25 тем: четыре светлых и тёмных варианта «Минимализма» и 21 модель в разделе «Ракета». Приложение показывает местное время macOS, работает без интернета и сохраняет ваши настройки.
 
 **[Скачать Время для macOS](https://github.com/lesa80/time/releases/download/v2.4.4/Vremya-2.4.4-macOS-universal.zip)** · [Все сборки](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.4.4/SHA256SUMS)
