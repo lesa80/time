@@ -61,7 +61,7 @@ function selectTheme(id) {
   themeSelect.value = theme.id;
   document.getElementById('theme-name').textContent = theme.title;
   document.getElementById('theme-label').textContent = `${theme.title} · РАСТР 2048 × 2048`;
-  document.getElementById('theme-description').textContent = `${theme.hourCycle}-часовой циферблат${theme.direction === -1 ? ' · обратный ход стрелок' : ''}. ${theme.brand === 'raketa' ? 'Корпус и ремешок из референса.' : 'Белый фон с тонким контуром, крупные цифры, прямые стрелки. Собственный корпус и матовый ремешок.'}`;
+  document.getElementById('theme-description').textContent = `${theme.hourCycle}-часовой циферблат${theme.direction === -1 ? ' · обратный ход стрелок' : ''}. ${theme.brand === 'raketa' ? 'Корпус и ремешок из референса.' : 'Однотонный фон с тонким контуром, крупные цифры, прямые стрелки. Собственный корпус и матовый ремешок.'}`;
   document.getElementById('clock-note').textContent = `Локальное превью · полный оборот часовой стрелки за ${theme.hourCycle} часов`;
   layoutTheme();
   render();

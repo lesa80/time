@@ -2,7 +2,7 @@
   "name": "vremya-macos",
   "version": "2.4.4",
   "private": true,
-  "description": "Время: native macOS desktop clock with light/dark 12/24-hour Minimalism and 21 Raketa watch themes",
+  "description": "Время — часы для рабочего стола macOS с 25 темами, светлыми и тёмными 12- и 24-часовыми циферблатами",
   "type": "module",
   "scripts": {
     "build": "node scripts/build-macos.mjs",
