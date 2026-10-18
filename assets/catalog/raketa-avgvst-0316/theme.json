@@ -1,0 +1,101 @@
+{
+  "name": "Ракета × Avgvst 0316 · серебро",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "direction": 1,
+  "resolution": [
+    513,
+    1049
+  ],
+  "dialBounds": [
+    42,
+    316,
+    393,
+    393
+  ],
+  "dialShape": "rectangle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/raketa-avgvst-0316/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        513,
+        1049
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/raketa-avgvst-0316/dial.png",
+      "position": [
+        42,
+        316
+      ],
+      "size": [
+        393,
+        393
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/raketa-avgvst-0316/hour.png",
+      "valueType": "Hour 12 Ratio",
+      "handResPosition": [
+        239,
+        510
+      ],
+      "rotatePoint": [
+        10.5,
+        131
+      ],
+      "size": [
+        20.5,
+        132.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/raketa-avgvst-0316/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        239,
+        510
+      ],
+      "rotatePoint": [
+        8.5,
+        175
+      ],
+      "size": [
+        17,
+        182
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/raketa-avgvst-0316/cap.png",
+      "position": [
+        230,
+        501
+      ],
+      "size": [
+        18,
+        18
+      ]
+    }
+  ]
+}

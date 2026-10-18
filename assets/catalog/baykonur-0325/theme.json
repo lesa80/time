@@ -1,0 +1,122 @@
+{
+  "name": "Байконур 0325",
+  "target": "macOS / Retina",
+  "hourCycle": 24,
+  "direction": 1,
+  "resolution": [
+    691,
+    1180
+  ],
+  "dialBounds": [
+    72,
+    295,
+    518,
+    518
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/baykonur-0325/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        691,
+        1180
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/baykonur-0325/dial.png",
+      "position": [
+        72,
+        295
+      ],
+      "size": [
+        518,
+        518
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/baykonur-0325/hour.png",
+      "valueType": "Hour 24 Ratio",
+      "handResPosition": [
+        331,
+        554
+      ],
+      "rotatePoint": [
+        21,
+        173.5
+      ],
+      "size": [
+        45,
+        179.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/baykonur-0325/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        331,
+        554
+      ],
+      "rotatePoint": [
+        14.5,
+        201
+      ],
+      "size": [
+        24.5,
+        207
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/baykonur-0325/second.png",
+      "valueType": "Second Ratio",
+      "handResPosition": [
+        331,
+        554
+      ],
+      "rotatePoint": [
+        8,
+        202.5
+      ],
+      "size": [
+        16,
+        240.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/baykonur-0325/cap.png",
+      "position": [
+        321,
+        544
+      ],
+      "size": [
+        20,
+        20
+      ]
+    }
+  ]
+}

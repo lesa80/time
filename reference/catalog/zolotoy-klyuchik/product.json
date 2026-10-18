@@ -1,0 +1,445 @@
+{
+  "catalog": {
+    "id": 1084,
+    "sectionCode": "exceptional",
+    "code": "zolotoy-klyuchik",
+    "name": "Золотой Ключик",
+    "isNew": false,
+    "isSoldOut": false,
+    "availability": "available",
+    "lastmod": 1789384271,
+    "price": 300000,
+    "discount": 0,
+    "previewPicture": "https://admin.raketa.com/upload/iblock/22c/els0vwbf5wh1b52px7qd94ybafmn5br4.png",
+    "limitedEdition": true,
+    "limitedProduction": false,
+    "productURL": "https://raketa.com/product/zolotoy-klyuchik"
+  },
+  "details": [
+    {
+      "id": 1084,
+      "sectionCode": "exceptional",
+      "code": "zolotoy-klyuchik",
+      "name": "Золотой Ключик",
+      "availability": "available",
+      "isNew": false,
+      "isSoldOut": false,
+      "limitedProduction": "$undefined",
+      "limitedEdition": "$undefined",
+      "artnumber": "W-01-10-10-0328",
+      "detailText": "В мире часового искусства существует множество редких моделей, которые привлекают внимание ценителей. Серия с ручным заводом «Золотой Ключик» из 300 экземпляров создавалась как модель, сочетающая коллекционную ценность и часовую традицию.",
+      "detailPicture": "https://admin.raketa.com/upload/iblock/22c/els0vwbf5wh1b52px7qd94ybafmn5br4.png",
+      "gallery": {
+        "title": null,
+        "text": "Лимитированная серия «Золотой Ключик» – дань уважения и современное переосмысление редких часов «Ракета» с деревянным корпусом, выпускавшихся в XX веке. В сказке «Буратино» ключик открывает дверь в мир, где самые заветные мечты становятся реальностью. У «Ракеты» же он превратился в «ключик» для ручного завода часов. Связь со сказкой подчеркивает и корпус часов из натурального орехового дерева.",
+        "images": [
+          "/upload/iblock/105/afo3yyvincoqar8tjmuc2q41kiv95rhq.jpg",
+          "/upload/iblock/896/8hi4y2133s9p1klk3upalwllvk8vo5jn.jpg",
+          "/upload/iblock/f6e/np78doj5hzaiyy9zbwxwl4fwms4dvc4p.jpg",
+          "/upload/iblock/dfd/akvxgq3iuniqldaughx47xl5vcnedje1.jpg",
+          "/upload/iblock/d64/b5ufawejt5kn5ocxdz7hrkj8233i15i7.jpg",
+          "/upload/iblock/ffa/2oo7853kf5o37bwmd11yb0pnexkjr1uj.jpg"
+        ]
+      },
+      "properties": {
+        "case": {
+          "img_block": {
+            "src": "/upload/iblock/a4f/kjoaxx2nqe25l3rtwb6qf8pmuinv0a46.jpg"
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Ореховое дерево"
+          },
+          "size": {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "38,8 мм"
+          },
+          "case_glass": {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое"
+          },
+          "case_back_glass": {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": "Минеральное"
+          },
+          "case_bazel": {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": null
+          },
+          "case_crown": {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": null
+          },
+          "case_water": {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "3 ATM"
+          },
+          "case_arrows": {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": null
+          },
+          "case_dial": {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": ""
+          },
+          "case_gender": {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": null
+          },
+          "case_thicness": {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "10.88 мм"
+          },
+          "watch_lenght": {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "42.88 мм"
+          }
+        },
+        "mechanism": {
+          "img_block": {
+            "src": "/upload/iblock/bed/ah693gze9gdn4fuxz40cergpdw88xomv.png"
+          },
+          "calibre": {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": "2609"
+          },
+          "functions": {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": "Ручной завод"
+          },
+          "number_jewels": {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": "16"
+          },
+          "test_pos": {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": "4"
+          },
+          "rate": {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": "-10+20"
+          },
+          "runtime": {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": "42"
+          },
+          "freq": {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": "18.000 / 2.5Гц"
+          },
+          "winding": {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": null
+          },
+          "system": {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": null
+          },
+          "decor": {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": [
+              ""
+            ]
+          },
+          "count_parts": {
+            "label": "Количество деталей механизма [механизм]",
+            "code": "COUNT_PARTS_MECHANISM",
+            "value": null
+          }
+        },
+        "strap": {
+          "quick": {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да"
+          },
+          "length": {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": null
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Натуральная кожа"
+          },
+          "extra": {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": null
+          },
+          "collection": {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": ""
+          },
+          "color": {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": ""
+          },
+          "width": {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "20 мм"
+          },
+          "clasp": {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": null
+          }
+        }
+      },
+      "collection": {
+        "name": "Исключительные",
+        "code": "curiosity"
+      },
+      "extraStraps": [],
+      "lastBlock": {
+        "title": null,
+        "text": "Ручной завод — особая ценность этой модели. Это возможность не просто носить часы, а буквально ощущать «движение шестеренок» на запястье. Мы открыли на него вид через прозрачную заднюю крышку, чтобы подчеркнуть красоту. Ручной завод позволяет увидеть больше деталей: при вращении заводной головки  заметно, как начинает двигаться барабан, а от него — вся колесная система. Это «живой» процесс, который можно наблюдать и чувствовать.",
+        "image": "/upload/iblock/753/s5jgnpqe3zwaokxdwrv40l7y7pkgvoih.jpg",
+        "link": "https://bd81e7b6-bace-4c67-9150-276d4e57268f.selstorage.ru/products/GOLD_KEY_FINAL_V3.mp4"
+      },
+      "downloadInstruction": "/upload/iblock/976/jps5jixol61060nf1az0vr65eh037x1w.pdf",
+      "mechanismPicture": "https://admin.raketa.com/upload/iblock/bed/ah693gze9gdn4fuxz40cergpdw88xomv.png",
+      "lastBuyPicture": "https://admin.raketa.com/upload/iblock/3a4/89rclqtspu88q5k5khckakg8n22xgawv.jpg",
+      "lastmod": 1789384271,
+      "price": 300000,
+      "discount": "$undefined",
+      "previewPicture": "https://admin.raketa.com/upload/iblock/22c/els0vwbf5wh1b52px7qd94ybafmn5br4.png",
+      "productType": "watch",
+      "galleryPictures": [
+        "https://admin.raketa.com/upload/iblock/105/afo3yyvincoqar8tjmuc2q41kiv95rhq.jpg",
+        "https://admin.raketa.com/upload/iblock/896/8hi4y2133s9p1klk3upalwllvk8vo5jn.jpg",
+        "https://admin.raketa.com/upload/iblock/f6e/np78doj5hzaiyy9zbwxwl4fwms4dvc4p.jpg",
+        "https://admin.raketa.com/upload/iblock/dfd/akvxgq3iuniqldaughx47xl5vcnedje1.jpg",
+        "https://admin.raketa.com/upload/iblock/d64/b5ufawejt5kn5ocxdz7hrkj8233i15i7.jpg",
+        "https://admin.raketa.com/upload/iblock/ffa/2oo7853kf5o37bwmd11yb0pnexkjr1uj.jpg"
+      ],
+      "helpBlockPicture": "",
+      "offers": [],
+      "heroPicture": "https://admin.raketa.com/upload/iblock/d24/jkmw3i0qb1koglllnwdw2nv6t73qww3p.jpg",
+      "galleryTitle": null,
+      "galleryText": "Лимитированная серия «Золотой Ключик» – дань уважения и современное переосмысление редких часов «Ракета» с деревянным корпусом, выпускавшихся в XX веке. В сказке «Буратино» ключик открывает дверь в мир, где самые заветные мечты становятся реальностью. У «Ракеты» же он превратился в «ключик» для ручного завода часов. Связь со сказкой подчеркивает и корпус часов из натурального орехового дерева.",
+      "propertiesPicture": "https://admin.raketa.com/upload/iblock/a4f/kjoaxx2nqe25l3rtwb6qf8pmuinv0a46.jpg",
+      "mechanismDetailsPicture": "",
+      "instructionDownloadLink": "https://admin.raketa.com/upload/iblock/976/jps5jixol61060nf1az0vr65eh037x1w.pdf",
+      "videoTitle": null,
+      "videoText": "Ручной завод — особая ценность этой модели. Это возможность не просто носить часы, а буквально ощущать «движение шестеренок» на запястье. Мы открыли на него вид через прозрачную заднюю крышку, чтобы подчеркнуть красоту. Ручной завод позволяет увидеть больше деталей: при вращении заводной головки  заметно, как начинает двигаться барабан, а от него — вся колесная система. Это «живой» процесс, который можно наблюдать и чувствовать.",
+      "videoPoster": "https://admin.raketa.com/upload/iblock/753/s5jgnpqe3zwaokxdwrv40l7y7pkgvoih.jpg",
+      "video": "https://bd81e7b6-bace-4c67-9150-276d4e57268f.selstorage.ru/products/GOLD_KEY_FINAL_V3.mp4",
+      "propsList": {
+        "case": [
+          {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Ореховое дерево",
+            "omitLabel": false
+          },
+          {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "38,8 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое",
+            "omitLabel": false
+          },
+          {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": "Минеральное",
+            "omitLabel": false
+          },
+          {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "3 ATM",
+            "omitLabel": false
+          },
+          {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "10.88 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "42.88 мм",
+            "omitLabel": false
+          }
+        ],
+        "strap": [
+          {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Натуральная кожа",
+            "omitLabel": false
+          },
+          {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "20 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": null,
+            "omitLabel": false
+          }
+        ],
+        "mechanism": [
+          {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": "2609",
+            "omitLabel": false
+          },
+          {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": "Ручной завод",
+            "omitLabel": false
+          },
+          {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": "16",
+            "omitLabel": false
+          },
+          {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": "4",
+            "omitLabel": false
+          },
+          {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": "-10+20",
+            "omitLabel": false
+          },
+          {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": "42",
+            "omitLabel": false
+          },
+          {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": "18.000 / 2.5Гц",
+            "omitLabel": false
+          },
+          {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": null,
+            "omitLabel": true
+          },
+          {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": null,
+            "omitLabel": true
+          },
+          {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": "$8:1:props:product:properties:mechanism:decor:value",
+            "omitLabel": true
+          }
+        ]
+      },
+      "mechanismDetailsCount": null
+    }
+  ]
+}

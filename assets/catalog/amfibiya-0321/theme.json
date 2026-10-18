@@ -1,0 +1,122 @@
+{
+  "name": "Амфибия 0321",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "direction": 1,
+  "resolution": [
+    751,
+    1164
+  ],
+  "dialBounds": [
+    100,
+    279,
+    498,
+    498
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/amfibiya-0321/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        751,
+        1164
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/amfibiya-0321/dial.png",
+      "position": [
+        100,
+        279
+      ],
+      "size": [
+        498,
+        498
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/amfibiya-0321/hour.png",
+      "valueType": "Hour 12 Ratio",
+      "handResPosition": [
+        349,
+        528
+      ],
+      "rotatePoint": [
+        34,
+        159
+      ],
+      "size": [
+        68.5,
+        175.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/amfibiya-0321/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        349,
+        528
+      ],
+      "rotatePoint": [
+        14.5,
+        237.5
+      ],
+      "size": [
+        29.5,
+        249.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/amfibiya-0321/second.png",
+      "valueType": "Second Ratio",
+      "handResPosition": [
+        349,
+        528
+      ],
+      "rotatePoint": [
+        11,
+        252.5
+      ],
+      "size": [
+        22.5,
+        315
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/amfibiya-0321/cap.png",
+      "position": [
+        340,
+        519
+      ],
+      "size": [
+        18,
+        18
+      ]
+    }
+  ]
+}

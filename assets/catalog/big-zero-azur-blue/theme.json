@@ -1,0 +1,122 @@
+{
+  "name": "BIG ZERO Лазурь 0308",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "direction": 1,
+  "resolution": [
+    720,
+    1164
+  ],
+  "dialBounds": [
+    36,
+    259,
+    594,
+    594
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/big-zero-azur-blue/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        720,
+        1164
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/big-zero-azur-blue/dial.png",
+      "position": [
+        36,
+        259
+      ],
+      "size": [
+        594,
+        594
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/big-zero-azur-blue/hour.png",
+      "valueType": "Hour 12 Ratio",
+      "handResPosition": [
+        333,
+        556
+      ],
+      "rotatePoint": [
+        15.5,
+        168.5
+      ],
+      "size": [
+        31.5,
+        224.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/big-zero-azur-blue/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        333,
+        556
+      ],
+      "rotatePoint": [
+        6,
+        234.5
+      ],
+      "size": [
+        22,
+        288
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/big-zero-azur-blue/second.png",
+      "valueType": "Second Ratio",
+      "handResPosition": [
+        333,
+        556
+      ],
+      "rotatePoint": [
+        8,
+        270.5
+      ],
+      "size": [
+        16,
+        335.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/big-zero-azur-blue/cap.png",
+      "position": [
+        324,
+        547
+      ],
+      "size": [
+        18,
+        18
+      ]
+    }
+  ]
+}

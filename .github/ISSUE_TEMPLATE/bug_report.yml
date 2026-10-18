@@ -1,0 +1,35 @@
+name: Ошибка / Bug report
+description: Сообщить о проблеме с часами или сборкой.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Уязвимости сообщайте через Security → Advisories → Report a vulnerability.
+        Не публикуйте пароли, ключи, личные пути и персональные данные.
+  - type: textarea
+    id: environment
+    attributes:
+      label: Окружение
+      description: Версия «Время», macOS, Apple Silicon/Intel и выбранная тема.
+      placeholder: Время 2.3, macOS 15, Apple Silicon, Авангард
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Как воспроизвести
+      description: Последовательность действий и частота повторения.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Ожидаемое и фактическое поведение
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Скриншоты и диагностика
+      description: Необязательно. Очистите логи и изображения от личной информации.

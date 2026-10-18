@@ -1,0 +1,52 @@
+{
+  "source": "https://admin.raketa.com/upload/iblock/e35/imzvtp6qp9riw86fzn1v8bgz8v37hvgr.png",
+  "bodySource": "reference/catalog/big-zero-yankovskaya/front.png",
+  "cropOrigin": [
+    100,
+    350
+  ],
+  "bodyCrop": [
+    115,
+    148,
+    720,
+    1159
+  ],
+  "center": [
+    350,
+    347
+  ],
+  "dialBox": [
+    59,
+    56,
+    582,
+    582
+  ],
+  "hands": {
+    "hour": {
+      "shape": "<polygon points=\"218,250 230,244 399,370 389,384 216,263\"/>",
+      "angle": 305
+    },
+    "minute": {
+      "shape": "<polygon points=\"309,373 304,363 550,232 557,236 557,245 315,382\"/>",
+      "angle": 61
+    },
+    "second": {
+      "shape": "<polygon points=\"350,330 358,366 386,346 368,375 402,383 368,390 385,417 357,398 350,433 343,399 315,417 332,390 299,383 333,376 314,348 343,366\"/>",
+      "angle": 180
+    }
+  },
+  "restoration": {
+    "registration": {
+      "sx": 1.002,
+      "sy": 1,
+      "dx": 0,
+      "dy": 0,
+      "error": 11.318137312269947
+    },
+    "bias": [
+      -2.777134960847538,
+      9.614175145180042,
+      8.405482895043065
+    ]
+  }
+}

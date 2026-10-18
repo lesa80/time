@@ -1,0 +1,52 @@
+{
+  "source": "https://admin.raketa.com/upload/iblock/6f0/ytnk3xs2vwh0gfvtbqnnt8lrczwyd6td.png",
+  "bodySource": "reference/catalog/raketa-x-lebedev/front.png",
+  "cropOrigin": [
+    100,
+    350
+  ],
+  "bodyCrop": [
+    113,
+    142,
+    720,
+    1180
+  ],
+  "center": [
+    350,
+    350
+  ],
+  "dialBox": [
+    60,
+    60,
+    580,
+    580
+  ],
+  "hands": {
+    "hour": {
+      "shape": "<polygon points=\"217,250 225,248 396,369 381,390 211,264\"/>",
+      "angle": 305
+    },
+    "minute": {
+      "shape": "<polygon points=\"312,381 305,372 525,209 532,211 534,217 318,388\"/>",
+      "angle": 52
+    },
+    "second": {
+      "shape": "<polygon points=\"171.30939878716396,562.4228778596957 172.69060121283604,563.5771221403043 385.9591764536537,308.37371468921356 384.5779740279816,307.21947040860493\"/><circle cx=\"350\" cy=\"350\" r=\"6\"/>",
+      "angle": 222
+    }
+  },
+  "restoration": {
+    "registration": {
+      "sx": 1,
+      "sy": 1,
+      "dx": 0,
+      "dy": 0,
+      "error": 10.23575989104357
+    },
+    "bias": [
+      3.020054850874186,
+      2.936878216123499,
+      2.9505579399141633
+    ]
+  }
+}

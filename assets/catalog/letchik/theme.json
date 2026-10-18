@@ -1,0 +1,122 @@
+{
+  "name": "Лётчик 0301",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "direction": 1,
+  "resolution": [
+    762,
+    1226
+  ],
+  "dialBounds": [
+    78,
+    305,
+    550,
+    550
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/letchik/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        762,
+        1226
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/letchik/dial.png",
+      "position": [
+        78,
+        305
+      ],
+      "size": [
+        550,
+        550
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/letchik/hour.png",
+      "valueType": "Hour 12 Ratio",
+      "handResPosition": [
+        353,
+        580
+      ],
+      "rotatePoint": [
+        24.5,
+        202.5
+      ],
+      "size": [
+        49.5,
+        218
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/letchik/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        353,
+        580
+      ],
+      "rotatePoint": [
+        12.5,
+        257.5
+      ],
+      "size": [
+        25.5,
+        273
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/letchik/second.png",
+      "valueType": "Second Ratio",
+      "handResPosition": [
+        353,
+        580
+      ],
+      "rotatePoint": [
+        10,
+        265.5
+      ],
+      "size": [
+        19.5,
+        352.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/letchik/cap.png",
+      "position": [
+        344,
+        571
+      ],
+      "size": [
+        18,
+        18
+      ]
+    }
+  ]
+}

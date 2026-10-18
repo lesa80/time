@@ -1,0 +1,121 @@
+{
+  "name": "Raketa Avangard 0292",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "resolution": [
+    716,
+    1194
+  ],
+  "dialBounds": [
+    44,
+    280,
+    588,
+    588
+  ],
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "referenceTime": "06:07:50",
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/avangard/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        716,
+        1194
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/avangard/dial.png",
+      "position": [
+        44,
+        280
+      ],
+      "size": [
+        588,
+        588
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/avangard/hour.png",
+      "valueType": "Hour 12 Ratio",
+      "handResPosition": [
+        338,
+        574
+      ],
+      "rotatePoint": [
+        105.65625,
+        265.2890625
+      ],
+      "size": [
+        211.025390625,
+        285.38671875
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/avangard/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        338,
+        574
+      ],
+      "rotatePoint": [
+        142.693359375,
+        257.537109375
+      ],
+      "size": [
+        285.38671875,
+        285.9609375
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/avangard/second.png",
+      "valueType": "Second Ratio",
+      "handResPosition": [
+        338,
+        574
+      ],
+      "rotatePoint": [
+        29.208984375000004,
+        280.8125
+      ],
+      "size": [
+        58.5703125,
+        352.857421875
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/avangard/cap.png",
+      "position": [
+        330,
+        566
+      ],
+      "size": [
+        16,
+        16
+      ]
+    }
+  ]
+}

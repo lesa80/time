@@ -1,0 +1,7 @@
+{
+  "sourceResolution": [1024, 1536],
+  "canvas": [500, 1512],
+  "sourceOffset": [-276, -12],
+  "dialBounds": [55, 512, 362, 362],
+  "description": "Front-view generated case, source dial axis at (512, 705). Centered live circle covers the transparent aperture up to the dark gasket. Source PNG and its alpha remain unchanged; only layer placement trims exterior padding."
+}

@@ -1,0 +1,52 @@
+{
+  "source": "https://admin.raketa.com/upload/iblock/ac8/3nzkuhppmg4lpooz4e3e0z20i49usj5c.png",
+  "bodySource": "reference/catalog/russkiy-kod-0302/front.png",
+  "cropOrigin": [
+    100,
+    350
+  ],
+  "bodyCrop": [
+    117,
+    133,
+    709,
+    1189
+  ],
+  "center": [
+    350,
+    350
+  ],
+  "dialBox": [
+    55,
+    55,
+    590,
+    590
+  ],
+  "hands": {
+    "hour": {
+      "shape": "<polygon points=\"208,254 214,254 401,363 393,380 205,266\"/>",
+      "angle": 304
+    },
+    "minute": {
+      "shape": "<polygon points=\"306,368 310,378 539,191 540,183 533,179\"/>",
+      "angle": 49
+    },
+    "second": {
+      "shape": "<polygon points=\"303.1263219368497,535.7839290811564 304.8736780631503,536.2160709188436 374.40140033723384,255.0822373758102 372.65404421093325,254.65009553812294\"/><circle cx=\"295\" cy=\"570\" r=\"32\" fill=\"none\" stroke=\"white\" stroke-width=\"6\"/><circle cx=\"375\" cy=\"253\" r=\"9\"/>",
+      "angle": 194
+    }
+  },
+  "restoration": {
+    "registration": {
+      "sx": 1,
+      "sy": 1,
+      "dx": 0,
+      "dy": 0,
+      "error": 17.26522448949444
+    },
+    "bias": [
+      2.5703308431163285,
+      2.5196596918831915,
+      2.735042735042735
+    ]
+  }
+}

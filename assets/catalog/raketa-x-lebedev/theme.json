@@ -1,0 +1,122 @@
+{
+  "name": "BIG ZERO Лебедев 0333",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "direction": 1,
+  "resolution": [
+    720,
+    1180
+  ],
+  "dialBounds": [
+    47,
+    268,
+    580,
+    580
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/raketa-x-lebedev/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        720,
+        1180
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/raketa-x-lebedev/dial.png",
+      "position": [
+        47,
+        268
+      ],
+      "size": [
+        580,
+        580
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/raketa-x-lebedev/hour.png",
+      "valueType": "Hour 12 Ratio",
+      "handResPosition": [
+        337,
+        558
+      ],
+      "rotatePoint": [
+        17,
+        168.5
+      ],
+      "size": [
+        31,
+        219
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/raketa-x-lebedev/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        337,
+        558
+      ],
+      "rotatePoint": [
+        12.5,
+        231
+      ],
+      "size": [
+        25,
+        282
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/raketa-x-lebedev/second.png",
+      "valueType": "Second Ratio",
+      "handResPosition": [
+        337,
+        558
+      ],
+      "rotatePoint": [
+        13,
+        279.5
+      ],
+      "size": [
+        21,
+        336.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/raketa-x-lebedev/cap.png",
+      "position": [
+        326,
+        547
+      ],
+      "size": [
+        22,
+        22
+      ]
+    }
+  ]
+}

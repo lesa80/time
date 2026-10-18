@@ -1,0 +1,27 @@
+{
+  "images": [
+    {
+      "file": "bolt42.png",
+      "description": "Логотип БОЛТ42 для раздела Разработка и циферблатов Минимализм",
+      "source": "User-provided attachment, 2026-10-18",
+      "sha256": "f5cc1e510a46c91363a53ec62d4d8a415fc1771a9cce0d3deaae1fc3e10a118f"
+    },
+    {
+      "file": "time-icon.png",
+      "description": "Предоставленная иконка приложения Время",
+      "source": "User-provided attachment, 2026-10-18",
+      "sha256": "97d89b57640c8c8cfe4c84d023e40e23125e81a0e68c1081d138c2a389c6c64b"
+    }
+  ],
+  "license": "Publication in the time repository and Время application is permitted by the copyright holder; rights retained, not MIT.",
+  "permission": {
+    "confirmed": "2026-10-18",
+    "copyright_holder": "Project author, GitHub @lesa80",
+    "copyright_holder_url": "https://github.com/lesa80",
+    "scope": [
+      "Publication in the lesa80/time repository",
+      "Distribution within the Время application, including existing derived icons, dials and previews"
+    ],
+    "notice": "RIGHTS.md"
+  }
+}

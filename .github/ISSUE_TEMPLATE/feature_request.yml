@@ -1,0 +1,22 @@
+name: Предложение / Feature request
+description: Предложить улучшение часов или инструментов разработки.
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Какую задачу нужно решить
+      description: Опишите ситуацию и желаемый результат.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Предлагаемое изменение
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Альтернативы и примеры
+      description: Необязательно. Для графики укажите источник и условия использования.

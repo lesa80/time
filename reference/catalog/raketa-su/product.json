@@ -1,0 +1,447 @@
+{
+  "catalog": {
+    "id": 727,
+    "sectionCode": "specialized",
+    "code": "raketa-su",
+    "name": "Ракета Су",
+    "isNew": false,
+    "isSoldOut": false,
+    "availability": "pre_order",
+    "lastmod": 1790858512,
+    "price": 300000,
+    "discount": 0,
+    "previewPicture": "https://admin.raketa.com/upload/iblock/173/30xpay99qx6kr6dmd395669sw1d05zh6.png",
+    "limitedEdition": true,
+    "limitedProduction": false,
+    "productURL": "https://raketa.com/product/raketa-su"
+  },
+  "details": [
+    {
+      "id": 727,
+      "sectionCode": "specialized",
+      "code": "raketa-su",
+      "name": "Ракета Су",
+      "availability": "pre_order",
+      "isNew": false,
+      "isSoldOut": false,
+      "limitedProduction": "$undefined",
+      "limitedEdition": "$undefined",
+      "artnumber": "W-14-16-20-0331",
+      "detailText": "«Ракета» в сотрудничестве с ОКБ имени П. О. Сухого Объединённой авиастроительной корпорации Ростеха представляет лимитированную модель часов, созданную для лётчиков — Ракета «Су». ",
+      "detailPicture": "https://admin.raketa.com/upload/iblock/173/30xpay99qx6kr6dmd395669sw1d05zh6.png",
+      "gallery": {
+        "title": null,
+        "text": "Дизайн новой модели вдохновлён передовым сверхманёвренным истребителем 5-го поколения Су-57. Тёмная цветовая гамма часов — не просто эстетический выбор, а отражение совершенства технологий и принципа малозаметности — ключевых преимуществ этого самолёта. Подобно тому, как форма фюзеляжа, материалы и специальная окраска делают истребитель практически невидимым для радаров, выпуклая глянцевая печать силуэта самолета на матовом черном циферблате словно растворяется в темноте.\r\nКорпус с чёрным PVD-покрытием, контрастные черно-белые стрелки, крупные цифры, покрытие Super-LumiNova и двустороннее антибликовое покрытие на сапфировом стекле отсылают к цифровой приборной панели Су-57. Защиту механизма обеспечивает завинчивающаяся заводная головка, которая гарантирует водостойкость до 200 метров.",
+        "images": [
+          "/upload/iblock/95b/q3chl48r8soh9tecjqhfv1o1pmwflfar.jpg",
+          "/upload/iblock/3a8/np8oxw38paiuvk3qrmf01qk8fgklf896.jpg",
+          "/upload/iblock/d0f/iiffxlewnj91h2h4x5wsibp5ff5lss5z.jpg",
+          "/upload/iblock/9d3/afinoox2bshqjmm6b3y7ljrdsfvd2iwc.jpg",
+          "/upload/iblock/74b/uk05kzqo57tmqd6osjadbsj7cg82hmjn.jpg",
+          "/upload/iblock/6b2/87z3gogpj0q9sc6tddjsabqwr7op0r30.jpg",
+          "/upload/iblock/e49/trzxb7yaymmkuiofdtz372hxth5weg47.jpg"
+        ]
+      },
+      "properties": {
+        "case": {
+          "img_block": {
+            "src": "/upload/iblock/055/28m2nytvpmt5py8m66bvnwe067hdioaf.jpg"
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Нержавеющая сталь"
+          },
+          "size": {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "42 мм"
+          },
+          "case_glass": {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое"
+          },
+          "case_back_glass": {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": "Сапфировое"
+          },
+          "case_bazel": {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": null
+          },
+          "case_crown": {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": "Завинчивающаяся головка"
+          },
+          "case_water": {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "20 ATM"
+          },
+          "case_arrows": {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": "Superluminova"
+          },
+          "case_dial": {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": "Superluminova"
+          },
+          "case_gender": {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": "Унисекс"
+          },
+          "case_thicness": {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "13,65 мм"
+          },
+          "watch_lenght": {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "49,13 мм"
+          }
+        },
+        "mechanism": {
+          "img_block": {
+            "src": "/upload/iblock/72f/8dd92qaei6x43rftj13pcu0sq5v2byw5.png"
+          },
+          "calibre": {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": "2615"
+          },
+          "functions": {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": "Автоподзавод"
+          },
+          "number_jewels": {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": "24"
+          },
+          "test_pos": {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": "4"
+          },
+          "rate": {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": "-10+20"
+          },
+          "runtime": {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": "40"
+          },
+          "freq": {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": "18.000 / 2.5Гц"
+          },
+          "winding": {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": "Да"
+          },
+          "system": {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": "Да"
+          },
+          "decor": {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": [
+              "Печать"
+            ]
+          },
+          "count_parts": {
+            "label": "Количество деталей механизма [механизм]",
+            "code": "COUNT_PARTS_MECHANISM",
+            "value": "242"
+          }
+        },
+        "strap": {
+          "quick": {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да"
+          },
+          "length": {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": null
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Силикон"
+          },
+          "extra": {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": "Натуральная кожа"
+          },
+          "collection": {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": ""
+          },
+          "color": {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": ""
+          },
+          "width": {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "20 мм"
+          },
+          "clasp": {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": null
+          }
+        }
+      },
+      "collection": {
+        "name": "Специализированные",
+        "code": "special"
+      },
+      "extraStraps": [],
+      "lastBlock": {
+        "title": null,
+        "text": "Специально для этой модели был разработан металлический футляр с двумя замками и ремувками на них: «remove before flight» — «извлечь перед полетом». Этот элемент перекликается с предполётным ритуалом: как лётчик снимает контрольные бирки перед вылетом, так и вам нужно будет повторить этот жест перед тем, как извлечь и надеть часы. В комплект входит дополнительный ремень из натуральной кожи, а также металлический макет самолёта Су-57 в масштабе 1:100.",
+        "image": "/upload/iblock/054/bxmjejsoi1lo2kvu27yz9k7fv6skl6pu.jpg",
+        "link": "https://bd81e7b6-bace-4c67-9150-276d4e57268f.selstorage.ru/products/SU57_Main.mp4"
+      },
+      "downloadInstruction": null,
+      "mechanismPicture": "https://admin.raketa.com/upload/iblock/72f/8dd92qaei6x43rftj13pcu0sq5v2byw5.png",
+      "lastBuyPicture": "https://admin.raketa.com/upload/iblock/b44/736z7i71qi8xmls7imzn3l84idrqnbsu.jpg",
+      "lastmod": 1790858512,
+      "price": 300000,
+      "discount": "$undefined",
+      "previewPicture": "https://admin.raketa.com/upload/iblock/173/30xpay99qx6kr6dmd395669sw1d05zh6.png",
+      "productType": "watch",
+      "galleryPictures": [
+        "https://admin.raketa.com/upload/iblock/95b/q3chl48r8soh9tecjqhfv1o1pmwflfar.jpg",
+        "https://admin.raketa.com/upload/iblock/3a8/np8oxw38paiuvk3qrmf01qk8fgklf896.jpg",
+        "https://admin.raketa.com/upload/iblock/d0f/iiffxlewnj91h2h4x5wsibp5ff5lss5z.jpg",
+        "https://admin.raketa.com/upload/iblock/9d3/afinoox2bshqjmm6b3y7ljrdsfvd2iwc.jpg",
+        "https://admin.raketa.com/upload/iblock/74b/uk05kzqo57tmqd6osjadbsj7cg82hmjn.jpg",
+        "https://admin.raketa.com/upload/iblock/6b2/87z3gogpj0q9sc6tddjsabqwr7op0r30.jpg",
+        "https://admin.raketa.com/upload/iblock/e49/trzxb7yaymmkuiofdtz372hxth5weg47.jpg"
+      ],
+      "helpBlockPicture": "",
+      "offers": [],
+      "heroPicture": "https://admin.raketa.com/upload/iblock/3ab/1oojpfzbo0pasoj3y8ghazbdjdovdxh6.jpg",
+      "galleryTitle": null,
+      "galleryText": "Дизайн новой модели вдохновлён передовым сверхманёвренным истребителем 5-го поколения Су-57. Тёмная цветовая гамма часов — не просто эстетический выбор, а отражение совершенства технологий и принципа малозаметности — ключевых преимуществ этого самолёта. Подобно тому, как форма фюзеляжа, материалы и специальная окраска делают истребитель практически невидимым для радаров, выпуклая глянцевая печать силуэта самолета на матовом черном циферблате словно растворяется в темноте.\r\nКорпус с чёрным PVD-покрытием, контрастные черно-белые стрелки, крупные цифры, покрытие Super-LumiNova и двустороннее антибликовое покрытие на сапфировом стекле отсылают к цифровой приборной панели Су-57. Защиту механизма обеспечивает завинчивающаяся заводная головка, которая гарантирует водостойкость до 200 метров.",
+      "propertiesPicture": "https://admin.raketa.com/upload/iblock/055/28m2nytvpmt5py8m66bvnwe067hdioaf.jpg",
+      "mechanismDetailsPicture": "",
+      "instructionDownloadLink": "",
+      "videoTitle": null,
+      "videoText": "Специально для этой модели был разработан металлический футляр с двумя замками и ремувками на них: «remove before flight» — «извлечь перед полетом». Этот элемент перекликается с предполётным ритуалом: как лётчик снимает контрольные бирки перед вылетом, так и вам нужно будет повторить этот жест перед тем, как извлечь и надеть часы. В комплект входит дополнительный ремень из натуральной кожи, а также металлический макет самолёта Су-57 в масштабе 1:100.",
+      "videoPoster": "https://admin.raketa.com/upload/iblock/054/bxmjejsoi1lo2kvu27yz9k7fv6skl6pu.jpg",
+      "video": "https://bd81e7b6-bace-4c67-9150-276d4e57268f.selstorage.ru/products/SU57_Main.mp4",
+      "propsList": {
+        "case": [
+          {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Нержавеющая сталь",
+            "omitLabel": false
+          },
+          {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "42 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое",
+            "omitLabel": false
+          },
+          {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": "Сапфировое",
+            "omitLabel": false
+          },
+          {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": "Завинчивающаяся головка",
+            "omitLabel": false
+          },
+          {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "20 ATM",
+            "omitLabel": false
+          },
+          {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": "Superluminova",
+            "omitLabel": false
+          },
+          {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": "Superluminova",
+            "omitLabel": false
+          },
+          {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": "Унисекс",
+            "omitLabel": false
+          },
+          {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "13,65 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "49,13 мм",
+            "omitLabel": false
+          }
+        ],
+        "strap": [
+          {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Силикон",
+            "omitLabel": false
+          },
+          {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": "Натуральная кожа",
+            "omitLabel": false
+          },
+          {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "20 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": null,
+            "omitLabel": false
+          }
+        ],
+        "mechanism": [
+          {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": "2615",
+            "omitLabel": false
+          },
+          {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": "Автоподзавод",
+            "omitLabel": false
+          },
+          {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": "24",
+            "omitLabel": false
+          },
+          {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": "4",
+            "omitLabel": false
+          },
+          {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": "-10+20",
+            "omitLabel": false
+          },
+          {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": "40",
+            "omitLabel": false
+          },
+          {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": "18.000 / 2.5Гц",
+            "omitLabel": false
+          },
+          {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": "Да",
+            "omitLabel": true
+          },
+          {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": "Да",
+            "omitLabel": true
+          },
+          {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": "$8:1:props:product:properties:mechanism:decor:value",
+            "omitLabel": true
+          }
+        ]
+      },
+      "mechanismDetailsCount": "242"
+    }
+  ]
+}

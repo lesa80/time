@@ -1,0 +1,449 @@
+{
+  "catalog": {
+    "id": 49,
+    "sectionCode": "specialized",
+    "code": "podvodnik-0317",
+    "name": "Подводник",
+    "isNew": false,
+    "isSoldOut": false,
+    "availability": "available",
+    "lastmod": 1785568264,
+    "price": 180000,
+    "discount": 0,
+    "previewPicture": "https://admin.raketa.com/upload/iblock/8b0/4f23sevc02o18d0g7i777m5sl9rsqag9.png",
+    "limitedEdition": false,
+    "limitedProduction": false,
+    "productURL": "https://raketa.com/product/podvodnik-0317"
+  },
+  "details": [
+    {
+      "id": 49,
+      "sectionCode": "specialized",
+      "code": "podvodnik-0317",
+      "name": "Подводник",
+      "availability": "available",
+      "isNew": false,
+      "isSoldOut": false,
+      "limitedProduction": "$undefined",
+      "limitedEdition": "$undefined",
+      "artnumber": "W-45-17-20-0317",
+      "detailText": "Часовой Завод «Ракета», расположенный в Санкт-Петербурге на берегу Финского залива, имеет давнюю традицию изготовления часов для подводников. Многолетний опыт производства специализированных часов находит отражение в модели Ракета «Подводник».\r\n",
+      "detailPicture": "https://admin.raketa.com/upload/iblock/8b0/4f23sevc02o18d0g7i777m5sl9rsqag9.png",
+      "gallery": {
+        "title": null,
+        "text": "Дизайн часовых стрелок вдохновлен стрелками на панелях управления советских подводных лодок. Яркое люминесцентное покрытие циферблата и стрелок позволяет видеть время в темноте подводной лодки. 6 секций (красные и синие) делят циферблат по периметру на 6 частей, чтобы члены экипажа могли следить за вахтами.",
+        "images": [
+          "/upload/iblock/441/07yab8b28elmaqeo0dtxf1izvj42uo5u.jpg",
+          "/upload/iblock/e70/i5azaz53x7k2usti5f6qnvd3n29csxgq.jpg",
+          "/upload/iblock/b7d/t0l3kyll5152e189dtogoh20t05t5cp7.jpg",
+          "/upload/iblock/273/h8wjvaq3s79ysbf9i2xj683cu1b43qjj.jpg",
+          "/upload/iblock/ffe/pqhfjriqfcucyaim0bkf2fpkz72tsi4o.jpg",
+          "/upload/iblock/20c/8q40fw66baoqwblkvz7ho2pekjqwzfbg.jpg",
+          "/upload/iblock/9c4/sqkpvpbzcfy9ksm6gny8x179jeszdv7c.jpg"
+        ]
+      },
+      "properties": {
+        "case": {
+          "img_block": {
+            "src": "/upload/iblock/a3c/wrv071zkusgq6rndezhj8xeog48h84yp.jpg"
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Нержавеющая сталь"
+          },
+          "size": {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "44 мм"
+          },
+          "case_glass": {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое"
+          },
+          "case_back_glass": {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": "Минеральное"
+          },
+          "case_bazel": {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": "Нет"
+          },
+          "case_crown": {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": "Завинчивающаяся головка"
+          },
+          "case_water": {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "20 ATM"
+          },
+          "case_arrows": {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": "Superluminova"
+          },
+          "case_dial": {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": "Superluminova"
+          },
+          "case_gender": {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": "Унисекс"
+          },
+          "case_thicness": {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "14.25 мм"
+          },
+          "watch_lenght": {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "50.4 мм"
+          }
+        },
+        "mechanism": {
+          "img_block": {
+            "src": "/upload/iblock/64e/mgyvwv4umxvuc97260ynzr8tmhh3qfjy.png"
+          },
+          "calibre": {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": "2624A"
+          },
+          "functions": {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": "Автоподзавод на 24 часа"
+          },
+          "number_jewels": {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": "24"
+          },
+          "test_pos": {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": "4"
+          },
+          "rate": {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": "-10+20"
+          },
+          "runtime": {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": "40"
+          },
+          "freq": {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": "18.000 / 2.5Гц"
+          },
+          "winding": {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": "Да"
+          },
+          "system": {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": "Да"
+          },
+          "decor": {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": [
+              "Печать",
+              "Бирюзовый ротор",
+              "Невские волны"
+            ]
+          },
+          "count_parts": {
+            "label": "Количество деталей механизма [механизм]",
+            "code": "COUNT_PARTS_MECHANISM",
+            "value": null
+          }
+        },
+        "strap": {
+          "quick": {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да"
+          },
+          "length": {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": null
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Каучук"
+          },
+          "extra": {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": null
+          },
+          "collection": {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": ""
+          },
+          "color": {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": ""
+          },
+          "width": {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "22 мм"
+          },
+          "clasp": {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": null
+          }
+        }
+      },
+      "collection": {
+        "name": "Специализированные",
+        "code": "special"
+      },
+      "extraStraps": [],
+      "lastBlock": {
+        "title": null,
+        "text": "24-часовой механизм «Ракета» с автоподзаводом необходим подводникам для определения времени суток во время длительных погружений. Механизм с автоподзаводом имеет двунаправленный ротор, который удваивает эффективность завода часов, что особенно пригодится в тесных условиях подводной лодки. Через крышку часов открывается вид на искусно декорированный механизм «Ракета» с автоподзаводом, полностью изготовленный на Часовом Заводе «Ракета» в Санкт-Петербурге.",
+        "image": "/upload/iblock/871/rpv2gy3upb2km6j5ccj8zgbf3udcvbng.jpg",
+        "link": "https://bd81e7b6-bace-4c67-9150-276d4e57268f.selstorage.ru/products%2FRAKETA_Sonar.mp4"
+      },
+      "downloadInstruction": null,
+      "mechanismPicture": "https://admin.raketa.com/upload/iblock/64e/mgyvwv4umxvuc97260ynzr8tmhh3qfjy.png",
+      "lastBuyPicture": "https://admin.raketa.com/upload/iblock/c2a/k6duug2dam11u9sx3gjhj0fk5tl3mraf.jpg",
+      "lastmod": 1785568264,
+      "price": 180000,
+      "discount": "$undefined",
+      "previewPicture": "https://admin.raketa.com/upload/iblock/8b0/4f23sevc02o18d0g7i777m5sl9rsqag9.png",
+      "productType": "watch",
+      "galleryPictures": [
+        "https://admin.raketa.com/upload/iblock/441/07yab8b28elmaqeo0dtxf1izvj42uo5u.jpg",
+        "https://admin.raketa.com/upload/iblock/e70/i5azaz53x7k2usti5f6qnvd3n29csxgq.jpg",
+        "https://admin.raketa.com/upload/iblock/b7d/t0l3kyll5152e189dtogoh20t05t5cp7.jpg",
+        "https://admin.raketa.com/upload/iblock/273/h8wjvaq3s79ysbf9i2xj683cu1b43qjj.jpg",
+        "https://admin.raketa.com/upload/iblock/ffe/pqhfjriqfcucyaim0bkf2fpkz72tsi4o.jpg",
+        "https://admin.raketa.com/upload/iblock/20c/8q40fw66baoqwblkvz7ho2pekjqwzfbg.jpg",
+        "https://admin.raketa.com/upload/iblock/9c4/sqkpvpbzcfy9ksm6gny8x179jeszdv7c.jpg"
+      ],
+      "helpBlockPicture": "",
+      "offers": [],
+      "heroPicture": "https://admin.raketa.com/upload/iblock/406/krpafzr3mia444pm7zyvov1x4s27tdcc.jpg",
+      "galleryTitle": null,
+      "galleryText": "Дизайн часовых стрелок вдохновлен стрелками на панелях управления советских подводных лодок. Яркое люминесцентное покрытие циферблата и стрелок позволяет видеть время в темноте подводной лодки. 6 секций (красные и синие) делят циферблат по периметру на 6 частей, чтобы члены экипажа могли следить за вахтами.",
+      "propertiesPicture": "https://admin.raketa.com/upload/iblock/a3c/wrv071zkusgq6rndezhj8xeog48h84yp.jpg",
+      "mechanismDetailsPicture": "",
+      "instructionDownloadLink": "",
+      "videoTitle": null,
+      "videoText": "24-часовой механизм «Ракета» с автоподзаводом необходим подводникам для определения времени суток во время длительных погружений. Механизм с автоподзаводом имеет двунаправленный ротор, который удваивает эффективность завода часов, что особенно пригодится в тесных условиях подводной лодки. Через крышку часов открывается вид на искусно декорированный механизм «Ракета» с автоподзаводом, полностью изготовленный на Часовом Заводе «Ракета» в Санкт-Петербурге.",
+      "videoPoster": "https://admin.raketa.com/upload/iblock/871/rpv2gy3upb2km6j5ccj8zgbf3udcvbng.jpg",
+      "video": "https://bd81e7b6-bace-4c67-9150-276d4e57268f.selstorage.ru/products%2FRAKETA_Sonar.mp4",
+      "propsList": {
+        "case": [
+          {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Нержавеющая сталь",
+            "omitLabel": false
+          },
+          {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "44 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое",
+            "omitLabel": false
+          },
+          {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": "Минеральное",
+            "omitLabel": false
+          },
+          {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": "Нет",
+            "omitLabel": false
+          },
+          {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": "Завинчивающаяся головка",
+            "omitLabel": false
+          },
+          {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "20 ATM",
+            "omitLabel": false
+          },
+          {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": "Superluminova",
+            "omitLabel": false
+          },
+          {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": "Superluminova",
+            "omitLabel": false
+          },
+          {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": "Унисекс",
+            "omitLabel": false
+          },
+          {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "14.25 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "50.4 мм",
+            "omitLabel": false
+          }
+        ],
+        "strap": [
+          {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Каучук",
+            "omitLabel": false
+          },
+          {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "22 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": null,
+            "omitLabel": false
+          }
+        ],
+        "mechanism": [
+          {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": "2624A",
+            "omitLabel": false
+          },
+          {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": "Автоподзавод на 24 часа",
+            "omitLabel": false
+          },
+          {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": "24",
+            "omitLabel": false
+          },
+          {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": "4",
+            "omitLabel": false
+          },
+          {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": "-10+20",
+            "omitLabel": false
+          },
+          {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": "40",
+            "omitLabel": false
+          },
+          {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": "18.000 / 2.5Гц",
+            "omitLabel": false
+          },
+          {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": "Да",
+            "omitLabel": true
+          },
+          {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": "Да",
+            "omitLabel": true
+          },
+          {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": "$8:1:props:product:properties:mechanism:decor:value",
+            "omitLabel": true
+          }
+        ]
+      },
+      "mechanismDetailsCount": null
+    }
+  ]
+}

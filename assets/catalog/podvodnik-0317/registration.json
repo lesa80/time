@@ -1,0 +1,52 @@
+{
+  "source": "https://admin.raketa.com/upload/iblock/8b0/4f23sevc02o18d0g7i777m5sl9rsqag9.png",
+  "bodySource": "reference/catalog/podvodnik-0317/front.png",
+  "cropOrigin": [
+    100,
+    350
+  ],
+  "bodyCrop": [
+    78,
+    76,
+    806,
+    1278
+  ],
+  "center": [
+    350,
+    350
+  ],
+  "dialBox": [
+    35,
+    35,
+    630,
+    630
+  ],
+  "hands": {
+    "hour": {
+      "shape": "<path d=\"M 227 223 L 322 295 L 310 306 Z\" fill=\"none\" stroke=\"white\" stroke-width=\"9\"/><circle cx=\"350\" cy=\"350\" r=\"47.5\" fill=\"none\" stroke=\"white\" stroke-width=\"13\"/><polygon points=\"319.39197728458504,308.0428915980541 312.60802271541496,313.9571084019459 378.15051233617146,389.1381994375196 384.93446690534154,383.22398263362777\"/>",
+      "angle": 316
+    },
+    "minute": {
+      "shape": "<path d=\"M 358 337 L 493 168 L 532 128 L 518 161 L 374 350 Z\" fill=\"none\" stroke=\"white\" stroke-width=\"9\"/>",
+      "angle": 43
+    },
+    "second": {
+      "shape": "<polygon points=\"130,477 128,474 421,282 459,280 455,291 350,360\"/>",
+      "angle": 239
+    }
+  },
+  "restoration": {
+    "registration": {
+      "sx": 1,
+      "sy": 1,
+      "dx": 0,
+      "dy": 0,
+      "error": 12.204643456538754
+    },
+    "bias": [
+      2.165450121654501,
+      1.6647329807200137,
+      1.8716122307157748
+    ]
+  }
+}

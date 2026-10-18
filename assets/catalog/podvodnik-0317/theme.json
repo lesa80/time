@@ -1,0 +1,122 @@
+{
+  "name": "Подводник 0317",
+  "target": "macOS / Retina",
+  "hourCycle": 24,
+  "direction": 1,
+  "resolution": [
+    806,
+    1278
+  ],
+  "dialBounds": [
+    57,
+    309,
+    630,
+    630
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/podvodnik-0317/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        806,
+        1278
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/podvodnik-0317/dial.png",
+      "position": [
+        57,
+        309
+      ],
+      "size": [
+        630,
+        630
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/podvodnik-0317/hour.png",
+      "valueType": "Hour 24 Ratio",
+      "handResPosition": [
+        372,
+        624
+      ],
+      "rotatePoint": [
+        58,
+        182
+      ],
+      "size": [
+        116.5,
+        233
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/podvodnik-0317/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        372,
+        624
+      ],
+      "rotatePoint": [
+        24,
+        289.5
+      ],
+      "size": [
+        48.5,
+        314.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/podvodnik-0317/second.png",
+      "valueType": "Second Ratio",
+      "handResPosition": [
+        372,
+        624
+      ],
+      "rotatePoint": [
+        10.5,
+        254
+      ],
+      "size": [
+        31,
+        374
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/podvodnik-0317/cap.png",
+      "position": [
+        363,
+        615
+      ],
+      "size": [
+        18,
+        18
+      ]
+    }
+  ]
+}

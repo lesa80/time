@@ -1,0 +1,122 @@
+{
+  "name": "Золотой Ключик 0328",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "direction": 1,
+  "resolution": [
+    896,
+    1254
+  ],
+  "dialBounds": [
+    230,
+    331,
+    440,
+    440
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/zolotoy-klyuchik/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        896,
+        1254
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/zolotoy-klyuchik/dial.png",
+      "position": [
+        230,
+        331
+      ],
+      "size": [
+        440,
+        440
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/zolotoy-klyuchik/hour.png",
+      "valueType": "Hour 12 Ratio",
+      "handResPosition": [
+        450,
+        551
+      ],
+      "rotatePoint": [
+        15,
+        137.5
+      ],
+      "size": [
+        28,
+        184.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/zolotoy-klyuchik/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        450,
+        551
+      ],
+      "rotatePoint": [
+        9,
+        187.5
+      ],
+      "size": [
+        18,
+        235.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/zolotoy-klyuchik/second.png",
+      "valueType": "Second Ratio",
+      "handResPosition": [
+        450,
+        551
+      ],
+      "rotatePoint": [
+        8,
+        206.5
+      ],
+      "size": [
+        16,
+        270.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/zolotoy-klyuchik/cap.png",
+      "position": [
+        441,
+        542
+      ],
+      "size": [
+        18,
+        18
+      ]
+    }
+  ]
+}

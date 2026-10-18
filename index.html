@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111414">
+    <meta name="description" content="«Время» — часы для macOS: собственные темы Минимализм и коллекция Ракеты.">
+    <title>Время · Часы для macOS</title>
+    <link rel="icon" type="image/png" href="assets/icons/app.png">
+    <link rel="stylesheet" href="preview.css">
+    <script defer src="preview.js"></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow" id="theme-label">RAKETA · RETINA · 2048 × 2048</p>
+        <h1>Время <span id="theme-name">Минимализм</span></h1>
+        <p class="intro" id="theme-description">Белый 12-часовой циферблат с прямыми стрелками.</p>
+        <label class="theme-selector">Тема
+          <select id="theme-select" aria-label="Тема часов">
+            <option value="minimalism">Минимализм</option>
+            <option value="minimalism-24">Минимализм 24</option>
+            <option value="avangard">Авангард 0292</option>
+          </select>
+        </label>
+      </header>
+
+      <div class="dial" id="dial" role="img" aria-label="Циферблат «Минимализм», 10:10:30. Положение стрелок как на фото.">
+        <img class="bezel-background" style="display:none" width="636" height="636" alt="" draggable="false">
+        <img class="dial-background" src="assets/minimalism/dial.png" width="466" height="466" alt="" draggable="false">
+        <img class="hand hour" id="hour" src="assets/minimalism/hour.png" width="60" height="212" alt="" draggable="false">
+        <img class="hand minute" id="minute" src="assets/minimalism/minute.png" width="40" height="238" alt="" draggable="false">
+        <img class="hand second" id="second" src="assets/minimalism/second.png" width="28" height="318" alt="" draggable="false">
+        <img class="cap" src="assets/minimalism/cap.png" width="16" height="16" alt="" draggable="false">
+      </div>
+
+      <section class="controls" aria-label="Управление превью">
+        <output id="digital-time" class="digital-time" aria-label="Время на циферблате">10:10:30</output>
+        <p class="mode-description" id="mode-description" aria-live="polite">Положение стрелок как на фото</p>
+        <div class="modes" role="group" aria-label="Режим времени">
+          <button type="button" data-mode="photo" aria-pressed="true">Как на фото</button>
+          <button type="button" data-mode="live" aria-pressed="false">Сейчас</button>
+          <button type="button" data-mode="custom" aria-pressed="false">Своё время</button>
+        </div>
+        <button type="button" id="toggle-bezel" aria-pressed="true">Безель и ремешок</button>
+        <div class="custom-time" id="custom-time" hidden>
+          <label for="time-input">Время, 24 часа</label>
+          <input type="time" id="time-input" value="10:10:30" step="1" required aria-describedby="time-error">
+          <p class="time-error" id="time-error" role="status"></p>
+        </div>
+      </section>
+
+      <footer>
+        <div class="downloads" id="downloads">
+          <a class="download-primary" href="dist/macos/Время%20macOS.zip" download>Для macOS <span aria-hidden="true">↓</span></a>
+        </div>
+        <p id="clock-note">Локальное превью · полный оборот часовой стрелки за 12 часов</p>
+      </footer>
+    </main>
+  </body>
+</html>

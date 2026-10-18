@@ -1,0 +1,455 @@
+{
+  "catalog": {
+    "id": 53,
+    "sectionCode": "exceptional",
+    "code": "russkiy-kod-0302",
+    "name": "Русский код",
+    "isNew": false,
+    "isSoldOut": false,
+    "availability": "available",
+    "lastmod": 1785568421,
+    "price": 250000,
+    "discount": 0,
+    "previewPicture": "https://admin.raketa.com/upload/iblock/ac8/3nzkuhppmg4lpooz4e3e0z20i49usj5c.png",
+    "limitedEdition": false,
+    "limitedProduction": false,
+    "productURL": "https://raketa.com/product/russkiy-kod-0302"
+  },
+  "details": [
+    {
+      "id": 53,
+      "sectionCode": "exceptional",
+      "code": "russkiy-kod-0302",
+      "name": "Русский код",
+      "availability": "available",
+      "isNew": false,
+      "isSoldOut": false,
+      "limitedProduction": "$undefined",
+      "limitedEdition": "$undefined",
+      "artnumber": "W-13-20-10-0302-1",
+      "detailText": "Готовы ли Вы к встрече с новым поколением часов, которые движутся в ритме Вселенной? Тогда Вам придется выйти за рамки привычного определения времени “по часовой стрелке”.",
+      "detailPicture": "https://admin.raketa.com/upload/iblock/ac8/3nzkuhppmg4lpooz4e3e0z20i49usj5c.png",
+      "gallery": {
+        "title": null,
+        "text": "За сдержанной элегантностью дизайна модели “Русский код” скрывается революционная концепция. Она провозглашает ход времени в гармонии с движением планет в Солнечной системе — против часовой стрелки. Поэтому, подобно планетам, стрелки часов Ракета “Русский код” вращаются против привычного всем хода.",
+        "images": [
+          "/upload/iblock/f74/0eif792zzgf6af3ynyht9v4hrry4s1wk.jpg",
+          "/upload/iblock/692/e7gz3dq8nzvhq1oj1khtzoe8o2rw3idx.jpg",
+          "/upload/iblock/ba7/dzkx4grn7r9mp47nkxxu7oncmyk6gkqw.jpg",
+          "/upload/iblock/966/mlbanypif4xdzp2lxv2v6op0pp3794yr.jpg",
+          "/upload/iblock/a12/xk7obvp49n0xadr4hprdfrciyc238bhi.jpg",
+          "/upload/iblock/140/3pt2vb8zmejuq3a53zueyxbyvurc9cz9.jpg",
+          "/upload/iblock/bcd/86cw7s80ca7b4m2352hdc37b3i5f2b5a.jpg",
+          "/upload/iblock/427/7muq7r3k2de7f2u37gvjz43jr3r9p8k8.jpg",
+          "/upload/iblock/de2/c71htm7t5bjw8ym50fmu8hxc90pa33ux.jpg",
+          "/upload/iblock/5f4/4o2b8lnred2ois6azkcq798pc4eqc87g.jpg"
+        ]
+      },
+      "properties": {
+        "case": {
+          "img_block": {
+            "src": "/upload/iblock/66b/27pyzi9wi9hubecc002qzshsp33di6q6.jpg"
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Нержавеющая сталь"
+          },
+          "size": {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "39,5 мм"
+          },
+          "case_glass": {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое"
+          },
+          "case_back_glass": {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": "Минеральное"
+          },
+          "case_bazel": {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": "Нет"
+          },
+          "case_crown": {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": "Внутри заводной головки рубин"
+          },
+          "case_water": {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "5 АТМ"
+          },
+          "case_arrows": {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": "Superluminova"
+          },
+          "case_dial": {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": ""
+          },
+          "case_gender": {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": "Унисекс"
+          },
+          "case_thicness": {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "15.78 мм"
+          },
+          "watch_lenght": {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "46.88 мм"
+          }
+        },
+        "mechanism": {
+          "img_block": {
+            "src": "/upload/iblock/c7f/ipisi4l6z9idy95ylkaq5udmxcom0lma.png"
+          },
+          "calibre": {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": "2615CR"
+          },
+          "functions": {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": "Aвтоподзавод с обратным ходом стрелок"
+          },
+          "number_jewels": {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": "24"
+          },
+          "test_pos": {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": "4"
+          },
+          "rate": {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": "-10+20"
+          },
+          "runtime": {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": "40"
+          },
+          "freq": {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": "18.000 / 2.5Гц"
+          },
+          "winding": {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": "Да"
+          },
+          "system": {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": "Да"
+          },
+          "decor": {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": [
+              "Печать",
+              "Невские волны",
+              "Нанопокрытие"
+            ]
+          },
+          "count_parts": {
+            "label": "Количество деталей механизма [механизм]",
+            "code": "COUNT_PARTS_MECHANISM",
+            "value": null
+          }
+        },
+        "strap": {
+          "quick": {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да"
+          },
+          "length": {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": null
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Натуральная кожа"
+          },
+          "extra": {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": null
+          },
+          "collection": {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": ""
+          },
+          "color": {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": ""
+          },
+          "width": {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "22 мм"
+          },
+          "clasp": {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": null
+          }
+        }
+      },
+      "collection": {
+        "name": "Исключительные",
+        "code": "curiosity"
+      },
+      "extraStraps": [],
+      "lastBlock": {
+        "title": null,
+        "text": "Тонкие грани корпуса и многослойный циферблат с двумя чередующимися типами покрытий на индексах придают часам дополнительную трехмерность.\r\n\r\nЧерез открытую заднюю крышку часов виден искусно декорированный механизм “Ракета” с автоподзаводом, полностью изготовленный на Часовом Заводе “Ракета” в Петергофе.",
+        "image": "/upload/iblock/8d6/akhxtxbnptcn8nzxlg0pe0wztjb63x16.jpg",
+        "link": "https://bd81e7b6-bace-4c67-9150-276d4e57268f.selstorage.ru/products%2FRussian_Code_0302.mp4"
+      },
+      "downloadInstruction": null,
+      "mechanismPicture": "https://admin.raketa.com/upload/iblock/c7f/ipisi4l6z9idy95ylkaq5udmxcom0lma.png",
+      "lastBuyPicture": "https://admin.raketa.com/upload/iblock/cd9/1gzywj7yhk7b7e2y4bus4porn1bluetu.jpg",
+      "lastmod": 1785568421,
+      "price": 250000,
+      "discount": "$undefined",
+      "previewPicture": "https://admin.raketa.com/upload/iblock/ac8/3nzkuhppmg4lpooz4e3e0z20i49usj5c.png",
+      "productType": "watch",
+      "galleryPictures": [
+        "https://admin.raketa.com/upload/iblock/f74/0eif792zzgf6af3ynyht9v4hrry4s1wk.jpg",
+        "https://admin.raketa.com/upload/iblock/692/e7gz3dq8nzvhq1oj1khtzoe8o2rw3idx.jpg",
+        "https://admin.raketa.com/upload/iblock/ba7/dzkx4grn7r9mp47nkxxu7oncmyk6gkqw.jpg",
+        "https://admin.raketa.com/upload/iblock/966/mlbanypif4xdzp2lxv2v6op0pp3794yr.jpg",
+        "https://admin.raketa.com/upload/iblock/a12/xk7obvp49n0xadr4hprdfrciyc238bhi.jpg",
+        "https://admin.raketa.com/upload/iblock/140/3pt2vb8zmejuq3a53zueyxbyvurc9cz9.jpg",
+        "https://admin.raketa.com/upload/iblock/bcd/86cw7s80ca7b4m2352hdc37b3i5f2b5a.jpg",
+        "https://admin.raketa.com/upload/iblock/427/7muq7r3k2de7f2u37gvjz43jr3r9p8k8.jpg",
+        "https://admin.raketa.com/upload/iblock/de2/c71htm7t5bjw8ym50fmu8hxc90pa33ux.jpg",
+        "https://admin.raketa.com/upload/iblock/5f4/4o2b8lnred2ois6azkcq798pc4eqc87g.jpg"
+      ],
+      "helpBlockPicture": "",
+      "offers": [],
+      "heroPicture": "https://admin.raketa.com/upload/iblock/98c/m2or2ifa4bp3fg3nqqqh7vy08jdbxhus.jpg",
+      "galleryTitle": null,
+      "galleryText": "За сдержанной элегантностью дизайна модели “Русский код” скрывается революционная концепция. Она провозглашает ход времени в гармонии с движением планет в Солнечной системе — против часовой стрелки. Поэтому, подобно планетам, стрелки часов Ракета “Русский код” вращаются против привычного всем хода.",
+      "propertiesPicture": "https://admin.raketa.com/upload/iblock/66b/27pyzi9wi9hubecc002qzshsp33di6q6.jpg",
+      "mechanismDetailsPicture": "",
+      "instructionDownloadLink": "",
+      "videoTitle": null,
+      "videoText": "Тонкие грани корпуса и многослойный циферблат с двумя чередующимися типами покрытий на индексах придают часам дополнительную трехмерность.\r\n\r\nЧерез открытую заднюю крышку часов виден искусно декорированный механизм “Ракета” с автоподзаводом, полностью изготовленный на Часовом Заводе “Ракета” в Петергофе.",
+      "videoPoster": "https://admin.raketa.com/upload/iblock/8d6/akhxtxbnptcn8nzxlg0pe0wztjb63x16.jpg",
+      "video": "https://bd81e7b6-bace-4c67-9150-276d4e57268f.selstorage.ru/products%2FRussian_Code_0302.mp4",
+      "propsList": {
+        "case": [
+          {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Нержавеющая сталь",
+            "omitLabel": false
+          },
+          {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "39,5 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое",
+            "omitLabel": false
+          },
+          {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": "Минеральное",
+            "omitLabel": false
+          },
+          {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": "Нет",
+            "omitLabel": false
+          },
+          {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": "Внутри заводной головки рубин",
+            "omitLabel": false
+          },
+          {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "5 АТМ",
+            "omitLabel": false
+          },
+          {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": "Superluminova",
+            "omitLabel": false
+          },
+          {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": "Унисекс",
+            "omitLabel": false
+          },
+          {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "15.78 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "46.88 мм",
+            "omitLabel": false
+          }
+        ],
+        "strap": [
+          {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Натуральная кожа",
+            "omitLabel": false
+          },
+          {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "22 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": null,
+            "omitLabel": false
+          }
+        ],
+        "mechanism": [
+          {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": "2615CR",
+            "omitLabel": false
+          },
+          {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": "Aвтоподзавод с обратным ходом стрелок",
+            "omitLabel": false
+          },
+          {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": "24",
+            "omitLabel": false
+          },
+          {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": "4",
+            "omitLabel": false
+          },
+          {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": "-10+20",
+            "omitLabel": false
+          },
+          {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": "40",
+            "omitLabel": false
+          },
+          {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": "18.000 / 2.5Гц",
+            "omitLabel": false
+          },
+          {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": "Да",
+            "omitLabel": true
+          },
+          {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": "Да",
+            "omitLabel": true
+          },
+          {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": "$8:1:props:product:properties:mechanism:decor:value",
+            "omitLabel": true
+          }
+        ]
+      },
+      "mechanismDetailsCount": null
+    }
+  ]
+}

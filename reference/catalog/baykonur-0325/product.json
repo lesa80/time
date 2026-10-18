@@ -1,0 +1,454 @@
+{
+  "catalog": {
+    "id": 1338,
+    "sectionCode": "specialized",
+    "code": "baykonur-0325",
+    "name": "Байконур",
+    "isNew": false,
+    "isSoldOut": false,
+    "availability": "available",
+    "lastmod": 1790061805,
+    "price": 220000,
+    "discount": 0,
+    "previewPicture": "https://admin.raketa.com/upload/iblock/f85/seye2u0sfm6mb9rlavo7zlwjoiagvouk.png",
+    "limitedEdition": false,
+    "limitedProduction": false,
+    "productURL": "https://raketa.com/product/baykonur-0325"
+  },
+  "details": [
+    {
+      "id": 1338,
+      "sectionCode": "specialized",
+      "code": "baykonur-0325",
+      "name": "Байконур",
+      "availability": "available",
+      "isNew": false,
+      "isSoldOut": false,
+      "limitedProduction": "$undefined",
+      "limitedEdition": "$undefined",
+      "artnumber": "W-14-16-40-0325",
+      "detailText": "В честь 65-летия первого полета человека в космос мануфактура «Ракета» представляет часы «Байконур» — модель, созданную специально для космонавтов.",
+      "detailPicture": "https://admin.raketa.com/upload/iblock/f85/seye2u0sfm6mb9rlavo7zlwjoiagvouk.png",
+      "gallery": {
+        "title": null,
+        "text": "24-часовой формат индикации времени с контрастным чёрно-белым разделением циферблата на день и ночь помогает отслеживать время на МКС полными сутками.\r\n\r\nС помощью дополнительной переводной головки можно управлять вторым часовым поясом, что позволяет одновременно следить за временем по Гринвичу (GMT), по которому живут на МКС, и земным временем.\r\n\r\nСолнечный компас, расположенный на вращающемся диске по внешнему периметру циферблат поможет космонавту сориентироваться на местности и выжить, если он приземлился не в назначенном месте, и электронный компас\r\nкосмического аппарата вышел из строя.",
+        "images": [
+          "/upload/iblock/c7c/rinfysj5haz8au4h0j7sfvlxa3hwd85p.jpg",
+          "/upload/iblock/fd4/79d1ov24viouv1zg4819kacnrprtzhx5.jpg",
+          "/upload/iblock/650/z6bgtv4ajh028avmpk2zp3i3rtlizlim.jpg",
+          "/upload/iblock/6ef/uvmpdjbseyw19uxmkdfu3e1jgua2cw19.jpg",
+          "/upload/iblock/54e/y4ohk0evyv3n0tu3orue8yduou0tfenz.jpg",
+          "/upload/iblock/91a/wjgipg37bw2wi9y829mmp1zzwqnyoods.jpg",
+          "/upload/iblock/438/tu234is2mumxe661qqkl2b6gmfyi8gnw.jpg",
+          "/upload/iblock/cca/sst19n0mb5xcdmx4vzbtaz7qzqf9v3hx.jpg",
+          "/upload/iblock/c8a/rf0hd3iedjln7gerl9qwq3mr53gdz3q5.jpg",
+          "/upload/iblock/bdd/31vsl2fm04009n12b4kregzc32tkf2ie.jpg"
+        ]
+      },
+      "properties": {
+        "case": {
+          "img_block": {
+            "src": "/upload/iblock/24b/r4upz1y57t0lpavbg0b9krd3rd34a9h2.jpg"
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Нержавеющая сталь"
+          },
+          "size": {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "42 мм"
+          },
+          "case_glass": {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое"
+          },
+          "case_back_glass": {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": "Минеральное"
+          },
+          "case_bazel": {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": null
+          },
+          "case_crown": {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": "Внутри заводной головки рубин"
+          },
+          "case_water": {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "20 ATM"
+          },
+          "case_arrows": {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": "Superluminova"
+          },
+          "case_dial": {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": "Superluminova"
+          },
+          "case_gender": {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": "Мужские"
+          },
+          "case_thicness": {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "14.05 мм"
+          },
+          "watch_lenght": {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "49 мм"
+          }
+        },
+        "mechanism": {
+          "img_block": {
+            "src": "/upload/iblock/53b/kj4dumhfv9u8h9jcfcnatrjuxqbz8q43.png"
+          },
+          "calibre": {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": "2624СА"
+          },
+          "functions": {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": "Автоподзавод на 24 часа"
+          },
+          "number_jewels": {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": "24"
+          },
+          "test_pos": {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": "4"
+          },
+          "rate": {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": "-10+20"
+          },
+          "runtime": {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": "40"
+          },
+          "freq": {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": "18.000 / 2.5Гц"
+          },
+          "winding": {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": "Да"
+          },
+          "system": {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": "Да"
+          },
+          "decor": {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": [
+              "Невские волны",
+              "Печать"
+            ]
+          },
+          "count_parts": {
+            "label": "Количество деталей механизма [механизм]",
+            "code": "COUNT_PARTS_MECHANISM",
+            "value": null
+          }
+        },
+        "strap": {
+          "quick": {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да"
+          },
+          "length": {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": "225"
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Нейлон"
+          },
+          "extra": {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": "Натуральная кожа"
+          },
+          "collection": {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": ""
+          },
+          "color": {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": ""
+          },
+          "width": {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "20 мм"
+          },
+          "clasp": {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": null
+          }
+        }
+      },
+      "collection": {
+        "name": "Специализированные",
+        "code": "special"
+      },
+      "extraStraps": [],
+      "lastBlock": {
+        "title": null,
+        "text": "Через открытую заднюю крышку открывается вид на механизм и ротор, декорированный изображением созвездий.\r\n\r\nВ невесомости не самые идеальные условия для работы механизма автоподзавода, поэтому космонавтам лучше заводить часы вручную. Ручной завод в течение длительного срока может износить узел автоподзавода. Во избежании этого механизм часов «Ракета» имеет уникальную функцию отключения автоподзавода во время ручного завода, что позволяет предохранить и защитить механизм от преждевременного износа в течение всего времени, проведённого в космосе.",
+        "image": "/upload/iblock/ec4/b9xyw3dvhnk8o96pfc22f4kpjb5ppyn5.jpg",
+        "link": "https://bd81e7b6-bace-4c67-9150-276d4e57268f.selstorage.ru/products/Baikonur_Final.mp4"
+      },
+      "downloadInstruction": "/upload/iblock/e8e/5lzt4u8yemdw03pnxi1ik6tcuqc3k42n.pdf",
+      "mechanismPicture": "https://admin.raketa.com/upload/iblock/53b/kj4dumhfv9u8h9jcfcnatrjuxqbz8q43.png",
+      "lastBuyPicture": "https://admin.raketa.com/upload/iblock/10c/6yzjuk5mbp3n0mws3mh8l0crvv2iq57v.jpg",
+      "lastmod": 1790061805,
+      "price": 220000,
+      "discount": "$undefined",
+      "previewPicture": "https://admin.raketa.com/upload/iblock/f85/seye2u0sfm6mb9rlavo7zlwjoiagvouk.png",
+      "productType": "watch",
+      "galleryPictures": [
+        "https://admin.raketa.com/upload/iblock/c7c/rinfysj5haz8au4h0j7sfvlxa3hwd85p.jpg",
+        "https://admin.raketa.com/upload/iblock/fd4/79d1ov24viouv1zg4819kacnrprtzhx5.jpg",
+        "https://admin.raketa.com/upload/iblock/650/z6bgtv4ajh028avmpk2zp3i3rtlizlim.jpg",
+        "https://admin.raketa.com/upload/iblock/6ef/uvmpdjbseyw19uxmkdfu3e1jgua2cw19.jpg",
+        "https://admin.raketa.com/upload/iblock/54e/y4ohk0evyv3n0tu3orue8yduou0tfenz.jpg",
+        "https://admin.raketa.com/upload/iblock/91a/wjgipg37bw2wi9y829mmp1zzwqnyoods.jpg",
+        "https://admin.raketa.com/upload/iblock/438/tu234is2mumxe661qqkl2b6gmfyi8gnw.jpg",
+        "https://admin.raketa.com/upload/iblock/cca/sst19n0mb5xcdmx4vzbtaz7qzqf9v3hx.jpg",
+        "https://admin.raketa.com/upload/iblock/c8a/rf0hd3iedjln7gerl9qwq3mr53gdz3q5.jpg",
+        "https://admin.raketa.com/upload/iblock/bdd/31vsl2fm04009n12b4kregzc32tkf2ie.jpg"
+      ],
+      "helpBlockPicture": "",
+      "offers": [],
+      "heroPicture": "https://admin.raketa.com/upload/iblock/7ca/jzhymjp5rtfgl5hybeica1bes07so0z5.jpg",
+      "galleryTitle": null,
+      "galleryText": "24-часовой формат индикации времени с контрастным чёрно-белым разделением циферблата на день и ночь помогает отслеживать время на МКС полными сутками.\r\n\r\nС помощью дополнительной переводной головки можно управлять вторым часовым поясом, что позволяет одновременно следить за временем по Гринвичу (GMT), по которому живут на МКС, и земным временем.\r\n\r\nСолнечный компас, расположенный на вращающемся диске по внешнему периметру циферблат поможет космонавту сориентироваться на местности и выжить, если он приземлился не в назначенном месте, и электронный компас\r\nкосмического аппарата вышел из строя.",
+      "propertiesPicture": "https://admin.raketa.com/upload/iblock/24b/r4upz1y57t0lpavbg0b9krd3rd34a9h2.jpg",
+      "mechanismDetailsPicture": "",
+      "instructionDownloadLink": "https://admin.raketa.com/upload/iblock/e8e/5lzt4u8yemdw03pnxi1ik6tcuqc3k42n.pdf",
+      "videoTitle": null,
+      "videoText": "Через открытую заднюю крышку открывается вид на механизм и ротор, декорированный изображением созвездий.\r\n\r\nВ невесомости не самые идеальные условия для работы механизма автоподзавода, поэтому космонавтам лучше заводить часы вручную. Ручной завод в течение длительного срока может износить узел автоподзавода. Во избежании этого механизм часов «Ракета» имеет уникальную функцию отключения автоподзавода во время ручного завода, что позволяет предохранить и защитить механизм от преждевременного износа в течение всего времени, проведённого в космосе.",
+      "videoPoster": "https://admin.raketa.com/upload/iblock/ec4/b9xyw3dvhnk8o96pfc22f4kpjb5ppyn5.jpg",
+      "video": "https://bd81e7b6-bace-4c67-9150-276d4e57268f.selstorage.ru/products/Baikonur_Final.mp4",
+      "propsList": {
+        "case": [
+          {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Нержавеющая сталь",
+            "omitLabel": false
+          },
+          {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "42 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое",
+            "omitLabel": false
+          },
+          {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": "Минеральное",
+            "omitLabel": false
+          },
+          {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": "Внутри заводной головки рубин",
+            "omitLabel": false
+          },
+          {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "20 ATM",
+            "omitLabel": false
+          },
+          {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": "Superluminova",
+            "omitLabel": false
+          },
+          {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": "Superluminova",
+            "omitLabel": false
+          },
+          {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": "Мужские",
+            "omitLabel": false
+          },
+          {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "14.05 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "49 мм",
+            "omitLabel": false
+          }
+        ],
+        "strap": [
+          {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": "225",
+            "omitLabel": false
+          },
+          {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Нейлон",
+            "omitLabel": false
+          },
+          {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": "Натуральная кожа",
+            "omitLabel": false
+          },
+          {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "20 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": null,
+            "omitLabel": false
+          }
+        ],
+        "mechanism": [
+          {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": "2624СА",
+            "omitLabel": false
+          },
+          {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": "Автоподзавод на 24 часа",
+            "omitLabel": false
+          },
+          {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": "24",
+            "omitLabel": false
+          },
+          {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": "4",
+            "omitLabel": false
+          },
+          {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": "-10+20",
+            "omitLabel": false
+          },
+          {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": "40",
+            "omitLabel": false
+          },
+          {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": "18.000 / 2.5Гц",
+            "omitLabel": false
+          },
+          {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": "Да",
+            "omitLabel": true
+          },
+          {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": "Да",
+            "omitLabel": true
+          },
+          {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": "$8:1:props:product:properties:mechanism:decor:value",
+            "omitLabel": true
+          }
+        ]
+      },
+      "mechanismDetailsCount": null
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+name: Вопрос / Question
+description: Вопрос по установке, сборке или участию в проекте.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Для уязвимостей используйте приватную форму в Security.
+        Если она недоступна, можно здесь попросить приватный канал, не раскрывая детали.
+  - type: textarea
+    id: question
+    attributes:
+      label: Вопрос
+      description: Не включайте чувствительные данные или подробности уязвимости.
+    validations:
+      required: true

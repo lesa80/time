@@ -1,0 +1,52 @@
+{
+  "source": "https://admin.raketa.com/upload/iblock/a49/fa3r3obs5dcr3m6nspc9wnijggszw1g2.png",
+  "bodySource": "reference/catalog/kopernik-0293/front.png",
+  "cropOrigin": [
+    100,
+    350
+  ],
+  "bodyCrop": [
+    117,
+    133,
+    709,
+    1180
+  ],
+  "center": [
+    351,
+    356
+  ],
+  "dialBox": [
+    60,
+    65,
+    582,
+    582
+  ],
+  "hands": {
+    "hour": {
+      "shape": "<circle cx=\"237\" cy=\"321\" r=\"97\" fill=\"none\" stroke=\"white\" stroke-width=\"5\"/><circle cx=\"167\" cy=\"308\" r=\"21\"/><polygon points=\"338.8381163549235,348.1840812309991 337.1618836450765,351.8159187690009 350.1618836450765,357.8159187690009 351.8381163549235,354.1840812309991\"/>",
+      "angle": 284
+    },
+    "minute": {
+      "shape": "<circle cx=\"408\" cy=\"463\" r=\"133.5\" fill=\"none\" stroke=\"white\" stroke-width=\"5\"/><circle cx=\"459\" cy=\"562\" r=\"22\"/>",
+      "angle": 153
+    },
+    "second": {
+      "shape": "<polygon points=\"583.5299136919996,187.7274554825083 582.4700863080004,186.2725445174917 131.4251576860581,514.8354451084756 132.48498507005726,516.2903560734921\"/><circle cx=\"351\" cy=\"356\" r=\"6\"/>",
+      "angle": 54
+    }
+  },
+  "restoration": {
+    "registration": {
+      "sx": 1,
+      "sy": 1,
+      "dx": 0,
+      "dy": 0,
+      "error": 16.41908718333213
+    },
+    "bias": [
+      3.5243607281910974,
+      2.6964063149148316,
+      1.1584582441113491
+    ]
+  }
+}

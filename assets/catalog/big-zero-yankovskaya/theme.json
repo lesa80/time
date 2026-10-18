@@ -1,0 +1,110 @@
+{
+  "name": "BIG ZERO Янковская 0330",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "direction": 1,
+  "resolution": [
+    720,
+    1159
+  ],
+  "dialBounds": [
+    44,
+    258,
+    582,
+    582
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/big-zero-yankovskaya/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        720,
+        1159
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/big-zero-yankovskaya/dial.png",
+      "position": [
+        44,
+        258
+      ],
+      "size": [
+        582,
+        582
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/big-zero-yankovskaya/hour.png",
+      "valueType": "Hour 12 Ratio",
+      "handResPosition": [
+        335,
+        549
+      ],
+      "rotatePoint": [
+        10,
+        165.5
+      ],
+      "size": [
+        27.5,
+        221
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/big-zero-yankovskaya/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        335,
+        549
+      ],
+      "rotatePoint": [
+        10.5,
+        236.5
+      ],
+      "size": [
+        26,
+        287
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/big-zero-yankovskaya/second.png",
+      "valueType": "Second Ratio",
+      "handResPosition": [
+        335,
+        549
+      ],
+      "rotatePoint": [
+        53.5,
+        87.5
+      ],
+      "size": [
+        106,
+        106
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    }
+  ]
+}

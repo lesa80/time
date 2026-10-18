@@ -1,0 +1,451 @@
+{
+  "catalog": {
+    "id": 130,
+    "sectionCode": "exceptional",
+    "code": "raketa-avgvst-0316",
+    "name": "«Ракета» × Avgvst",
+    "isNew": false,
+    "isSoldOut": false,
+    "availability": "none",
+    "lastmod": 1781534599,
+    "price": 54800,
+    "discount": 0,
+    "previewPicture": "https://admin.raketa.com/upload/iblock/8a5/mav9tyzj6133huhnfxr8208n7d4ywxtv.png",
+    "limitedEdition": false,
+    "limitedProduction": false,
+    "productURL": "https://raketa.com/product/raketa-avgvst-0316"
+  },
+  "details": [
+    {
+      "id": 130,
+      "sectionCode": "exceptional",
+      "code": "raketa-avgvst-0316",
+      "name": "«Ракета» × Avgvst",
+      "availability": "none",
+      "isNew": false,
+      "isSoldOut": false,
+      "limitedProduction": "$undefined",
+      "limitedEdition": "$undefined",
+      "artnumber": "W-08-56-10-0316",
+      "detailText": "Дизайн часов «Ракета» × Avgvst начался с архивных эскизов модернистских моделей 50–60-х годов, которые бережно хранит часовой завод. Именно так родилась их квадратная форма. <br>\r\n Наличие уточняйте в <a href=\"https://raketa.com/shops\">розничных магазинах</a>.",
+      "detailPicture": "https://admin.raketa.com/upload/iblock/8a5/mav9tyzj6133huhnfxr8208n7d4ywxtv.png",
+      "gallery": {
+        "title": null,
+        "text": "Разметка циферблата напоминает строгие линии ежедневника или точность инженерного чертежа. Но за этой простотой — глубокая идея: тонкие линии становятся попыткой упорядочить хаотичный поток жизни.",
+        "images": [
+          "/upload/iblock/730/0tprjhmu8frtb8mx133u432d4j7d57s7.jpg",
+          "/upload/iblock/f3c/xt4gt4abpb4wxmxd49jmg3iqcqzkquk3.jpg",
+          "/upload/iblock/14c/xei68kh0p6hxx1h84ql1fnu3q85zntq7.jpg",
+          "/upload/iblock/031/ywtx14tfdda106ypiqisgibkaejrrw0h.jpg",
+          "/upload/iblock/0e8/atbupq80rk6842p3xfrdkfkk20ucwhw2.jpg",
+          "/upload/iblock/75e/eokcyjov41tli2znp250q75ra8hvqkhs.jpg",
+          "/upload/iblock/d6a/pnuug3qvm0acgeu2tkdzomsua7580smq.jpg",
+          "/upload/iblock/53a/8lna1yftryztgr3ijk99hv062d8l3j82.jpg",
+          "/upload/iblock/4d6/mwt0yy40ca1wb0xz0vq6y46hupypfrsy.jpg"
+        ]
+      },
+      "properties": {
+        "case": {
+          "img_block": {
+            "src": "/upload/iblock/12d/8rfv2xdl4mtdtfsj75dzdfnx8di8wle7.jpg"
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Нержавеющая сталь"
+          },
+          "size": {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "28х28 мм"
+          },
+          "case_glass": {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое"
+          },
+          "case_back_glass": {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": null
+          },
+          "case_bazel": {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": "Нет"
+          },
+          "case_crown": {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": null
+          },
+          "case_water": {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "3 ATM"
+          },
+          "case_arrows": {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": null
+          },
+          "case_dial": {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": ""
+          },
+          "case_gender": {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": "Женские"
+          },
+          "case_thicness": {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "5.6 мм"
+          },
+          "watch_lenght": {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "32 мм"
+          }
+        },
+        "mechanism": {
+          "img_block": {
+            "src": null
+          },
+          "calibre": {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": ""
+          },
+          "functions": {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": ""
+          },
+          "number_jewels": {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": null
+          },
+          "test_pos": {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": null
+          },
+          "rate": {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": null
+          },
+          "runtime": {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": null
+          },
+          "freq": {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": null
+          },
+          "winding": {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": null
+          },
+          "system": {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": null
+          },
+          "decor": {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": [
+              ""
+            ]
+          },
+          "count_parts": {
+            "label": "Количество деталей механизма [механизм]",
+            "code": "COUNT_PARTS_MECHANISM",
+            "value": null
+          }
+        },
+        "strap": {
+          "quick": {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да"
+          },
+          "length": {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": null
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Натуральная кожа"
+          },
+          "extra": {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": null
+          },
+          "collection": {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": ""
+          },
+          "color": {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": ""
+          },
+          "width": {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "16 мм"
+          },
+          "clasp": {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": null
+          }
+        }
+      },
+      "collection": {
+        "name": "Исключительные",
+        "code": "curiosity"
+      },
+      "extraStraps": [],
+      "lastBlock": {
+        "title": null,
+        "text": "Флагманская модель коллекции — часы с белым циферблатом в стальном корпусе с двумя ремнями из кожи наппа в комплекте, желтым и серым. Это фирменные цвета Avgvst. Для этой модели была разработана специальная двойная пряжка.\r\n\r\nМодель оснащена кварцевым механизмом, который не требует завода. Корпус часов выполнен из нержавеющей стали. Благодаря системе с быстросъемной шпилькой ремень легко заменить самостоятельно без специальных инструментов. Стекло сапфировое, устойчивое к царапинам.",
+        "image": "/upload/iblock/c0e/u7tm6hy40tlb5k3bpuf4kl3kupm67jwf.jpg",
+        "link": null
+      },
+      "downloadInstruction": null,
+      "mechanismPicture": "",
+      "lastBuyPicture": "https://admin.raketa.com/upload/iblock/4e5/grpf4a12vof17bm8zb7o03ogvbtxhang.jpg",
+      "lastmod": 1781534599,
+      "price": 54800,
+      "discount": "$undefined",
+      "previewPicture": "https://admin.raketa.com/upload/iblock/8a5/mav9tyzj6133huhnfxr8208n7d4ywxtv.png",
+      "productType": "watch",
+      "galleryPictures": [
+        "https://admin.raketa.com/upload/iblock/730/0tprjhmu8frtb8mx133u432d4j7d57s7.jpg",
+        "https://admin.raketa.com/upload/iblock/f3c/xt4gt4abpb4wxmxd49jmg3iqcqzkquk3.jpg",
+        "https://admin.raketa.com/upload/iblock/14c/xei68kh0p6hxx1h84ql1fnu3q85zntq7.jpg",
+        "https://admin.raketa.com/upload/iblock/031/ywtx14tfdda106ypiqisgibkaejrrw0h.jpg",
+        "https://admin.raketa.com/upload/iblock/0e8/atbupq80rk6842p3xfrdkfkk20ucwhw2.jpg",
+        "https://admin.raketa.com/upload/iblock/75e/eokcyjov41tli2znp250q75ra8hvqkhs.jpg",
+        "https://admin.raketa.com/upload/iblock/d6a/pnuug3qvm0acgeu2tkdzomsua7580smq.jpg",
+        "https://admin.raketa.com/upload/iblock/53a/8lna1yftryztgr3ijk99hv062d8l3j82.jpg",
+        "https://admin.raketa.com/upload/iblock/4d6/mwt0yy40ca1wb0xz0vq6y46hupypfrsy.jpg"
+      ],
+      "helpBlockPicture": "",
+      "offers": [],
+      "heroPicture": "https://admin.raketa.com/upload/iblock/be4/zs44z7qudi4dru83wpo5yz8c1txjkb2d.jpg",
+      "galleryTitle": null,
+      "galleryText": "Разметка циферблата напоминает строгие линии ежедневника или точность инженерного чертежа. Но за этой простотой — глубокая идея: тонкие линии становятся попыткой упорядочить хаотичный поток жизни.",
+      "propertiesPicture": "https://admin.raketa.com/upload/iblock/12d/8rfv2xdl4mtdtfsj75dzdfnx8di8wle7.jpg",
+      "mechanismDetailsPicture": "",
+      "instructionDownloadLink": "",
+      "videoTitle": null,
+      "videoText": "Флагманская модель коллекции — часы с белым циферблатом в стальном корпусе с двумя ремнями из кожи наппа в комплекте, желтым и серым. Это фирменные цвета Avgvst. Для этой модели была разработана специальная двойная пряжка.\r\n\r\nМодель оснащена кварцевым механизмом, который не требует завода. Корпус часов выполнен из нержавеющей стали. Благодаря системе с быстросъемной шпилькой ремень легко заменить самостоятельно без специальных инструментов. Стекло сапфировое, устойчивое к царапинам.",
+      "videoPoster": "https://admin.raketa.com/upload/iblock/c0e/u7tm6hy40tlb5k3bpuf4kl3kupm67jwf.jpg",
+      "video": "",
+      "propsList": {
+        "case": [
+          {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Нержавеющая сталь",
+            "omitLabel": false
+          },
+          {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "28х28 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое",
+            "omitLabel": false
+          },
+          {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": "Нет",
+            "omitLabel": false
+          },
+          {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "3 ATM",
+            "omitLabel": false
+          },
+          {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": "Женские",
+            "omitLabel": false
+          },
+          {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "5.6 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "32 мм",
+            "omitLabel": false
+          }
+        ],
+        "strap": [
+          {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Натуральная кожа",
+            "omitLabel": false
+          },
+          {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "16 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": null,
+            "omitLabel": false
+          }
+        ],
+        "mechanism": [
+          {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": null,
+            "omitLabel": true
+          },
+          {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": null,
+            "omitLabel": true
+          },
+          {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": "$8:1:props:product:properties:mechanism:decor:value",
+            "omitLabel": true
+          }
+        ]
+      },
+      "mechanismDetailsCount": null
+    }
+  ]
+}

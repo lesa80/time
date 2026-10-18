@@ -1,0 +1,10 @@
+{
+  "tool": "image_gen.imagegen",
+  "mode": "built-in generation",
+  "transparent_background": true,
+  "date": "2026-10-18",
+  "prompt": "case-prompt.txt",
+  "registration": "case-registration.json",
+  "sha256": "c9a3445a107d7751b598442fa7c602674e09398a37beee614a6d7f5278954687",
+  "reference_images": []
+}

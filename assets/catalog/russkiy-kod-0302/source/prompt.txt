@@ -1,0 +1,5 @@
+Use case: precise-object-edit.
+Asset type: static raster watch dial restoration for a working clock.
+Edit target: attached square source crop of Raketa russkiy-kod-0302.
+Primary request: Remove the silver hour and minute hands, the entire thin second hand including RED OPEN RING at bottom-left, its counterweight pointing upward and central pin. Restore the star map, latitude/longitude grid and star points beneath them. Preserve all reversed numerals and letters exactly, red Ракета logo, cyan constellation points and lines.
+Strict invariants: keep the EXACT same square framing, dial center, scale, perspective, case edge, every other pixel's design, original colors, lighting, relief, material and photographic texture. Only remove the moving hands and their shadows and fill the revealed dial correctly. Absolutely NO clock hands, needles, central mounting pin, dot or ring may remain anywhere. Do not redesign, relabel, crop, zoom or add anything. Output one restored photograph with no text outside the original watch.

@@ -1,0 +1,122 @@
+{
+  "name": "BIG ZERO 0283",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "direction": 1,
+  "resolution": [
+    720,
+    1192
+  ],
+  "dialBounds": [
+    44,
+    277,
+    582,
+    582
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/big-zero-0283/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        720,
+        1192
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/big-zero-0283/dial.png",
+      "position": [
+        44,
+        277
+      ],
+      "size": [
+        582,
+        582
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/big-zero-0283/hour.png",
+      "valueType": "Hour 12 Ratio",
+      "handResPosition": [
+        335,
+        568
+      ],
+      "rotatePoint": [
+        15.5,
+        168
+      ],
+      "size": [
+        29.5,
+        221.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/big-zero-0283/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        335,
+        568
+      ],
+      "rotatePoint": [
+        13.5,
+        234.5
+      ],
+      "size": [
+        27.5,
+        288
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/big-zero-0283/second.png",
+      "valueType": "Second Ratio",
+      "handResPosition": [
+        335,
+        568
+      ],
+      "rotatePoint": [
+        8,
+        267
+      ],
+      "size": [
+        16,
+        327
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/big-zero-0283/cap.png",
+      "position": [
+        325,
+        558
+      ],
+      "size": [
+        20,
+        20
+      ]
+    }
+  ]
+}

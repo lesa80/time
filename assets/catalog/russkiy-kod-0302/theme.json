@@ -1,0 +1,122 @@
+{
+  "name": "Русский код 0302",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "direction": -1,
+  "resolution": [
+    709,
+    1189
+  ],
+  "dialBounds": [
+    38,
+    272,
+    590,
+    590
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/russkiy-kod-0302/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        709,
+        1189
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/russkiy-kod-0302/dial.png",
+      "position": [
+        38,
+        272
+      ],
+      "size": [
+        590,
+        590
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/russkiy-kod-0302/hour.png",
+      "valueType": "Hour 12 Ratio",
+      "handResPosition": [
+        333,
+        567
+      ],
+      "rotatePoint": [
+        13.5,
+        173.5
+      ],
+      "size": [
+        33.5,
+        228
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/russkiy-kod-0302/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        333,
+        567
+      ],
+      "rotatePoint": [
+        17.5,
+        255
+      ],
+      "size": [
+        23.5,
+        305.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/russkiy-kod-0302/second.png",
+      "valueType": "Second Ratio",
+      "handResPosition": [
+        333,
+        567
+      ],
+      "rotatePoint": [
+        37,
+        264
+      ],
+      "size": [
+        74.5,
+        375
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/russkiy-kod-0302/cap.png",
+      "position": [
+        325,
+        559
+      ],
+      "size": [
+        16,
+        16
+      ]
+    }
+  ]
+}

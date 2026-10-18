@@ -1,0 +1,105 @@
+{
+  "name": "Минимализм 24",
+  "hourCycle": 24,
+  "resolution": [
+    500,
+    1512
+  ],
+  "dialBounds": [
+    55,
+    512,
+    362,
+    362
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/minimalism-24/bezel.png",
+      "position": [
+        -276,
+        -12
+      ],
+      "size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/minimalism-24/dial.png",
+      "position": [
+        55,
+        512
+      ],
+      "size": [
+        362,
+        362
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/minimalism-24/hour.png",
+      "handResPosition": [
+        236,
+        693
+      ],
+      "rotatePoint": [
+        6.36328125,
+        106.0546875
+      ],
+      "size": [
+        12.7265625,
+        123.73046875
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/minimalism-24/minute.png",
+      "handResPosition": [
+        236,
+        693
+      ],
+      "rotatePoint": [
+        4.2421875,
+        150.244140625
+      ],
+      "size": [
+        8.484375,
+        169.6875
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/minimalism-24/second.png",
+      "handResPosition": [
+        236,
+        693
+      ],
+      "rotatePoint": [
+        2.474609375,
+        166.15234375
+      ],
+      "size": [
+        4.94921875,
+        197.96875
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/minimalism-24/cap.png",
+      "position": [
+        231.404296875,
+        688.404296875
+      ],
+      "size": [
+        9.19140625,
+        9.19140625
+      ]
+    }
+  ]
+}

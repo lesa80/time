@@ -1,0 +1,60 @@
+{
+  "hour": {
+    "bounds": [
+      169,
+      35,
+      1080,
+      1177
+    ],
+    "pivot": [
+      624.5,
+      1105
+    ],
+    "tipRadius": 263,
+    "width": 207
+  },
+  "minute": {
+    "bounds": [
+      212,
+      99,
+      1041,
+      987
+    ],
+    "ringCenter": [
+      626.5,
+      572
+    ],
+    "ringRadius": 415,
+    "markerCenter": [
+      626.569233325027,
+      181.7992358169283
+    ],
+    "logicalRingCenter": [
+      294,
+      179
+    ],
+    "logicalRingRadius": 141,
+    "logicalMarkerCenter": [
+      294,
+      70
+    ],
+    "logicalPivot": [
+      294,
+      294
+    ]
+  },
+  "second": {
+    "bounds": [
+      538,
+      47,
+      716,
+      1198
+    ],
+    "pivot": [
+      627,
+      889
+    ],
+    "tipRadius": 279,
+    "counterRadius": 70
+  }
+}

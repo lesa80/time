@@ -1,0 +1,122 @@
+{
+  "name": "Коперник 0307",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "direction": 1,
+  "resolution": [
+    709,
+    1180
+  ],
+  "dialBounds": [
+    43,
+    282,
+    582,
+    582
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/kopernik-0293/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        709,
+        1180
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/kopernik-0293/dial.png",
+      "position": [
+        43,
+        282
+      ],
+      "size": [
+        582,
+        582
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/kopernik-0293/hour.png",
+      "valueType": "Hour 12 Ratio",
+      "handResPosition": [
+        334,
+        573
+      ],
+      "rotatePoint": [
+        101.5,
+        220.5
+      ],
+      "size": [
+        203,
+        225.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/kopernik-0293/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        334,
+        573
+      ],
+      "rotatePoint": [
+        138,
+        259
+      ],
+      "size": [
+        276,
+        280
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/kopernik-0293/second.png",
+      "valueType": "Second Ratio",
+      "handResPosition": [
+        334,
+        573
+      ],
+      "rotatePoint": [
+        8,
+        289
+      ],
+      "size": [
+        16,
+        562
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/kopernik-0293/cap.png",
+      "position": [
+        324,
+        563
+      ],
+      "size": [
+        20,
+        20
+      ]
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "resolution": [
+    1920,
+    1020
+  ],
+  "themes": [
+    {
+      "id": "avangard",
+      "title": "Авангард 0292"
+    },
+    {
+      "id": "raketa-su",
+      "title": "Ракета Су 0331"
+    },
+    {
+      "id": "zolotoy-klyuchik",
+      "title": "Золотой Ключик 0328"
+    },
+    {
+      "id": "sovremennik",
+      "title": "Современник 0352"
+    },
+    {
+      "id": "russkiy-kod-0302",
+      "title": "Русский код 0302"
+    },
+    {
+      "id": "russkiy-kod-0344",
+      "title": "Русский код · Меридиан 0344"
+    },
+    {
+      "id": "raketa-x-lebedev",
+      "title": "BIG ZERO Лебедев 0333"
+    },
+    {
+      "id": "baykonur-0325",
+      "title": "Байконур 0325"
+    },
+    {
+      "id": "big-zero-yankovskaya",
+      "title": "BIG ZERO Янковская 0330"
+    },
+    {
+      "id": "big-zero-azur-blue",
+      "title": "BIG ZERO Лазурь 0308"
+    },
+    {
+      "id": "amfibiya-0321",
+      "title": "Амфибия 0321"
+    },
+    {
+      "id": "kopernik-0293",
+      "title": "Коперник 0307"
+    },
+    {
+      "id": "podvodnik-0317",
+      "title": "Подводник 0317"
+    },
+    {
+      "id": "polyarnye-0300",
+      "title": "Полярные 0300"
+    },
+    {
+      "id": "letchik",
+      "title": "Лётчик 0301"
+    },
+    {
+      "id": "big-zero-blue",
+      "title": "BIG ZERO Синий 0294"
+    },
+    {
+      "id": "big-zero-black-0341",
+      "title": "BIG ZERO Чёрный 0341"
+    },
+    {
+      "id": "big-zero-0283",
+      "title": "BIG ZERO 0283"
+    },
+    {
+      "id": "raketa-avgvst-0316",
+      "title": "Ракета × Avgvst 0316 · серебро"
+    },
+    {
+      "id": "raketa-avgvst",
+      "title": "Ракета × Avgvst 0315 · золото"
+    },
+    {
+      "id": "raketa-avgvst-0320",
+      "title": "Ракета × Avgvst 0320 · чёрный"
+    }
+  ],
+  "source": "themes.json; original full-watch raster layers"
+}

@@ -1,0 +1,122 @@
+{
+  "name": "Современник 0352",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "direction": 1,
+  "resolution": [
+    704,
+    1211
+  ],
+  "dialBounds": [
+    28,
+    271,
+    600,
+    600
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/sovremennik/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        704,
+        1211
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/sovremennik/dial.png",
+      "position": [
+        28,
+        271
+      ],
+      "size": [
+        600,
+        600
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/sovremennik/hour.png",
+      "valueType": "Hour 12 Ratio",
+      "handResPosition": [
+        328,
+        571
+      ],
+      "rotatePoint": [
+        30,
+        159
+      ],
+      "size": [
+        62,
+        217
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/sovremennik/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        328,
+        571
+      ],
+      "rotatePoint": [
+        27,
+        236.5
+      ],
+      "size": [
+        61,
+        290
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/sovremennik/second.png",
+      "valueType": "Second Ratio",
+      "handResPosition": [
+        328,
+        571
+      ],
+      "rotatePoint": [
+        31,
+        287
+      ],
+      "size": [
+        55,
+        358.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/sovremennik/cap.png",
+      "position": [
+        320,
+        563
+      ],
+      "size": [
+        16,
+        16
+      ]
+    }
+  ]
+}

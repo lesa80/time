@@ -1,0 +1,122 @@
+{
+  "name": "Ракета Су 0331",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "direction": 1,
+  "resolution": [
+    662,
+    1484
+  ],
+  "dialBounds": [
+    58,
+    470,
+    500,
+    500
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/raketa-su/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        662,
+        1484
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/raketa-su/dial.png",
+      "position": [
+        58,
+        470
+      ],
+      "size": [
+        500,
+        500
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/raketa-su/hour.png",
+      "valueType": "Hour 12 Ratio",
+      "handResPosition": [
+        308,
+        720
+      ],
+      "rotatePoint": [
+        19.5,
+        175.5
+      ],
+      "size": [
+        39.5,
+        190.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/raketa-su/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        308,
+        720
+      ],
+      "rotatePoint": [
+        11,
+        225
+      ],
+      "size": [
+        22.5,
+        238.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/raketa-su/second.png",
+      "valueType": "Second Ratio",
+      "handResPosition": [
+        308,
+        720
+      ],
+      "rotatePoint": [
+        8.5,
+        227.5
+      ],
+      "size": [
+        21.5,
+        302
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/raketa-su/cap.png",
+      "position": [
+        296,
+        708
+      ],
+      "size": [
+        24,
+        24
+      ]
+    }
+  ]
+}

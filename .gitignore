@@ -1,0 +1,33 @@
+node_modules/
+.DS_Store
+*.log
+dist/
+macos/.build/
+preview.js
+themes-data.mjs
+assets/icons/app.png
+assets/icons/app.svg
+assets/icons/MenuBarIcon*
+assets/icons/RaketaLogo.png
+assets/icons/DeveloperLogo.png
+
+# Local settings and signing credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p8
+*.p12
+*.pfx
+*.cer
+*.mobileprovision
+*.provisionprofile
+*.keychain
+*.keychain-db
+
+# Editor state
+.idea/
+.vscode/
+*.xcuserstate
+xcuserdata/

@@ -1,0 +1,52 @@
+{
+  "source": "https://admin.raketa.com/upload/iblock/66a/sl82ubbcl3xwn6n5lmrkn5fg7f71pz20.png",
+  "bodySource": "reference/catalog/sovremennik/front.png",
+  "cropOrigin": [
+    100,
+    350
+  ],
+  "bodyCrop": [
+    122,
+    129,
+    704,
+    1211
+  ],
+  "center": [
+    350,
+    350
+  ],
+  "dialBox": [
+    50,
+    50,
+    600,
+    600
+  ],
+  "hands": {
+    "hour": {
+      "shape": "<polygon points=\"224,256 229,252 412,359 378,406\"/>",
+      "angle": 307
+    },
+    "minute": {
+      "shape": "<polygon points=\"293,356 547,223 551,230 324,404\"/>",
+      "angle": 58
+    },
+    "second": {
+      "shape": "<polygon points=\"127,528 168,464 180,480 400,302 408,311 189,489 200,504\"/>",
+      "angle": 232
+    }
+  },
+  "restoration": {
+    "registration": {
+      "sx": 1,
+      "sy": 1,
+      "dx": 0,
+      "dy": 0,
+      "error": 8.463936636979925
+    },
+    "bias": [
+      -1.423728813559322,
+      -1.835779175401817,
+      -1.6949093444909344
+    ]
+  }
+}

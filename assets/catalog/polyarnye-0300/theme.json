@@ -1,0 +1,122 @@
+{
+  "name": "Полярные 0300",
+  "target": "macOS / Retina",
+  "hourCycle": 24,
+  "direction": 1,
+  "resolution": [
+    752,
+    1131
+  ],
+  "dialBounds": [
+    95,
+    268,
+    514,
+    514
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/polyarnye-0300/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        752,
+        1131
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/polyarnye-0300/dial.png",
+      "position": [
+        95,
+        268
+      ],
+      "size": [
+        514,
+        514
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/polyarnye-0300/hour.png",
+      "valueType": "Hour 24 Ratio",
+      "handResPosition": [
+        352,
+        525
+      ],
+      "rotatePoint": [
+        24,
+        212.5
+      ],
+      "size": [
+        48.5,
+        228.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/polyarnye-0300/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        352,
+        525
+      ],
+      "rotatePoint": [
+        12.5,
+        255
+      ],
+      "size": [
+        25.5,
+        270.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/polyarnye-0300/second.png",
+      "valueType": "Second Ratio",
+      "handResPosition": [
+        352,
+        525
+      ],
+      "rotatePoint": [
+        9,
+        244
+      ],
+      "size": [
+        17,
+        326.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/polyarnye-0300/cap.png",
+      "position": [
+        343,
+        516
+      ],
+      "size": [
+        18,
+        18
+      ]
+    }
+  ]
+}

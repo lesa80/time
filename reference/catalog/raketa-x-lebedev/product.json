@@ -1,0 +1,447 @@
+{
+  "catalog": {
+    "id": 990,
+    "sectionCode": "classic_watch",
+    "code": "raketa-x-lebedev",
+    "name": "BIG ZERO Лебедев",
+    "isNew": false,
+    "isSoldOut": false,
+    "availability": "available",
+    "lastmod": 1786349636,
+    "price": 225000,
+    "discount": 0,
+    "previewPicture": "https://admin.raketa.com/upload/iblock/6f0/ytnk3xs2vwh0gfvtbqnnt8lrczwyd6td.png",
+    "limitedEdition": true,
+    "limitedProduction": false,
+    "productURL": "https://raketa.com/product/raketa-x-lebedev"
+  },
+  "details": [
+    {
+      "id": 990,
+      "sectionCode": "classic_watch",
+      "code": "raketa-x-lebedev",
+      "name": "BIG ZERO Лебедев",
+      "availability": "available",
+      "isNew": false,
+      "isSoldOut": false,
+      "limitedProduction": "$undefined",
+      "limitedEdition": "$undefined",
+      "artnumber": "W-11-16-20-0333",
+      "detailText": "«Ракета» и Артемий Лебедев выпускают лимитированную модель часов на основе канонической модели – «Big Zero» Lebedev.",
+      "detailPicture": "https://admin.raketa.com/upload/iblock/6f0/ytnk3xs2vwh0gfvtbqnnt8lrczwyd6td.png",
+      "gallery": {
+        "title": null,
+        "text": "Сохранив строгий минимализм, крупные цифры и знаковый большой ноль, Артемий Лебедев добавил острой современности: чёрное на чёрном, матовые стрелки и циферблат, выпуклые метки, тонированное заднее стекло и механизм с чёрным ротором, на который нанесён логотип студии.\r\n\r\n«Сердце» часов «Big Zero» Lebedev — российский механизм «Ракета» с автоподзаводом, произведённый от «А» до «Я» на Петродворцовом часовом заводе, одном из немногих в мире, где до сих пор создают собственные мануфактурные механизмы.\r\n\r\nЛимитированная серия Ракета «BIG ZERO» Lebedev выпущена в количестве 300 экземпляров.",
+        "images": [
+          "/upload/iblock/d62/l0mn7ebhonamkm99ng1tbft24iygjx7r.jpg",
+          "/upload/iblock/332/472bertywiv64sw1dgbs2u3mptbrnu3x.jpg",
+          "/upload/iblock/d60/jzfha5j1j17bqs42ahy55l4bu9n16v2s.jpg",
+          "/upload/iblock/e20/ai97b150z3wu5qlwvhpdt3ul3mf4q2hs.jpg",
+          "/upload/iblock/f10/uvlwst0fvst1tydli23byy8vihg1ytuf.jpg",
+          "/upload/iblock/fd4/13bktbm473y1c5hn3p9rs83ksadevl1r.jpg"
+        ]
+      },
+      "properties": {
+        "case": {
+          "img_block": {
+            "src": "/upload/iblock/fde/6l1y6ut1cra48jf06bpqhxzfqn5p6ach.jpg"
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Нержавеющая сталь"
+          },
+          "size": {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "40 мм"
+          },
+          "case_glass": {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое"
+          },
+          "case_back_glass": {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": "Минеральное тонированное"
+          },
+          "case_bazel": {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": "Нет"
+          },
+          "case_crown": {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": "Внутри заводной головки рубин"
+          },
+          "case_water": {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "10 АТМ"
+          },
+          "case_arrows": {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": null
+          },
+          "case_dial": {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": ""
+          },
+          "case_gender": {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": "Унисекс"
+          },
+          "case_thicness": {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "14.05 мм"
+          },
+          "watch_lenght": {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "43 мм"
+          }
+        },
+        "mechanism": {
+          "img_block": {
+            "src": "/upload/iblock/b20/owfp3ktirzty8jwt5qw067a0mkwzoxga.png"
+          },
+          "calibre": {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": "2615"
+          },
+          "functions": {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": "Автоподзавод"
+          },
+          "number_jewels": {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": "24"
+          },
+          "test_pos": {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": "4"
+          },
+          "rate": {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": "-10+20"
+          },
+          "runtime": {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": "40"
+          },
+          "freq": {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": "18.000 / 2.5Гц"
+          },
+          "winding": {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": "Да"
+          },
+          "system": {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": "Да"
+          },
+          "decor": {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": [
+              "Печать",
+              "Невские волны",
+              "Черный ротор"
+            ]
+          },
+          "count_parts": {
+            "label": "Количество деталей механизма [механизм]",
+            "code": "COUNT_PARTS_MECHANISM",
+            "value": "242"
+          }
+        },
+        "strap": {
+          "quick": {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да"
+          },
+          "length": {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": null
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Каучук"
+          },
+          "extra": {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": null
+          },
+          "collection": {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": ""
+          },
+          "color": {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": "Черный"
+          },
+          "width": {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "20 мм"
+          },
+          "clasp": {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": null
+          }
+        }
+      },
+      "collection": {
+        "name": "Классические",
+        "code": "classic"
+      },
+      "extraStraps": [],
+      "lastBlock": {
+        "title": null,
+        "text": "Впервые «Ракета» использует каучуковый ремень с индивидуально корректируемой длиной: он идеально подгоняется под запястье, а для удобства настройки по QR-коду есть видео-инструкция с Артемием Лебедевым и набор инструментов. Таким образом, каждый владелец сможет почувствовать себя немного часовщиком, регулируя ремень самостоятельно!",
+        "image": "/upload/iblock/70a/xljnwlg08jomn1ggdse5pqeuz2uc2ma0.jpg",
+        "link": "https://bd81e7b6-bace-4c67-9150-276d4e57268f.selstorage.ru/products/lebedev_guid.mp4"
+      },
+      "downloadInstruction": "/upload/iblock/c49/kfthn7vj6vibrt8549ooe9vcx9rh97l1.pdf",
+      "mechanismPicture": "https://admin.raketa.com/upload/iblock/b20/owfp3ktirzty8jwt5qw067a0mkwzoxga.png",
+      "lastBuyPicture": "https://admin.raketa.com/upload/iblock/ff1/11vjpnxb8uxjwceutriz3e0rbq9fvh46.jpg",
+      "lastmod": 1786349636,
+      "price": 225000,
+      "discount": "$undefined",
+      "previewPicture": "https://admin.raketa.com/upload/iblock/6f0/ytnk3xs2vwh0gfvtbqnnt8lrczwyd6td.png",
+      "productType": "watch",
+      "galleryPictures": [
+        "https://admin.raketa.com/upload/iblock/d62/l0mn7ebhonamkm99ng1tbft24iygjx7r.jpg",
+        "https://admin.raketa.com/upload/iblock/332/472bertywiv64sw1dgbs2u3mptbrnu3x.jpg",
+        "https://admin.raketa.com/upload/iblock/d60/jzfha5j1j17bqs42ahy55l4bu9n16v2s.jpg",
+        "https://admin.raketa.com/upload/iblock/e20/ai97b150z3wu5qlwvhpdt3ul3mf4q2hs.jpg",
+        "https://admin.raketa.com/upload/iblock/f10/uvlwst0fvst1tydli23byy8vihg1ytuf.jpg",
+        "https://admin.raketa.com/upload/iblock/fd4/13bktbm473y1c5hn3p9rs83ksadevl1r.jpg"
+      ],
+      "helpBlockPicture": "",
+      "offers": [],
+      "heroPicture": "https://admin.raketa.com/upload/iblock/061/b3uukzawvcmjhpjlev50ijhb55fgjf8p.jpg",
+      "galleryTitle": null,
+      "galleryText": "Сохранив строгий минимализм, крупные цифры и знаковый большой ноль, Артемий Лебедев добавил острой современности: чёрное на чёрном, матовые стрелки и циферблат, выпуклые метки, тонированное заднее стекло и механизм с чёрным ротором, на который нанесён логотип студии.\r\n\r\n«Сердце» часов «Big Zero» Lebedev — российский механизм «Ракета» с автоподзаводом, произведённый от «А» до «Я» на Петродворцовом часовом заводе, одном из немногих в мире, где до сих пор создают собственные мануфактурные механизмы.\r\n\r\nЛимитированная серия Ракета «BIG ZERO» Lebedev выпущена в количестве 300 экземпляров.",
+      "propertiesPicture": "https://admin.raketa.com/upload/iblock/fde/6l1y6ut1cra48jf06bpqhxzfqn5p6ach.jpg",
+      "mechanismDetailsPicture": "",
+      "instructionDownloadLink": "https://admin.raketa.com/upload/iblock/c49/kfthn7vj6vibrt8549ooe9vcx9rh97l1.pdf",
+      "videoTitle": null,
+      "videoText": "Впервые «Ракета» использует каучуковый ремень с индивидуально корректируемой длиной: он идеально подгоняется под запястье, а для удобства настройки по QR-коду есть видео-инструкция с Артемием Лебедевым и набор инструментов. Таким образом, каждый владелец сможет почувствовать себя немного часовщиком, регулируя ремень самостоятельно!",
+      "videoPoster": "https://admin.raketa.com/upload/iblock/70a/xljnwlg08jomn1ggdse5pqeuz2uc2ma0.jpg",
+      "video": "https://bd81e7b6-bace-4c67-9150-276d4e57268f.selstorage.ru/products/lebedev_guid.mp4",
+      "propsList": {
+        "case": [
+          {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Нержавеющая сталь",
+            "omitLabel": false
+          },
+          {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "40 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое",
+            "omitLabel": false
+          },
+          {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": "Минеральное тонированное",
+            "omitLabel": false
+          },
+          {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": "Нет",
+            "omitLabel": false
+          },
+          {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": "Внутри заводной головки рубин",
+            "omitLabel": false
+          },
+          {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "10 АТМ",
+            "omitLabel": false
+          },
+          {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": "Унисекс",
+            "omitLabel": false
+          },
+          {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "14.05 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "43 мм",
+            "omitLabel": false
+          }
+        ],
+        "strap": [
+          {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Каучук",
+            "omitLabel": false
+          },
+          {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": "Черный",
+            "omitLabel": false
+          },
+          {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "20 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": null,
+            "omitLabel": false
+          }
+        ],
+        "mechanism": [
+          {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": "2615",
+            "omitLabel": false
+          },
+          {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": "Автоподзавод",
+            "omitLabel": false
+          },
+          {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": "24",
+            "omitLabel": false
+          },
+          {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": "4",
+            "omitLabel": false
+          },
+          {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": "-10+20",
+            "omitLabel": false
+          },
+          {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": "40",
+            "omitLabel": false
+          },
+          {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": "18.000 / 2.5Гц",
+            "omitLabel": false
+          },
+          {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": "Да",
+            "omitLabel": true
+          },
+          {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": "Да",
+            "omitLabel": true
+          },
+          {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": "$8:1:props:product:properties:mechanism:decor:value",
+            "omitLabel": true
+          }
+        ]
+      },
+      "mechanismDetailsCount": "242"
+    }
+  ]
+}

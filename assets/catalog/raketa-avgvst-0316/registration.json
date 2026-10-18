@@ -1,0 +1,48 @@
+{
+  "source": "https://admin.raketa.com/upload/iblock/8a5/mav9tyzj6133huhnfxr8208n7d4ywxtv.png",
+  "bodySource": "reference/catalog/raketa-avgvst-0316/front.png",
+  "cropOrigin": [
+    100,
+    350
+  ],
+  "bodyCrop": [
+    213,
+    189,
+    513,
+    1049
+  ],
+  "center": [
+    352,
+    349
+  ],
+  "dialBox": [
+    155,
+    155,
+    393,
+    393
+  ],
+  "hands": {
+    "hour": {
+      "shape": "<polygon points=\"245,277 250,275 356,342 347,351 244,284\"/>",
+      "angle": 305
+    },
+    "minute": {
+      "shape": "<polygon points=\"350,354 345,347 471,228 476,228 476,233 356,354\"/>",
+      "angle": 46
+    }
+  },
+  "restoration": {
+    "registration": {
+      "sx": 1,
+      "sy": 1,
+      "dx": 0,
+      "dy": 0,
+      "error": 9.766644889006324
+    },
+    "bias": [
+      -0.03396696790277345,
+      -0.8467289719626169,
+      -0.3997513211066211
+    ]
+  }
+}

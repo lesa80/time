@@ -1,0 +1,52 @@
+{
+  "source": "https://admin.raketa.com/upload/iblock/707/2k069gyvw9q3rckfwoqgugw4j3fpmxu2.png",
+  "bodySource": "reference/catalog/big-zero-azur-blue/front.png",
+  "cropOrigin": [
+    100,
+    350
+  ],
+  "bodyCrop": [
+    115,
+    145,
+    720,
+    1164
+  ],
+  "center": [
+    348,
+    351
+  ],
+  "dialBox": [
+    51,
+    54,
+    594,
+    594
+  ],
+  "hands": {
+    "hour": {
+      "shape": "<polygon points=\"210,258 217,253 400,369 388,388 210,274\"/>",
+      "angle": 304
+    },
+    "minute": {
+      "shape": "<polygon points=\"314,392 305,377 535,215 546,228\"/>",
+      "angle": 55
+    },
+    "second": {
+      "shape": "<polygon points=\"361.6021877216279,619.0782357618492 364.3978122783721,618.9217642381508 345.8772029951587,288.02021171140507 343.0815784384145,288.1766832351035\"/><circle cx=\"348\" cy=\"351\" r=\"6\"/>",
+      "angle": 177
+    }
+  },
+  "restoration": {
+    "registration": {
+      "sx": 1,
+      "sy": 1,
+      "dx": 0,
+      "dy": 0,
+      "error": 8.018119907066987
+    },
+    "bias": [
+      5.4141863699582755,
+      -7.780227857405365,
+      -6.258058608058608
+    ]
+  }
+}

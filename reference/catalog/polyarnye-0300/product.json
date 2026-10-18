@@ -1,0 +1,447 @@
+{
+  "catalog": {
+    "id": 51,
+    "sectionCode": "specialized",
+    "code": "polyarnye-0300",
+    "name": "Полярные",
+    "isNew": false,
+    "isSoldOut": false,
+    "availability": "available",
+    "lastmod": 1786374315,
+    "price": 180000,
+    "discount": 0,
+    "previewPicture": "https://admin.raketa.com/upload/iblock/8bc/tgivjfq1z7d5wu1rnwtkh6qvz0mme3t2.png",
+    "limitedEdition": false,
+    "limitedProduction": false,
+    "productURL": "https://raketa.com/product/polyarnye-0300"
+  },
+  "details": [
+    {
+      "id": 51,
+      "sectionCode": "specialized",
+      "code": "polyarnye-0300",
+      "name": "Полярные",
+      "availability": "available",
+      "isNew": false,
+      "isSoldOut": false,
+      "limitedProduction": "$undefined",
+      "limitedEdition": "$undefined",
+      "artnumber": "W-12-19-30-0300",
+      "detailText": "Следуя своей давней традиции изготовления часов для полярников, “Ракета” разработала модель для тех, кто готов отправиться на покорение бескрайних полярных просторов, преодолевая как сухопутный, так и морской путь.",
+      "detailPicture": "https://admin.raketa.com/upload/iblock/8bc/tgivjfq1z7d5wu1rnwtkh6qvz0mme3t2.png",
+      "gallery": {
+        "title": null,
+        "text": "Циферблат на 24 часа, необходимый для определения времени за полярным кругом, где до полугода царят полярные день и ночь, делят по периметру 6 секций, чтобы во время морских полярных экспедиций следить за вахтами. Специальное покрытие Superluminova нанесено на всю поверхность циферблата и стрелки, что обеспечивает идеальную читаемость в полярной темноте.\r\n\r\nНа вращающемся безеле нанесены названия морей Северного Ледовитого океана в соответствии с их часовыми поясами, что позволяет использовать функцию GMT. Часы на 24 часа с вращающимся безелем также могут служить солярным компасом в северном и южном полушариях.",
+        "images": [
+          "/upload/iblock/76c/m25igokebkaro795n1a7zftn2o2d8l9w.jpg",
+          "/upload/iblock/c3a/tm8w3afjlz1hrr1jqwmhnqb9ctv7uvnq.jpg",
+          "/upload/iblock/e2a/arakg849m2e20tl9zy6rqi7y725gd4xy.jpg",
+          "/upload/iblock/e23/ajqlq63v7osj61is5okfdluay7aqpxr8.jpg",
+          "/upload/iblock/551/wkrj2b7sh4y1eybbpxj9y5egmvryvyr4.jpg",
+          "/upload/iblock/13a/movodbnft4pnswlhuhjua9hd29qu546y.jpg",
+          "/upload/iblock/685/a7kwbxe459b8n3atdwch1asvx2z9k40d.jpg"
+        ]
+      },
+      "properties": {
+        "case": {
+          "img_block": {
+            "src": "/upload/iblock/653/r3sucqzhz2r4e02sos782wmdq97m7vsp.jpg"
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Нержавеющая сталь"
+          },
+          "size": {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "41,6 мм"
+          },
+          "case_glass": {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое"
+          },
+          "case_back_glass": {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": "Сапфировое"
+          },
+          "case_bazel": {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": "Да"
+          },
+          "case_crown": {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": "Завинчивающаяся головка"
+          },
+          "case_water": {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "20 ATM"
+          },
+          "case_arrows": {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": "Superluminova"
+          },
+          "case_dial": {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": "Superluminova"
+          },
+          "case_gender": {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": "Унисекс"
+          },
+          "case_thicness": {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "14.9 мм"
+          },
+          "watch_lenght": {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "50.5 мм"
+          }
+        },
+        "mechanism": {
+          "img_block": {
+            "src": "/upload/iblock/64e/5ruvz27r3srwi0a8yqpi0cbqycdsjdhd.png"
+          },
+          "calibre": {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": "2624A"
+          },
+          "functions": {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": "Автоподзавод на 24 часа"
+          },
+          "number_jewels": {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": "24"
+          },
+          "test_pos": {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": "4"
+          },
+          "rate": {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": "-10+20"
+          },
+          "runtime": {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": "40"
+          },
+          "freq": {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": "18.000 / 2.5Гц"
+          },
+          "winding": {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": "Да"
+          },
+          "system": {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": "Да"
+          },
+          "decor": {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": [
+              "Полярное сияние"
+            ]
+          },
+          "count_parts": {
+            "label": "Количество деталей механизма [механизм]",
+            "code": "COUNT_PARTS_MECHANISM",
+            "value": null
+          }
+        },
+        "strap": {
+          "quick": {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да"
+          },
+          "length": {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": null
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Нержавеющая сталь"
+          },
+          "extra": {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": null
+          },
+          "collection": {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": ""
+          },
+          "color": {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": ""
+          },
+          "width": {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "22 мм"
+          },
+          "clasp": {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": null
+          }
+        }
+      },
+      "collection": {
+        "name": "Специализированные",
+        "code": "special"
+      },
+      "extraStraps": [],
+      "lastBlock": {
+        "title": null,
+        "text": "Через открытую заднюю крышку модели виден искусно декорированный 24-часовой механизм “Ракета” с автоподзаводом, полностью изготовленный на Часовом Заводе “Ракета” в Петергофе. Декор ротора напоминает полярное сияние.\r\n\r\nК каждым часам Ракета “Полярные” прилагается сертификат, подтверждающий техническое соответствие изделия для использования в суровых природных условиях Заполярья. Сертификат выдан в системе добровольной сертификации “Арктика”.",
+        "image": "/upload/iblock/8f9/k139irnibcl0r89uuogercx2hlhb8ivm.jpg",
+        "link": "https://bd81e7b6-bace-4c67-9150-276d4e57268f.selstorage.ru/products%2FRaketa_Polar_Main.mp4"
+      },
+      "downloadInstruction": null,
+      "mechanismPicture": "https://admin.raketa.com/upload/iblock/64e/5ruvz27r3srwi0a8yqpi0cbqycdsjdhd.png",
+      "lastBuyPicture": "https://admin.raketa.com/upload/iblock/9bf/64h61aaa0zfu8cb9ymp6aei4byw0pt9n.jpg",
+      "lastmod": 1786374315,
+      "price": 180000,
+      "discount": "$undefined",
+      "previewPicture": "https://admin.raketa.com/upload/iblock/8bc/tgivjfq1z7d5wu1rnwtkh6qvz0mme3t2.png",
+      "productType": "watch",
+      "galleryPictures": [
+        "https://admin.raketa.com/upload/iblock/76c/m25igokebkaro795n1a7zftn2o2d8l9w.jpg",
+        "https://admin.raketa.com/upload/iblock/c3a/tm8w3afjlz1hrr1jqwmhnqb9ctv7uvnq.jpg",
+        "https://admin.raketa.com/upload/iblock/e2a/arakg849m2e20tl9zy6rqi7y725gd4xy.jpg",
+        "https://admin.raketa.com/upload/iblock/e23/ajqlq63v7osj61is5okfdluay7aqpxr8.jpg",
+        "https://admin.raketa.com/upload/iblock/551/wkrj2b7sh4y1eybbpxj9y5egmvryvyr4.jpg",
+        "https://admin.raketa.com/upload/iblock/13a/movodbnft4pnswlhuhjua9hd29qu546y.jpg",
+        "https://admin.raketa.com/upload/iblock/685/a7kwbxe459b8n3atdwch1asvx2z9k40d.jpg"
+      ],
+      "helpBlockPicture": "",
+      "offers": [],
+      "heroPicture": "https://admin.raketa.com/upload/iblock/ea4/6wv90l89b71192xaeyrc142guryge0ju.jpg",
+      "galleryTitle": null,
+      "galleryText": "Циферблат на 24 часа, необходимый для определения времени за полярным кругом, где до полугода царят полярные день и ночь, делят по периметру 6 секций, чтобы во время морских полярных экспедиций следить за вахтами. Специальное покрытие Superluminova нанесено на всю поверхность циферблата и стрелки, что обеспечивает идеальную читаемость в полярной темноте.\r\n\r\nНа вращающемся безеле нанесены названия морей Северного Ледовитого океана в соответствии с их часовыми поясами, что позволяет использовать функцию GMT. Часы на 24 часа с вращающимся безелем также могут служить солярным компасом в северном и южном полушариях.",
+      "propertiesPicture": "https://admin.raketa.com/upload/iblock/653/r3sucqzhz2r4e02sos782wmdq97m7vsp.jpg",
+      "mechanismDetailsPicture": "",
+      "instructionDownloadLink": "",
+      "videoTitle": null,
+      "videoText": "Через открытую заднюю крышку модели виден искусно декорированный 24-часовой механизм “Ракета” с автоподзаводом, полностью изготовленный на Часовом Заводе “Ракета” в Петергофе. Декор ротора напоминает полярное сияние.\r\n\r\nК каждым часам Ракета “Полярные” прилагается сертификат, подтверждающий техническое соответствие изделия для использования в суровых природных условиях Заполярья. Сертификат выдан в системе добровольной сертификации “Арктика”.",
+      "videoPoster": "https://admin.raketa.com/upload/iblock/8f9/k139irnibcl0r89uuogercx2hlhb8ivm.jpg",
+      "video": "https://bd81e7b6-bace-4c67-9150-276d4e57268f.selstorage.ru/products%2FRaketa_Polar_Main.mp4",
+      "propsList": {
+        "case": [
+          {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Нержавеющая сталь",
+            "omitLabel": false
+          },
+          {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "41,6 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое",
+            "omitLabel": false
+          },
+          {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": "Сапфировое",
+            "omitLabel": false
+          },
+          {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": "Да",
+            "omitLabel": false
+          },
+          {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": "Завинчивающаяся головка",
+            "omitLabel": false
+          },
+          {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "20 ATM",
+            "omitLabel": false
+          },
+          {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": "Superluminova",
+            "omitLabel": false
+          },
+          {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": "Superluminova",
+            "omitLabel": false
+          },
+          {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": "Унисекс",
+            "omitLabel": false
+          },
+          {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "14.9 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "50.5 мм",
+            "omitLabel": false
+          }
+        ],
+        "strap": [
+          {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Нержавеющая сталь",
+            "omitLabel": false
+          },
+          {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "22 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": null,
+            "omitLabel": false
+          }
+        ],
+        "mechanism": [
+          {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": "2624A",
+            "omitLabel": false
+          },
+          {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": "Автоподзавод на 24 часа",
+            "omitLabel": false
+          },
+          {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": "24",
+            "omitLabel": false
+          },
+          {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": "4",
+            "omitLabel": false
+          },
+          {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": "-10+20",
+            "omitLabel": false
+          },
+          {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": "40",
+            "omitLabel": false
+          },
+          {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": "18.000 / 2.5Гц",
+            "omitLabel": false
+          },
+          {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": "Да",
+            "omitLabel": true
+          },
+          {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": "Да",
+            "omitLabel": true
+          },
+          {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": "$8:1:props:product:properties:mechanism:decor:value",
+            "omitLabel": true
+          }
+        ]
+      },
+      "mechanismDetailsCount": null
+    }
+  ]
+}

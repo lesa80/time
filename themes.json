@@ -1,0 +1,429 @@
+{
+  "defaultTheme": "minimalism-24-dark",
+  "themes": [
+    {
+      "id": "minimalism",
+      "title": "Минимализм",
+      "hourCycle": 12,
+      "specification": "minimalism/theme.json",
+      "sourceSpec": "assets/minimalism/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 305.25000000000006,
+        "minute": 63,
+        "second": 180
+      }
+    },
+    {
+      "id": "minimalism-24",
+      "title": "Минимализм 24",
+      "hourCycle": 24,
+      "specification": "minimalism-24/theme.json",
+      "sourceSpec": "assets/minimalism-24/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 152.62500000000003,
+        "minute": 63,
+        "second": 180
+      }
+    },
+    {
+      "id": "minimalism-dark",
+      "title": "Минимализм — тёмный",
+      "hourCycle": 12,
+      "specification": "minimalism-dark/theme.json",
+      "sourceSpec": "assets/minimalism-dark/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 305.25000000000006,
+        "minute": 63,
+        "second": 180
+      }
+    },
+    {
+      "id": "minimalism-24-dark",
+      "title": "Минимализм 24 — тёмный",
+      "hourCycle": 24,
+      "specification": "minimalism-24-dark/theme.json",
+      "sourceSpec": "assets/minimalism-24-dark/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 152.62500000000003,
+        "minute": 63,
+        "second": 180
+      }
+    },
+    {
+      "id": "avangard",
+      "title": "Авангард 0292",
+      "hourCycle": 12,
+      "specification": "avangard/theme.json",
+      "sourceSpec": "assets/avangard/theme.json",
+      "referenceTime": "06:07:50",
+      "referenceAngles": {
+        "hour": 181.8,
+        "minute": 47,
+        "second": 300.5
+      },
+      "referenceURL": "https://raketa.com/product/avangard-0292",
+      "brand": "raketa"
+    },
+    {
+      "id": "raketa-su",
+      "brand": "raketa",
+      "title": "Ракета Су 0331",
+      "hourCycle": 12,
+      "direction": 1,
+      "dialShape": "circle",
+      "specification": "catalog/raketa-su/theme.json",
+      "sourceSpec": "assets/catalog/raketa-su/theme.json",
+      "referenceTime": "10:10:39",
+      "referenceAngles": {
+        "hour": 304,
+        "minute": 61,
+        "second": 231
+      },
+      "referenceURL": "https://raketa.com/product/raketa-su",
+      "section": "specialized"
+    },
+    {
+      "id": "zolotoy-klyuchik",
+      "brand": "raketa",
+      "title": "Золотой Ключик 0328",
+      "hourCycle": 12,
+      "direction": 1,
+      "dialShape": "circle",
+      "specification": "catalog/zolotoy-klyuchik/theme.json",
+      "sourceSpec": "assets/catalog/zolotoy-klyuchik/theme.json",
+      "referenceTime": "10:10:27",
+      "referenceAngles": {
+        "hour": 304,
+        "minute": 60,
+        "second": 162
+      },
+      "referenceURL": "https://raketa.com/product/zolotoy-klyuchik",
+      "section": "exceptional"
+    },
+    {
+      "id": "sovremennik",
+      "brand": "raketa",
+      "title": "Современник 0352",
+      "hourCycle": 12,
+      "direction": 1,
+      "dialShape": "circle",
+      "specification": "catalog/sovremennik/theme.json",
+      "sourceSpec": "assets/catalog/sovremennik/theme.json",
+      "referenceTime": "10:10:38",
+      "referenceAngles": {
+        "hour": 307,
+        "minute": 58,
+        "second": 232
+      },
+      "referenceURL": "https://raketa.com/product/sovremennik",
+      "section": "exceptional"
+    },
+    {
+      "id": "russkiy-kod-0302",
+      "brand": "raketa",
+      "title": "Русский код 0302",
+      "hourCycle": 12,
+      "direction": -1,
+      "dialShape": "circle",
+      "specification": "catalog/russkiy-kod-0302/theme.json",
+      "sourceSpec": "assets/catalog/russkiy-kod-0302/theme.json",
+      "referenceTime": "01:50:32",
+      "referenceAngles": {
+        "hour": 304,
+        "minute": 49,
+        "second": 194
+      },
+      "referenceURL": "https://raketa.com/product/russkiy-kod-0302",
+      "section": "exceptional"
+    },
+    {
+      "id": "russkiy-kod-0344",
+      "brand": "raketa",
+      "title": "Русский код · Меридиан 0344",
+      "hourCycle": 12,
+      "direction": -1,
+      "dialShape": "circle",
+      "specification": "catalog/russkiy-kod-0344/theme.json",
+      "sourceSpec": "assets/catalog/russkiy-kod-0344/theme.json",
+      "referenceTime": "01:50:22",
+      "referenceAngles": {
+        "hour": 303,
+        "minute": 59,
+        "second": 134
+      },
+      "referenceURL": "https://raketa.com/product/russkiy-kod-0344",
+      "section": "exceptional"
+    },
+    {
+      "id": "raketa-x-lebedev",
+      "brand": "raketa",
+      "title": "BIG ZERO Лебедев 0333",
+      "hourCycle": 12,
+      "direction": 1,
+      "dialShape": "circle",
+      "specification": "catalog/raketa-x-lebedev/theme.json",
+      "sourceSpec": "assets/catalog/raketa-x-lebedev/theme.json",
+      "referenceTime": "10:10:37",
+      "referenceAngles": {
+        "hour": 305,
+        "minute": 52,
+        "second": 222
+      },
+      "referenceURL": "https://raketa.com/product/raketa-x-lebedev",
+      "section": "classic_watch"
+    },
+    {
+      "id": "baykonur-0325",
+      "brand": "raketa",
+      "title": "Байконур 0325",
+      "hourCycle": 24,
+      "direction": 1,
+      "dialShape": "circle",
+      "specification": "catalog/baykonur-0325/theme.json",
+      "sourceSpec": "assets/catalog/baykonur-0325/theme.json",
+      "referenceTime": "20:10:39",
+      "referenceAngles": {
+        "hour": 304,
+        "minute": 47,
+        "second": 234
+      },
+      "referenceURL": "https://raketa.com/product/baykonur-0325",
+      "section": "specialized"
+    },
+    {
+      "id": "big-zero-yankovskaya",
+      "brand": "raketa",
+      "title": "BIG ZERO Янковская 0330",
+      "hourCycle": 12,
+      "direction": 1,
+      "dialShape": "circle",
+      "specification": "catalog/big-zero-yankovskaya/theme.json",
+      "sourceSpec": "assets/catalog/big-zero-yankovskaya/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 305,
+        "minute": 61,
+        "second": 180
+      },
+      "referenceURL": "https://raketa.com/product/big-zero-yankovskaya",
+      "section": "classic_watch"
+    },
+    {
+      "id": "big-zero-azur-blue",
+      "brand": "raketa",
+      "title": "BIG ZERO Лазурь 0308",
+      "hourCycle": 12,
+      "direction": 1,
+      "dialShape": "circle",
+      "specification": "catalog/big-zero-azur-blue/theme.json",
+      "sourceSpec": "assets/catalog/big-zero-azur-blue/theme.json",
+      "referenceTime": "10:10:29",
+      "referenceAngles": {
+        "hour": 304,
+        "minute": 55,
+        "second": 177
+      },
+      "referenceURL": "https://raketa.com/product/big-zero-azur-blue",
+      "section": "classic_watch"
+    },
+    {
+      "id": "amfibiya-0321",
+      "brand": "raketa",
+      "title": "Амфибия 0321",
+      "hourCycle": 12,
+      "direction": 1,
+      "dialShape": "circle",
+      "specification": "catalog/amfibiya-0321/theme.json",
+      "sourceSpec": "assets/catalog/amfibiya-0321/theme.json",
+      "referenceTime": "10:10:36",
+      "referenceAngles": {
+        "hour": 304,
+        "minute": 49,
+        "second": 216
+      },
+      "referenceURL": "https://raketa.com/product/amfibiya-0321",
+      "section": "specialized"
+    },
+    {
+      "id": "kopernik-0293",
+      "brand": "raketa",
+      "title": "Коперник 0307",
+      "hourCycle": 12,
+      "direction": 1,
+      "dialShape": "circle",
+      "specification": "catalog/kopernik-0293/theme.json",
+      "sourceSpec": "assets/catalog/kopernik-0293/theme.json",
+      "referenceTime": "09:25:09",
+      "referenceAngles": {
+        "hour": 284,
+        "minute": 153,
+        "second": 54
+      },
+      "referenceURL": "https://raketa.com/product/kopernik-0293",
+      "section": "exceptional"
+    },
+    {
+      "id": "podvodnik-0317",
+      "brand": "raketa",
+      "title": "Подводник 0317",
+      "hourCycle": 24,
+      "direction": 1,
+      "dialShape": "circle",
+      "specification": "catalog/podvodnik-0317/theme.json",
+      "sourceSpec": "assets/catalog/podvodnik-0317/theme.json",
+      "referenceTime": "20:10:40",
+      "referenceAngles": {
+        "hour": 316,
+        "minute": 43,
+        "second": 239
+      },
+      "referenceURL": "https://raketa.com/product/podvodnik-0317",
+      "section": "specialized"
+    },
+    {
+      "id": "polyarnye-0300",
+      "brand": "raketa",
+      "title": "Полярные 0300",
+      "hourCycle": 24,
+      "direction": 1,
+      "dialShape": "circle",
+      "specification": "catalog/polyarnye-0300/theme.json",
+      "sourceSpec": "assets/catalog/polyarnye-0300/theme.json",
+      "referenceTime": "20:10:24",
+      "referenceAngles": {
+        "hour": 303,
+        "minute": 62,
+        "second": 145
+      },
+      "referenceURL": "https://raketa.com/product/polyarnye-0300",
+      "section": "specialized"
+    },
+    {
+      "id": "letchik",
+      "brand": "raketa",
+      "title": "Лётчик 0301",
+      "hourCycle": 12,
+      "direction": 1,
+      "dialShape": "circle",
+      "specification": "catalog/letchik/theme.json",
+      "sourceSpec": "assets/catalog/letchik/theme.json",
+      "referenceTime": "10:10:33",
+      "referenceAngles": {
+        "hour": 304,
+        "minute": 61,
+        "second": 197
+      },
+      "referenceURL": "https://raketa.com/product/letchik",
+      "section": "specialized"
+    },
+    {
+      "id": "big-zero-blue",
+      "brand": "raketa",
+      "title": "BIG ZERO Синий 0294",
+      "hourCycle": 12,
+      "direction": 1,
+      "dialShape": "circle",
+      "specification": "catalog/big-zero-blue/theme.json",
+      "sourceSpec": "assets/catalog/big-zero-blue/theme.json",
+      "referenceTime": "10:10:33",
+      "referenceAngles": {
+        "hour": 304,
+        "minute": 52,
+        "second": 200
+      },
+      "referenceURL": "https://raketa.com/product/big-zero-blue",
+      "section": "classic_watch"
+    },
+    {
+      "id": "big-zero-black-0341",
+      "brand": "raketa",
+      "title": "BIG ZERO Чёрный 0341",
+      "hourCycle": 12,
+      "direction": 1,
+      "dialShape": "circle",
+      "specification": "catalog/big-zero-black-0341/theme.json",
+      "sourceSpec": "assets/catalog/big-zero-black-0341/theme.json",
+      "referenceTime": "10:10:33",
+      "referenceAngles": {
+        "hour": 305,
+        "minute": 60,
+        "second": 199
+      },
+      "referenceURL": "https://raketa.com/product/big-zero-black-0341",
+      "section": "classic_watch"
+    },
+    {
+      "id": "big-zero-0283",
+      "brand": "raketa",
+      "title": "BIG ZERO 0283",
+      "hourCycle": 12,
+      "direction": 1,
+      "dialShape": "circle",
+      "specification": "catalog/big-zero-0283/theme.json",
+      "sourceSpec": "assets/catalog/big-zero-0283/theme.json",
+      "referenceTime": "10:10:37",
+      "referenceAngles": {
+        "hour": 304,
+        "minute": 52,
+        "second": 220
+      },
+      "referenceURL": "https://raketa.com/product/big-zero-0283",
+      "section": "classic_watch"
+    },
+    {
+      "id": "raketa-avgvst-0316",
+      "brand": "raketa",
+      "title": "Ракета × Avgvst 0316 · серебро",
+      "hourCycle": 12,
+      "direction": 1,
+      "dialShape": "rectangle",
+      "specification": "catalog/raketa-avgvst-0316/theme.json",
+      "sourceSpec": "assets/catalog/raketa-avgvst-0316/theme.json",
+      "referenceTime": "10:07:00",
+      "referenceAngles": {
+        "hour": 305,
+        "minute": 46
+      },
+      "referenceURL": "https://raketa.com/product/raketa-avgvst-0316",
+      "section": "exceptional"
+    },
+    {
+      "id": "raketa-avgvst",
+      "brand": "raketa",
+      "title": "Ракета × Avgvst 0315 · золото",
+      "hourCycle": 12,
+      "direction": 1,
+      "dialShape": "rectangle",
+      "specification": "catalog/raketa-avgvst/theme.json",
+      "sourceSpec": "assets/catalog/raketa-avgvst/theme.json",
+      "referenceTime": "10:07:00",
+      "referenceAngles": {
+        "hour": 305,
+        "minute": 46
+      },
+      "referenceURL": "https://raketa.com/product/raketa-avgvst",
+      "section": "exceptional"
+    },
+    {
+      "id": "raketa-avgvst-0320",
+      "brand": "raketa",
+      "title": "Ракета × Avgvst 0320 · чёрный",
+      "hourCycle": 12,
+      "direction": 1,
+      "dialShape": "rectangle",
+      "specification": "catalog/raketa-avgvst-0320/theme.json",
+      "sourceSpec": "assets/catalog/raketa-avgvst-0320/theme.json",
+      "referenceTime": "10:07:00",
+      "referenceAngles": {
+        "hour": 305,
+        "minute": 51
+      },
+      "referenceURL": "https://raketa.com/product/raketa-avgvst-0320",
+      "section": "exceptional"
+    }
+  ]
+}

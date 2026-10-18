@@ -1,0 +1,448 @@
+{
+  "catalog": {
+    "id": 1749,
+    "sectionCode": "classic_watch",
+    "code": "big-zero-yankovskaya",
+    "name": "BIG ZERO Янковская",
+    "isNew": false,
+    "isSoldOut": false,
+    "availability": "available",
+    "lastmod": 1786349798,
+    "price": 210000,
+    "discount": 0,
+    "previewPicture": "https://admin.raketa.com/upload/iblock/e35/imzvtp6qp9riw86fzn1v8bgz8v37hvgr.png",
+    "limitedEdition": true,
+    "limitedProduction": false,
+    "productURL": "https://raketa.com/product/big-zero-yankovskaya"
+  },
+  "details": [
+    {
+      "id": 1749,
+      "sectionCode": "classic_watch",
+      "code": "big-zero-yankovskaya",
+      "name": "BIG ZERO Янковская",
+      "availability": "available",
+      "isNew": false,
+      "isSoldOut": false,
+      "limitedProduction": "$undefined",
+      "limitedEdition": "$undefined",
+      "artnumber": "W-11-16-10-0330",
+      "detailText": "«Ракета» выпускает знаковую модель Big Zero в новом исполнении совместно с художницей Машей Янковской. Лимитированная серия насчитывает всего 100 пронумерованных экземпляров.",
+      "detailPicture": "https://admin.raketa.com/upload/iblock/e35/imzvtp6qp9riw86fzn1v8bgz8v37hvgr.png",
+      "gallery": {
+        "title": null,
+        "text": "Коллаборация с Машей Янковской стала пересечением художественного высказывания и инженерной традиции. Искусство Янковской отличается выраженной женской субъектностью, оставаясь при этом одинаково резонирующим как с мужским, так и с женским опытом.\r\n\r\nФирменная «Я» Янковской, заменяющая метку цифры шесть, создаёт акцент на индивидуальном и личном. Время — одна из ключевых тем в искусстве, к которой художники обращаются вне зависимости от эпохи и художественного языка. Сквозь него в нашей жизни проходят люди, социальные роли, города и страны, образ жизни, мода и вкусы. Однако собственное «Я» — самость и личность — остаётся с нами сквозь годы. Внутреннее «Я» является тем, что сильнее хода истории.",
+        "images": [
+          "/upload/iblock/790/gprmrgp1rudpurhikl51h8ozi5dfx518.jpg",
+          "/upload/iblock/6c3/98hzvhptxe9e9mk23zp2qdtmpwg8a7zq.jpg",
+          "/upload/iblock/890/bxwq2yks4ldizfp08yzrp2xpwmzk02ax.jpg",
+          "/upload/iblock/495/k8cm3xfk8919y3b13nz0jortr8qsxdbf.jpg",
+          "/upload/iblock/bde/3vm4jjcckbt02plnlv6uahwq00rrvdhx.jpg",
+          "/upload/iblock/6d9/03ki0fuok8n7uohm26cumz5zvum89oec.jpg",
+          "/upload/iblock/a27/shy4t7srcfyrsnq100ydcgvbj1zuy0qt.jpg"
+        ]
+      },
+      "properties": {
+        "case": {
+          "img_block": {
+            "src": "/upload/iblock/77d/r32s08dqrztxsc1lt2yypktolze3m8gc.jpg"
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Нержавеющая сталь"
+          },
+          "size": {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "40 мм"
+          },
+          "case_glass": {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое"
+          },
+          "case_back_glass": {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": "Минеральное"
+          },
+          "case_bazel": {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": "Нет"
+          },
+          "case_crown": {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": "Внутри заводной головки рубин"
+          },
+          "case_water": {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "10 АТМ"
+          },
+          "case_arrows": {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": null
+          },
+          "case_dial": {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": "Эмаль, Superluminova"
+          },
+          "case_gender": {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": "Унисекс"
+          },
+          "case_thicness": {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "14.05 мм"
+          },
+          "watch_lenght": {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "43 мм"
+          }
+        },
+        "mechanism": {
+          "img_block": {
+            "src": "/upload/iblock/ad7/zz0dvdqbbp8a9ptae05znx1ce4no6vpk.png"
+          },
+          "calibre": {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": "2615"
+          },
+          "functions": {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": "Автоподзавод"
+          },
+          "number_jewels": {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": "24"
+          },
+          "test_pos": {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": "4"
+          },
+          "rate": {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": "-10+20"
+          },
+          "runtime": {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": "40"
+          },
+          "freq": {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": "18.000 / 2.5Гц"
+          },
+          "winding": {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": "Да"
+          },
+          "system": {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": "Да"
+          },
+          "decor": {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": [
+              "Печать",
+              "Невские волны"
+            ]
+          },
+          "count_parts": {
+            "label": "Количество деталей механизма [механизм]",
+            "code": "COUNT_PARTS_MECHANISM",
+            "value": null
+          }
+        },
+        "strap": {
+          "quick": {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да"
+          },
+          "length": {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": null
+          },
+          "material": {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Натуральная кожа"
+          },
+          "extra": {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": "Натуральная кожа аллигатора черного цвета"
+          },
+          "collection": {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": ""
+          },
+          "color": {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": ""
+          },
+          "width": {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "20 мм"
+          },
+          "clasp": {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": "Классическая пряжка"
+          }
+        }
+      },
+      "collection": {
+        "name": "Классические",
+        "code": "classic"
+      },
+      "extraStraps": [],
+      "lastBlock": {
+        "title": null,
+        "text": "В дизайне часов использован фирменный красный цвет Янковской, который также является знаковым для «Ракеты». В центре циферблата — вращающаяся звезда, пришедшая из живописного языка художницы. В часах этот образ трансформируется в секундную стрелку, соединяя символическое художественное измерение с ритмом движения времени.\r\n\r\nКрасный ремень из натуральной кожи завершает единую цветовую гамму. Также в комплект входит классический чёрный ремень из кожи аллигатора.",
+        "image": "/upload/iblock/784/8k61ofpn58upva254hnqc50fmfn0s1cg.jpg",
+        "link": "https://bd81e7b6-bace-4c67-9150-276d4e57268f.selstorage.ru/products/BZ_YA_goriztal.mp4"
+      },
+      "downloadInstruction": null,
+      "mechanismPicture": "https://admin.raketa.com/upload/iblock/ad7/zz0dvdqbbp8a9ptae05znx1ce4no6vpk.png",
+      "lastBuyPicture": "https://admin.raketa.com/upload/iblock/f28/zxj7hrt458du7qiunjb92y9vf77lwd7l.jpg",
+      "lastmod": 1786349798,
+      "price": 210000,
+      "discount": "$undefined",
+      "previewPicture": "https://admin.raketa.com/upload/iblock/e35/imzvtp6qp9riw86fzn1v8bgz8v37hvgr.png",
+      "productType": "watch",
+      "galleryPictures": [
+        "https://admin.raketa.com/upload/iblock/790/gprmrgp1rudpurhikl51h8ozi5dfx518.jpg",
+        "https://admin.raketa.com/upload/iblock/6c3/98hzvhptxe9e9mk23zp2qdtmpwg8a7zq.jpg",
+        "https://admin.raketa.com/upload/iblock/890/bxwq2yks4ldizfp08yzrp2xpwmzk02ax.jpg",
+        "https://admin.raketa.com/upload/iblock/495/k8cm3xfk8919y3b13nz0jortr8qsxdbf.jpg",
+        "https://admin.raketa.com/upload/iblock/bde/3vm4jjcckbt02plnlv6uahwq00rrvdhx.jpg",
+        "https://admin.raketa.com/upload/iblock/6d9/03ki0fuok8n7uohm26cumz5zvum89oec.jpg",
+        "https://admin.raketa.com/upload/iblock/a27/shy4t7srcfyrsnq100ydcgvbj1zuy0qt.jpg"
+      ],
+      "helpBlockPicture": "",
+      "offers": [],
+      "heroPicture": "https://admin.raketa.com/upload/iblock/d0e/xwcbmjy9fieasyuulhoyzawtdu5twk99.jpg",
+      "galleryTitle": null,
+      "galleryText": "Коллаборация с Машей Янковской стала пересечением художественного высказывания и инженерной традиции. Искусство Янковской отличается выраженной женской субъектностью, оставаясь при этом одинаково резонирующим как с мужским, так и с женским опытом.\r\n\r\nФирменная «Я» Янковской, заменяющая метку цифры шесть, создаёт акцент на индивидуальном и личном. Время — одна из ключевых тем в искусстве, к которой художники обращаются вне зависимости от эпохи и художественного языка. Сквозь него в нашей жизни проходят люди, социальные роли, города и страны, образ жизни, мода и вкусы. Однако собственное «Я» — самость и личность — остаётся с нами сквозь годы. Внутреннее «Я» является тем, что сильнее хода истории.",
+      "propertiesPicture": "https://admin.raketa.com/upload/iblock/77d/r32s08dqrztxsc1lt2yypktolze3m8gc.jpg",
+      "mechanismDetailsPicture": "",
+      "instructionDownloadLink": "",
+      "videoTitle": null,
+      "videoText": "В дизайне часов использован фирменный красный цвет Янковской, который также является знаковым для «Ракеты». В центре циферблата — вращающаяся звезда, пришедшая из живописного языка художницы. В часах этот образ трансформируется в секундную стрелку, соединяя символическое художественное измерение с ритмом движения времени.\r\n\r\nКрасный ремень из натуральной кожи завершает единую цветовую гамму. Также в комплект входит классический чёрный ремень из кожи аллигатора.",
+      "videoPoster": "https://admin.raketa.com/upload/iblock/784/8k61ofpn58upva254hnqc50fmfn0s1cg.jpg",
+      "video": "https://bd81e7b6-bace-4c67-9150-276d4e57268f.selstorage.ru/products/BZ_YA_goriztal.mp4",
+      "propsList": {
+        "case": [
+          {
+            "label": "Материал",
+            "code": "LANG_WATCH_CASE_MATERIAL",
+            "value": "Нержавеющая сталь",
+            "omitLabel": false
+          },
+          {
+            "label": "Размер",
+            "code": "LANG_WATCH_CASE_SIZE",
+            "value": "40 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Стекло циферблата",
+            "code": "LANG_WATCH_CASE_GLASS",
+            "value": "Сапфировое",
+            "omitLabel": false
+          },
+          {
+            "label": "Заднее стекло",
+            "code": "LANG_WATCH_CASE_BACKGLASS",
+            "value": "Минеральное",
+            "omitLabel": false
+          },
+          {
+            "label": "Вращающийся безель",
+            "code": "LANG_WATCH_CASE_BEZEL",
+            "value": "Нет",
+            "omitLabel": false
+          },
+          {
+            "label": "Заводная головка",
+            "code": "LANG_WATCH_CASE_CROWN",
+            "value": "Внутри заводной головки рубин",
+            "omitLabel": false
+          },
+          {
+            "label": "Водозащита",
+            "code": "LANG_WATCH_CASE_WATER",
+            "value": "10 АТМ",
+            "omitLabel": false
+          },
+          {
+            "label": "Стрелки",
+            "code": "LANG_WATCH_CASE_ARROWS",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Циферблат",
+            "code": "LANG_WATCH_CASE_DIAL",
+            "value": "Эмаль, Superluminova",
+            "omitLabel": false
+          },
+          {
+            "label": "Пол",
+            "code": "LANG_WATCH_CASE_GEN",
+            "value": "Унисекс",
+            "omitLabel": false
+          },
+          {
+            "label": "Толщина корпуса",
+            "code": "LANG_WATCH_CASE_THICNESS",
+            "value": "14.05 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина (от ушка до ушка)",
+            "code": "LANG_WATCH_LENGHT",
+            "value": "43 мм",
+            "omitLabel": false
+          }
+        ],
+        "strap": [
+          {
+            "label": "Быстросъемная шпилька",
+            "code": "LANG_BRACELET_QUICK",
+            "value": "Да",
+            "omitLabel": false
+          },
+          {
+            "label": "Длина ремня ",
+            "code": "LANG_BRACELET_LENGTH",
+            "value": null,
+            "omitLabel": false
+          },
+          {
+            "label": "Материал",
+            "code": "LANG_BRACELET_MATERIAL",
+            "value": "Натуральная кожа",
+            "omitLabel": false
+          },
+          {
+            "label": "Дополнительный ремень",
+            "code": "LANG_BRACELET_EXTRA",
+            "value": "Натуральная кожа аллигатора черного цвета",
+            "omitLabel": false
+          },
+          {
+            "label": "Коллекция ремня",
+            "code": "LANG_BRACELET_COLLECTION",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Цвет ремня",
+            "code": "LANG_BRACELET_COLOR",
+            "value": "",
+            "omitLabel": false
+          },
+          {
+            "label": "Ширина ремня",
+            "code": "LANG_BRACELET_WIDTH",
+            "value": "20 мм",
+            "omitLabel": false
+          },
+          {
+            "label": "Застежка",
+            "code": "CLASP",
+            "value": "Классическая пряжка",
+            "omitLabel": false
+          }
+        ],
+        "mechanism": [
+          {
+            "label": "Калибр",
+            "code": "LANG_WATCH_CALIBRE",
+            "value": "2615",
+            "omitLabel": false
+          },
+          {
+            "label": "Функции",
+            "code": "LANG_WATCH_FUNCTIONS",
+            "value": "Автоподзавод",
+            "omitLabel": false
+          },
+          {
+            "label": "Количество камней",
+            "code": "LANG_WATCH_NUMBJEWELS",
+            "value": "24",
+            "omitLabel": false
+          },
+          {
+            "label": "Контрольные положения",
+            "code": "LANG_WATCH_TESTPOS",
+            "value": "4",
+            "omitLabel": false
+          },
+          {
+            "label": "Суточный ход (сек)",
+            "code": "LANG_WATCH_RATE",
+            "value": "-10+20",
+            "omitLabel": false
+          },
+          {
+            "label": "Средний запас хода (ч)",
+            "code": "LANG_WATCH_RUNTIME",
+            "value": "40",
+            "omitLabel": false
+          },
+          {
+            "label": "Полуколебаний в час",
+            "code": "LANG_WATCH_FREQ",
+            "value": "18.000 / 2.5Гц",
+            "omitLabel": false
+          },
+          {
+            "label": "Направление автоподзавода в две стороны",
+            "code": "LANG_WATCH_WINDING",
+            "value": "Да",
+            "omitLabel": true
+          },
+          {
+            "label": "Система отключения узла автоподзавода при ручном подзаводе",
+            "code": "LANG_WATCH_SYSTEM",
+            "value": "Да",
+            "omitLabel": true
+          },
+          {
+            "label": "Декор",
+            "code": "LANG_WATCH_DECOR",
+            "value": "$8:1:props:product:properties:mechanism:decor:value",
+            "omitLabel": true
+          }
+        ]
+      },
+      "mechanismDetailsCount": null
+    }
+  ]
+}

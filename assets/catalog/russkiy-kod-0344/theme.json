@@ -1,0 +1,122 @@
+{
+  "name": "Русский код · Меридиан 0344",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "direction": -1,
+  "resolution": [
+    709,
+    1189
+  ],
+  "dialBounds": [
+    34,
+    267,
+    598,
+    598
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/russkiy-kod-0344/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        709,
+        1189
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/russkiy-kod-0344/dial.png",
+      "position": [
+        34,
+        267
+      ],
+      "size": [
+        598,
+        598
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/russkiy-kod-0344/hour.png",
+      "valueType": "Hour 12 Ratio",
+      "handResPosition": [
+        333,
+        566
+      ],
+      "rotatePoint": [
+        9,
+        180
+      ],
+      "size": [
+        28,
+        235.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/russkiy-kod-0344/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        333,
+        566
+      ],
+      "rotatePoint": [
+        13,
+        266
+      ],
+      "size": [
+        24.5,
+        318
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/russkiy-kod-0344/second.png",
+      "valueType": "Second Ratio",
+      "handResPosition": [
+        333,
+        566
+      ],
+      "rotatePoint": [
+        38,
+        293.5
+      ],
+      "size": [
+        72,
+        408.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/russkiy-kod-0344/cap.png",
+      "position": [
+        324,
+        557
+      ],
+      "size": [
+        18,
+        18
+      ]
+    }
+  ]
+}

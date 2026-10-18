@@ -1,0 +1,5 @@
+Use case: precise-object-edit.
+Asset type: static raster watch dial restoration for a working clock.
+Edit target: attached square source crop of Raketa zolotoy-klyuchik.
+Primary request: Remove all three golden clock hands, their counterweights, shadows and central mounting pin. Restore the stippled champagne dial texture and any printing or concentric gold circles hidden beneath them. Preserve the script Ракета and the embossed decorative monogram at 6 o'clock.
+Strict invariants: keep the EXACT same square framing, dial center, scale, perspective, case edge, every other pixel's design, original colors, lighting, relief, material and photographic texture. Only remove the moving hands and their shadows and fill the revealed dial correctly. Absolutely NO clock hands, needles, central mounting pin, dot or ring may remain anywhere. Do not redesign, relabel, crop, zoom or add anything. Output one restored photograph with no text outside the original watch.

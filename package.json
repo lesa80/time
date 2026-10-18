@@ -1,0 +1,26 @@
+{
+  "name": "vremya-macos",
+  "version": "2.4.4",
+  "private": true,
+  "description": "Время: native macOS desktop clock with light/dark 12/24-hour Minimalism and 21 Raketa watch themes",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-macos.mjs",
+    "build:macos": "npm run build --",
+    "build:artwork": "node scripts/prepare-minimalism.mjs && node scripts/prepare-avangard.mjs && node scripts/prepare-catalog.mjs && node scripts/prepare-about.mjs && node scripts/prepare-icons.mjs && node scripts/build-preview.mjs",
+    "build:preview": "node scripts/build-preview.mjs",
+    "start": "node scripts/serve.mjs",
+    "test": "node scripts/prepare-icons.mjs && node --test tests/*.test.mjs",
+    "test:native": "node scripts/test-macos.mjs",
+    "verify": "node scripts/verify-macos.mjs",
+    "clean": "node scripts/clean.mjs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "pngjs": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

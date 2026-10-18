@@ -1,0 +1,52 @@
+{
+  "source": "https://admin.raketa.com/upload/iblock/22c/els0vwbf5wh1b52px7qd94ybafmn5br4.png",
+  "bodySource": "reference/catalog/zolotoy-klyuchik/front.png",
+  "cropOrigin": [
+    100,
+    350
+  ],
+  "bodyCrop": [
+    0,
+    146,
+    896,
+    1254
+  ],
+  "center": [
+    350,
+    347
+  ],
+  "dialBox": [
+    130,
+    127,
+    440,
+    440
+  ],
+  "hands": {
+    "hour": {
+      "shape": "<polygon points=\"244,262 390,368 379,382 236,278\"/>",
+      "angle": 304
+    },
+    "minute": {
+      "shape": "<polygon points=\"312,373 307,364 504,253 514,260\"/>",
+      "angle": 60
+    },
+    "second": {
+      "shape": "<polygon points=\"413.00285933086553,541.3289536228073 414.99714066913447,540.6710463771927 331.5732124652775,287.7922640092513 329.57893112700856,288.45017125486584\"/><circle cx=\"350\" cy=\"347\" r=\"6\"/>",
+      "angle": 162
+    }
+  },
+  "restoration": {
+    "registration": {
+      "sx": 0.998,
+      "sy": 0.998,
+      "dx": 0,
+      "dy": 0,
+      "error": 19.146106039318592
+    },
+    "bias": [
+      -0.5271081783439572,
+      1.1638493419053104,
+      2.400760808874789
+    ]
+  }
+}

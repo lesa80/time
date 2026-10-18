@@ -1,0 +1,212 @@
+[
+  {
+    "asset": "amfibiya-0321",
+    "file": "assets/catalog/amfibiya-0321/source/amfibiya-0321-second-prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: background-extraction. Asset type: isolated raster second hand sprite. Reference: attached Raketa Amphibia 0321 watch face. Isolate ONLY the very thin dark gray second hand pointing down-left toward 36 seconds, including its small white luminous TRIANGULAR tip near the minute track and its small plain dark paddle counterweight on the opposite end, plus small central mounting eye. Remove ALL dial, indices, hour/minute hands, their shadows, lettering and central cap. Rotate rigidly so the long needle and small triangular tip point vertically UP and counterweight points DOWN. The white triangle must remain opaque; exterior is genuine transparent RGBA, no checkerboard or glow, no background. Keep original slim proportions, exact dark metallic colors and realistic texture. One complete isolated second hand only, centered with padding.\n"
+  },
+  {
+    "asset": "amfibiya-0321",
+    "file": "assets/catalog/amfibiya-0321/source/hour-prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: background-extraction. Asset type: high resolution isolated raster watch hand sprite for a working clock. Reference image: attached Raketa amfibiya-0321 source face photograph. Isolate ONLY the SHORT broad arrow/diamond shaped black/silver hour hand pointing at upper-left 10 o'clock. Its leading tip is rather blunt, widening into a geometric diamond shape, dark silver bevelled metal rim around a large OPAQUE white luminous inset, ending in a short black metal neck with a pivot eye. Remove ALL background, text, orange minute hand, thin second hand and central mounting cap. Rotate rigidly so arrow points vertically UP, mounting pivot at base near bottom. Preserve original width/length proportions and EXACT bevelled edge shape. One hand only, entire hand visible including mounting neck, centered with transparent padding, genuine transparent RGBA background, no checkered pattern. Preserve original photographic metal texture, colors, bevels and luminous fill. Do not stylize, redesign or add a dial. Output a clean sharp 2K-quality sprite.\n"
+  },
+  {
+    "asset": "amfibiya-0321",
+    "file": "assets/catalog/amfibiya-0321/source/minute-prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: background-extraction. Asset type: high resolution isolated raster watch hand sprite for a working clock. Reference image: attached Raketa amfibiya-0321 source face photograph. Isolate ONLY the long ORANGE and silver minute hand pointing upper-right. Preserve the elongated slightly tapered arrow outline, small angular arrowhead shoulders, bright orange distal rim, dark silver proximal rim and narrow black mounting neck with pivot eye, large OPAQUE WHITE luminous interior. Remove central cap, hour/second hands, all background, dial and shadows. Rotate the hand rigidly so it points vertically UP, pivot near bottom, precisely straight axis. One hand only, entire hand visible including mounting neck, centered with transparent padding, genuine transparent RGBA background, no checkered pattern. Preserve original photographic metal texture, colors, bevels, fill and exact source silhouette/proportions. Do not stylize or redesign. Clean sharp 2K-quality cutout.\n"
+  },
+  {
+    "asset": "amfibiya-0321",
+    "file": "assets/catalog/amfibiya-0321/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Asset type: restored static raster dial for working clock. Edit target: attached square source crop of Raketa amfibiya-0321. Remove all three hands: short broad black/silver hour hand with white luminous center, long ORANGE/silver luminous minute hand, thin dark second hand including its white triangular tip, counterweight and central hub. Restore underlying black dial and any obscured circle indices or minute track. Preserve the 0, white circles and batons, Ракета logo, СДЕЛАНО В РОССИИ and the orange/black external bezel exactly. Strict invariants: keep EXACT square framing, position, scale, dial center, perspective, case edge, original colors, texture, relief, lighting, all typography and printing. Change ONLY moving hands and their shadows. Fill revealed areas with matching dial. NO clock hands or central mount anywhere; no redesign, crop, zoom, extra text or objects.\n"
+  },
+  {
+    "asset": "baykonur-0325",
+    "file": "assets/catalog/baykonur-0325/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Asset type: restored static raster dial for working clock. Edit target: attached square source crop of Raketa baykonur-0325. Remove all THREE central moving hands: short red outlined hour hand, long black outlined luminous minute hand, thin red second hand with counterweight and hub. Preserve all fixed internal rotating compass/GMT rings in their EXACT present positions, all 24-hour numerals, the black/white half-split dial field, red Ракета logo and СДЕЛАНО В РОССИИ. Restore only dial areas covered by hands; no reinterpretation. Strict invariants: keep EXACT square framing, position, scale, dial center, perspective, case edge, original colors, texture, relief, lighting, all typography and printing. Change ONLY moving hands and their shadows. Fill revealed areas with matching dial. NO clock hands or central mount anywhere; no redesign, crop, zoom, extra text or objects.\n"
+  },
+  {
+    "asset": "big-zero-0283",
+    "file": "assets/catalog/big-zero-0283/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Asset type: restored static raster dial for working clock. Edit target: attached square source crop of Raketa big-zero-0283. Remove all three black hands, counterweights, mounting hub and shadows. Restore uninterrupted white/silver dial texture beneath them. Preserve black embossed 0/3/6/9 and triangular markers, perimeter ticks, Ракета logo and СДЕЛАНО В РОССИИ exactly. Strict invariants: keep EXACT square framing, position, scale, dial center, perspective, case edge, original colors, texture, relief, lighting, all typography and printing. Change ONLY moving hands and their shadows. Fill revealed areas with matching dial. NO clock hands, central dot, ring or mount anywhere; no redesign, crop, zoom, extra text or objects.\n"
+  },
+  {
+    "asset": "big-zero-azur-blue",
+    "file": "assets/catalog/big-zero-azur-blue/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Asset type: restored static raster dial for working clock. Edit target: attached square source crop of Raketa big-zero-azur-blue. Remove all three silver/white clock hands, all counterweights, mounting pin and shadows. Restore the original fine stippled turquoise/azure blue face beneath. Preserve embossed silver 0/3/6/9 numerals, triangular hour markers, perimeter ticks, silver Ракета logo and Cyrillic made-in-Russia inscription. No central pin, dot or ring may remain. Strict invariants: keep EXACT square framing, position, scale, dial center, perspective, case edge, original colors, texture, relief, lighting, all typography and printing. Change ONLY moving hands and their shadows. Fill revealed areas with matching dial. NO clock hands or central mount anywhere; no redesign, crop, zoom, extra text or objects.\n"
+  },
+  {
+    "asset": "big-zero-black-0341",
+    "file": "assets/catalog/big-zero-black-0341/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Asset type: restored static raster dial for working clock. Edit target: attached square source crop of Raketa big-zero-black-0341. Remove both silver/luminous baton hands, fine dark second hand, all counterweights, central mounting pin and shadows. Restore black dial below. Preserve all silver outlined luminous 0/3/6/9 and triangular indices, perimeter ticks, Ракета logo and tiny made-in-Russia text exactly. Strict invariants: keep EXACT square framing, position, scale, dial center, perspective, case edge, original colors, texture, relief, lighting, all typography and printing. Change ONLY moving hands and their shadows. Fill revealed areas with matching dial. NO clock hands, central dot, ring or mount anywhere; no redesign, crop, zoom, extra text or objects.\n"
+  },
+  {
+    "asset": "big-zero-blue",
+    "file": "assets/catalog/big-zero-blue/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Asset type: restored static raster dial for working clock. Edit target: attached square source crop of Raketa big-zero-blue. Remove all three ivory white clock hands, counterweights, central mounting hub and shadows. Restore uninterrupted deep navy blue dial texture beneath them. Preserve creamy white 0/3/6/9, triangular markers, white Ракета and tiny СДЕЛАНО В РОССИИ exactly. Strict invariants: keep EXACT square framing, position, scale, dial center, perspective, case edge, original colors, texture, relief, lighting, all typography and printing. Change ONLY moving hands and their shadows. Fill revealed areas with matching dial. NO clock hands, central dot, ring or mount anywhere; no redesign, crop, zoom, extra text or objects.\n"
+  },
+  {
+    "asset": "big-zero-yankovskaya",
+    "file": "assets/catalog/big-zero-yankovskaya/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Asset type: restored static raster dial for working clock. Edit target: attached square source crop of Raketa big-zero-yankovskaya. Remove the two silver/black baton clock hands AND the ENTIRE small gold eight-pointed rotating STAR second hand below the pivot AND the black mounting hub. Restore uninterrupted richly textured red enamel where all these objects were. Preserve the white 0 at top and white Я at bottom EXACTLY. No star, dot, circle or central pin may remain. Strict invariants: keep EXACT square framing, position, scale, dial center, perspective, case edge, original colors, texture, relief, lighting, all typography and printing. Change ONLY moving hands and their shadows. Fill revealed areas with matching dial. NO clock hands or central mount anywhere; no redesign, crop, zoom, extra text or objects.\n"
+  },
+  {
+    "asset": "kopernik-0293",
+    "file": "assets/catalog/kopernik-0293/source/hour-prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: background-extraction. Asset type: isolated high resolution raster watch hand sprite for an animated clock. Reference image: attached source photograph of Raketa kopernik-0293. Isolate ONLY the smaller GOLD OPEN CIRCULAR hour ring located at the LEFT of the watch face, including its small OPAQUE WHITE circular luminous marker attached near its outermost end and the tiny gold mounting stem/eye near the dial center. Its ring interior must be genuinely TRANSPARENT, no white agate, starfield, printing or parts of other hands inside it. Remove the bigger silver ring and second needle. Rotate this whole assembly rigidly until its axis from mounting pivot toward the gold ring center points vertically UP, with pivot near bottom. The little white marker should end near the uppermost outer arc, just as source geometry implies. Keep the slim circular gold metal rim and exact proportions. Single complete isolated hand assembly, centered on genuine transparent RGBA canvas with padding. Preserve original photo texture, colors and physical design. No shadows cast on background, no checkerboard, no extra hands or objects. Sharp smooth thin edges, 2K-quality.\n"
+  },
+  {
+    "asset": "kopernik-0293",
+    "file": "assets/catalog/kopernik-0293/source/minute-prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: background-extraction. Asset type: isolated high resolution raster watch hand sprite for an animated clock. Reference image: attached source photograph of Raketa kopernik-0293. Isolate ONLY the larger SILVER OPEN CIRCULAR minute ring at LOWER RIGHT, including its small OPAQUE WHITE circular luminous marker attached near the outermost end, and mounting neck/eye at dial center. Interior of silver ring must be genuinely TRANSPARENT: remove all white agate disk, starfield, blue markings and other hands from inside. Remove the gold ring and second needle. Rotate whole ring assembly rigidly until axis from pivot toward ring center points vertically UP, mounting eye near bottom. Preserve thin polished silver circular rim, small circular luminous marker at outermost end, and exact geometry. Single complete isolated hand assembly, centered on genuine transparent RGBA canvas with padding. Preserve original photo texture, colors and physical design. No shadows cast on background, no checkerboard, no extra hands or objects. Sharp smooth thin edges, 2K-quality.\n"
+  },
+  {
+    "asset": "kopernik-0293",
+    "file": "assets/catalog/kopernik-0293/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Asset type: restored static raster dial for working clock. Edit target: attached square source crop of Raketa kopernik-0293. Remove ALL moving hands: the entire small GOLD OPEN RING on the LEFT including its small white round luminous marker; the entire larger SILVER OPEN RING at LOWER RIGHT including its small white marker; long thin silver/blue diagonal second needle and central mounting hub. KEEP the large WHITE AGATE DISK in the CENTER: it is STATIC dial artwork, not a hand! Restore its natural horizontal gray bands and original circular outline. Restore blue aventurine starfield, gold indices and blue ticks underneath removed rings. Preserve all logo lettering and dial markings. Strict invariants: keep EXACT square framing, position, scale, dial center, perspective, case edge, original colors, texture, relief, lighting, all typography and printing. Change ONLY moving hands and their shadows. Fill revealed areas with matching dial. NO clock hands or central mount anywhere; no redesign, crop, zoom, extra text or objects.\n"
+  },
+  {
+    "asset": "letchik",
+    "file": "assets/catalog/letchik/source/hour-prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: background-extraction. Asset type: high resolution isolated raster watch hand sprite for a working clock. Reference image: attached Raketa letchik source face photograph. Isolate ONLY the short blue-and-silver polygonal hour hand pointing upper-left at 10 o'clock. Retain narrow silver neck to pivot, tiny blue pointed nose, blue upper-left border, silver lower border, and OPAQUE pale MINT GREEN luminous elongated diamond insert. Remove ALL dial, text, other hands, mounting cap and shadows. Rotate rigidly to point vertically UP, circular pivot eye at base near bottom. Preserve exact silhouette, long narrow pointed tip, broad diamond body, thin base neck. One hand only, entire hand visible including mounting neck, centered with transparent padding, genuine transparent RGBA background, no checkered pattern. Preserve original photographic metal texture, colors, bevels and luminous fill. Do not stylize, redesign or add a dial. Output a clean sharp 2K-quality sprite.\n"
+  },
+  {
+    "asset": "letchik",
+    "file": "assets/catalog/letchik/source/minute-prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: background-extraction. Asset type: high resolution isolated raster watch hand sprite for a working clock. Reference image: attached Raketa letchik source face photograph. Isolate ONLY the long blue-and-silver minute hand pointing upper-right. Preserve its thin elongated rectangular frame, sharp blue arrow tip with tiny shoulders, blue distal metal rim, silver proximal rim, narrow bent silver mounting neck with pivot eye. Preserve its OPAQUE pale MINT GREEN luminous long interior insert. Remove central cap, yellow and other hands, dial and shadows. Rotate the hand rigidly so it points vertically UP, pivot near bottom, precisely straight axis. One hand only, entire hand visible including mounting neck, centered with transparent padding, genuine transparent RGBA background, no checkered pattern. Preserve original photographic metal texture, colors, bevels, fill and exact source silhouette/proportions. Do not stylize or redesign. Clean sharp 2K-quality cutout.\n"
+  },
+  {
+    "asset": "letchik",
+    "file": "assets/catalog/letchik/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Asset type: restored static raster dial for working clock. Edit target: attached square source crop of Raketa letchik. Remove all three central clock hands: both blue/silver polygonal hands with mint luminous centers, entire yellow needle with yellow paddle counterweight, mounting pin and hand shadows. Restore the continuous black grainy dial below. Preserve mint 0/2/4/6/8/10 numerals and every minute tick, white Ракета script and tiny dark СДЕЛАНО В РОССИИ. Strict invariants: keep EXACT square framing, position, scale, dial center, perspective, case edge, original colors, texture, relief, lighting, all typography and printing. Change ONLY moving hands and their shadows. Fill revealed areas with matching dial. NO clock hands, central dot, ring or mount anywhere; no redesign, crop, zoom, extra text or objects.\n"
+  },
+  {
+    "asset": "podvodnik-0317",
+    "file": "assets/catalog/podvodnik-0317/source/hour-prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: background-extraction. Asset type: isolated high resolution raster watch hand sprite for an animated clock. Reference image: attached source photograph of Raketa podvodnik-0317. Isolate ONLY the SHORT open silver triangular hour hand pointing upper-left, INCLUDING the complete silver OPEN CIRCULAR mounting wheel around dial center and its two narrow cross spokes. Remove red second hand/cap, long upper-right silver hand and all dial. Transparent inside the triangle AND inside all open wheel quadrants. Preserve the granular brushed steel finish and exact triangle/wheel outlines. Rotate entire hour-hand-plus-wheel rigidly so triangular tip points vertically UP and circular wheel rotation pivot is near bottom. Circle wheel is part of this hand, not a separate image. Single complete isolated hand assembly, centered on genuine transparent RGBA canvas with padding. Preserve original photo texture, colors and physical design. No shadows cast on background, no checkerboard, no extra hands or objects. Sharp smooth thin edges, 2K-quality.\n"
+  },
+  {
+    "asset": "podvodnik-0317",
+    "file": "assets/catalog/podvodnik-0317/source/minute-prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: background-extraction. Asset type: isolated high resolution raster watch hand sprite for an animated clock. Reference image: attached source photograph of Raketa podvodnik-0317. Isolate ONLY the LONG open silver triangular/trapezoidal minute hand pointing upper-right, from its thin sharp long tip to the small circular mounting eye. Remove all dial, the short upper-left hand and its large circular mounting wheel, red second hand/cap and shadows. Entire interior is genuinely TRANSPARENT, including the long inner triangular slot; no white, gray or black infill. Preserve grainy brushed steel texture and the long narrow triangular/trapezoidal open frame with exact bevelled source silhouette. Rotate rigidly to point vertically UP, pivot eye at base near bottom. Single complete isolated hand assembly, centered on genuine transparent RGBA canvas with padding. Preserve original photo texture, colors and physical design. No shadows cast on background, no checkerboard, no extra hands or objects. Sharp smooth thin edges, 2K-quality.\n"
+  },
+  {
+    "asset": "podvodnik-0317",
+    "file": "assets/catalog/podvodnik-0317/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Asset type: restored static raster dial for working clock. Edit target: attached square source crop of Raketa podvodnik-0317. Remove ALL moving hands and their shadows: two open triangular/trapezoidal silver hands, the entire silver open circular mounting WHEEL around the center, red central hub and long thin RED second hand with its red paddle counterweight. Restore the plain dark gray dial field, blue/red fixed hour strokes, white 24-hour numerals and blue inner minute ticks underneath. Preserve red Ракета logo, СДЕЛАНО В РОССИИ, external 60/15/30/45 scale and small submarine drawing. No hub, dot, hand or wheel remains at center. Strict invariants: keep EXACT square framing, position, scale, dial center, perspective, case edge, original colors, texture, relief, lighting, all typography and printing. Change ONLY moving hands and their shadows. Fill revealed areas with matching dial. NO clock hands or central mount anywhere; no redesign, crop, zoom, extra text or objects.\n"
+  },
+  {
+    "asset": "polyarnye-0300",
+    "file": "assets/catalog/polyarnye-0300/source/hour-prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: background-extraction. Asset type: high resolution isolated raster watch hand sprite for a working clock. Reference image: attached Raketa polyarnye-0300 source face photograph. Isolate ONLY the short red-and-silver polygonal hour hand pointing upper-left at 10 o'clock. Retain the narrow silver neck that connects to the pivot, small red pointed nose, the red edge along top-left half, silver metal edge elsewhere, and OPAQUE ivory luminous elongated diamond insert. Remove ALL dial, text, other hands, mounting cap and shadows. The rotation pivot is the small circular hole/eye at its base. Rotate rigidly so the hour hand points vertically UP, pivot near bottom. It must be straight and bilaterally symmetric in silhouette, with long sharp narrow tip, broad hollow-looking diamond frame but OPAQUE cream luminous filling. One hand only, entire hand visible including mounting neck, centered with transparent padding, genuine transparent RGBA background, no checkered pattern. Preserve original photographic metal texture, colors, bevels and luminous fill. Do not stylize, redesign or add a dial. Output a clean sharp 2K-quality sprite.\n"
+  },
+  {
+    "asset": "polyarnye-0300",
+    "file": "assets/catalog/polyarnye-0300/source/minute-prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: background-extraction. Asset type: high resolution isolated raster watch hand sprite for a working clock. Reference image: attached Raketa polyarnye-0300 source face photograph. Isolate ONLY the long blue-and-silver minute hand pointing upper-right. Preserve its thin elongated rectangular frame, sharp blue arrow tip with two tiny outward shoulders, blue metal distal half, silver proximal half and narrow bent silver mounting neck. The entire long slot inside is TRANSPARENT, uninterrupted with NO crossbar. Remove all luminous white infill so it is an empty hollow frame. Remove central cap, red hands, dial and shadows. Rotate the hand rigidly so it points vertically UP, pivot near bottom, precisely straight axis. One hand only, entire hand visible including mounting neck, centered with transparent padding, genuine transparent RGBA background, no checkered pattern. Preserve original photographic metal texture, colors, bevels, fill and exact source silhouette/proportions. Do not stylize or redesign. Clean sharp 2K-quality cutout.\n"
+  },
+  {
+    "asset": "polyarnye-0300",
+    "file": "assets/catalog/polyarnye-0300/source/polyarnye-0300-minute-filled-prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Edit target Image1: isolated upward blue/silver minute hand. Supporting reference Image2: factory Raketa Polar 0300 watch face. Change ONLY the long empty interior slot in Image1: fill it completely with an OPAQUE ivory-white luminous insert matching the minute hand in Image2, with no crossbar. Keep EXACT framing, same hand silhouette, upper blue arrow tip, blue distal rim, silver proximal rim, metal texture and bottom mounting eye. Exterior canvas and mounting eye hole stay genuinely transparent. No drop shadow or glow. The new slot filling must be opaque white/ivory, not transparent. One isolated minute hand only.\n"
+  },
+  {
+    "asset": "polyarnye-0300",
+    "file": "assets/catalog/polyarnye-0300/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Asset type: restored static raster dial for working clock. Edit target: attached square source crop of Raketa polyarnye-0300. Remove all three central clock hands, their counterweights, the circular silver/red mounting pin and hand shadows. Restore uninterrupted ivory cream face, hidden black numeral fragments and printed red logo beneath. Preserve ALL black numerals exactly, their embossed textures, odd small hours, minute ticks, blue/red sectors that interlock with triangular corners, Russian СДЕЛАНО В РОССИИ and all outer bezel text. No central pin or hand remains. Strict invariants: keep EXACT square framing, position, scale, dial center, perspective, case edge, original colors, texture, relief, lighting, all typography and printing. Change ONLY moving hands and their shadows. Fill revealed areas with matching dial. NO clock hands or central mount anywhere; no redesign, crop, zoom, extra text or objects.\n"
+  },
+  {
+    "asset": "raketa-avgvst",
+    "file": "assets/catalog/raketa-avgvst/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Asset type: restored static raster dial for working clock. Edit target: attached square source crop of Raketa raketa-avgvst. Remove ONLY the TWO moving clock hands and circular mounting hub, their shadows and reflections. Restore the dial surface and the fixed horizontal and vertical gridlines underneath, making the horizontal line CONTINUOUS through the exact center and the short vertical center line continuous too. Preserve all the black or white geometric fixed gridlines at top/bottom, Ракета script, avgvst lettering and precise rectangle shape. The fixed center cross belongs to the dial: keep it, with no circular dot or ring in its intersection. Strict invariants: keep EXACT square framing, position, scale, dial center, perspective, case edge, original colors, photographic texture, lighting, all typography and printing. Change ONLY moving hands and their shadows. Fill revealed areas with matching dial. No moving hands or mounting hub may remain. No redesign, crop, zoom, extra text or objects.\n"
+  },
+  {
+    "asset": "raketa-avgvst-0316",
+    "file": "assets/catalog/raketa-avgvst-0316/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Asset type: restored static raster dial for working clock. Edit target: attached square source crop of Raketa raketa-avgvst-0316. Remove ONLY the TWO moving clock hands and circular mounting hub, their shadows and reflections. Restore the dial surface and the fixed horizontal and vertical gridlines underneath, making the horizontal line CONTINUOUS through the exact center and the short vertical center line continuous too. Preserve all the black or white geometric fixed gridlines at top/bottom, Ракета script, avgvst lettering and precise rectangle shape. The fixed center cross belongs to the dial: keep it, with no circular dot or ring in its intersection. Strict invariants: keep EXACT square framing, position, scale, dial center, perspective, case edge, original colors, photographic texture, lighting, all typography and printing. Change ONLY moving hands and their shadows. Fill revealed areas with matching dial. No moving hands or mounting hub may remain. No redesign, crop, zoom, extra text or objects.\n"
+  },
+  {
+    "asset": "raketa-avgvst-0320",
+    "file": "assets/catalog/raketa-avgvst-0320/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Asset type: restored static raster dial for working clock. Edit target: attached square source crop of Raketa raketa-avgvst-0320. Remove ONLY the TWO moving clock hands and circular mounting hub, their shadows and reflections. Restore the dial surface and the fixed horizontal and vertical gridlines underneath, making the horizontal line CONTINUOUS through the exact center and the short vertical center line continuous too. Preserve all the black or white geometric fixed gridlines at top/bottom, Ракета script, avgvst lettering and precise rectangle shape. The fixed center cross belongs to the dial: keep it, with no circular dot or ring in its intersection. Strict invariants: keep EXACT square framing, position, scale, dial center, perspective, case edge, original colors, photographic texture, lighting, all typography and printing. Change ONLY moving hands and their shadows. Fill revealed areas with matching dial. No moving hands or mounting hub may remain. No redesign, crop, zoom, extra text or objects.\n"
+  },
+  {
+    "asset": "raketa-su",
+    "file": "assets/catalog/raketa-su/source/hour-prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: background-extraction. Asset type: high resolution isolated raster watch hand sprite for a working clock. Reference image: attached Raketa raketa-su source face photograph. Isolate ONLY the short silver polygonal hour hand pointing upper-left at 10 o'clock. Retain its pointed nose, silver metallic elongated diamond outline, OPAQUE pale mint luminous insert and narrow dark silver neck to the small pivot hole. Remove ALL dial, text, other hands, central cap and shadows. Rotate rigidly to point vertically UP, pivot hole at base near bottom. Keep exact source shape and smooth silhouette. One hand only, entire hand visible including mounting neck, centered with transparent padding, genuine transparent RGBA background, no checkered pattern. Preserve original photographic metal texture, colors, bevels and luminous fill. Do not stylize, redesign or add a dial. Output a clean sharp 2K-quality sprite.\n"
+  },
+  {
+    "asset": "raketa-su",
+    "file": "assets/catalog/raketa-su/source/minute-prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: background-extraction. Asset type: high resolution isolated raster watch hand sprite for a working clock. Reference image: attached Raketa raketa-su source face photograph. Isolate ONLY the long silver minute hand pointing upper-right. Preserve its thin elongated rectangular frame, sharp narrow silver tip, metallic silver bevels, narrow bent dark silver mounting neck and pivot eye. Preserve the OPAQUE pale MINT luminous long interior insert. Remove central cap, thin black needle, other hands, dial and shadows. Rotate the hand rigidly so it points vertically UP, pivot near bottom, precisely straight axis. One hand only, entire hand visible including mounting neck, centered with transparent padding, genuine transparent RGBA background, no checkered pattern. Preserve original photographic metal texture, colors, bevels, fill and exact source silhouette/proportions. Do not stylize or redesign. Clean sharp 2K-quality cutout.\n"
+  },
+  {
+    "asset": "raketa-su",
+    "file": "assets/catalog/raketa-su/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Asset type: restored static raster dial for working clock. Edit target: attached square source crop of Raketa raketa-su. Remove all three hands: two silver polygonal mint-luminous hands, dark thin second needle with paddle counterweight and central dark mounting hub. Restore matching anthracite dial texture and hidden portions of all mint green numerals/ticks. Preserve white Ракета logo, tiny Su-57 airplane drawing and СДЕЛАНО В РОССИИ text exactly. Strict invariants: keep EXACT square framing, position, scale, dial center, perspective, case edge, original colors, photographic texture, lighting, all typography and printing. Change ONLY moving hands and their shadows. Fill revealed areas with matching dial. No moving hands or mounting hub may remain. No redesign, crop, zoom, extra text or objects.\n"
+  },
+  {
+    "asset": "raketa-x-lebedev",
+    "file": "assets/catalog/raketa-x-lebedev/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Asset type: restored static raster dial for working clock. Edit target: attached square source crop of Raketa raketa-x-lebedev. Remove all three black hands, counterweights, central pin and their shadows. Restore the continuous vertical black brushed grain beneath. Preserve raised black 0/3/6/9 numerals, triangular markers and embossed black Ракета logo and tiny made-in-Russia inscription exactly. It must remain BLACK ON BLACK, no new white printing. Strict invariants: keep EXACT square framing, position, scale, dial center, perspective, case edge, original colors, texture, relief, lighting, all typography and printing. Change ONLY moving hands and their shadows. Fill revealed areas with matching dial. NO clock hands or central mount anywhere; no redesign, crop, zoom, extra text or objects.\n"
+  },
+  {
+    "asset": "russkiy-kod-0302",
+    "file": "assets/catalog/russkiy-kod-0302/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit.\nAsset type: static raster watch dial restoration for a working clock.\nEdit target: attached square source crop of Raketa russkiy-kod-0302.\nPrimary request: Remove the silver hour and minute hands, the entire thin second hand including RED OPEN RING at bottom-left, its counterweight pointing upward and central pin. Restore the star map, latitude/longitude grid and star points beneath them. Preserve all reversed numerals and letters exactly, red Ракета logo, cyan constellation points and lines.\nStrict invariants: keep the EXACT same square framing, dial center, scale, perspective, case edge, every other pixel's design, original colors, lighting, relief, material and photographic texture. Only remove the moving hands and their shadows and fill the revealed dial correctly. Absolutely NO clock hands, needles, central mounting pin, dot or ring may remain anywhere. Do not redesign, relabel, crop, zoom or add anything. Output one restored photograph with no text outside the original watch.\n"
+  },
+  {
+    "asset": "russkiy-kod-0344",
+    "file": "assets/catalog/russkiy-kod-0344/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit.\nAsset type: static raster watch dial restoration for a working clock.\nEdit target: attached square source crop of Raketa russkiy-kod-0344.\nPrimary request: Remove the silver hour and minute hands and the ENTIRE burgundy second hand including its BLUE OPEN RING near bottom-right and round counterweight at upper-left, plus central mounting hub. Restore the raised cream meridian grid and blue globe/continents beneath them. Preserve all reversed numerals exactly and burgundy Ракета, blue СДЕЛАНО В РОССИИ.\nStrict invariants: keep the EXACT same square framing, dial center, scale, perspective, case edge, every other pixel's design, original colors, lighting, relief, material and photographic texture. Only remove the moving hands and their shadows and fill the revealed dial correctly. Absolutely NO clock hands, needles, central mounting pin, dot or ring may remain anywhere. Do not redesign, relabel, crop, zoom or add anything. Output one restored photograph with no text outside the original watch.\n"
+  },
+  {
+    "asset": "sovremennik",
+    "file": "assets/catalog/sovremennik/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit.\nAsset type: static raster watch dial restoration for a working clock.\nEdit target: attached square source crop of Raketa sovremennik.\nPrimary request: Remove the short brown triangular hour hand pointing at 10, the long blue tapered minute hand pointing at 2, the long brown arrow-shaped second hand pointing at 7, their counterweights, shadows and central hub. Restore uninterrupted raised circular cream grooves and horizontal raised logo plaque beneath them. Preserve ALL letters and numerals exactly: 0 at top, ОДИН, ПЯТЬ, ШЕСТЬ, ДЕВЯТЬ, 7, Ракета, СДЕЛАНО В РОССИИ.\nStrict invariants: keep the EXACT same square framing, dial center, scale, perspective, case edge, every other pixel's design, original colors, lighting, relief, material and photographic texture. Only remove the moving hands and their shadows and fill the revealed dial correctly. Absolutely NO clock hands, needles, central mounting pin, dot or ring may remain anywhere. Do not redesign, relabel, crop, zoom or add anything. Output one restored photograph with no text outside the original watch.\n"
+  },
+  {
+    "asset": "su-front",
+    "file": "assets/catalog/su-front/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit. Edit target: attached Raketa Су watch photograph. Create an accurately rectified straight-on catalog photograph of this EXACT watch, with its dark gray rubber strap fully extended vertically above and below. Keep the black coated circular case, right-hand crown, dark anthracite dial, mint green 0/2/4/6/8/10 numerals and hour/minute markings, white Ракета logo, tiny Su-57 airplane silhouette and СДЕЛАНО В РОССИИ below center, silver/mint-luminous polygonal hour/minute hands at 10:10 and very dark thin seconds hand at 38 seconds. Preserve the watch model and all its proportions, realistic metal, glass and rubber textures. Black case not silver. Dial must be a perfect circle, exactly face-on, center of the watch image, no perspective distortion. Transparent background, no surroundings, no shadow cast on background, no hand wearing it. Entire watch and both rubber straps visible in a portrait canvas, with modest transparent margin. Dial center at exact image center.\n"
+  },
+  {
+    "asset": "zolotoy-klyuchik",
+    "file": "assets/catalog/zolotoy-klyuchik/source/prompt.txt",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: precise-object-edit.\nAsset type: static raster watch dial restoration for a working clock.\nEdit target: attached square source crop of Raketa zolotoy-klyuchik.\nPrimary request: Remove all three golden clock hands, their counterweights, shadows and central mounting pin. Restore the stippled champagne dial texture and any printing or concentric gold circles hidden beneath them. Preserve the script Ракета and the embossed decorative monogram at 6 o'clock.\nStrict invariants: keep the EXACT same square framing, dial center, scale, perspective, case edge, every other pixel's design, original colors, lighting, relief, material and photographic texture. Only remove the moving hands and their shadows and fill the revealed dial correctly. Absolutely NO clock hands, needles, central mounting pin, dot or ring may remain anywhere. Do not redesign, relabel, crop, zoom or add anything. Output one restored photograph with no text outside the original watch.\n"
+  }
+]
