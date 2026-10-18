@@ -9,7 +9,7 @@ do {
         guard let resources = Bundle.main.resourceURL else { throw DialError.resource("bundle resources") }
         let library = try ThemeLibrary(resources: resources)
         if let id = options.themeID, !library.catalog.themes.contains(where: { $0.id == id }) {
-            throw ModelError.invalid("неизвестная тема: \(id)")
+            throw ModelError.invalid(L("unknown theme: %@", id))
         }
         if let output = options.output {
             let renderer = try library.renderer(for: options.themeID)
@@ -30,7 +30,7 @@ do {
         }
     }
 } catch {
-    let message = "Время: \(error)"
+    let message = L("%@: %@", L("Vremya"), String(describing: error))
     FileHandle.standardError.write(Data((message + "\n").utf8))
     if arguments.isEmpty {
         let app = NSApplication.shared
@@ -38,8 +38,9 @@ do {
         app.activate(ignoringOtherApps: true)
         let alert = NSAlert()
         alert.alertStyle = .critical
-        alert.messageText = "Не удалось открыть «Время»"
-        alert.informativeText = "\(error)\n\nПереустановите приложение из полного архива."
+        alert.messageText = L("Could not open Vremya")
+        alert.informativeText = L("%@\n\nReinstall the app from the complete archive.", String(describing: error))
+        alert.addButton(withTitle: L("OK"))
         alert.runModal()
     }
     exit(1)

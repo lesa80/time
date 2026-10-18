@@ -38,6 +38,13 @@ run('xcrun', ['lipo', '-create', ...architectures.map(a => path.join(scratch, `$
 fs.copyFileSync(path.join(root, 'macos/Info.plist'), path.join(contents, 'Info.plist'));
 fs.copyFileSync(path.join(root, 'themes.json'), path.join(resources, 'themes.json'));
 fs.copyFileSync(path.join(root, 'macos/PrivacyInfo.xcprivacy'), path.join(resources, 'PrivacyInfo.xcprivacy'));
+for (const language of ['ru', 'en', 'de', 'fr', 'es']) {
+  const folder = `${language}.lproj`;
+  fs.cpSync(path.join(root, 'macos/Resources', folder), path.join(resources, folder), { recursive: true });
+  for (const name of ['Localizable.strings', 'InfoPlist.strings']) {
+    run('plutil', ['-lint', path.join(resources, folder, name)]);
+  }
+}
 const legal = path.join(resources, 'Legal');
 fs.mkdirSync(legal, { recursive: true });
 for (const filename of ['LICENSE', 'LICENSE_SCOPE.md', 'THIRD_PARTY_NOTICES.md', 'assets/branding/RIGHTS.md']) {

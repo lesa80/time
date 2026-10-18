@@ -3,7 +3,7 @@ import Foundation
 enum ModelError: Error, CustomStringConvertible {
     case invalid(String)
     var description: String {
-        switch self { case .invalid(let message): return "Некорректные данные: \(message)" }
+        switch self { case .invalid(let message): return L("Invalid data: %@", message) }
     }
 }
 
@@ -98,35 +98,35 @@ struct DialSpecification: Decodable {
             return point(vector) && vector.allSatisfy { $0 > 0 && $0 <= 16_384 }
         }
         guard size(resolution), [nil, "circle", "rectangle"].contains(dialShape), !layers.isEmpty else {
-            throw ModelError.invalid("размер или форма циферблата")
+            throw ModelError.invalid(L("dial size or shape"))
         }
         if let bounds = dialBounds {
             guard bounds.count == 4, bounds.allSatisfy(\.isFinite), bounds[0] >= 0, bounds[1] >= 0,
                   bounds[2] > 0, bounds[3] > 0, bounds[0] + bounds[2] <= resolution[0] + 0.01,
                   bounds[1] + bounds[3] <= resolution[1] + 0.01 else {
-                throw ModelError.invalid("границы циферблата")
+                throw ModelError.invalid(L("dial bounds"))
             }
         }
         var handNames = Set<String>()
         var hasSeenHand = false, hasSeenForeground = false
         for layer in layers {
             guard isSafeResourcePath(layer.image), layer.image.hasSuffix(".png"), size(layer.size ?? resolution) else {
-                throw ModelError.invalid("ресурс слоя \(layer.image)")
+                throw ModelError.invalid(L("layer resource: %@", layer.image))
             }
             if layer.type == "Hand Res" {
                 let name = URL(fileURLWithPath: layer.image).deletingPathExtension().lastPathComponent
                 guard !hasSeenForeground, ["hour", "minute", "second"].contains(name), handNames.insert(name).inserted,
                       point(layer.handResPosition), point(layer.rotatePoint), layer.position == nil else {
-                    throw ModelError.invalid("геометрия стрелки \(layer.image)")
+                    throw ModelError.invalid(L("hand geometry: %@", layer.image))
                 }
                 hasSeenHand = true
             } else {
                 guard layer.type == "Single Res", point(layer.position), layer.handResPosition == nil, layer.rotatePoint == nil else {
-                    throw ModelError.invalid("неподвижный слой \(layer.image)")
+                    throw ModelError.invalid(L("static layer: %@", layer.image))
                 }
                 if hasSeenHand { hasSeenForeground = true }
             }
         }
-        guard handNames.isSuperset(of: ["hour", "minute"]) else { throw ModelError.invalid("отсутствуют стрелки") }
+        guard handNames.isSuperset(of: ["hour", "minute"]) else { throw ModelError.invalid(L("missing hands")) }
     }
 }

@@ -32,6 +32,15 @@ assert.equal(info.CFBundleName, appName);
 assert.equal(info.CFBundleDisplayName, appName);
 assert.equal(info.CFBundleExecutable, executableName);
 assert.equal(info.CFBundleIconFile, iconName);
+assert.equal(info.CFBundleDevelopmentRegion, 'en');
+assert.deepEqual(info.CFBundleLocalizations, ['ru', 'en', 'de', 'fr', 'es']);
+for (const language of info.CFBundleLocalizations) {
+  for (const name of ['Localizable.strings', 'InfoPlist.strings']) {
+    const relative = `${language}.lproj/${name}`;
+    assert.deepEqual(fs.readFileSync(path.join(bundledResources, relative)),
+      fs.readFileSync(path.join(root, 'macos/Resources', relative)), `Missing or stale localization: ${relative}`);
+  }
+}
 for (const filename of ['app.png', 'DeveloperLogo.png']) {
   assert.deepEqual(fs.readFileSync(path.join(bundledResources, filename)), fs.readFileSync(path.join(root, 'assets/icons', filename)));
 }

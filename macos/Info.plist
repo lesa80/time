@@ -6,10 +6,11 @@
   <key>CFBundleIdentifier</key><string>local.raketa.polar.desktop</string>
   <key>CFBundleExecutable</key><string>Vremya</string>
   <key>CFBundlePackageType</key><string>APPL</string>
-  <key>CFBundleDevelopmentRegion</key><string>ru</string>
+  <key>CFBundleDevelopmentRegion</key><string>en</string>
+  <key>CFBundleLocalizations</key><array><string>ru</string><string>en</string><string>de</string><string>fr</string><string>es</string></array>
   <key>LSApplicationCategoryType</key><string>public.app-category.utilities</string>
-  <key>CFBundleShortVersionString</key><string>2.4.4</string>
-  <key>CFBundleVersion</key><string>27</string>
+  <key>CFBundleShortVersionString</key><string>2.5.0</string>
+  <key>CFBundleVersion</key><string>28</string>
   <key>CFBundleIconFile</key><string>Vremya</string>
   <key>LSMinimumSystemVersion</key><string>13.0</string>
   <key>LSUIElement</key><true/>

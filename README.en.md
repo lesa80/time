@@ -2,9 +2,9 @@
 
 [Русский](README.md) · [English](README.en.md)
 
-**Время (Vremya) 2.4.4** is a desktop clock app with an always-on-top mode. It includes 25 themes: four light and dark Minimalism variants and 21 models in the Raketa section. The app displays your Mac's local time, works offline, and remembers your settings.
+**Время (Vremya) 2.5.0** is a desktop clock app with an always-on-top mode. It includes 25 themes: four light and dark Minimalism variants and 21 models in the Raketa section. The app displays your Mac's local time, works offline, and remembers your settings.
 
-**[Download Vremya for macOS](https://github.com/lesa80/time/releases/download/v2.4.4/Vremya-2.4.4-macOS-universal.zip)** · [All releases](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.4.4/SHA256SUMS)
+**[Download Vremya for macOS](https://github.com/lesa80/time/releases/download/v2.5.0/Vremya-2.5.0-macOS-universal.zip)** · [All releases](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.5.0/SHA256SUMS)
 
 Requires **macOS 13 or later**. One universal archive for Apple Silicon and Intel. The current release is a test build with an ad-hoc signature and no Apple notarization. [Compatibility details](docs/RELEASE_NOTES.md) (in Russian).
 
@@ -14,6 +14,7 @@ Requires **macOS 13 or later**. One universal archive for Apple Silicon and Inte
 
 ## Features
 
+- Russian, English, German, French, and Spanish interface.
 - 12- and 24-hour dials, light and dark designs, and counterclockwise hands on supported models.
 - Dial-only mode or a complete watch with bezel and strap.
 - Drag to reposition, keep the clock above other windows, or lock its position and let clicks pass through.
@@ -23,21 +24,23 @@ Requires **macOS 13 or later**. One universal archive for Apple Silicon and Inte
 - Theme, size, position, and display settings saved between launches.
 - Help, the watch collection, and project information in the About window.
 
-The default theme is **Minimalism 24 — Dark** (`Минимализм 24 — тёмный`). All four Minimalism variants appear in the main theme list. Manufacturer models are under **Тема → Ракета** (Theme → Raketa).
+The default theme is **Minimalism 24 — Dark**. All four Minimalism variants appear in the main theme list. Manufacturer models are under **Theme → Raketa**.
 
 ![Raketa collection: 21 models](assets/about/collection.png)
 
 ## Installation
 
-1. [Download the ZIP](https://github.com/lesa80/time/releases/download/v2.4.4/Vremya-2.4.4-macOS-universal.zip) and extract it.
+1. [Download the ZIP](https://github.com/lesa80/time/releases/download/v2.5.0/Vremya-2.5.0-macOS-universal.zip) and extract it.
 2. Move `Время.app` to Applications and open it.
 3. Drag the clock to your preferred position. Right-click the clock or its menu bar icon to open settings.
 
 If macOS blocks the test build, allow it to open in System Settings → Privacy & Security.
 
-## Controls
+## Interface language
 
-The app's menus are in Russian; the relevant labels are included below.
+At launch, the app follows the primary macOS language: Russian, English, German, French, or Spanish. Unsupported languages fall back to English. Regional variants such as Austrian German are supported. Restart the app after changing the language in macOS.
+
+## Controls
 
 | Action | Result |
 |---|---|
@@ -45,10 +48,10 @@ The app's menus are in Russian; the relevant labels are included below.
 | Drag the clock | Move it |
 | Left-click the menu bar icon | Toggle always-on-top mode |
 | Right-click or Control-click | Open settings |
-| Lock position (`Закрепить положение`) | Let clicks pass through the clock; settings remain accessible from the menu bar |
-| Return to screen (`Вернуть на видимое место`) | Bring the clock back onto the screen and unlock its position |
+| Lock position | Let clicks pass through the clock; settings remain accessible from the menu bar |
+| Return to screen | Bring the clock back onto the screen and unlock its position |
 
-To launch at login, enable **Автозапуск при старте системы** in the app menu. If macOS requests approval, allow it in System Settings → General → Login Items.
+To launch at login, enable **Launch at login** in the app menu. If macOS requests approval, allow it in System Settings → General → Login Items.
 
 ## Build from source
 

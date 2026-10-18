@@ -18,16 +18,15 @@ final class ClockView: NSView {
         super.init(frame: .zero)
         setAccessibilityElement(true)
         setAccessibilityRole(.button)
-        setAccessibilityHelp("Нажмите, чтобы показать или скрыть безель и ремешок. Перетащите, чтобы переместить часы.")
         updateThemeDescription()
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     func updateThemeDescription() {
-        setAccessibilityLabel("Время · \(renderer.theme.title), \(renderer.theme.hourCycle)-часовой циферблат")
+        setAccessibilityLabel(L("%@ · %@, %ld-hour dial", L("Vremya"), renderer.theme.localizedTitle, renderer.theme.hourCycle))
         setAccessibilityRole(renderer.hasBezel ? .button : .image)
-        let clickHelp = renderer.hasBezel ? "Клик — безель и ремешок. " : ""
-        setAccessibilityHelp(clickHelp + "Перетащите, чтобы переместить часы. Правый клик — настройки.")
-        toolTip = clickHelp + " Перетаскивание — переместить часы. Правый клик — настройки. Полный оборот часовой стрелки — \(renderer.theme.hourCycle) часов."
+        let clickHelp = renderer.hasBezel ? L("Click to toggle the bezel and strap. ") : ""
+        setAccessibilityHelp(clickHelp + L("Drag to move the clock. Right-click for settings."))
+        toolTip = clickHelp + L("Drag to move. Right-click for settings. One hour-hand revolution takes %ld hours.", renderer.theme.hourCycle)
     }
     override var isOpaque: Bool { false }
     override var acceptsFirstResponder: Bool { false }

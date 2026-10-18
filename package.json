@@ -1,6 +1,6 @@
 {
   "name": "vremya-macos",
-  "version": "2.4.4",
+  "version": "2.5.0",
   "private": true,
   "description": "Время — часы для рабочего стола macOS с 25 темами, светлыми и тёмными 12- и 24-часовыми циферблатами",
   "type": "module",

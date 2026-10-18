@@ -13,6 +13,10 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) {
 let application = NSApplication.shared
 application.setActivationPolicy(.prohibited)
 let library = try ThemeLibrary(resources: URL(fileURLWithPath: CommandLine.arguments[1]))
+if let index = CommandLine.arguments.firstIndex(of: "--localization-only") {
+    try checkLocalizedInterface(library: library, expectedLanguage: CommandLine.arguments[index + 1])
+    exit(0)
+}
 let renderer = try library.renderer(for: "avangard")
 let window = ClockWindow(contentRect: NSRect(x: 200, y: 200, width: 280, height: 280),
                          styleMask: [.borderless], backing: .buffered, defer: false)
@@ -140,7 +144,7 @@ expect(delegate.timer == nil, "System sleep must stop redraws")
 // Exercise the actual menu builder without registering a system status item.
 let menu = delegate.makeThemeMenu()
 expect(menu.items.first?.representedObject as? String == "minimalism", "Own theme must be outside the Raketa section")
-let brand = menu.items.first { $0.title == "Ракета" }!
+let brand = menu.items.first { $0.title == L("Raketa") }!
 expect(brand.image != nil && brand.image?.isTemplate == false, "Brand section must keep the red logo")
 expect(brand.submenu?.items.count == 21, "All manufacturer themes must be grouped")
 delegate.updateThemeMenuSelection(menu)

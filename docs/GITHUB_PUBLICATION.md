@@ -34,7 +34,7 @@
 - Включите private vulnerability reporting, проверьте инструкцию в [SECURITY.md](../SECURITY.md) и при желании добавьте подтверждённый приватный контакт.
 - Проверьте secret scanning/push protection и Dependabot. Файл `dependabot.yml` задаёт еженедельные обновления npm и Actions; автоматическое слияние не включено.
 - Защитите основную ветку правилами репозитория: review pull request и успешные проверки `JavaScript and raster resources`, `macOS / macos-15`, `macOS / macos-15-intel`. Настройки GitHub не изменяются добавлением файлов в каталог проекта.
-- В README добавлены реальные ссылки на репозиторий, Actions и Releases. Тестовая сборка 2.4.4 доступна в [Releases](https://github.com/lesa80/time/releases/tag/v2.4.4): универсальный ZIP с приложением и SHA-256.
+- В README добавлены реальные ссылки на репозиторий, Actions и Releases. Тестовая сборка 2.5.0 доступна в [Releases](https://github.com/lesa80/time/releases/tag/v2.5.0): универсальный ZIP с приложением и SHA-256.
 
 ## Что делает CI
 
@@ -54,7 +54,7 @@ Workflow использует `contents: read`, checkout без сохранен
 Выбран тестовый релиз с локальной ad-hoc подписью, без Developer ID и нотариализации Apple. Условия подписи нужно явно указать в описании релиза; наличие успешных тестов не означает нотариализацию. Описание текущей тестовой сборки — [RELEASE_NOTES.md](RELEASE_NOTES.md).
 
 - Проверьте права на все распространяемые материалы.
-- Согласуйте `package.json` и lock-файл, `CFBundleShortVersionString` и `CFBundleVersion`, обновите [CHANGELOG](../CHANGELOG.md). Для текущей локальной версии это 2.4.4 / 2.4.4 / 27.
+- Согласуйте `package.json` и lock-файл, `CFBundleShortVersionString` и `CFBundleVersion`, обновите [CHANGELOG](../CHANGELOG.md). Для текущей локальной версии это 2.5.0 / 2.5.0 / 28.
 - Выполните ручные проверки автозапуска, меню, VoiceOver, нескольких мониторов и минимальной macOS 13. CI на macOS 15 не проверяет совместимость исполнения на macOS 13.
 - При наличии Developer ID соберите с `VREMYA_SIGN_IDENTITY`, выполните нотариализацию и stapling по README, затем перепакуйте ZIP. Без этих шагов явно обозначьте архив как ad-hoc и ненотариализованный.
 - Проверьте наличие `Contents/Resources/Legal/` и целостность архива. Сохраните MIT и уведомления об исключённых материалах.

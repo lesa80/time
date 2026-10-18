@@ -23,34 +23,34 @@ final class AboutWindowController: NSWindowController {
         let size = NSSize(width: min(960, visible.width - 60), height: min(850, visible.height - 60))
         let window = NSWindow(contentRect: NSRect(origin: .zero, size: size),
                               styleMask: [.titled, .closable, .miniaturizable, .resizable], backing: .buffered, defer: false)
-        window.title = "О часах"
+        window.title = L("About")
         window.minSize = NSSize(width: 640, height: 480)
         window.isReleasedWhenClosed = false
         super.init(window: window)
         window.contentView = scrollView
         configureContent()
         let content = contentStack
-        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "2.4.4"
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "2.5.0"
         add(makeHeader(resources: resources, version: version), to: content)
-        add(label("Независимое неофициальное приложение. Проект не связан с часовой мануфактурой «Ракета» и не представляет её."), to: content)
-        section("Краткая справка", identifier: "section-help")
-        add(label("Доступно тем: \(themeCount). Местное время macOS. «Минимализм» и «Минимализм 24» — собственные темы приложения с 12- и 24-часовой шкалами, в светлом и тёмном вариантах. Тема по умолчанию — «Минимализм 24 — тёмный»; ранее сохранённый выбор имеет приоритет. Темы производителя собраны в меню «Тема → Ракета»; их шкала и направление стрелок соответствуют выбранной модели.\n\nПеретаскивайте часы, чтобы переместить их. Клик по часам переключает циферблат и вид с безелем и ремешком. У всех вариантов «Минимализма» собственный корпус с матовым ремешком.\n\nЛевый клик по значку часов в строке меню — «Поверх окон»; точка рядом со значком означает, что режим включён. Правый клик или Control-клик по значку или виджету открывает настройки: тема, размер, закрепление, секундная стрелка и автозапуск.\n\nАвтозапуск работает после входа в учётную запись. Для него переместите приложение в «Программы». Если macOS запросит разрешение, откройте «Основные → Объекты входа»."), to: content)
-        section("Ракета", identifier: "section-raketa")
+        add(label(L("An independent, unofficial app. This project is not affiliated with or endorsed by the Raketa watch manufacturer.")), to: content)
+        section(L("Quick help"), identifier: "section-help")
+        add(label(L("Themes available: %ld. The clock shows local macOS time. Minimalism and Minimalism 24 are original 12- and 24-hour themes in light and dark variants. The default is Minimalism 24 — Dark; your saved selection takes priority. Manufacturer themes are in Theme → Raketa, with the dial scale and hand direction of each model.\n\nDrag the clock to move it. Click to switch between the dial and the full watch with bezel and strap. All Minimalism variants include a case and matte strap.\n\nLeft-click the menu bar icon to toggle Always on top; a dot indicates that it is enabled. Right-click or Control-click the icon or clock for settings: theme, size, position lock, seconds hand, and launch at login.\n\nLaunch at login starts the app after you sign in. Move the app to Applications first. If macOS requests approval, open General → Login Items.", themeCount)), to: content)
+        section(L("Raketa"), identifier: "section-raketa")
         if let logo = NSImage(contentsOf: resources.appendingPathComponent("RaketaLogo.png")) {
             let image = NSImageView()
             image.image = logo
             image.imageScaling = .scaleProportionallyUpOrDown
             image.imageAlignment = .alignLeft
-            image.setAccessibilityLabel("Красный логотип часовой мануфактуры Ракета")
+            image.setAccessibilityLabel(L("Red logo of the Raketa watch manufacturer"))
             add(image, to: content)
             image.heightAnchor.constraint(equalToConstant: 45).isActive = true
         }
-        add(label("Часовая мануфактура · Петергоф", size: 17, weight: .semibold), to: content)
-        add(label("«Ракета» — российская часовая мануфактура в Петергофе. По материалам официального сайта, история завода насчитывает более 300 лет; он выпускает часы «Ракета» и «Победа» и производит детали часовых механизмов, включая спираль и баланс.", color: .secondaryLabelColor), to: content)
-        addLink("Главная страница · raketa.com ↗", url: URL(string: "https://raketa.com/")!, to: content)
-        addLink("Официальный каталог часов ↗", url: URL(string: "https://raketa.com/watches")!, to: content)
-        add(label("Коллекция в приложении · \(raketaCount) модель", size: 17, weight: .semibold), to: content)
-        add(label("Фиксированный снимок каталога от 18 октября 2026 года. Фотографии циферблатов подготовлены для отображения времени; это не производственные макеты. Список моделей не обновляется автоматически.", color: .secondaryLabelColor), to: content)
+        add(label(L("Watch manufacture · Peterhof"), size: 17, weight: .semibold), to: content)
+        add(label(L("Raketa is a Russian watch manufacturer in Peterhof. According to its official website, the factory has more than 300 years of history. It makes Raketa and Pobeda watches and movement components, including the hairspring and balance wheel."), color: .secondaryLabelColor), to: content)
+        addLink(L("Home page · raketa.com ↗"), url: URL(string: "https://raketa.com/")!, to: content)
+        addLink(L("Official watch catalog ↗"), url: URL(string: "https://raketa.com/watches")!, to: content)
+        add(label(L("Collection in the app · %ld models", raketaCount), size: 17, weight: .semibold), to: content)
+        add(label(L("A fixed catalog snapshot from October 18, 2026. Dial photographs have been prepared to display the time; they are not production designs. The model list does not update automatically."), color: .secondaryLabelColor), to: content)
         if let image = NSImage(contentsOf: resources.appendingPathComponent("collection.png")), image.size.width > 0 {
             let gallery = NSImageView()
             gallery.image = image
@@ -58,19 +58,19 @@ final class AboutWindowController: NSWindowController {
             gallery.allowsCutCopyPaste = true
             gallery.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
             gallery.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-            gallery.setAccessibilityLabel("Все \(raketaCount) модели Ракета: циферблаты, корпуса и ремешки")
+            gallery.setAccessibilityLabel(L("All %ld Raketa models: dials, cases, and straps", raketaCount))
             add(gallery, to: content)
             gallery.heightAnchor.constraint(equalTo: gallery.widthAnchor, multiplier: image.size.height / image.size.width).isActive = true
         }
-        section("Лицензии и источники", identifier: "section-licenses")
-        add(label("Оригинальный код, геометрия тем «Минимализм» и значок строки меню — MIT. Логотип БОЛТ42, иконка приложения и графика производителя имеют отдельный статус; источники и ограничения приведены ниже и в уведомлениях о сторонних материалах.\n\nПриложение работает локально, без аналитики, учётной записи и фоновых сетевых запросов.", color: .secondaryLabelColor), to: content)
-        addLink("MIT License · полный текст", url: resources.appendingPathComponent("Legal/LICENSE"), to: content)
-        addLink("Область действия лицензии", url: resources.appendingPathComponent("Legal/LICENSE_SCOPE.md"), to: content)
-        addLink("Сторонние материалы и лицензии зависимостей", url: resources.appendingPathComponent("Legal/THIRD_PARTY_NOTICES.md"), to: content)
-        add(label("Фотографии, сведения о моделях, названия и красный логотип взяты из материалов производителя. Права на них принадлежат соответствующим правообладателям. Эти материалы, восстановленные циферблаты, стрелки, корпуса, ремешки и коллаж исключены из MIT. Разрешение на их дальнейшее распространение в проект не включено.\n\nСсылка на официальный сайт является указанием источника, а не лицензией. Проект не заявляет об одобрении со стороны производителя.", color: .secondaryLabelColor), to: content)
+        section(L("Licenses and sources"), identifier: "section-licenses")
+        add(label(L("The original code, Minimalism theme geometry, and menu bar icon are MIT licensed. The БОЛТ42 logo, app icon, and manufacturer graphics have a separate rights status; sources and restrictions are listed below and in the third-party notices.\n\nThe app works locally, without analytics, an account, or background network requests."), color: .secondaryLabelColor), to: content)
+        addLink(L("MIT License · full text"), url: resources.appendingPathComponent("Legal/LICENSE"), to: content)
+        addLink(L("License scope"), url: resources.appendingPathComponent("Legal/LICENSE_SCOPE.md"), to: content)
+        addLink(L("Third-party materials and dependency licenses"), url: resources.appendingPathComponent("Legal/THIRD_PARTY_NOTICES.md"), to: content)
+        add(label(L("Photographs, model information, names, and the red logo come from the manufacturer. Their rights belong to the respective rights holders. These materials, restored dials, hands, cases, straps, and the collection image are excluded from the MIT license. Permission for their further redistribution is not included in this project.\n\nA link to the official website identifies the source; it is not a license. This project does not claim the manufacturer’s endorsement."), color: .secondaryLabelColor), to: content)
         addLink("resvg-js · MPL 2.0 ↗", url: URL(string: "https://github.com/thx/resvg-js/blob/main/LICENSE")!, to: content)
         addLink("pngjs · MIT ↗", url: URL(string: "https://github.com/pngjs/pngjs/blob/main/LICENSE")!, to: content)
-        section("Разработка", identifier: "section-developer")
+        section(L("Development"), identifier: "section-developer")
         if let logo = NSImage(contentsOf: resources.appendingPathComponent("DeveloperLogo.png")) {
             let panel = DeveloperLogoPanel(image: logo)
             panel.identifier = NSUserInterfaceItemIdentifier("developer-logo")
@@ -99,11 +99,11 @@ final class AboutWindowController: NSWindowController {
         icon.identifier = NSUserInterfaceItemIdentifier("app-icon")
         icon.image = NSImage(contentsOf: resources.appendingPathComponent("app.png"))
         icon.imageScaling = .scaleProportionallyUpOrDown
-        icon.setAccessibilityLabel("Иконка приложения Время")
+        icon.setAccessibilityLabel(L("Vremya app icon"))
         icon.widthAnchor.constraint(equalToConstant: 100).isActive = true
         icon.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        let title = label("Время", size: 32, weight: .semibold)
-        let subtitle = label("Часы для рабочего стола macOS · Версия \(version)", color: .secondaryLabelColor)
+        let title = label(L("Vremya"), size: 32, weight: .semibold)
+        let subtitle = label(L("Desktop clock for macOS · Version %@", version), color: .secondaryLabelColor)
         let text = NSStackView(views: [title, subtitle])
         text.orientation = .vertical
         text.alignment = .leading
@@ -165,7 +165,7 @@ final class AboutWindowController: NSWindowController {
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ])
         button.toolTip = url.isFileURL ? url.lastPathComponent : url.absoluteString
-        button.setAccessibilityHelp(url.isFileURL ? "Открыть локальный текст лицензии" : "Открыть ссылку в браузере")
+        button.setAccessibilityHelp(url.isFileURL ? L("Open local license text") : L("Open link in browser"))
         linkURLs[ObjectIdentifier(button)] = url
         add(button, to: stack)
     }
@@ -190,7 +190,7 @@ private final class DeveloperLogoPanel: NSView {
         logo.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         logo.setContentHuggingPriority(.defaultLow, for: .horizontal)
         logo.setContentHuggingPriority(.defaultLow, for: .vertical)
-        logo.setAccessibilityLabel("БОЛТ42 · Решение проблем")
+        logo.setAccessibilityLabel(L("БОЛТ42 · Problem solving"))
         logo.translatesAutoresizingMaskIntoConstraints = false
         addSubview(logo)
         NSLayoutConstraint.activate([

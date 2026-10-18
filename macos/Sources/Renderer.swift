@@ -4,7 +4,7 @@ import ImageIO
 enum DialError: Error, CustomStringConvertible {
     case resource(String)
     var description: String {
-        switch self { case .resource(let name): return "Не удалось прочитать ресурс: \(name)" }
+        switch self { case .resource(let name): return L("Could not read resource: %@", name) }
     }
 }
 

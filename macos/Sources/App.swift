@@ -43,7 +43,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         let initialSize = renderer.displaySize(width: side, showBezel: defaults.bool(forKey: "showBezel"))
         window = ClockWindow(contentRect: NSRect(origin: .zero, size: initialSize),
                              styleMask: [.borderless], backing: .buffered, defer: false)
-        window.title = "Время · \(renderer.theme.title)"
+        window.title = L("%@ · %@", L("Vremya"), renderer.theme.localizedTitle)
         window.isOpaque = false
         window.backgroundColor = .clear
         window.hasShadow = false
@@ -92,60 +92,67 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         statusItem.button?.action = #selector(statusItemClicked(_:))
         statusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
         statusItem.button?.setAccessibilityCustomActions([
-            NSAccessibilityCustomAction(name: "Открыть настройки часов", target: self, selector: #selector(accessibilityShowMenu))
+            NSAccessibilityCustomAction(name: L("Open clock settings"), target: self, selector: #selector(accessibilityShowMenu))
         ])
-        clockMenu = NSMenu()
-        clockMenu.autoenablesItems = false
-        clockMenu.delegate = self
-        titleItem = NSMenuItem(title: "\(renderer.theme.title) · \(renderer.theme.hourCycle) часов", action: nil, keyEquivalent: "")
-        titleItem.isEnabled = false
-        clockMenu.addItem(titleItem)
-        clockMenu.addItem(.separator())
-        themeMenu = makeThemeMenu()
-        let themeItem = NSMenuItem(title: "Тема", action: nil, keyEquivalent: "")
-        themeItem.submenu = themeMenu
-        clockMenu.addItem(themeItem)
-        for size in [180, 240, 280, 360, 466] {
-            let item = NSMenuItem(title: "Ширина \(size) пт", action: #selector(resizeClock(_:)), keyEquivalent: "")
-            item.tag = size
-            item.target = self
-            sizeMenu.addItem(item)
-        }
-        let sizeItem = NSMenuItem(title: "Размер", action: nil, keyEquivalent: "")
-        sizeItem.submenu = sizeMenu
-        clockMenu.addItem(sizeItem)
-        add("aboveWindows", "Поверх окон", #selector(toggleAbove))
-        add("locked", "Закрепить положение", #selector(toggleLocked))
-        add("showBezel", "Безель и ремешок", #selector(toggleBezel))
-        clockMenu.addItem(.separator())
-        add("showSeconds", "Секундная стрелка", #selector(toggleSeconds))
-        add("smooth", "Плавное движение", #selector(toggleSmooth))
-        clockMenu.addItem(.separator())
-        add("launchAtLogin", "Автозапуск при старте системы", #selector(toggleLaunchAtLogin))
-        add("approveLaunchAtLogin", "Разрешить автозапуск в macOS…", #selector(openLoginSettings))
-        menuActions["approveLaunchAtLogin"]?.isHidden = true
-        clockMenu.addItem(.separator())
-        add("reset", "Вернуть на видимое место", #selector(resetPosition))
-        add("about", "О часах…", #selector(showAbout))
-        add("quit", "Завершить", #selector(quitApp), key: "q")
+        clockMenu = makeClockMenu()
         // Keeping NSStatusItem.menu unset lets the button deliver both clicks.
         updateStatusItem()
     }
 
+    func makeClockMenu() -> NSMenu {
+        menuActions.removeAll()
+        sizeMenu = NSMenu()
+        clockMenu = NSMenu()
+        clockMenu.autoenablesItems = false
+        clockMenu.delegate = self
+        titleItem = NSMenuItem(title: L("%@ · %ld h", renderer.theme.localizedTitle, renderer.theme.hourCycle), action: nil, keyEquivalent: "")
+        titleItem.isEnabled = false
+        clockMenu.addItem(titleItem)
+        clockMenu.addItem(.separator())
+        themeMenu = makeThemeMenu()
+        let themeItem = NSMenuItem(title: L("Theme"), action: nil, keyEquivalent: "")
+        themeItem.submenu = themeMenu
+        clockMenu.addItem(themeItem)
+        for size in [180, 240, 280, 360, 466] {
+            let item = NSMenuItem(title: L("Width: %ld pt", size), action: #selector(resizeClock(_:)), keyEquivalent: "")
+            item.tag = size
+            item.target = self
+            sizeMenu.addItem(item)
+        }
+        let sizeItem = NSMenuItem(title: L("Size"), action: nil, keyEquivalent: "")
+        sizeItem.submenu = sizeMenu
+        clockMenu.addItem(sizeItem)
+        add("aboveWindows", L("Always on top"), #selector(toggleAbove))
+        add("locked", L("Lock position"), #selector(toggleLocked))
+        add("showBezel", L("Bezel and strap"), #selector(toggleBezel))
+        clockMenu.addItem(.separator())
+        add("showSeconds", L("Seconds hand"), #selector(toggleSeconds))
+        add("smooth", L("Smooth movement"), #selector(toggleSmooth))
+        clockMenu.addItem(.separator())
+        add("launchAtLogin", L("Launch at login"), #selector(toggleLaunchAtLogin))
+        add("approveLaunchAtLogin", L("Allow launch at login in macOS…"), #selector(openLoginSettings))
+        menuActions["approveLaunchAtLogin"]?.isHidden = true
+        clockMenu.addItem(.separator())
+        add("reset", L("Return to screen"), #selector(resetPosition))
+        add("about", L("About…"), #selector(showAbout))
+        add("quit", L("Quit"), #selector(quitApp), key: "q")
+        return clockMenu
+    }
+
     func makeThemeMenu() -> NSMenu {
         let menu = NSMenu()
-        let raketa = NSMenu(title: "Ракета")
+        let raketa = NSMenu(title: L("Raketa"))
         menu.autoenablesItems = false
         raketa.autoenablesItems = false
         for theme in library.catalog.themes {
-            let item = NSMenuItem(title: theme.title, action: #selector(selectTheme(_:)), keyEquivalent: "")
+            let item = NSMenuItem(title: theme.localizedTitle, action: #selector(selectTheme(_:)), keyEquivalent: "")
             item.representedObject = theme.id
             item.target = self
             (theme.isRaketa ? raketa : menu).addItem(item)
         }
         if !raketa.items.isEmpty {
             if !menu.items.isEmpty { menu.addItem(.separator()) }
-            let group = NSMenuItem(title: "Ракета", action: nil, keyEquivalent: "")
+            let group = NSMenuItem(title: L("Raketa"), action: nil, keyEquivalent: "")
             let image = NSImage(contentsOf: library.resources.appendingPathComponent("RaketaLogo.png"))
             image?.size = NSSize(width: 60, height: 14.5)
             image?.isTemplate = false
@@ -189,12 +196,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
 
     func updateStatusItem() {
         let above = defaults.bool(forKey: "aboveWindows")
-        let state = above ? "включено" : "выключено"
+        let state = above ? L("on") : L("off")
         statusItem.button?.image = above ? menuBarLogoActive : menuBarLogo
-        statusItem.button?.toolTip = "\(renderer.theme.title) · Поверх окон: \(state)\nЛевый клик — переключить. Правый клик — меню."
-        statusItem.button?.setAccessibilityLabel("Время · \(renderer.theme.title)")
-        statusItem.button?.setAccessibilityValue("Поверх окон: \(state)")
-        statusItem.button?.setAccessibilityHelp("Нажмите, чтобы переключить режим поверх окон. Правый клик или Control-клик открывает настройки.")
+        statusItem.button?.toolTip = L("%@ · Always on top: %@\nLeft-click to toggle. Right-click for the menu.", renderer.theme.localizedTitle, state)
+        statusItem.button?.setAccessibilityLabel(L("%@ · %@", L("Vremya"), renderer.theme.localizedTitle))
+        statusItem.button?.setAccessibilityValue(L("Always on top: %@", state))
+        statusItem.button?.setAccessibilityHelp(L("Click to toggle always on top. Right-click or Control-click to open settings."))
     }
 
     func makeMenuBarLogo(active: Bool) -> NSImage {
@@ -210,7 +217,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         }
         if image.representations.isEmpty {
             // Keep the menu accessible even if an installation lost its icon files.
-            return NSImage(systemSymbolName: "clock", accessibilityDescription: "Время") ?? image
+            return NSImage(systemSymbolName: "clock", accessibilityDescription: L("Vremya")) ?? image
         }
         image.isTemplate = true
         return image
@@ -227,8 +234,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         menuActions["launchAtLogin"]?.state = loginStatus == .enabled ? .on :
             loginStatus == .requiresApproval ? .mixed : .off
         menuActions["launchAtLogin"]?.toolTip = loginStatus == .requiresApproval ?
-            "Автозапуск добавлен, но macOS ожидает разрешения. Выберите «Разрешить автозапуск в macOS…» или нажмите здесь, чтобы отменить." :
-            "Запускать часы автоматически после входа в вашу учётную запись macOS."
+            L("Launch at login is registered but needs macOS approval. Choose Allow launch at login in macOS… or click here to cancel.") :
+            L("Start the clock automatically after you log in to macOS.")
         menuActions["approveLaunchAtLogin"]?.isHidden = loginStatus != .requiresApproval
         for key in ["aboveWindows", "locked", "showSeconds", "smooth", "showBezel"] {
             menuActions[key]?.state = defaults.bool(forKey: key) ? .on : .off
@@ -321,16 +328,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         guard let id = item.representedObject as? String else { return }
         let selected: DialRenderer
         do { selected = try library.renderer(for: id) } catch {
-            let alert = NSAlert(); alert.messageText = "Не удалось открыть тему"
-            alert.informativeText = String(describing: error); alert.runModal(); return
+            let alert = NSAlert(); alert.messageText = L("Could not open theme")
+            alert.informativeText = String(describing: error); alert.addButton(withTitle: L("OK")); alert.runModal(); return
         }
         renderer = selected
         defaults.set(id, forKey: "themeID")
         clockView.renderer = selected
         clockView.updateThemeDescription()
-        window.title = "Время · \(selected.theme.title)"
+        window.title = L("%@ · %@", L("Vremya"), selected.theme.localizedTitle)
         updateStatusItem()
-        titleItem.title = "\(selected.theme.title) · \(selected.theme.hourCycle) часов"
+        titleItem.title = L("%@ · %ld h", selected.theme.localizedTitle, selected.theme.hourCycle)
         resizeForTheme(width: preferredWidth)
         startTimer()
     }
@@ -363,10 +370,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         } catch {
             NSApp.activate(ignoringOtherApps: true)
             let alert = NSAlert()
-            alert.messageText = "Не удалось изменить автозапуск"
-            alert.informativeText = "\(error.localizedDescription)\n\nПереместите приложение в «Программы» и откройте его оттуда. Автозапуск также доступен в «Системные настройки → Основные → Объекты входа»."
-            alert.addButton(withTitle: "Понятно")
-            alert.addButton(withTitle: "Открыть настройки")
+            alert.messageText = L("Could not change launch at login")
+            alert.informativeText = L("%@\n\nMove the app to Applications and open it there. Launch at login is also available in System Settings → General → Login Items.", error.localizedDescription)
+            alert.addButton(withTitle: L("OK"))
+            alert.addButton(withTitle: L("Open settings"))
             if alert.runModal() == .alertSecondButtonReturn { SMAppService.openSystemSettingsLoginItems() }
         }
         menuNeedsUpdate(clockMenu)

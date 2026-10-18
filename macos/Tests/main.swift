@@ -1,6 +1,29 @@
 import Foundation
 import CoreGraphics
 
+for (preferences, expected) in [
+    (["ru-RU"], "ru"), (["en-GB"], "en"), (["de-AT"], "de"),
+    (["fr-CA"], "fr"), (["es-419"], "es"), (["ES_ES"], "es"),
+    (["pt-BR", "ru-RU"], "en"), (["zh-Hans"], "en"), ([], "en")
+] {
+    precondition(Localization.language(for: preferences) == expected, "Incorrect OS language fallback")
+}
+let localizationResources = URL(fileURLWithPath: "macos/Resources", isDirectory: true)
+for (language, themeLabel, widthLabel) in [
+    ("ru", "Тема", "Ширина 280 пт"), ("en", "Theme", "Width: 280 pt"),
+    ("de", "Zifferblatt", "Breite: 280 pt"), ("fr", "Cadran", "Largeur : 280 pt"),
+    ("es", "Esfera", "Anchura: 280 pt")
+] {
+    let localization = Localization(resources: localizationResources, preferredLanguages: [language])
+    precondition(localization.string("Theme") == themeLabel)
+    precondition(localization.string("Width: %ld pt", arguments: [280]) == widthLabel)
+    precondition(localization.string("%@ · %@", arguments: ["Clock", "12"]) == "Clock · 12")
+    precondition(localization.string("Missing translation") == "Missing translation")
+}
+let missingResources = Localization(resources: nil, preferredLanguages: ["de"])
+precondition(missingResources.string("Width: %ld pt", arguments: [280]) == "Width: 280 pt")
+print("Passed: primary OS language, regional variants, English fallback, resource loading and formatted translations")
+
 func close(_ actual: Double, _ expected: Double, _ message: String) {
     precondition(abs(actual - expected) < 0.00001, "\(message): \(actual) ≠ \(expected)")
 }
