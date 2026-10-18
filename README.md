@@ -10,9 +10,9 @@
 
 **[Скачать Время 2.4.4 для macOS](https://github.com/lesa80/time/releases/tag/v2.4.4)** — один универсальный ZIP для macOS 13+, Apple Silicon и Intel. Тестовая сборка с ad-hoc подписью, без нотариализации Apple. [Совместимость и результаты проверок](docs/RELEASE_NOTES.md).
 
-![Минимализм 24 — тёмный: тема по умолчанию](assets/minimalism-24-dark/preview.png)
-
-[24-часовой циферблат](assets/minimalism-24/preview.png) · [Тёмный 12 ч](assets/minimalism-dark/preview.png) · [Тёмный 24 ч](assets/minimalism-24-dark/preview.png) · [Полный вид с корпусом и ремешком](assets/minimalism/preview-full.png)
+| Минимализм | Минимализм 24 | Минимализм — тёмный | Минимализм 24 — тёмный |
+|:---:|:---:|:---:|:---:|
+| <img src="assets/minimalism/preview-full.png" width="170" alt="Минимализм: светлый 12-часовой циферблат с безелем и ремешком"> | <img src="assets/minimalism-24/preview-full.png" width="170" alt="Минимализм 24: светлый 24-часовой циферблат с безелем и ремешком"> | <img src="assets/minimalism-dark/preview-full.png" width="170" alt="Минимализм — тёмный: 12-часовой циферблат с безелем и ремешком"> | <img src="assets/minimalism-24-dark/preview-full.png" width="170" alt="Минимализм 24 — тёмный: 24-часовой циферблат с безелем и ремешком, тема по умолчанию"> |
 
 21 тема производителя доступна отдельно в меню **Тема → Ракета**.
 
