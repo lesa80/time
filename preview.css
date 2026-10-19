@@ -48,6 +48,8 @@ h1 span { color: #9daba9; font-weight: 360; margin-left: 5px; }
 }
 
 .dial img { display: block; position: absolute; pointer-events: none; height: auto; }
+.atlas-field { pointer-events: none; }
+.atlas-field span { flex: 1; height: 100%; background-repeat: no-repeat; }
 .dial.without-bezel { border-radius: 50%; overflow: hidden; box-shadow: 0 12px 40px #0005; }
 .dial-background { inset: 0; width: 100%; }
 .hand { will-change: transform; }

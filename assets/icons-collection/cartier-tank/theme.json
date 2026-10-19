@@ -1,0 +1,91 @@
+{
+  "name": "Cartier Tank Must",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "displayMode": "analog",
+  "resolution": [
+    395,
+    1533
+  ],
+  "dialBounds": [
+    62,
+    515,
+    228,
+    284
+  ],
+  "dialShape": "rectangle",
+  "rasterResolution": [
+    2048,
+    2551
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/cartier-tank/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        395,
+        1533
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/cartier-tank/dial.png",
+      "position": [
+        62,
+        515
+      ],
+      "size": [
+        228,
+        284
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/cartier-tank/hour.png",
+      "handResPosition": [
+        176,
+        657
+      ],
+      "rotatePoint": [
+        11,
+        73
+      ],
+      "size": [
+        22,
+        85
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/cartier-tank/minute.png",
+      "handResPosition": [
+        176,
+        657
+      ],
+      "rotatePoint": [
+        11,
+        99
+      ],
+      "size": [
+        22,
+        110
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/cartier-tank/cap.png",
+      "position": [
+        170,
+        651
+      ],
+      "size": [
+        12,
+        12
+      ]
+    }
+  ]
+}

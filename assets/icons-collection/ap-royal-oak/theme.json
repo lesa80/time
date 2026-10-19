@@ -1,0 +1,121 @@
+{
+  "name": "Audemars Piguet Royal Oak",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "displayMode": "analog",
+  "resolution": [
+    883,
+    1529
+  ],
+  "dialBounds": [
+    99,
+    350,
+    622,
+    622
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/ap-royal-oak/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        883,
+        1529
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/ap-royal-oak/dial.png",
+      "position": [
+        99,
+        350
+      ],
+      "size": [
+        622,
+        622
+      ]
+    },
+    {
+      "type": "Text Res",
+      "image": "assets/icons-collection/ap-royal-oak/date-atlas.png",
+      "position": [
+        631,
+        641
+      ],
+      "size": [
+        51,
+        45
+      ],
+      "field": "date",
+      "characters": "0123456789 SUMOTWEHFRA"
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/ap-royal-oak/hour.png",
+      "handResPosition": [
+        410,
+        661
+      ],
+      "rotatePoint": [
+        14,
+        180.38
+      ],
+      "size": [
+        28,
+        205
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/ap-royal-oak/minute.png",
+      "handResPosition": [
+        410,
+        661
+      ],
+      "rotatePoint": [
+        11,
+        267.46
+      ],
+      "size": [
+        22,
+        296
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/ap-royal-oak/second.png",
+      "handResPosition": [
+        410,
+        661
+      ],
+      "rotatePoint": [
+        11,
+        283.01
+      ],
+      "size": [
+        22,
+        324
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/ap-royal-oak/cap.png",
+      "position": [
+        404,
+        655
+      ],
+      "size": [
+        12,
+        12
+      ]
+    }
+  ]
+}

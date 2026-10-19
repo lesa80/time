@@ -1,0 +1,107 @@
+{
+  "name": "Rolex Submariner",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "displayMode": "analog",
+  "resolution": [
+    781,
+    1436
+  ],
+  "dialBounds": [
+    120,
+    365,
+    474,
+    474
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/rolex-submariner/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        781,
+        1436
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/rolex-submariner/dial.png",
+      "position": [
+        120,
+        365
+      ],
+      "size": [
+        474,
+        474
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/rolex-submariner/hour.png",
+      "handResPosition": [
+        357,
+        602
+      ],
+      "rotatePoint": [
+        21,
+        137.45999999999998
+      ],
+      "size": [
+        42,
+        162
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/rolex-submariner/minute.png",
+      "handResPosition": [
+        357,
+        602
+      ],
+      "rotatePoint": [
+        13,
+        203.82
+      ],
+      "size": [
+        26,
+        232
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/rolex-submariner/second.png",
+      "handResPosition": [
+        357,
+        602
+      ],
+      "rotatePoint": [
+        11,
+        215.67000000000002
+      ],
+      "size": [
+        22,
+        256
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/rolex-submariner/cap.png",
+      "position": [
+        351,
+        596
+      ],
+      "size": [
+        12,
+        12
+      ]
+    }
+  ]
+}

@@ -12,15 +12,17 @@ final class DialRenderer {
     struct Layer {
         let spec: DialSpecification.Layer
         let image: CGImage
+        let glyphs: [Character: CGImage]
     }
     let specification: DialSpecification
     let theme: ClockTheme
     let layers: [Layer]
     let hasSeconds: Bool
+    let hasChronograph: Bool
     var hasBezel: Bool { layers.contains { $0.spec.image.hasSuffix("/bezel.png") } }
-    enum DrawingPass { case all, background, hands, foreground }
-    private let firstHand: Int
-    private let lastHand: Int
+    enum DrawingPass { case all, background, live, foreground }
+    private let firstLive: Int
+    private let lastLive: Int
 
     init(resources: URL, theme: ClockTheme) throws {
         self.theme = theme
@@ -35,14 +37,28 @@ final class DialRenderer {
                   let image = CGImageSourceCreateImageAtIndex(source, 0, nil) else {
                 throw DialError.resource(name)
             }
-            return Layer(spec: spec, image: image)
+            var glyphs: [Character: CGImage] = [:]
+            if spec.type == "Text Res", let characters = spec.characters {
+                guard image.width % characters.count == 0 else { throw DialError.resource(name) }
+                let width = image.width / characters.count
+                for (index, character) in characters.enumerated() {
+                    guard let glyph = image.cropping(to: CGRect(x: index * width, y: 0, width: width, height: image.height)) else {
+                        throw DialError.resource(name)
+                    }
+                    glyphs[character] = glyph
+                }
+            }
+            return Layer(spec: spec, image: image, glyphs: glyphs)
         }
         let loadedLayers = layers
-        let hands = loadedLayers.indices.filter { loadedLayers[$0].spec.type == "Hand Res" }
-        // validate() guarantees both hour and minute and contiguous hand layers.
-        firstHand = hands[0]
-        lastHand = hands[hands.count - 1]
+        let dynamic = loadedLayers.indices.filter { loadedLayers[$0].spec.type != "Single Res" }
+        // Validation guarantees at least one contiguous group of live hand/text layers.
+        firstLive = dynamic[0]
+        lastLive = dynamic[dynamic.count - 1]
         hasSeconds = layers.contains { $0.spec.image.hasSuffix("/second.png") }
+        hasChronograph = Set(loadedLayers.filter { $0.spec.type == "Hand Res" }.map {
+            URL(fileURLWithPath: $0.spec.image).deletingPathExtension().lastPathComponent
+        }).isSuperset(of: ["chrono-second", "chrono-minute", "chrono-hour"])
     }
 
     // Both AppKit and offscreen bitmap contexts enter with a bottom-left origin.
@@ -54,7 +70,7 @@ final class DialRenderer {
     }
 
     func draw(in context: CGContext, size: CGSize, angles: HandAngles, showSeconds: Bool = true,
-              showBezel: Bool = true, pass: DrawingPass = .all) {
+              showBezel: Bool = true, pass: DrawingPass = .all, chronograph: ChronographReading = ChronographReading()) {
         context.saveGState()
         context.translateBy(x: 0, y: size.height)
         let viewport = !showBezel ? specification.dialBounds : nil
@@ -64,18 +80,34 @@ final class DialRenderer {
         for (index, layer) in layers.enumerated() {
             switch pass {
             case .all: break
-            case .background: if index >= firstHand { continue }
-            case .hands: if index < firstHand || index > lastHand { continue }
-            case .foreground: if index <= lastHand { continue }
+            case .background: if index >= firstLive { continue }
+            case .live: if index < firstLive || index > lastLive { continue }
+            case .foreground: if index <= lastLive { continue }
             }
             let spec = layer.spec
             if !showBezel && spec.image.hasSuffix("bezel.png") { continue }
-            if !showSeconds && spec.image.hasSuffix("second.png") { continue }
+            if !showSeconds && spec.image.hasSuffix("/second.png") { continue }
             context.saveGState()
             let size = spec.size ?? specification.resolution
+            if spec.type == "Text Res", let field = spec.field, let position = spec.position {
+                let text = Array(angles.text(for: field))
+                let width = size[0] / Double(text.count)
+                for (offset, character) in text.enumerated() {
+                    guard let glyph = layer.glyphs[character] else { continue }
+                    context.saveGState()
+                    context.translateBy(x: position[0] + Double(offset) * width, y: position[1] + size[1])
+                    context.scaleBy(x: 1, y: -1)
+                    context.draw(glyph, in: CGRect(x: 0, y: 0, width: width, height: size[1]))
+                    context.restoreGState()
+                }
+                context.restoreGState()
+                continue
+            }
             if let center = spec.handResPosition, let pivot = spec.rotatePoint {
                 context.translateBy(x: center[0], y: center[1])
-                context.rotate(by: angles.angle(for: spec.image) * .pi / 180)
+                let name = URL(fileURLWithPath: spec.image).deletingPathExtension().lastPathComponent
+                let angle = name.hasPrefix("chrono-") ? chronograph.angle(for: spec.image) : angles.angle(for: spec.image)
+                context.rotate(by: angle * .pi / 180)
                 context.translateBy(x: -pivot[0], y: -pivot[1])
             } else if let position = spec.position {
                 context.translateBy(x: position[0], y: position[1])

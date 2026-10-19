@@ -1,0 +1,143 @@
+{
+  "name": "Casio G-Shock DW-5600",
+  "target": "macOS / Retina",
+  "hourCycle": 24,
+  "displayMode": "digital",
+  "resolution": [
+    619,
+    1502
+  ],
+  "dialBounds": [
+    111,
+    522,
+    400,
+    342
+  ],
+  "dialShape": "rectangle",
+  "rasterResolution": [
+    2048,
+    1751
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/casio-gshock/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        619,
+        1502
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/casio-gshock/dial.png",
+      "position": [
+        111,
+        522
+      ],
+      "size": [
+        400,
+        342
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/casio-gshock/lcd-marks.png",
+      "position": [
+        175,
+        608
+      ],
+      "size": [
+        270,
+        170
+      ]
+    },
+    {
+      "type": "Text Res",
+      "image": "assets/icons-collection/casio-gshock/lcd-letters.png",
+      "position": [
+        214,
+        627
+      ],
+      "size": [
+        54,
+        29
+      ],
+      "field": "weekday",
+      "characters": "0123456789 SUMOTWEHFRA"
+    },
+    {
+      "type": "Text Res",
+      "image": "assets/icons-collection/casio-gshock/lcd-digits.png",
+      "position": [
+        312,
+        627
+      ],
+      "size": [
+        46,
+        27
+      ],
+      "field": "month",
+      "characters": "0123456789 SUMOTWEHFRA"
+    },
+    {
+      "type": "Text Res",
+      "image": "assets/icons-collection/casio-gshock/lcd-digits.png",
+      "position": [
+        379,
+        627
+      ],
+      "size": [
+        46,
+        27
+      ],
+      "field": "day",
+      "characters": "0123456789 SUMOTWEHFRA"
+    },
+    {
+      "type": "Text Res",
+      "image": "assets/icons-collection/casio-gshock/lcd-digits.png",
+      "position": [
+        188,
+        681
+      ],
+      "size": [
+        88,
+        73
+      ],
+      "field": "hours",
+      "characters": "0123456789 SUMOTWEHFRA"
+    },
+    {
+      "type": "Text Res",
+      "image": "assets/icons-collection/casio-gshock/lcd-digits.png",
+      "position": [
+        291,
+        681
+      ],
+      "size": [
+        88,
+        73
+      ],
+      "field": "minutes",
+      "characters": "0123456789 SUMOTWEHFRA"
+    },
+    {
+      "type": "Text Res",
+      "image": "assets/icons-collection/casio-gshock/lcd-digits.png",
+      "position": [
+        388,
+        708
+      ],
+      "size": [
+        48,
+        44
+      ],
+      "field": "seconds",
+      "characters": "0123456789 SUMOTWEHFRA"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "master": [
+    1024,
+    1536
+  ],
+  "bodyCrop": [
+    336,
+    1,
+    395,
+    1533
+  ],
+  "dialBox": [
+    398,
+    516,
+    228,
+    284
+  ],
+  "center": [
+    512,
+    658
+  ],
+  "source": "https://int.cartier.com/de-eu/kollektionen/watches/herrenuhren/tank/tank-must/wsta0041-tank-must-de-cartier.html",
+  "reference": "WSTA0041"
+}

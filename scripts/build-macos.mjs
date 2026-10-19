@@ -23,6 +23,7 @@ if (!process.argv.includes('--reuse-artwork')) {
   run(process.execPath, [path.join(root, 'scripts/prepare-minimalism.mjs')]);
   run(process.execPath, [path.join(root, 'scripts/prepare-avangard.mjs')]);
   run(process.execPath, [path.join(root, 'scripts/prepare-catalog.mjs')]);
+  run(process.execPath, [path.join(root, 'scripts/prepare-icons-collection.mjs')]);
 }
 run(process.execPath, [path.join(root, 'scripts/build-preview.mjs')]);
 run(process.execPath, [path.join(root, 'scripts/prepare-about.mjs')]);

@@ -1,0 +1,121 @@
+{
+  "name": "Rolex Submariner Date · синий · сталь и золото · 126613LB",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "displayMode": "analog",
+  "resolution": [
+    782,
+    1437
+  ],
+  "dialBounds": [
+    119,
+    365,
+    474,
+    474
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/rolex-submariner-date-blue-rolesor/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        782,
+        1437
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/rolex-submariner-date-blue-rolesor/dial.png",
+      "position": [
+        119,
+        365
+      ],
+      "size": [
+        474,
+        474
+      ]
+    },
+    {
+      "type": "Text Res",
+      "image": "assets/icons-collection/rolex-submariner-date-blue-rolesor/date-atlas.png",
+      "position": [
+        494,
+        594
+      ],
+      "size": [
+        69,
+        37
+      ],
+      "field": "date",
+      "characters": "0123456789 SUMOTWEHFRA"
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/rolex-submariner-date-blue-rolesor/hour.png",
+      "handResPosition": [
+        356,
+        602
+      ],
+      "rotatePoint": [
+        21,
+        137.45999999999998
+      ],
+      "size": [
+        42,
+        162
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/rolex-submariner-date-blue-rolesor/minute.png",
+      "handResPosition": [
+        356,
+        602
+      ],
+      "rotatePoint": [
+        13,
+        203.82
+      ],
+      "size": [
+        26,
+        232
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/rolex-submariner-date-blue-rolesor/second.png",
+      "handResPosition": [
+        356,
+        602
+      ],
+      "rotatePoint": [
+        11,
+        215.67000000000002
+      ],
+      "size": [
+        22,
+        256
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/rolex-submariner-date-blue-rolesor/cap.png",
+      "position": [
+        350,
+        596
+      ],
+      "size": [
+        12,
+        12
+      ]
+    }
+  ]
+}

@@ -54,6 +54,193 @@
       }
     },
     {
+      "id": "rolex-submariner",
+      "title": "Rolex Submariner",
+      "brand": "icons",
+      "hourCycle": 12,
+      "dialShape": "circle",
+      "displayMode": "analog",
+      "specification": "icons-collection/rolex-submariner/theme.json",
+      "sourceSpec": "assets/icons-collection/rolex-submariner/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 305.25000000000006,
+        "minute": 63,
+        "second": 180
+      },
+      "referenceURL": "https://www.rolex.com/watches/submariner/m124060-0001"
+    },
+    {
+      "id": "rolex-submariner-date-black",
+      "title": "Rolex Submariner Date · чёрный · сталь · 126610LN",
+      "brand": "icons",
+      "hourCycle": 12,
+      "dialShape": "circle",
+      "displayMode": "analog",
+      "specification": "icons-collection/rolex-submariner-date-black/theme.json",
+      "sourceSpec": "assets/icons-collection/rolex-submariner-date-black/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 305.25000000000006,
+        "minute": 63,
+        "second": 180
+      },
+      "referenceURL": "https://www.rolex.com/watches/submariner/m126610ln-0001"
+    },
+    {
+      "id": "rolex-submariner-date-green",
+      "title": "Rolex Submariner Date · зелёный · сталь · 126610LV",
+      "brand": "icons",
+      "hourCycle": 12,
+      "dialShape": "circle",
+      "displayMode": "analog",
+      "specification": "icons-collection/rolex-submariner-date-green/theme.json",
+      "sourceSpec": "assets/icons-collection/rolex-submariner-date-green/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 305.25000000000006,
+        "minute": 63,
+        "second": 180
+      },
+      "referenceURL": "https://www.rolex.com/watches/submariner/m126610lv-0002"
+    },
+    {
+      "id": "rolex-submariner-date-blue-rolesor",
+      "title": "Rolex Submariner Date · синий · сталь и золото · 126613LB",
+      "brand": "icons",
+      "hourCycle": 12,
+      "dialShape": "circle",
+      "displayMode": "analog",
+      "specification": "icons-collection/rolex-submariner-date-blue-rolesor/theme.json",
+      "sourceSpec": "assets/icons-collection/rolex-submariner-date-blue-rolesor/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 305.25000000000006,
+        "minute": 63,
+        "second": 180
+      },
+      "referenceURL": "https://www.rolex.com/watches/submariner/m126613lb-0002"
+    },
+    {
+      "id": "rolex-submariner-date-black-rolesor",
+      "title": "Rolex Submariner Date · чёрный · сталь и золото · 126613LN",
+      "brand": "icons",
+      "hourCycle": 12,
+      "dialShape": "circle",
+      "displayMode": "analog",
+      "specification": "icons-collection/rolex-submariner-date-black-rolesor/theme.json",
+      "sourceSpec": "assets/icons-collection/rolex-submariner-date-black-rolesor/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 305.25000000000006,
+        "minute": 63,
+        "second": 180
+      },
+      "referenceURL": "https://www.rolex.com/watches/submariner/m126613ln-0002"
+    },
+    {
+      "id": "rolex-submariner-date-black-gold",
+      "title": "Rolex Submariner Date · чёрный · жёлтое золото · 126618LN",
+      "brand": "icons",
+      "hourCycle": 12,
+      "dialShape": "circle",
+      "displayMode": "analog",
+      "specification": "icons-collection/rolex-submariner-date-black-gold/theme.json",
+      "sourceSpec": "assets/icons-collection/rolex-submariner-date-black-gold/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 305.25000000000006,
+        "minute": 63,
+        "second": 180
+      },
+      "referenceURL": "https://www.rolex.com/watches/submariner/m126618ln-0002"
+    },
+    {
+      "id": "rolex-submariner-date-blue-gold",
+      "title": "Rolex Submariner Date · синий · жёлтое золото · 126618LB",
+      "brand": "icons",
+      "hourCycle": 12,
+      "dialShape": "circle",
+      "displayMode": "analog",
+      "specification": "icons-collection/rolex-submariner-date-blue-gold/theme.json",
+      "sourceSpec": "assets/icons-collection/rolex-submariner-date-blue-gold/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 305.25000000000006,
+        "minute": 63,
+        "second": 180
+      },
+      "referenceURL": "https://www.rolex.com/watches/submariner/m126618lb-0002"
+    },
+    {
+      "id": "omega-speedmaster",
+      "title": "Omega Speedmaster Moonwatch",
+      "brand": "icons",
+      "hourCycle": 12,
+      "dialShape": "circle",
+      "displayMode": "analog",
+      "specification": "icons-collection/omega-speedmaster/theme.json",
+      "sourceSpec": "assets/icons-collection/omega-speedmaster/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 305.25000000000006,
+        "minute": 63,
+        "second": 180
+      },
+      "referenceURL": "https://www.omegawatches.com.hk/en-hk/watch-omega-speedmaster-moonwatch-professional-co-axial-master-chronometer-chronograph-42-mm-31030425001001"
+    },
+    {
+      "id": "cartier-tank",
+      "title": "Cartier Tank Must",
+      "brand": "icons",
+      "hourCycle": 12,
+      "dialShape": "rectangle",
+      "displayMode": "analog",
+      "specification": "icons-collection/cartier-tank/theme.json",
+      "sourceSpec": "assets/icons-collection/cartier-tank/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 305.25000000000006,
+        "minute": 63,
+        "second": 180
+      },
+      "referenceURL": "https://int.cartier.com/de-eu/kollektionen/watches/herrenuhren/tank/tank-must/wsta0041-tank-must-de-cartier.html"
+    },
+    {
+      "id": "ap-royal-oak",
+      "title": "Audemars Piguet Royal Oak",
+      "brand": "icons",
+      "hourCycle": 12,
+      "dialShape": "circle",
+      "displayMode": "analog",
+      "specification": "icons-collection/ap-royal-oak/theme.json",
+      "sourceSpec": "assets/icons-collection/ap-royal-oak/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 305.25000000000006,
+        "minute": 63,
+        "second": 180
+      },
+      "referenceURL": "https://www.audemarspiguet.com/en/watch-collection/royal-oak/15510ST.OO.1320ST.06"
+    },
+    {
+      "id": "casio-gshock",
+      "title": "Casio G-Shock DW-5600",
+      "brand": "icons",
+      "hourCycle": 24,
+      "dialShape": "rectangle",
+      "displayMode": "digital",
+      "specification": "icons-collection/casio-gshock/theme.json",
+      "sourceSpec": "assets/icons-collection/casio-gshock/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 152.62500000000003,
+        "minute": 63,
+        "second": 180
+      },
+      "referenceURL": "https://www.casio.com/us/watches/gshock/product.DW-5600E-1V/"
+    },
+    {
       "id": "avangard",
       "title": "Авангард 0292",
       "hourCycle": 12,

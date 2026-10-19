@@ -62,10 +62,61 @@ let reverse = HandAngles(hours: 1, minutes: 10, seconds: 20, hourCycle: 12, dire
 close(reverse.hour, -35.1666666667, "Russian Code hour counterclockwise")
 close(reverse.minute, -62, "Russian Code minute counterclockwise")
 close(reverse.second, -120, "Russian Code seconds counterclockwise")
-precondition(catalog.themes.count == 25)
+precondition(catalog.themes.count == 36)
+precondition(catalog.themes.filter(\.isIcon).count == 11)
 precondition(catalog.theme(for: "russkiy-kod-0344")!.rotationDirection == -1)
 precondition(catalog.theme(for: "raketa-avgvst")!.dialShape == "rectangle")
 print("Passed: complete catalog, reverse movement and rectangular Avgvst metadata")
+
+var utc = Calendar(identifier: .gregorian)
+utc.timeZone = TimeZone(secondsFromGMT: 0)!
+let leap = ISO8601DateFormatter().date(from: "2028-02-29T23:59:59Z")!
+let beforeMidnight = HandAngles(date: leap, calendar: utc)
+let afterMidnight = HandAngles(date: leap.addingTimeInterval(1), calendar: utc)
+precondition(beforeMidnight.text(for: "hours") == "23" && beforeMidnight.text(for: "seconds") == "59")
+precondition(beforeMidnight.text(for: "day") == "29" && beforeMidnight.text(for: "month") == "02")
+precondition(beforeMidnight.text(for: "weekday") == "TU")
+precondition(afterMidnight.text(for: "hours") == "00" && afterMidnight.text(for: "seconds") == "00")
+precondition(afterMidnight.text(for: "date") == " 1" && afterMidnight.text(for: "month") == "03")
+precondition(afterMidnight.text(for: "weekday") == "WE")
+let localCalendar = HandAngles(date: leap, calendar: moscow)
+precondition(localCalendar.text(for: "hours") == "02" && localCalendar.text(for: "date") == " 1")
+print("Passed: digital time, local date, weekday and leap-day midnight rollover")
+
+var monotonicTime: TimeInterval = 100
+var stopwatch = Chronograph(now: { monotonicTime })
+precondition(!stopwatch.isRunning && stopwatch.reading.elapsed == 0)
+stopwatch.pause()
+stopwatch.start()
+monotonicTime += 15.25
+stopwatch.start() // Starting an already running watch must not restart it.
+close(stopwatch.reading.elapsed, 15.25, "chronograph advances without redraw callbacks")
+stopwatch.pause()
+monotonicTime += 1_000
+stopwatch.pause()
+close(stopwatch.reading.elapsed, 15.25, "paused chronograph ignores passing time")
+stopwatch.start()
+monotonicTime += 122.75
+close(stopwatch.reading.elapsed, 138, "resume preserves accumulated time")
+precondition(stopwatch.reading.text == "00:02:18")
+monotonicTime += 43_200 // Same gap as sleeping or occluding the app for 12 hours.
+close(stopwatch.reading.elapsed, 43_338, "long gaps preserve continuous elapsed time")
+stopwatch.reset()
+precondition(!stopwatch.isRunning && stopwatch.reading.elapsed == 0)
+stopwatch.start()
+monotonicTime += 3
+stopwatch.pause()
+stopwatch.reset()
+precondition(stopwatch.reading.text == "00:00:00")
+let chrono = ChronographReading(elapsed: 2 * 3600 + 7 * 60 + 15)
+close(chrono.angle(for: "chrono-second.png"), 90, "central chronograph seconds")
+close(chrono.angle(for: "chrono-minute.png"), 87, "30-minute recorder")
+close(chrono.angle(for: "chrono-hour.png"), 63.625, "12-hour recorder")
+close(ChronographReading(elapsed: 60).angle(for: "chrono-second.png"), 0, "seconds wrap at 60")
+close(ChronographReading(elapsed: 1800).angle(for: "chrono-minute.png"), 0, "minutes wrap at 30")
+close(ChronographReading(elapsed: 43200).angle(for: "chrono-hour.png"), 0, "hours wrap at 12")
+precondition(ChronographReading(elapsed: 25 * 3600 + 1).text == "25:00:01", "numeric elapsed time must not wrap")
+print("Passed: chronograph start, pause, resume, reset, long gaps, fractional precision and 60s/30m/12h rollovers")
 
 do { try catalog.validate() } catch {
     FileHandle.standardError.write(Data("Catalog validation failed: \(error)\n".utf8)); exit(1)
@@ -94,6 +145,14 @@ let malformedSpec = Data("""
 {"resolution":[0,100],"layers":[]}
 """.utf8)
 rejects({ try JSONDecoder().decode(DialSpecification.self, from: malformedSpec).validate() }, "Zero-size canvas was accepted")
+let staticDigital = Data("""
+{"resolution":[100,100],"displayMode":"digital","layers":[
+{"type":"Single Res","image":"hours.png","position":[0,0],"field":"hours"},
+{"type":"Single Res","image":"minutes.png","position":[0,0],"field":"minutes"},
+{"type":"Single Res","image":"seconds.png","position":[0,0],"field":"seconds"}]}
+""".utf8)
+rejects({ try JSONDecoder().decode(DialSpecification.self, from: staticDigital).validate() },
+        "A digital theme without live text layers was accepted")
 precondition(WindowGeometry.savedOrigin([.nan, 20]) == nil)
 precondition(WindowGeometry.savedOrigin([20]) == nil)
 let left = CGRect(x: -1440, y: 0, width: 1440, height: 900)

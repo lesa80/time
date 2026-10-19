@@ -3,11 +3,11 @@ const catalog=JSON.parse(fs.readFileSync(new URL('../themes.json',import.meta.ur
 const official=JSON.parse(fs.readFileSync(new URL('../reference/catalog/index.json',import.meta.url)));
 const specFor=t=>JSON.parse(fs.readFileSync(new URL(`../${t.sourceSpec}`,import.meta.url)));
 test('every current official catalog variant is represented, including sold-out models',()=>{
- assert.equal(catalog.themes.length,official.items.length+4);
+ assert.equal(catalog.themes.length,official.items.length+4+11);
  const urls=new Set(catalog.themes.map(t=>t.referenceURL));for(const item of official.items)assert(urls.has(item.productURL),item.code);
  assert.equal(new Set(catalog.themes.map(t=>t.id)).size,catalog.themes.length);
  assert(!catalog.themes.some(t=>t.id==='polar'),'legacy photo theme removed');
- assert.deepEqual(catalog.themes.filter(t=>t.brand!=='raketa').map(t=>t.id),['minimalism','minimalism-24','minimalism-dark','minimalism-24-dark']);
+ assert.deepEqual(catalog.themes.filter(t=>!t.brand).map(t=>t.id),['minimalism','minimalism-24','minimalism-dark','minimalism-24-dark']);
  assert.equal(catalog.themes.filter(t=>t.brand==='raketa').length,official.items.length);
 });
 test('Russian Code runs backwards for all three hands; 24h models retain their own cycle',()=>{

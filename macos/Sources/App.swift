@@ -14,6 +14,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     var sizeMenu = NSMenu()
     var titleItem: NSMenuItem!
     var timer: Timer?
+    var chronograph = Chronograph()
     private var positionSaveTimer: Timer?
     private var isSleeping = false
     private var notificationObservers: [(center: NotificationCenter, token: NSObjectProtocol)] = []
@@ -24,6 +25,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         return formatter
     }()
     var lastAccessibilitySecond = -1
+    private var lastChronographSecond: TimeInterval = -1
     var aboutWindowController: AboutWindowController?
     var menuActions: [String: NSMenuItem] = [:]
     lazy var menuBarLogo = makeMenuBarLogo(active: false)
@@ -54,7 +56,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         window.animationBehavior = .none
         clockView = ClockView(renderer: renderer)
         clockView.clockMenu = clockMenu
-        clockView.onToggleBezel = { [weak self] in self?.toggleBezel() }
+        clockView.onInteraction = { [weak self] action in self?.performInteraction(action) }
         clockView.onDragEnded = { [weak self] in self?.keepOnScreen(); self?.savePosition() }
         clockView.showSeconds = defaults.bool(forKey: "showSeconds")
         clockView.showBezel = defaults.bool(forKey: "showBezel")
@@ -108,11 +110,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         titleItem = NSMenuItem(title: L("%@ · %ld h", renderer.theme.localizedTitle, renderer.theme.hourCycle), action: nil, keyEquivalent: "")
         titleItem.isEnabled = false
         clockMenu.addItem(titleItem)
+        let interactionItem = NSMenuItem(title: L("Interaction"), action: nil, keyEquivalent: "")
+        interactionItem.submenu = makeInteractionMenu()
+        clockMenu.addItem(interactionItem)
+        menuActions["interaction"] = interactionItem
+        updateChronographMenu()
         clockMenu.addItem(.separator())
         themeMenu = makeThemeMenu()
         let themeItem = NSMenuItem(title: L("Theme"), action: nil, keyEquivalent: "")
         themeItem.submenu = themeMenu
         clockMenu.addItem(themeItem)
+
+        let appearance = NSMenu(title: L("Appearance"))
+        appearance.autoenablesItems = false
+        appearance.delegate = self
         for size in [180, 240, 280, 360, 466] {
             let item = NSMenuItem(title: L("Width: %ld pt", size), action: #selector(resizeClock(_:)), keyEquivalent: "")
             item.tag = size
@@ -121,34 +132,67 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         }
         let sizeItem = NSMenuItem(title: L("Size"), action: nil, keyEquivalent: "")
         sizeItem.submenu = sizeMenu
-        clockMenu.addItem(sizeItem)
-        add("aboveWindows", L("Always on top"), #selector(toggleAbove))
-        add("locked", L("Lock position"), #selector(toggleLocked))
-        add("showBezel", L("Bezel and strap"), #selector(toggleBezel))
-        clockMenu.addItem(.separator())
-        add("showSeconds", L("Seconds hand"), #selector(toggleSeconds))
-        add("smooth", L("Smooth movement"), #selector(toggleSmooth))
+        appearance.addItem(sizeItem)
+        add("showBezel", L("Bezel and strap"), #selector(toggleBezel), to: appearance)
+        appearance.addItem(.separator())
+        add("showSeconds", L("Seconds hand"), #selector(toggleSeconds), to: appearance)
+        add("smooth", L("Smooth movement"), #selector(toggleSmooth), to: appearance)
+        let appearanceItem = NSMenuItem(title: L("Appearance"), action: nil, keyEquivalent: "")
+        appearanceItem.submenu = appearance
+        clockMenu.addItem(appearanceItem)
+
+        let windowMenu = NSMenu(title: L("Window"))
+        windowMenu.autoenablesItems = false
+        windowMenu.delegate = self
+        add("aboveWindows", L("Always on top"), #selector(toggleAbove), to: windowMenu)
+        add("locked", L("Lock position"), #selector(toggleLocked), to: windowMenu)
+        windowMenu.addItem(.separator())
+        add("reset", L("Return to screen"), #selector(resetPosition), to: windowMenu)
+        let windowItem = NSMenuItem(title: L("Window"), action: nil, keyEquivalent: "")
+        windowItem.submenu = windowMenu
+        clockMenu.addItem(windowItem)
         clockMenu.addItem(.separator())
         add("launchAtLogin", L("Launch at login"), #selector(toggleLaunchAtLogin))
         add("approveLaunchAtLogin", L("Allow launch at login in macOS…"), #selector(openLoginSettings))
         menuActions["approveLaunchAtLogin"]?.isHidden = true
         clockMenu.addItem(.separator())
-        add("reset", L("Return to screen"), #selector(resetPosition))
         add("about", L("About…"), #selector(showAbout))
         add("quit", L("Quit"), #selector(quitApp), key: "q")
         return clockMenu
     }
 
+    private func makeInteractionMenu() -> NSMenu {
+        let menu = NSMenu(title: L("Interaction"))
+        menu.autoenablesItems = false
+        menu.delegate = self
+        add("chronoToggle", L("Start chronograph"), #selector(toggleChronograph), to: menu)
+        add("chronoReset", L("Reset chronograph"), #selector(resetChronograph), to: menu)
+        menu.addItem(.separator())
+        let elapsed = NSMenuItem(title: "", action: nil, keyEquivalent: "")
+        elapsed.isEnabled = false
+        menu.addItem(elapsed)
+        menuActions["chronoElapsed"] = elapsed
+        return menu
+    }
+
     func makeThemeMenu() -> NSMenu {
         let menu = NSMenu()
         let raketa = NSMenu(title: L("Raketa"))
+        let icons = NSMenu(title: L("Legendary models"))
         menu.autoenablesItems = false
         raketa.autoenablesItems = false
+        icons.autoenablesItems = false
         for theme in library.catalog.themes {
             let item = NSMenuItem(title: theme.localizedTitle, action: #selector(selectTheme(_:)), keyEquivalent: "")
             item.representedObject = theme.id
             item.target = self
-            (theme.isRaketa ? raketa : menu).addItem(item)
+            (theme.isRaketa ? raketa : theme.isIcon ? icons : menu).addItem(item)
+        }
+        if !icons.items.isEmpty {
+            menu.addItem(.separator())
+            let group = NSMenuItem(title: L("Legendary models"), action: nil, keyEquivalent: "")
+            group.submenu = icons
+            menu.addItem(group)
         }
         if !raketa.items.isEmpty {
             if !menu.items.isEmpty { menu.addItem(.separator()) }
@@ -223,13 +267,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         return image
     }
 
-    func add(_ id: String, _ title: String, _ action: Selector, key: String = "") {
+    func add(_ id: String, _ title: String, _ action: Selector, key: String = "", to menu: NSMenu? = nil) {
         let item = NSMenuItem(title: title, action: action, keyEquivalent: key)
         item.target = self
-        clockMenu.addItem(item)
+        (menu ?? clockMenu).addItem(item)
         menuActions[id] = item
     }
     func menuNeedsUpdate(_ menu: NSMenu) {
+        updateChronographMenu()
         let loginStatus = SMAppService.mainApp.status
         menuActions["launchAtLogin"]?.state = loginStatus == .enabled ? .on :
             loginStatus == .requiresApproval ? .mixed : .off
@@ -243,7 +288,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         menuActions["showSeconds"]?.isEnabled = renderer.hasSeconds
         menuActions["showBezel"]?.isEnabled = renderer.hasBezel
         menuActions["showBezel"]?.state = renderer.hasBezel && defaults.bool(forKey: "showBezel") ? .on : .off
-        menuActions["smooth"]?.isEnabled = renderer.hasSeconds && defaults.bool(forKey: "showSeconds")
+        menuActions["smooth"]?.isEnabled = (renderer.hasSeconds && defaults.bool(forKey: "showSeconds")) ||
+            (renderer.hasChronograph && chronograph.isRunning)
         updateThemeMenuSelection(themeMenu)
         for item in sizeMenu.items {
             item.state = item.tag == defaults.integer(forKey: "diameter") ? .on : .off
@@ -261,7 +307,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         timer = nil
         updateClock()
         guard !isSleeping, window.occlusionState.contains(.visible) else { return }
-        let interval = AnimationPolicy.interval(smooth: defaults.bool(forKey: "smooth"), showSeconds: defaults.bool(forKey: "showSeconds"),
+        let interval = AnimationPolicy.interval(smooth: defaults.bool(forKey: "smooth"), showSeconds: defaults.bool(forKey: "showSeconds") ||
+            (renderer.hasChronograph && chronograph.isRunning),
             hasSeconds: renderer.hasSeconds, reduceMotion: NSWorkspace.shared.accessibilityDisplayShouldReduceMotion,
             lowPower: ProcessInfo.processInfo.isLowPowerModeEnabled)
         let timer = Timer(timeInterval: interval, repeats: true) { [weak self] _ in
@@ -274,12 +321,48 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     }
     func updateClock() {
         clockView.date = Date()
+        clockView.chronographIsRunning = chronograph.isRunning
+        clockView.chronograph = chronograph.reading
         clockView.needsDisplay = true
         let second = Calendar.current.component(.second, from: clockView.date)
-        if second != lastAccessibilitySecond {
+        let chronoSecond = clockView.chronograph.elapsed.rounded(.down)
+        if second != lastAccessibilitySecond || (renderer.hasChronograph && chronoSecond != lastChronographSecond) {
             lastAccessibilitySecond = second
-            clockView.setAccessibilityValue(accessibilityFormatter.string(from: clockView.date))
+            lastChronographSecond = chronoSecond
+            let time = accessibilityFormatter.string(from: clockView.date)
+            clockView.setAccessibilityValue(renderer.hasChronograph ? time + ", " + chronographDescription : time)
+            updateChronographMenu()
         }
+    }
+    private var chronographDescription: String {
+        let state = chronograph.isRunning ? L("Running") : chronograph.reading.elapsed > 0 ? L("Paused") : L("Ready")
+        return L("Chronograph: %@ · %@", chronograph.reading.text, state)
+    }
+    func updateChronographMenu() {
+        menuActions["interaction"]?.isHidden = !renderer.hasChronograph
+        menuActions["chronoToggle"]?.title = chronograph.isRunning ? L("Pause chronograph") : chronograph.reading.elapsed > 0 ? L("Resume chronograph") : L("Start chronograph")
+        menuActions["chronoReset"]?.isEnabled = chronograph.isRunning || chronograph.reading.elapsed > 0
+        menuActions["chronoElapsed"]?.title = chronographDescription
+    }
+    func performInteraction(_ action: DialSpecification.MechanicalAction) {
+        switch action {
+        case .chronographToggle: toggleChronograph()
+        case .chronographReset: resetChronograph()
+        }
+    }
+    @objc func toggleChronograph() {
+        guard renderer.hasChronograph else { return }
+        if chronograph.isRunning { chronograph.pause() } else { chronograph.start() }
+        lastAccessibilitySecond = -1
+        updateChronographMenu()
+        startTimer()
+    }
+    @objc func resetChronograph() {
+        guard renderer.hasChronograph else { return }
+        chronograph.reset()
+        lastAccessibilitySecond = -1
+        updateChronographMenu()
+        startTimer()
     }
     @objc func resynchronize() { lastAccessibilitySecond = -1; startTimer() }
     @objc func pauseForSleep() { isSleeping = true; timer?.invalidate(); timer = nil; savePosition() }
@@ -339,6 +422,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         updateStatusItem()
         titleItem.title = L("%@ · %ld h", selected.theme.localizedTitle, selected.theme.hourCycle)
         resizeForTheme(width: preferredWidth)
+        lastAccessibilitySecond = -1
         startTimer()
     }
     @objc func toggleLocked() { toggle("locked"); applyWindowPreferences() }

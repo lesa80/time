@@ -30,5 +30,23 @@ export function localTime(date = new Date()) {
     minutes: date.getMinutes(),
     seconds: date.getSeconds(),
     milliseconds: date.getMilliseconds(),
+    day: date.getDate(),
+    month: date.getMonth() + 1,
+    weekday: date.getDay() + 1,
   };
+}
+
+/** The raster atlas uses fixed two-character fields, independent of UI language. */
+export function displayText(field, reading) {
+  const two = value => String(Math.floor(value)).padStart(2, '0');
+  switch (field) {
+    case 'hours': return two(reading.hours);
+    case 'minutes': return two(reading.minutes);
+    case 'seconds': return two(reading.seconds);
+    case 'day': return two(reading.day ?? 1);
+    case 'month': return two(reading.month ?? 1);
+    case 'date': return String(reading.day ?? 1).padStart(2, ' ');
+    case 'weekday': return ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'][(reading.weekday ?? 1) - 1];
+    default: throw new RangeError(`Unknown display field: ${field}`);
+  }
 }

@@ -1,10 +1,11 @@
-import { parseTime, formatTime, handAngles, localTime } from './time.mjs';
+import { parseTime, formatTime, handAngles, localTime, displayText } from './time.mjs';
 import themeDefinitions from './themes-data.mjs';
 
 let theme;
 let photoTime;
 let photoAngles;
-const hands = Object.fromEntries(['hour', 'minute', 'second'].map(name => [name, document.getElementById(name)]));
+const hands = {};
+let fields = [];
 const dial = document.getElementById('dial');
 const digitalTime = document.getElementById('digital-time');
 const modeDescription = document.getElementById('mode-description');
@@ -32,19 +33,41 @@ function layoutTheme() {
   dial.style.aspectRatio = `${viewport[2]} / ${viewport[3]}`;
   dial.classList.toggle('without-bezel', !showFullWatch);
   dial.classList.toggle('rectangular', spec.dialShape === 'rectangle');
-  for (const image of dial.querySelectorAll('img')) image.style.display = 'none';
+  dial.replaceChildren();
+  for (const key of Object.keys(hands)) delete hands[key];
+  fields = [];
   for (const layer of spec.layers) {
     const name = layer.image.split('/').at(-1).replace('.png', '');
-    const image = dial.querySelector(name === 'dial' || name === 'bezel' ? `.${name}-background` : `.${name}`);
+    const image = document.createElement(layer.type === 'Text Res' ? 'div' : 'img');
+    image.className = layer.type === 'Text Res' ? 'atlas-field' : name;
     const size = layer.size ?? spec.resolution;
     const position = layer.handResPosition ? layer.handResPosition.map((n, i) => n - layer.rotatePoint[i]) : layer.position;
-    image.src = layer.image;
-    image.style.inset = 'auto';
+    image.style.position = 'absolute';
     image.style.width = `${size[0] / viewport[2] * 100}%`;
+    image.style.height = `${size[1] / viewport[3] * 100}%`;
     image.style.left = `${(position[0] - viewport[0]) / viewport[2] * 100}%`;
     image.style.top = `${(position[1] - viewport[1]) / viewport[3] * 100}%`;
     image.style.display = name === 'bezel' && !showFullWatch ? 'none' : 'block';
-    if (layer.rotatePoint) image.style.transformOrigin = `${layer.rotatePoint[0] / size[0] * 100}% ${layer.rotatePoint[1] / size[1] * 100}%`;
+    if (layer.type === 'Text Res') {
+      image.style.display = 'flex';
+      for (let i = 0; i < 2; i++) {
+        const glyph = document.createElement('span');
+        glyph.style.backgroundImage = `url("${layer.image}")`;
+        glyph.style.backgroundSize = `${layer.characters.length * 100}% 100%`;
+        image.append(glyph);
+      }
+      fields.push({ layer, element: image });
+    } else {
+      image.src = layer.image;
+      image.alt = '';
+      image.draggable = false;
+    }
+    if (layer.rotatePoint) {
+      image.classList.add('hand');
+      image.style.transformOrigin = `${layer.rotatePoint[0] / size[0] * 100}% ${layer.rotatePoint[1] / size[1] * 100}%`;
+      hands[name] = image;
+    }
+    dial.append(image);
   }
   const hasBezel = spec.layers.some(layer => layer.image.endsWith('/bezel.png'));
   bezelButton.disabled = !hasBezel;
@@ -60,9 +83,9 @@ function selectTheme(id) {
   input.value = formatTime(customTime);
   themeSelect.value = theme.id;
   document.getElementById('theme-name').textContent = theme.title;
-  document.getElementById('theme-label').textContent = `${theme.title} · РАСТР 2048 × 2048`;
-  document.getElementById('theme-description').textContent = `${theme.hourCycle}-часовой циферблат${theme.direction === -1 ? ' · обратный ход стрелок' : ''}. ${theme.brand === 'raketa' ? 'Корпус и ремешок из референса.' : 'Однотонный фон с тонким контуром, крупные цифры, прямые стрелки. Собственный корпус и матовый ремешок.'}`;
-  document.getElementById('clock-note').textContent = `Локальное превью · полный оборот часовой стрелки за ${theme.hourCycle} часов`;
+  document.getElementById('theme-label').textContent = `${theme.title} · РАСТР ${theme.spec.rasterResolution.join(" × ")}`;
+  document.getElementById('theme-description').textContent = `${theme.hourCycle}-часовой циферблат${theme.direction === -1 ? ' · обратный ход стрелок' : ''}. ${theme.brand === 'icons' ? 'Легендарные модели: растровые корпус и ремешок, местное время.' : theme.brand === 'raketa' ? 'Корпус и ремешок из референса.' : 'Однотонный фон с тонким контуром, крупные цифры, прямые стрелки. Собственный корпус и матовый ремешок.'}`;
+  document.getElementById('clock-note').textContent = theme.spec.displayMode === 'digital' ? 'Локальное превью · цифровые часы, местное время и дата' : `Локальное превью · полный оборот часовой стрелки за ${theme.hourCycle} часов`;
   layoutTheme();
   render();
 
@@ -72,7 +95,13 @@ function selectTheme(id) {
 function render() {
   const time = mode === 'live' ? localTime() : mode === 'custom' ? customTime : photoTime;
   const angles = mode === 'photo' ? photoAngles : handAngles(time, theme.hourCycle, theme.direction ?? 1);
-  for (const [name, angle] of Object.entries(angles)) hands[name].style.transform = `rotate(${angle}deg)`;
+  for (const [name, angle] of Object.entries(angles)) if (hands[name]) hands[name].style.transform = `rotate(${angle}deg)`;
+  for (const {layer, element} of fields) {
+    const text = displayText(layer.field, time);
+    [...element.children].forEach((glyph, index) => {
+      glyph.style.backgroundPosition = `${layer.characters.indexOf(text[index]) / (layer.characters.length - 1) * 100}% 0`;
+    });
+  }
   const label = formatTime(time);
   digitalTime.value = label;
   digitalTime.textContent = label;
@@ -133,15 +162,18 @@ reducedMotion.addEventListener('change', () => {
 
 const raketaGroup = document.createElement('optgroup');
 raketaGroup.label = 'Ракета';
+const iconsGroup = document.createElement('optgroup');
+iconsGroup.label = 'Легендарные модели';
 const ownOptions = [];
 for (const item of themeDefinitions.themes) {
   const option = document.createElement('option');
   option.value = item.id;
   option.textContent = item.title;
   if (item.brand === 'raketa') raketaGroup.append(option);
+  else if (item.brand === 'icons') iconsGroup.append(option);
   else ownOptions.push(option);
 }
-themeSelect.replaceChildren(...ownOptions, raketaGroup);
+themeSelect.replaceChildren(...ownOptions, iconsGroup, raketaGroup);
 let savedTheme;
 try { savedTheme = localStorage.getItem('raketa.theme'); } catch { /* File previews may restrict storage. */ }
 selectTheme(savedTheme ?? themeDefinitions.defaultTheme);

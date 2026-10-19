@@ -38,6 +38,15 @@ struct Localization: Sendable {
     }
 
     private static let themeNames = [
+        "rolex-submariner-date-black": "Rolex Submariner Date · Black · steel · 126610LN",
+        "rolex-submariner-date-green": "Rolex Submariner Date · Green · steel · 126610LV",
+        "rolex-submariner-date-blue-rolesor": "Rolex Submariner Date · Blue · steel and gold · 126613LB",
+        "rolex-submariner-date-black-rolesor": "Rolex Submariner Date · Black · steel and gold · 126613LN",
+        "rolex-submariner-date-black-gold": "Rolex Submariner Date · Black · yellow gold · 126618LN",
+        "rolex-submariner-date-blue-gold": "Rolex Submariner Date · Blue · yellow gold · 126618LB",
+        "rolex-submariner": "Rolex Submariner", "omega-speedmaster": "Omega Speedmaster Moonwatch",
+        "cartier-tank": "Cartier Tank Must", "ap-royal-oak": "Audemars Piguet Royal Oak",
+        "casio-gshock": "Casio G-Shock DW-5600",
         "minimalism": "Minimalism", "minimalism-24": "Minimalism 24",
         "minimalism-dark": "Minimalism — Dark", "minimalism-24-dark": "Minimalism 24 — Dark",
         "avangard": "Avangard 0292", "raketa-su": "Raketa Su 0331",

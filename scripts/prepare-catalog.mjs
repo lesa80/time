@@ -60,7 +60,7 @@ function handSprite(source,hand,center,id,name){
 }
 export function prepareCatalog({only}={}){
  const registry=JSON.parse(fs.readFileSync(path.join(root,'themes.json'))),official=JSON.parse(fs.readFileSync(path.join(root,'reference/catalog/index.json')));
- const existing=registry.themes.filter(t=>t.id.startsWith('minimalism')||t.id==='avangard');
+ const existing=registry.themes.filter(t=>t.brand!=='raketa'||t.id==='avangard');
  const entries=[];
  fs.mkdirSync(path.join(root,'macos/.build/previews/catalog'),{recursive:true});
  for(const item of official.items){if(item.code==='avangard-0292')continue;const id=item.code,config=catalogLayouts[id];if(!config)throw Error(`No geometry for ${id}`);const base=`assets/catalog/${id}`;fs.mkdirSync(path.join(root,base),{recursive:true});const restored=`${base}/source/restored.png`;

@@ -1,0 +1,175 @@
+{
+  "name": "Omega Speedmaster Moonwatch",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "displayMode": "analog",
+  "resolution": [
+    893,
+    1520
+  ],
+  "dialBounds": [
+    117,
+    392,
+    610,
+    610
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "mechanicalControls": [
+    {
+      "action": "chronograph-toggle",
+      "bounds": [
+        778,
+        465,
+        94,
+        114
+      ]
+    },
+    {
+      "action": "chronograph-reset",
+      "bounds": [
+        775,
+        836,
+        96,
+        121
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/omega-speedmaster/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        893,
+        1520
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/omega-speedmaster/dial.png",
+      "position": [
+        117,
+        392
+      ],
+      "size": [
+        610,
+        610
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/omega-speedmaster/chrono-minute.png",
+      "handResPosition": [
+        561.5,
+        697.5
+      ],
+      "rotatePoint": [
+        8,
+        69
+      ],
+      "size": [
+        16,
+        79
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/omega-speedmaster/chrono-hour.png",
+      "handResPosition": [
+        421.5,
+        832.5
+      ],
+      "rotatePoint": [
+        8,
+        62
+      ],
+      "size": [
+        16,
+        72
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/omega-speedmaster/second.png",
+      "handResPosition": [
+        281,
+        697.5
+      ],
+      "rotatePoint": [
+        11,
+        67
+      ],
+      "size": [
+        22,
+        81
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/omega-speedmaster/hour.png",
+      "handResPosition": [
+        422,
+        697
+      ],
+      "rotatePoint": [
+        14,
+        176.89999999999998
+      ],
+      "size": [
+        28,
+        201
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/omega-speedmaster/minute.png",
+      "handResPosition": [
+        422,
+        697
+      ],
+      "rotatePoint": [
+        11,
+        262.3
+      ],
+      "size": [
+        22,
+        291
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/omega-speedmaster/chrono-second.png",
+      "handResPosition": [
+        422,
+        697
+      ],
+      "rotatePoint": [
+        8,
+        292
+      ],
+      "size": [
+        16,
+        332
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/omega-speedmaster/cap.png",
+      "position": [
+        416,
+        691
+      ],
+      "size": [
+        12,
+        12
+      ]
+    }
+  ]
+}

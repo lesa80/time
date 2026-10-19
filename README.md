@@ -2,9 +2,9 @@
 
 [Русский](README.md) · [English](README.en.md)
 
-**Время 2.5.0** — приложение с часами для рабочего стола и режимом «Поверх окон». В нём 25 тем: четыре светлых и тёмных варианта «Минимализма» и 21 модель в разделе «Ракета». Приложение показывает местное время macOS, работает без интернета и сохраняет ваши настройки.
+**Время 2.6.4** — приложение с часами для рабочего стола и режимом «Поверх окон». В нём 36 тем: четыре варианта «Минимализма», 21 модель «Ракеты» и 11 вариантов в разделе «Легендарные модели». Приложение показывает местное время macOS, работает без интернета и сохраняет ваши настройки.
 
-**[Скачать Время для macOS](https://github.com/lesa80/time/releases/download/v2.5.0/Vremya-2.5.0-macOS-universal.zip)** · [Все сборки](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.5.0/SHA256SUMS)
+**[Скачать Время для macOS](https://github.com/lesa80/time/releases/download/v2.6.4/Vremya-2.6.4-macOS-universal.zip)** · [Все сборки](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.6.4/SHA256SUMS)
 
 Требуется **macOS 13 или новее**. Один архив для Apple Silicon и Intel. Текущая сборка тестовая, с ad-hoc подписью, без нотариализации Apple. [Подробности совместимости](docs/RELEASE_NOTES.md).
 
@@ -20,17 +20,95 @@
 - Перемещение по рабочему столу, режим «Поверх окон» и закрепление положения с пропуском кликов.
 - Пять размеров: 180, 240, 280, 360 и 466 точек.
 - Плавное движение секундной стрелки и возможность скрыть её.
+- Хронограф Speedmaster с запуском, паузой, продолжением и сбросом через кнопки корпуса или меню Interaction.
 - Автозапуск после входа в macOS.
 - Сохранение темы, размера, положения и режимов между запусками.
 - Справка, коллекция часов и информация о проекте в окне «О часах».
 
-По умолчанию выбран **«Минимализм 24 — тёмный»**. Все четыре варианта «Минимализма» доступны в основном списке тем, модели производителя — в меню **Тема → Ракета**.
+По умолчанию выбран **«Минимализм 24 — тёмный»**. Все четыре варианта «Минимализма» доступны в основном списке тем, сторонние модели — в разделах **Тема → Ракета** и **Тема → Легендарные модели**.
+
+## Модели производителей
+
+В меню **Тема → Легендарные модели** доступны Rolex, Omega, Cartier, Audemars Piguet и Casio. Модели «Ракеты» находятся в **Тема → Ракета**. Ниже приведены официальные сайты и страницы прототипов; функции тем описывают поведение приложения.
+
+### Rolex Submariner / Submariner Date
+
+[Сайт Rolex](https://www.rolex.com/) · [Коллекция Submariner](https://www.rolex.com/watches/submariner/all-models)
+
+Семь вариантов корпуса, браслета и цвета. У версий Date число месяца обновляется по местному календарю macOS.
+
+| Модель | Вариант |
+|---|---|
+| [124060](https://www.rolex.com/watches/submariner/m124060-0001) | Чёрный, сталь, без даты |
+| [126610LN](https://www.rolex.com/watches/submariner/m126610ln-0001) | Чёрный, сталь, дата |
+| [126610LV](https://www.rolex.com/watches/submariner/m126610lv-0002) | Зелёный безель, чёрный циферблат, сталь, дата |
+| [126613LB](https://www.rolex.com/watches/submariner/m126613lb-0002) | Синий, сталь и жёлтое золото, дата |
+| [126613LN](https://www.rolex.com/watches/submariner/m126613ln-0002) | Чёрный, сталь и жёлтое золото, дата |
+| [126618LN](https://www.rolex.com/watches/submariner/m126618ln-0002) | Чёрный, жёлтое золото, дата |
+| [126618LB](https://www.rolex.com/watches/submariner/m126618lb-0002) | Синий, жёлтое золото, дата |
+
+### Omega Speedmaster Moonwatch
+
+[Сайт Omega](https://www.omegawatches.com/) · [Модель 310.30.42.50.01.001](https://www.omegawatches.com.hk/en-hk/watch-omega-speedmaster-moonwatch-professional-co-axial-master-chronometer-chronograph-42-mm-31030425001001)
+
+Малая секундная стрелка слева показывает текущие секунды. Центральная стрелка хронографа, 30-минутный и 12-часовой счётчики измеряют прошедшее время. Верхняя кнопка корпуса — запуск, пауза и продолжение; нижняя — остановка и сброс. Те же действия доступны в **Interaction** сразу под названием часов, в том числе без безеля. Отсчёт продолжается при смене темы и сне Mac, но не сохраняется после закрытия приложения.
+
+### Cartier Tank Must
+
+[Сайт Cartier](https://www.cartier.com/) · [Коллекция Tank](https://www.cartier.com/en-us/watches/collections/tank/) · [Официальное руководство WSTA0041](https://www.userguide.cartier.com/WSTA0041.html)
+
+Прямоугольный циферблат, две синие стрелки и чёрный ремешок. Секундной стрелки у этой темы нет.
+
+### Audemars Piguet Royal Oak
+
+[Сайт Audemars Piguet](https://www.audemarspiguet.com/) · [Модель 15510ST.OO.1320ST.06](https://www.audemarspiguet.com/en/watch-collection/royal-oak/15510ST.OO.1320ST.06)
+
+Синий циферблат, три живые стрелки, местная дата и интегрированный стальной браслет.
+
+### Casio G-Shock DW-5600
+
+[Сайт Casio](https://www.casio.com/) · [DW-5600E-1V](https://www.casio.com/us/watches/gshock/product.DW-5600E-1V/) · [DW-5600UE-1](https://www.casio.com/europe/watches/casio/product.DW-5600UE-1/)
+
+Цифровое местное время в формате 24 часа, секунды, день недели, месяц и число. Будильник, таймер и дополнительные режимы физических часов в приложении не реализованы.
+
+### Ракета
+
+[Сайт Ракеты](https://raketa.com/) · [Каталог часов](https://raketa.com/watches)
+
+21 тема с оформлением циферблатов, корпусов и ремешков соответствующих моделей. Коллекция зафиксирована на 18 октября 2026 года.
 
 ![Коллекция Ракета: 21 модель](assets/about/collection.png)
 
+<details>
+<summary>Все модели «Ракеты» и ссылки производителя</summary>
+
+- [Авангард 0292](https://raketa.com/product/avangard-0292)
+- [Ракета Су 0331](https://raketa.com/product/raketa-su)
+- [Золотой Ключик 0328](https://raketa.com/product/zolotoy-klyuchik)
+- [Современник 0352](https://raketa.com/product/sovremennik)
+- [Русский код 0302](https://raketa.com/product/russkiy-kod-0302)
+- [Русский код · Меридиан 0344](https://raketa.com/product/russkiy-kod-0344)
+- [BIG ZERO Лебедев 0333](https://raketa.com/product/raketa-x-lebedev)
+- [Байконур 0325](https://raketa.com/product/baykonur-0325)
+- [BIG ZERO Янковская 0330](https://raketa.com/product/big-zero-yankovskaya)
+- [BIG ZERO Лазурь 0308](https://raketa.com/product/big-zero-azur-blue)
+- [Амфибия 0321](https://raketa.com/product/amfibiya-0321)
+- [Коперник 0307](https://raketa.com/product/kopernik-0293)
+- [Подводник 0317](https://raketa.com/product/podvodnik-0317)
+- [Полярные 0300](https://raketa.com/product/polyarnye-0300)
+- [Лётчик 0301](https://raketa.com/product/letchik)
+- [BIG ZERO Синий 0294](https://raketa.com/product/big-zero-blue)
+- [BIG ZERO Чёрный 0341](https://raketa.com/product/big-zero-black-0341)
+- [BIG ZERO 0283](https://raketa.com/product/big-zero-0283)
+- [Ракета × Avgvst 0316 · серебро](https://raketa.com/product/raketa-avgvst-0316)
+- [Ракета × Avgvst 0315 · золото](https://raketa.com/product/raketa-avgvst)
+- [Ракета × Avgvst 0320 · чёрный](https://raketa.com/product/raketa-avgvst-0320)
+
+</details>
+
 ## Установка
 
-1. [Скачайте ZIP](https://github.com/lesa80/time/releases/download/v2.5.0/Vremya-2.5.0-macOS-universal.zip) и распакуйте его.
+1. [Скачайте ZIP](https://github.com/lesa80/time/releases/download/v2.6.4/Vremya-2.6.4-macOS-universal.zip) и распакуйте его.
 2. Перенесите `Время.app` в «Программы» и откройте.
 3. Перетащите часы в удобное место. Откройте настройки правым кликом по часам или значку в строке меню.
 
@@ -44,12 +122,15 @@
 
 | Действие | Результат |
 |---|---|
-| Клик по часам | Переключить циферблат и вид с безелем и ремешком |
+| «Внешний вид → Безель и ремешок» | Переключить циферблат и полный вид часов |
+| Кнопки корпуса Speedmaster / Interaction | Запуск, пауза, продолжение и сброс хронографа |
 | Перетаскивание | Переместить часы |
 | Левый клик по значку в строке меню | Переключить «Поверх окон» |
 | Правый клик или Control-клик | Открыть настройки |
 | «Закрепить положение» | Пропускать клики сквозь часы; меню остаётся доступным в строке меню |
 | «Вернуть на видимое место» | Вернуть часы на экран и снять закрепление |
+
+**«Внешний вид»** объединяет размер, безель и стрелки; **«Окно»** — режим поверх окон, закрепление и возврат на экран. Клик по циферблату не переключает безель. **Interaction** появляется сразу под названием модели, если для неё предусмотрены действия.
 
 Для автозапуска включите **«Автозапуск при старте системы»** в меню приложения. Если macOS запросит подтверждение, разрешите запуск в «Системные настройки → Основные → Объекты входа».
 
@@ -68,4 +149,4 @@ npm run build
 
 Код — [MIT](LICENSE). Логотип БОЛТ42 и иконка принадлежат автору проекта, [@lesa80](https://github.com/lesa80); права на них сохраняются за автором. [Область лицензии](LICENSE_SCOPE.md) · [Сторонние материалы](THIRD_PARTY_NOTICES.md).
 
-«Время» — независимое неофициальное приложение, не связанное с мануфактурой «Ракета». [Официальный сайт производителя](https://raketa.com/).
+«Время» — независимое неофициальное приложение. Проект не связан с Rolex, Omega, Cartier, Audemars Piguet, Casio или «Ракетой» и не одобрен ими. Названия, дизайн и логотипы производителей исключены из MIT проекта; ссылки выше ведут на официальные источники.

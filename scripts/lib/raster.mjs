@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { PNG } from 'pngjs';
 import { Resvg } from '@resvg/resvg-js';
+import { displayText } from '../../time.mjs';
 
 const previewAngles = { hour: 303.25, minute: 62.4, second: 144 };
 const pngURI = data => `data:image/png;base64,${data.toString('base64')}`;
@@ -44,8 +45,19 @@ export function normalizeRaster(png, width, height, options = {}) {
   return PNG.sync.write(result);
 }
 
-export function composePreview(layers, resolution, angles = previewAngles, outputWidth = resolution[0]) {
+export function composePreview(layers, resolution, angles = previewAngles, outputWidth = resolution[0], reading = null) {
+  reading ??= { hours: Math.floor(angles.hour / 15), minutes: Math.floor(angles.minute / 6), seconds: Math.floor(angles.second / 6) };
   const body = layers.map(({ name, spec, png, size }) => {
+    if (spec.type === 'Text Res') {
+      const image = PNG.sync.read(png), characters = [...spec.characters];
+      const glyphWidth = image.width / characters.length;
+      const text = [...displayText(spec.field, reading)], width = size[0] / text.length;
+      return text.map((character, index) => {
+        const glyph = characters.indexOf(character);
+        assert(glyph >= 0, `Missing glyph ${character}`);
+        return `<svg x="${spec.position[0] + index * width}" y="${spec.position[1]}" width="${width}" height="${size[1]}" viewBox="${glyph * glyphWidth} 0 ${glyphWidth} ${image.height}" preserveAspectRatio="none" overflow="hidden">${embeddedImage(png, image.width, image.height)}</svg>`;
+      }).join('');
+    }
     if (spec.type === 'Hand Res') {
       const [cx, cy] = spec.handResPosition;
       const [px, py] = spec.rotatePoint;

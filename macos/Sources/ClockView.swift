@@ -2,12 +2,19 @@ import AppKit
 
 @MainActor
 final class ClockView: NSView {
-    var renderer: DialRenderer { didSet { invalidateArtwork(); updateThemeDescription() } }
+    var renderer: DialRenderer { didSet { invalidateArtwork(); rebuildMechanicalControls(); updateThemeDescription() } }
     var showSeconds = true
-    var showBezel = true { didSet { invalidateArtwork() } }
+    var showBezel = true { didSet { invalidateArtwork(); layoutMechanicalControls(); updateThemeDescription() } }
     var clockMenu: NSMenu?
     var date = Date()
-    var onToggleBezel: (() -> Void)?
+    var chronograph = ChronographReading() {
+        didSet { if (oldValue.elapsed > 0) != (chronograph.elapsed > 0) { updateMechanicalControls() } }
+    }
+    var chronographIsRunning = false {
+        didSet { if oldValue != chronographIsRunning { updateMechanicalControls() } }
+    }
+    var onInteraction: ((DialSpecification.MechanicalAction) -> Void)?
+    private var mechanicalButtons: [MechanicalButton] = []
     var onDragEnded: (() -> Void)?
     private var dragStart: (pointer: NSPoint, windowOrigin: NSPoint)?
     private var didDrag = false
@@ -17,24 +24,74 @@ final class ClockView: NSView {
         self.renderer = renderer
         super.init(frame: .zero)
         setAccessibilityElement(true)
-        setAccessibilityRole(.button)
+        rebuildMechanicalControls()
         updateThemeDescription()
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     func updateThemeDescription() {
-        setAccessibilityLabel(L("%@ · %@, %ld-hour dial", L("Vremya"), renderer.theme.localizedTitle, renderer.theme.hourCycle))
-        setAccessibilityRole(renderer.hasBezel ? .button : .image)
-        let clickHelp = renderer.hasBezel ? L("Click to toggle the bezel and strap. ") : ""
-        setAccessibilityHelp(clickHelp + L("Drag to move the clock. Right-click for settings."))
-        toolTip = clickHelp + L("Drag to move. Right-click for settings. One hour-hand revolution takes %ld hours.", renderer.theme.hourCycle)
+        if renderer.specification.displayMode == "digital" {
+            setAccessibilityLabel(L("%@ · %@, digital clock", L("Vremya"), renderer.theme.localizedTitle))
+            toolTip = L("Digital clock with local time and date. Drag to move. Right-click for settings.")
+        } else {
+            setAccessibilityLabel(L("%@ · %@, %ld-hour dial", L("Vremya"), renderer.theme.localizedTitle, renderer.theme.hourCycle))
+            toolTip = L("Drag to move. Right-click for settings. One hour-hand revolution takes %ld hours.", renderer.theme.hourCycle)
+        }
+        if renderer.hasChronograph {
+            toolTip = L("Upper pusher: start/pause. Lower pusher: reset. Running seconds are at 9. Right-click → Interaction for all controls.")
+        }
+        setAccessibilityRole(mechanicalButtons.contains { !$0.isHidden } ? .group : .image)
+        setAccessibilityHelp(toolTip)
+    }
+    private func rebuildMechanicalControls() {
+        mechanicalButtons.forEach { $0.removeFromSuperview() }
+        mechanicalButtons = (renderer.specification.mechanicalControls ?? []).map { control in
+            let button = MechanicalButton(control: control) { [weak self] in self?.onInteraction?(control.action) }
+            addSubview(button)
+            return button
+        }
+        layoutMechanicalControls()
+        updateMechanicalControls()
+    }
+    override func layout() {
+        super.layout()
+        layoutMechanicalControls()
+    }
+    private func layoutMechanicalControls() {
+        let resolution = renderer.specification.resolution
+        for button in mechanicalButtons {
+            let b = button.control.bounds
+            button.frame = NSRect(x: b[0] / resolution[0] * bounds.width,
+                                  y: (1 - (b[1] + b[3]) / resolution[1]) * bounds.height,
+                                  width: b[2] / resolution[0] * bounds.width,
+                                  height: b[3] / resolution[1] * bounds.height)
+            button.isHidden = !showBezel || !renderer.hasBezel
+        }
+    }
+    private func updateMechanicalControls() {
+        for button in mechanicalButtons {
+            let label: String
+            switch button.control.action {
+            case .chronographToggle:
+                label = chronographIsRunning ? L("Pause chronograph") : chronograph.elapsed > 0 ? L("Resume chronograph") : L("Start chronograph")
+                button.toolTip = L("Upper pusher: start, pause or resume the chronograph.")
+            case .chronographReset:
+                label = L("Reset chronograph")
+                button.isEnabled = chronographIsRunning || chronograph.elapsed > 0
+                button.toolTip = L("Lower pusher: stop and reset the chronograph.")
+            }
+            button.setAccessibilityLabel(label)
+        }
     }
     override var isOpaque: Bool { false }
     override var acceptsFirstResponder: Bool { false }
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
     override func hitTest(_ point: NSPoint) -> NSView? {
-        if (showBezel && renderer.hasBezel) || renderer.specification.dialShape == "rectangle" { return bounds.contains(point) ? self : nil }
-        let r = bounds.width / 2
-        return hypot(point.x - r, point.y - r) <= r ? self : nil
+        let local = convert(point, from: superview)
+        if !(showBezel && renderer.hasBezel) && renderer.specification.dialShape != "rectangle" {
+            let r = bounds.width / 2
+            guard hypot(local.x - bounds.midX, local.y - bounds.midY) <= r else { return nil }
+        }
+        return super.hitTest(point)
     }
     override func draw(_ dirtyRect: NSRect) {
         guard let context = NSGraphicsContext.current?.cgContext else { return }
@@ -46,10 +103,10 @@ final class ClockView: NSView {
         }
         if let cache = artworkCache {
             context.draw(cache.background, in: bounds)
-            renderer.draw(in: context, size: bounds.size, angles: angles, showSeconds: showSeconds, showBezel: showBezel, pass: .hands)
+            renderer.draw(in: context, size: bounds.size, angles: angles, showSeconds: showSeconds, showBezel: showBezel, pass: .live, chronograph: chronograph)
             context.draw(cache.foreground, in: bounds)
         } else {
-            renderer.draw(in: context, size: bounds.size, angles: angles, showSeconds: showSeconds, showBezel: showBezel)
+            renderer.draw(in: context, size: bounds.size, angles: angles, showSeconds: showSeconds, showBezel: showBezel, chronograph: chronograph)
         }
     }
     private func invalidateArtwork() {
@@ -98,20 +155,45 @@ final class ClockView: NSView {
     }
     override func mouseUp(with event: NSEvent) {
         defer { dragStart = nil; didDrag = false }
-        if didDrag { onDragEnded?(); return }
-        guard let window, let start = dragStart, !didDrag else { return }
-        let point = window.convertPoint(toScreen: event.locationInWindow)
-        guard hypot(point.x - start.pointer.x, point.y - start.pointer.y) < 4,
-              hitTest(convert(event.locationInWindow, from: nil)) != nil else { return }
-        onToggleBezel?()
-    }
-    override func accessibilityPerformPress() -> Bool {
-        guard renderer.hasBezel, let onToggleBezel else { return false }
-        onToggleBezel()
-        return true
+        if didDrag { onDragEnded?() }
     }
     override func rightMouseDown(with event: NSEvent) {
         if let clockMenu { NSMenu.popUpContextMenu(clockMenu, with: event, for: self) }
+    }
+}
+
+/// A real AppKit button over the photographed pusher. Normal artwork stays intact.
+@MainActor
+final class MechanicalButton: NSButton {
+    let control: DialSpecification.MechanicalControl
+    private let onPress: () -> Void
+    init(control: DialSpecification.MechanicalControl, onPress: @escaping () -> Void) {
+        self.control = control
+        self.onPress = onPress
+        super.init(frame: .zero)
+        title = ""
+        isBordered = false
+        focusRingType = .none
+        setButtonType(.momentaryChange)
+        target = self
+        action = #selector(pressed)
+    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    @objc private func pressed() { onPress() }
+    override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
+    override func mouseDown(with event: NSEvent) {
+        if event.modifierFlags.contains(.control) { superview?.rightMouseDown(with: event); return }
+        super.mouseDown(with: event)
+    }
+    override func rightMouseDown(with event: NSEvent) { superview?.rightMouseDown(with: event) }
+    override func resetCursorRects() {
+        if isEnabled { addCursorRect(bounds, cursor: .pointingHand) }
+    }
+    override func draw(_ dirtyRect: NSRect) {
+        if isHighlighted {
+            NSColor.white.withAlphaComponent(0.18).setFill()
+            NSBezierPath(roundedRect: bounds.insetBy(dx: 1, dy: 1), xRadius: 4, yRadius: 4).fill()
+        }
     }
 }
 

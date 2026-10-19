@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-19",
+  "scope": "Local testing only; no publication",
+  "models": [
+    {
+      "id": "rolex-submariner",
+      "title": "Rolex Submariner",
+      "reference": "124060",
+      "page": "https://www.rolex.com/watches/submariner/m124060-0001",
+      "photo": "reference/icons/rolex-front.png",
+      "master": "assets/icons-collection/rolex-submariner/source/master.png",
+      "sha256": "72e1329db8d70ecbd30a1e5c0235c3b32a9f5793a416006a9acdee3e4d17823b"
+    },
+    {
+      "id": "rolex-submariner-date-black",
+      "title": "Rolex Submariner Date · чёрный · сталь · 126610LN",
+      "reference": "126610LN",
+      "page": "https://www.rolex.com/watches/submariner/m126610ln-0001",
+      "photo": "reference/icons/126610ln-front.png",
+      "master": "assets/icons-collection/rolex-submariner-date-black/source/master.png",
+      "sha256": "9fe205659e72e42311e7d4b85d5f552a447643ff9d999283829cfbbc3276d09c"
+    },
+    {
+      "id": "rolex-submariner-date-green",
+      "title": "Rolex Submariner Date · зелёный · сталь · 126610LV",
+      "reference": "126610LV",
+      "page": "https://www.rolex.com/watches/submariner/m126610lv-0002",
+      "photo": "reference/icons/126610lv-front.png",
+      "master": "assets/icons-collection/rolex-submariner-date-green/source/master.png",
+      "sha256": "45bf6c11fb220137d8d00d91d9a1b2f8acb97c85bc27012a52103f0f5f504a41"
+    },
+    {
+      "id": "rolex-submariner-date-blue-rolesor",
+      "title": "Rolex Submariner Date · синий · сталь и золото · 126613LB",
+      "reference": "126613LB",
+      "page": "https://www.rolex.com/watches/submariner/m126613lb-0002",
+      "photo": "reference/icons/126613lb-front.png",
+      "master": "assets/icons-collection/rolex-submariner-date-blue-rolesor/source/master.png",
+      "sha256": "ba1cca281f9f5f4317d52c6ed2e0afee20263a09dac15693e2ce55c49f6d36c3"
+    },
+    {
+      "id": "rolex-submariner-date-black-rolesor",
+      "title": "Rolex Submariner Date · чёрный · сталь и золото · 126613LN",
+      "reference": "126613LN",
+      "page": "https://www.rolex.com/watches/submariner/m126613ln-0002",
+      "photo": "reference/icons/126613ln-front.png",
+      "master": "assets/icons-collection/rolex-submariner-date-black-rolesor/source/master.png",
+      "sha256": "ddac9516d7baa02884543e29cb4bdd0f3c7edbbb7b810869022bb007c121fe48"
+    },
+    {
+      "id": "rolex-submariner-date-black-gold",
+      "title": "Rolex Submariner Date · чёрный · жёлтое золото · 126618LN",
+      "reference": "126618LN",
+      "page": "https://www.rolex.com/watches/submariner/m126618ln-0002",
+      "photo": "reference/icons/126618ln-front.png",
+      "master": "assets/icons-collection/rolex-submariner-date-black-gold/source/master.png",
+      "sha256": "a997417fb35e42dc2744bcdf84a0b6ef4edbed62dbd0e84aeb8546bf5311cd85"
+    },
+    {
+      "id": "rolex-submariner-date-blue-gold",
+      "title": "Rolex Submariner Date · синий · жёлтое золото · 126618LB",
+      "reference": "126618LB",
+      "page": "https://www.rolex.com/watches/submariner/m126618lb-0002",
+      "photo": "reference/icons/126618lb-front.png",
+      "master": "assets/icons-collection/rolex-submariner-date-blue-gold/source/master.png",
+      "sha256": "2964af917a7840772334e2c4d1f575b4de76b3c52e452d95bdd079f871e9e1a2"
+    },
+    {
+      "id": "omega-speedmaster",
+      "title": "Omega Speedmaster Moonwatch",
+      "reference": "310.30.42.50.01.001",
+      "page": "https://www.omegawatches.com.hk/en-hk/watch-omega-speedmaster-moonwatch-professional-co-axial-master-chronometer-chronograph-42-mm-31030425001001",
+      "photo": "reference/icons/omega-front.png",
+      "master": "assets/icons-collection/omega-speedmaster/source/master.png",
+      "sha256": "e0d1cd3aee70777afe342b4fd7bb6b6d31220d92a6da551eb51f5fa2cc0f2493"
+    },
+    {
+      "id": "cartier-tank",
+      "title": "Cartier Tank Must",
+      "reference": "WSTA0041",
+      "page": "https://int.cartier.com/de-eu/kollektionen/watches/herrenuhren/tank/tank-must/wsta0041-tank-must-de-cartier.html",
+      "photo": null,
+      "master": "assets/icons-collection/cartier-tank/source/master.png",
+      "sha256": "12cee9928d57f300f99919be4a70ea935c5e056ee0517cef06d9b59f6d5b694e"
+    },
+    {
+      "id": "ap-royal-oak",
+      "title": "Audemars Piguet Royal Oak",
+      "reference": "15510ST.OO.1320ST.06",
+      "page": "https://www.audemarspiguet.com/en/watch-collection/royal-oak/15510ST.OO.1320ST.06",
+      "photo": "reference/icons/ap-front.png",
+      "master": "assets/icons-collection/ap-royal-oak/source/master.png",
+      "sha256": "97544bea12e5708be034e155137a1ef1dd18a25bcb293e55ad019d14c2bee289"
+    },
+    {
+      "id": "casio-gshock",
+      "title": "Casio G-Shock DW-5600",
+      "reference": "DW-5600E / DW-5600UE",
+      "page": "https://www.casio.com/us/watches/gshock/product.DW-5600E-1V/",
+      "photo": "reference/icons/casio-front.png",
+      "master": "assets/icons-collection/casio-gshock/source/master.png",
+      "sha256": "3c403b50adcc68ffbaf096b9d84d4dac44ada26801b22c1861af59f7487be3f1"
+    }
+  ],
+  "submarinerCatalog": {
+    "checkedAt": "2026-10-19",
+    "url": "https://www.rolex.com/watches/submariner/all-models",
+    "references": [
+      "124060",
+      "126610LN",
+      "126610LV",
+      "126613LB",
+      "126613LN",
+      "126618LN",
+      "126618LB"
+    ]
+  }
+}

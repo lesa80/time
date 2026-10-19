@@ -24,8 +24,8 @@ window.isReleasedWhenClosed = false
 let view = ClockView(renderer: renderer)
 view.showBezel = false
 window.contentView = view
-var toggles = 0
-view.onToggleBezel = { toggles += 1 }
+var interactions = 0
+view.onInteraction = { _ in interactions += 1 }
 @MainActor
 func send(_ type: NSEvent.EventType, at point: NSPoint, flags: NSEvent.ModifierFlags = []) {
     let event = NSEvent.mouseEvent(with: type, location: window.convertPoint(fromScreen: point),
@@ -44,16 +44,16 @@ func center() -> NSPoint { window.convertPoint(toScreen: NSPoint(x: 140, y: 140)
 let start = center()
 send(.leftMouseDown, at: start)
 send(.leftMouseUp, at: start)
-expect(toggles == 1, "A single click must toggle the bezel")
+expect(interactions == 0, "A dial click must not toggle the bezel or trigger an interaction")
 send(.leftMouseUp, at: start)
-expect(toggles == 1, "A release without a press must not toggle")
+expect(interactions == 0, "A release without a press must not toggle")
 
 let originalFrame = window.frame
 let slightMovement = NSPoint(x: start.x + 2, y: start.y + 1)
 send(.leftMouseDown, at: start)
 send(.leftMouseDragged, at: slightMovement)
 send(.leftMouseUp, at: slightMovement)
-expect(toggles == 2 && window.frame == originalFrame, "Pointer jitter must remain a click")
+expect(interactions == 0 && window.frame == originalFrame, "Pointer jitter must not move the window or trigger an interaction")
 
 let moved = NSPoint(x: start.x + 36, y: start.y + 18)
 send(.leftMouseDown, at: start)
@@ -61,36 +61,37 @@ send(.leftMouseDragged, at: moved)
 expect(window.frame.origin == NSPoint(x: originalFrame.minX + 36, y: originalFrame.minY + 18),
              "Dragging must move the clock by the screen-space pointer displacement")
 send(.leftMouseUp, at: moved)
-expect(toggles == 2, "Dragging must not toggle the bezel")
+expect(interactions == 0, "Dragging must not toggle the bezel")
 
 let nextStart = center()
 send(.leftMouseDown, at: nextStart)
 send(.leftMouseDragged, at: NSPoint(x: nextStart.x + 20, y: nextStart.y))
 send(.leftMouseDragged, at: nextStart)
 send(.leftMouseUp, at: nextStart)
-expect(toggles == 2, "Returning a drag to its starting point must not become a click")
+expect(interactions == 0, "Returning a drag to its starting point must not become a click")
 
 send(.leftMouseDown, at: center(), flags: .control)
 send(.leftMouseUp, at: center(), flags: .control)
 send(.rightMouseDown, at: center())
-expect(toggles == 2, "Context-menu clicks must not toggle the bezel")
+expect(interactions == 0, "Context-menu clicks must not toggle the bezel")
 send(.leftMouseDown, at: center())
 send(.leftMouseUp, at: NSPoint(x: window.frame.maxX + 10, y: window.frame.maxY + 10))
-expect(toggles == 2, "Releasing outside the clock must not toggle")
-expect(view.accessibilityPerformPress() && toggles == 3, "VoiceOver press must toggle the bezel")
+expect(interactions == 0, "Releasing outside the clock must not toggle")
+expect(!view.accessibilityPerformPress() && !view.showBezel, "The clock image must not expose a bezel press action")
 expect(view.acceptsFirstMouse(for: nil), "A click must work when the app is inactive")
 
 // Compare the live view's static-layer cache against the uncached renderer.
 // Render locally into bitmaps; no screen capture permission is involved.
 @MainActor
-func pixels(cached: Bool, renderer: DialRenderer, showBezel: Bool, width: CGFloat = 280) -> [UInt8] {
+func pixels(cached: Bool, renderer: DialRenderer, showBezel: Bool, width: CGFloat = 280, seconds: Bool = false, advance: TimeInterval = 61, elapsed: TimeInterval = 0) -> [UInt8] {
     let size = renderer.displaySize(width: width, showBezel: showBezel)
     window.setContentSize(size)
     // AppKit rounds window frames to pixels; explicitly exercise fractional view bounds too.
     view.setBoundsSize(size)
     view.renderer = renderer
     view.showBezel = showBezel
-    view.showSeconds = false
+    view.showSeconds = seconds
+    view.chronograph = ChronographReading()
     view.date = Date(timeIntervalSince1970: 1_700_000_000)
     let scale = window.backingScaleFactor
     let pixelWidth = Int(ceil(size.width * scale)), height = Int(ceil(size.height * scale))
@@ -103,11 +104,14 @@ func pixels(cached: Bool, renderer: DialRenderer, showBezel: Bool, width: CGFloa
         view.draw(view.bounds)
         // A second frame exercises reuse rather than only cache initialization.
         bitmap.clear(CGRect(origin: .zero, size: size))
+        view.date = view.date.addingTimeInterval(advance)
+        view.chronograph = ChronographReading(elapsed: elapsed)
         view.draw(view.bounds)
         NSGraphicsContext.restoreGraphicsState()
     } else {
-        renderer.draw(in: bitmap, size: size, angles: HandAngles(date: view.date,
-            hourCycle: renderer.theme.hourCycle, direction: renderer.theme.rotationDirection), showSeconds: false, showBezel: showBezel)
+        renderer.draw(in: bitmap, size: size, angles: HandAngles(date: view.date.addingTimeInterval(advance),
+            hourCycle: renderer.theme.hourCycle, direction: renderer.theme.rotationDirection), showSeconds: seconds, showBezel: showBezel,
+            chronograph: ChronographReading(elapsed: elapsed))
     }
     return Array(UnsafeBufferPointer(start: bitmap.data!.assumingMemoryBound(to: UInt8.self), count: pixelWidth * height * 4))
 }
@@ -124,6 +128,49 @@ for theme in library.catalog.themes {
         expect(difference < 0.6, "Cached artwork differs from direct rendering: \(theme.id), bezel=\(bezel), error=\(difference)")
     }
 }
+
+// Running seconds must animate inside the left subdial, including with the static cache reused.
+let moonwatch = try library.renderer(for: "omega-speedmaster")
+let moonStart = pixels(cached: true, renderer: moonwatch, showBezel: true, width: 500, seconds: true, advance: 0)
+let moonLater = pixels(cached: true, renderer: moonwatch, showBezel: true, width: 500, seconds: true, advance: 15)
+let moonWidth = Int(ceil(500 * window.backingScaleFactor))
+let moonScale = Double(moonWidth) / moonwatch.specification.resolution[0]
+let secondLayer = moonwatch.layers.first { $0.spec.image.hasSuffix("/second.png") }!
+let axis = secondLayer.spec.handResPosition!
+var movedSecondPixels = 0
+for y in Int((axis[1] - 75) * moonScale)..<Int((axis[1] + 75) * moonScale) {
+    for x in Int((axis[0] - 75) * moonScale)..<Int((axis[0] + 75) * moonScale) {
+        let index = (y * moonWidth + x) * 4
+        if moonStart[index..<(index + 4)] != moonLater[index..<(index + 4)] { movedSecondPixels += 1 }
+    }
+}
+expect(movedSecondPixels > 30, "Moonwatch running seconds must move inside the left subdial")
+print("Passed: Moonwatch left running seconds animates with cached static artwork")
+
+expect(moonwatch.hasChronograph && !renderer.hasChronograph, "Only the Moonwatch must expose chronograph controls")
+for bezel in [true, false] {
+    for seconds in [true, false] {
+        let cached = pixels(cached: true, renderer: moonwatch, showBezel: bezel, seconds: seconds, advance: 0, elapsed: 7635)
+        let direct = pixels(cached: false, renderer: moonwatch, showBezel: bezel, seconds: seconds, advance: 0, elapsed: 7635)
+        let difference = zip(cached, direct).reduce(0.0) { $0 + abs(Double($1.0) - Double($1.1)) } / Double(cached.count)
+        expect(difference < 0.6, "Live chronograph must match direct drawing, including after caching and when seconds are hidden")
+    }
+}
+let chronoZero = pixels(cached: true, renderer: moonwatch, showBezel: true, width: 500, seconds: false, advance: 0)
+let chronoRunning = pixels(cached: true, renderer: moonwatch, showBezel: true, width: 500, seconds: false, advance: 0, elapsed: 7635)
+for name in ["chrono-second", "chrono-minute", "chrono-hour"] {
+    let layer = moonwatch.layers.first { $0.spec.image.hasSuffix("/\(name).png") }!.spec
+    let axis = layer.handResPosition!
+    var changed = 0
+    for y in Int((axis[1] - 72) * moonScale)..<Int((axis[1] + 72) * moonScale) {
+        for x in Int((axis[0] - 72) * moonScale)..<Int((axis[0] + 72) * moonScale) {
+            let i = (y * moonWidth + x) * 4
+            if chronoZero[i..<(i + 4)] != chronoRunning[i..<(i + 4)] { changed += 1 }
+        }
+    }
+    expect(changed > 30, "\(name) must visibly move while the current seconds hand is hidden")
+}
+print("Passed: all three chronograph hands move independently with cached artwork, with/without bezel and running seconds")
 
 let suite = "local.raketa.tests.\(UUID().uuidString)"
 let preferences = UserDefaults(suiteName: suite)!
@@ -147,6 +194,98 @@ expect(menu.items.first?.representedObject as? String == "minimalism", "Own them
 let brand = menu.items.first { $0.title == L("Raketa") }!
 expect(brand.image != nil && brand.image?.isTemplate == false, "Brand section must keep the red logo")
 expect(brand.submenu?.items.count == 21, "All manufacturer themes must be grouped")
+let icons = menu.items.first { $0.title == L("Legendary models") }!
+expect(icons.submenu?.items.count == 11, "All legendary models and color variants must be grouped")
+
+// Exercise the actual NSMenu targets with a deterministic monotonic clock.
+var chronographNow: TimeInterval = 100
+let chronoDelegate = AppDelegate(library: library, renderer: moonwatch, defaults: preferences)
+chronoDelegate.chronograph = Chronograph(now: { chronographNow })
+chronoDelegate.window = window
+chronoDelegate.clockView = view
+view.renderer = moonwatch
+let chronoMenu = chronoDelegate.makeClockMenu()
+chronoDelegate.menuNeedsUpdate(chronoMenu)
+let controls = chronoDelegate.menuActions["interaction"]!.submenu!
+expect(chronoDelegate.menuActions["interaction"]?.isHidden == false, "Speedmaster controls must be discoverable in the settings menu")
+expect(chronoDelegate.menuActions["chronoReset"]?.isEnabled == false, "Reset must be disabled at zero")
+controls.performActionForItem(at: 0)
+expect(chronoDelegate.chronograph.isRunning && chronoDelegate.menuActions["chronoToggle"]?.title == L("Pause chronograph"), "Menu Start must start the chronograph")
+chronographNow += 7635
+chronoDelegate.updateClock()
+expect(view.chronograph.elapsed == 7635 && chronoDelegate.menuActions["chronoElapsed"]?.title.contains("02:07:15") == true,
+       "View, menu and elapsed time must use the same chronograph")
+controls.performActionForItem(at: 0)
+chronographNow += 90
+chronoDelegate.updateClock()
+expect(!chronoDelegate.chronograph.isRunning && view.chronograph.elapsed == 7635 &&
+       chronoDelegate.menuActions["chronoToggle"]?.title == L("Resume chronograph"), "Menu Pause must freeze the elapsed time")
+controls.performActionForItem(at: 0)
+chronoDelegate.renderer = renderer
+chronoDelegate.menuNeedsUpdate(chronoMenu)
+expect(chronoDelegate.menuActions["interaction"]?.isHidden == true, "Other themes must hide chronograph controls")
+chronoDelegate.pauseForSleep()
+chronographNow += 3600
+expect(chronoDelegate.timer == nil && chronoDelegate.chronograph.reading.elapsed == 11235,
+       "Theme switches and system sleep must preserve running elapsed time without redraws")
+chronoDelegate.renderer = moonwatch
+chronoDelegate.menuNeedsUpdate(chronoMenu)
+controls.performActionForItem(at: 1)
+expect(!chronoDelegate.chronograph.isRunning && view.chronograph.elapsed == 0 &&
+       chronoDelegate.menuActions["chronoToggle"]?.title == L("Start chronograph"), "Menu Reset must stop and zero all counters")
+// The mechanical controls are real buttons aligned with the raster case at every size.
+view.renderer = moonwatch
+view.showBezel = true
+view.onInteraction = { chronoDelegate.performInteraction($0) }
+for width: CGFloat in [180, 280, 466] {
+    let size = moonwatch.displaySize(width: width, showBezel: true)
+    window.setContentSize(size)
+    view.setBoundsSize(size)
+    view.layoutSubtreeIfNeeded()
+    let buttons = view.subviews.compactMap { $0 as? MechanicalButton }
+    expect(buttons.count == 2, "Speedmaster must have two mechanical controls")
+    let upper = buttons.first { $0.control.action == .chronographToggle }!
+    let lower = buttons.first { $0.control.action == .chronographReset }!
+    expect(upper.frame.midY > lower.frame.midY, "Start/pause must be above reset")
+    for button in buttons {
+        expect(!button.isHidden && view.hitTest(NSPoint(x: button.frame.midX, y: button.frame.midY)) === button,
+               "Visible mechanical buttons must receive clicks at width \(width)")
+    }
+    upper.performClick(nil)
+    expect(chronoDelegate.chronograph.isRunning, "Upper pusher must start")
+    chronographNow += 2
+    chronoDelegate.updateClock()
+    upper.performClick(nil)
+    expect(!chronoDelegate.chronograph.isRunning && view.chronograph.elapsed == 2, "Upper pusher must pause")
+    upper.performClick(nil)
+    expect(chronoDelegate.chronograph.isRunning, "Upper pusher must resume")
+    lower.performClick(nil)
+    expect(!chronoDelegate.chronograph.isRunning && view.chronograph.elapsed == 0, "Lower pusher must reset")
+}
+view.showBezel = false
+expect(view.subviews.compactMap { $0 as? MechanicalButton }.allSatisfy(\.isHidden), "Dial-only mode must hide pusher hit areas")
+expect(view.accessibilityRole() == .image, "Hidden case controls must not make the dial a button")
+view.showBezel = true
+expect(view.accessibilityRole() == .group, "Visible case controls must be exposed as accessible buttons")
+expect(chronoMenu.items[1] === chronoDelegate.menuActions["interaction"], "Interaction must immediately follow the current model title")
+expect(chronoDelegate.menuActions["showBezel"]?.menu?.title == L("Appearance") &&
+       chronoDelegate.menuActions["aboveWindows"]?.menu?.title == L("Window"), "Settings must be grouped by purpose")
+expect(chronoMenu.items.filter { !$0.isSeparatorItem && !$0.isHidden }.count == 8, "The root menu must stay compact")
+let appearance = chronoDelegate.menuActions["showBezel"]!.menu!
+appearance.performActionForItem(at: appearance.index(of: chronoDelegate.menuActions["showBezel"]!))
+expect(view.showBezel == preferences.bool(forKey: "showBezel"), "The menu must remain the bezel toggle")
+preferences.set(false, forKey: "showBezel")
+view.showBezel = false
+view.onInteraction = nil
+view.renderer = renderer
+print("Passed: mechanical pushers at three sizes, hidden hit areas, VoiceOver buttons and compact menu grouping")
+print("Passed: real chronograph menu actions, labels, pause/resume, reset, theme switches and sleep")
+for theme in library.catalog.themes.filter(\.isIcon) {
+    delegate.renderer = try library.renderer(for: theme.id)
+    delegate.updateThemeMenuSelection(menu)
+    expect(icons.state == .on && brand.state == .off, "Icon selection must select only its own submenu")
+}
+delegate.renderer = renderer
 delegate.updateThemeMenuSelection(menu)
 expect(brand.state == .on && brand.submenu?.items.first { $0.representedObject as? String == "avangard" }?.state == .on,
        "Selection must be visible in the nested menu")
@@ -163,7 +302,7 @@ for id in ["minimalism", "minimalism-24", "minimalism-dark", "minimalism-24-dark
     delegate.toggleBezel()
     expect(!preferences.bool(forKey: "showBezel") && !view.showBezel, "Minimalism must restore dial-only mode")
     expect(view.hitTest(NSPoint(x: 0, y: 0)) == nil, "Dial-only corners must pass mouse input through")
-    expect(view.accessibilityPerformPress(), "Minimalism must expose the bezel action to VoiceOver")
+    expect(!view.accessibilityPerformPress(), "Minimalism must not expose a bezel press action")
     expect(abs(minimalism.displaySize(width: 280, showBezel: false).height - 280) < 1,
            "All separate dials must remain circular")
     expect(minimalism.displaySize(width: 280, showBezel: true).height > 280,
@@ -184,7 +323,7 @@ let aboutViews = descendants(about.window!.contentView!)
 expect(!aboutViews.contains { $0 is NSTabView }, "About must not contain tabs")
 expect(aboutViews.filter { $0 is NSScrollView }.count == 1, "About must use a single scrollable page")
 let headings = about.contentStack.arrangedSubviews.compactMap { $0.identifier?.rawValue }.filter { $0.hasPrefix("section-") }
-expect(headings == ["section-help", "section-raketa", "section-licenses", "section-developer"], "About sections must follow reading order")
+expect(headings == ["section-help", "section-icons", "section-raketa", "section-licenses", "section-developer"], "About sections must follow reading order")
 expect(aboutViews.contains { $0.identifier?.rawValue == "app-icon" && ($0 as? NSImageView)?.image != nil }, "About must show the supplied app icon")
 let developerLogo = aboutViews.first { $0.identifier?.rawValue == "developer-logo" }!
 expect(descendants(developerLogo).contains { ($0 as? NSImageView)?.image != nil }, "About must show the supplied developer logo")
@@ -232,7 +371,7 @@ for width in [960, 640] {
 about.close()
 preferences.removePersistentDomain(forName: suite)
 window.close()
-print("Passed: widget click, pointer jitter, drag, return drag, context click, outside release and accessibility press")
+print("Passed: inert dial clicks, pointer jitter, drag, return drag, context click, outside release and accessibility semantics")
 print("Passed: cached native rendering for \(library.catalog.themes.count) themes in both modes, saved bezel preference, preferred width and sleep pause")
 
 print("Passed: neutral icons, grouped theme selection, all Minimalism case toggles, single-page About sections, supplied branding, light/dark layouts and scrolling")

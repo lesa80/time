@@ -1,0 +1,121 @@
+{
+  "name": "Rolex Submariner Date · чёрный · жёлтое золото · 126618LN",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "displayMode": "analog",
+  "resolution": [
+    782,
+    1438
+  ],
+  "dialBounds": [
+    119,
+    366,
+    474,
+    474
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/rolex-submariner-date-black-gold/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        782,
+        1438
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/rolex-submariner-date-black-gold/dial.png",
+      "position": [
+        119,
+        366
+      ],
+      "size": [
+        474,
+        474
+      ]
+    },
+    {
+      "type": "Text Res",
+      "image": "assets/icons-collection/rolex-submariner-date-black-gold/date-atlas.png",
+      "position": [
+        484,
+        592
+      ],
+      "size": [
+        66,
+        34
+      ],
+      "field": "date",
+      "characters": "0123456789 SUMOTWEHFRA"
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/rolex-submariner-date-black-gold/hour.png",
+      "handResPosition": [
+        356,
+        603
+      ],
+      "rotatePoint": [
+        21,
+        137.45999999999998
+      ],
+      "size": [
+        42,
+        162
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/rolex-submariner-date-black-gold/minute.png",
+      "handResPosition": [
+        356,
+        603
+      ],
+      "rotatePoint": [
+        13,
+        203.82
+      ],
+      "size": [
+        26,
+        232
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/rolex-submariner-date-black-gold/second.png",
+      "handResPosition": [
+        356,
+        603
+      ],
+      "rotatePoint": [
+        11,
+        215.67000000000002
+      ],
+      "size": [
+        22,
+        256
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/rolex-submariner-date-black-gold/cap.png",
+      "position": [
+        350,
+        597
+      ],
+      "size": [
+        12,
+        12
+      ]
+    }
+  ]
+}

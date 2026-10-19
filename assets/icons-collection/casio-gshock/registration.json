@@ -1,0 +1,24 @@
+{
+  "master": [
+    1024,
+    1536
+  ],
+  "bodyCrop": [
+    203,
+    18,
+    619,
+    1502
+  ],
+  "dialBox": [
+    314,
+    540,
+    400,
+    342
+  ],
+  "center": [
+    512,
+    711
+  ],
+  "source": "https://www.casio.com/us/watches/gshock/product.DW-5600E-1V/",
+  "reference": "DW-5600E / DW-5600UE"
+}

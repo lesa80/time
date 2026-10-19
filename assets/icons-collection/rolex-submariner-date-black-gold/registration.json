@@ -1,0 +1,24 @@
+{
+  "master": [
+    1024,
+    1536
+  ],
+  "bodyCrop": [
+    156,
+    46,
+    782,
+    1438
+  ],
+  "dialBox": [
+    275,
+    412,
+    474,
+    474
+  ],
+  "center": [
+    512,
+    649
+  ],
+  "source": "https://www.rolex.com/watches/submariner/m126618ln-0002",
+  "reference": "126618LN"
+}

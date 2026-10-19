@@ -1,13 +1,13 @@
 {
   "name": "vremya-macos",
-  "version": "2.5.0",
+  "version": "2.6.4",
   "private": true,
-  "description": "Время — часы для рабочего стола macOS с 25 темами, светлыми и тёмными 12- и 24-часовыми циферблатами",
+  "description": "Время — часы для рабочего стола macOS с 36 темами: Минимализм, Ракета и Легендарные модели",
   "type": "module",
   "scripts": {
     "build": "node scripts/build-macos.mjs",
     "build:macos": "npm run build --",
-    "build:artwork": "node scripts/prepare-minimalism.mjs && node scripts/prepare-avangard.mjs && node scripts/prepare-catalog.mjs && node scripts/prepare-about.mjs && node scripts/prepare-icons.mjs && node scripts/build-preview.mjs",
+    "build:artwork": "node scripts/prepare-minimalism.mjs && node scripts/prepare-avangard.mjs && node scripts/prepare-catalog.mjs && node scripts/prepare-icons-collection.mjs && node scripts/prepare-about.mjs && node scripts/prepare-icons.mjs && node scripts/build-preview.mjs",
     "build:preview": "node scripts/build-preview.mjs",
     "start": "node scripts/serve.mjs",
     "test": "node scripts/prepare-icons.mjs && node --test tests/*.test.mjs",

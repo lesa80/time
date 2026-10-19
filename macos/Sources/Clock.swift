@@ -16,20 +16,44 @@ struct HandAngles {
     let hour: Double
     let minute: Double
     let second: Double
+    let hours: Int
+    let minutes: Int
+    let seconds: Int
+    let day: Int
+    let month: Int
+    let weekday: Int
 
-    init(hours: Int, minutes: Int, seconds: Double, hourCycle: Int = 24, direction: Int = 1) {
+    init(hours: Int, minutes: Int, seconds: Double, hourCycle: Int = 24, direction: Int = 1,
+         day: Int = 1, month: Int = 1, weekday: Int = 1) {
         precondition(hourCycle == 12 || hourCycle == 24)
         precondition(direction == 1 || direction == -1)
         let preciseMinutes = Double(minutes) + seconds / 60
         hour = (Double(hours % hourCycle) + preciseMinutes / 60) * 360 / Double(hourCycle) * Double(direction)
         minute = preciseMinutes * 6 * Double(direction)
         second = seconds * 6 * Double(direction)
+        self.hours = hours; self.minutes = minutes; self.seconds = Int(seconds)
+        self.day = day; self.month = month; self.weekday = weekday
     }
 
     init(date: Date, calendar: Calendar = .current, hourCycle: Int = 24, direction: Int = 1) {
-        let parts = calendar.dateComponents([.hour, .minute, .second, .nanosecond], from: date)
+        let parts = calendar.dateComponents([.hour, .minute, .second, .nanosecond, .day, .month, .weekday], from: date)
         self.init(hours: parts.hour!, minutes: parts.minute!,
-                  seconds: Double(parts.second!) + Double(parts.nanosecond ?? 0) / 1e9, hourCycle: hourCycle, direction: direction)
+                  seconds: Double(parts.second!) + Double(parts.nanosecond ?? 0) / 1e9, hourCycle: hourCycle, direction: direction,
+                  day: parts.day!, month: parts.month!, weekday: parts.weekday!)
+    }
+
+    func text(for field: String) -> String {
+        func two(_ value: Int) -> String { value < 10 ? "0\(value)" : String(value) }
+        switch field {
+        case "hours": return two(hours)
+        case "minutes": return two(minutes)
+        case "seconds": return two(seconds)
+        case "day": return two(day)
+        case "month": return two(month)
+        case "date": return day < 10 ? " \(day)" : String(day)
+        case "weekday": return ["SU", "MO", "TU", "WE", "TH", "FR", "SA"][weekday - 1]
+        default: return "  "
+        }
     }
 
     func angle(for image: String) -> Double {
@@ -51,6 +75,7 @@ struct ClockTheme: Decodable {
     let dialShape: String?
     let brand: String?
     var isRaketa: Bool { brand == "raketa" }
+    var isIcon: Bool { brand == "icons" }
     var rotationDirection: Int { direction ?? 1 }
 }
 
@@ -67,7 +92,7 @@ struct ThemeCatalog: Decodable {
               themes.contains(where: { $0.id == defaultTheme }),
               themes.allSatisfy({ !$0.id.isEmpty && !$0.title.isEmpty && [12, 24].contains($0.hourCycle) &&
                   [1, -1].contains($0.rotationDirection) && isSafeResourcePath($0.specification) &&
-                  $0.specification.hasSuffix(".json") && [nil, "raketa"].contains($0.brand) &&
+                  $0.specification.hasSuffix(".json") && [nil, "raketa", "icons"].contains($0.brand) &&
                   [nil, "circle", "rectangle"].contains($0.dialShape) }) else {
             throw ModelError.invalid("themes.json")
         }
@@ -75,6 +100,15 @@ struct ThemeCatalog: Decodable {
 }
 
 struct DialSpecification: Decodable {
+    enum MechanicalAction: String, Decodable {
+        case chronographToggle = "chronograph-toggle"
+        case chronographReset = "chronograph-reset"
+    }
+    struct MechanicalControl: Decodable {
+        let action: MechanicalAction
+        /// Top-left authoring coordinates, matching the visible pusher on the case.
+        let bounds: [Double]
+    }
     struct Layer: Decodable {
         let type: String
         let image: String
@@ -82,11 +116,15 @@ struct DialSpecification: Decodable {
         let handResPosition: [Double]?
         let rotatePoint: [Double]?
         let size: [Double]?
+        let field: String?
+        let characters: String?
     }
     let resolution: [Double]
     let dialBounds: [Double]?
     let dialShape: String?
     let layers: [Layer]
+    let displayMode: String?
+    let mechanicalControls: [MechanicalControl]?
 
     func validate() throws {
         func point(_ vector: [Double]?) -> Bool {
@@ -97,7 +135,8 @@ struct DialSpecification: Decodable {
             guard let vector else { return false }
             return point(vector) && vector.allSatisfy { $0 > 0 && $0 <= 16_384 }
         }
-        guard size(resolution), [nil, "circle", "rectangle"].contains(dialShape), !layers.isEmpty else {
+        guard size(resolution), [nil, "circle", "rectangle"].contains(dialShape),
+              [nil, "analog", "digital"].contains(displayMode), !layers.isEmpty else {
             throw ModelError.invalid(L("dial size or shape"))
         }
         if let bounds = dialBounds {
@@ -113,9 +152,19 @@ struct DialSpecification: Decodable {
             guard isSafeResourcePath(layer.image), layer.image.hasSuffix(".png"), size(layer.size ?? resolution) else {
                 throw ModelError.invalid(L("layer resource: %@", layer.image))
             }
-            if layer.type == "Hand Res" {
+            if layer.type == "Text Res" {
+                guard !hasSeenForeground, point(layer.position), layer.handResPosition == nil,
+                      layer.rotatePoint == nil, let field = layer.field,
+                      ["hours", "minutes", "seconds", "day", "month", "weekday", "date"].contains(field),
+                      let characters = layer.characters, !characters.isEmpty, characters.count <= 64,
+                      Set(characters).count == characters.count,
+                      Set("0123456789 SUMOTWEHFR A").isSubset(of: Set(characters)) else {
+                    throw ModelError.invalid(L("text layer geometry: %@", layer.image))
+                }
+                hasSeenHand = true
+            } else if layer.type == "Hand Res" {
                 let name = URL(fileURLWithPath: layer.image).deletingPathExtension().lastPathComponent
-                guard !hasSeenForeground, ["hour", "minute", "second"].contains(name), handNames.insert(name).inserted,
+                guard !hasSeenForeground, ["hour", "minute", "second", "chrono-second", "chrono-minute", "chrono-hour"].contains(name), handNames.insert(name).inserted,
                       point(layer.handResPosition), point(layer.rotatePoint), layer.position == nil else {
                     throw ModelError.invalid(L("hand geometry: %@", layer.image))
                 }
@@ -127,6 +176,26 @@ struct DialSpecification: Decodable {
                 if hasSeenHand { hasSeenForeground = true }
             }
         }
-        guard handNames.isSuperset(of: ["hour", "minute"]) else { throw ModelError.invalid(L("missing hands")) }
+        if displayMode == "digital" {
+            guard handNames.isEmpty,
+                  Set(layers.filter { $0.type == "Text Res" }.compactMap(\.field)).isSuperset(of: ["hours", "minutes", "seconds"]) else {
+                throw ModelError.invalid(L("missing digital fields"))
+            }
+        } else {
+            guard handNames.isSuperset(of: ["hour", "minute"]) else { throw ModelError.invalid(L("missing hands")) }
+        }
+        let chronographHands: Set<String> = ["chrono-second", "chrono-minute", "chrono-hour"]
+        guard handNames.isDisjoint(with: chronographHands) || handNames.isSuperset(of: chronographHands) else {
+            throw ModelError.invalid(L("missing hands"))
+        }
+        if let controls = mechanicalControls {
+            guard Set(controls.map(\.action)).count == controls.count,
+                  handNames.isSuperset(of: chronographHands),
+                  controls.allSatisfy({ control in
+                      let b = control.bounds
+                      return b.count == 4 && b.allSatisfy(\.isFinite) && b[0] >= 0 && b[1] >= 0 &&
+                          b[2] > 0 && b[3] > 0 && b[0] + b[2] <= resolution[0] && b[1] + b[3] <= resolution[1]
+                  }) else { throw ModelError.invalid(L("dial bounds")) }
+        }
     }
 }

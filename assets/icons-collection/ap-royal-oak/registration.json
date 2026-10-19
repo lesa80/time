@@ -1,0 +1,24 @@
+{
+  "master": [
+    1024,
+    1536
+  ],
+  "bodyCrop": [
+    102,
+    3,
+    883,
+    1529
+  ],
+  "dialBox": [
+    201,
+    353,
+    622,
+    622
+  ],
+  "center": [
+    512,
+    664
+  ],
+  "source": "https://www.audemarspiguet.com/en/watch-collection/royal-oak/15510ST.OO.1320ST.06",
+  "reference": "15510ST.OO.1320ST.06"
+}

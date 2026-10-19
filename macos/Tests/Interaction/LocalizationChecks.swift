@@ -24,10 +24,16 @@ func checkLocalizedInterface(library: ThemeLibrary, expectedLanguage: String) th
     delegate.menuNeedsUpdate(menu)
     expect(delegate.menuActions["launchAtLogin"]?.toolTip == L("Start the clock automatically after you log in to macOS.") ||
            delegate.menuActions["approveLaunchAtLogin"]?.isHidden == false, "Login hints must be translated")
+    delegate.renderer = try library.renderer(for: "omega-speedmaster")
+    delegate.menuNeedsUpdate(menu)
+    expect(delegate.menuActions["interaction"]?.title == L("Interaction") &&
+           delegate.menuActions["interaction"]?.isHidden == false &&
+           delegate.menuActions["chronoToggle"]?.title == L("Start chronograph") &&
+           delegate.menuActions["chronoReset"]?.title == L("Reset chronograph"), "Chronograph controls must be localized")
     let clock = ClockView(renderer: renderer)
     expect(clock.accessibilityLabel()?.contains(expected[3]) == true, "VoiceOver must use the translated theme")
     expect(clock.toolTip?.contains("24") == true, "Tooltip format arguments must be substituted")
-    let about = AboutWindowController(resources: library.resources, themeCount: 25, raketaCount: 21)
+    let about = AboutWindowController(resources: library.resources, themeCount: library.catalog.themes.count, raketaCount: 21)
     defer { about.close() }
     expect(about.window?.title == expected[2], "About title must be translated")
     for width in [640, 960] {
