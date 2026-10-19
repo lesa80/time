@@ -3,6 +3,7 @@ import ImageIO
 
 @MainActor
 func checkGShockInterface(library: ThemeLibrary) throws {
+    try checkGShockButtonSound(library: library)
     let renderer = try library.renderer(for: "casio-gshock")
     let suite = "local.vremya.gshock-tests.\(UUID().uuidString)"
     let defaults = UserDefaults(suiteName: suite)!
@@ -11,7 +12,7 @@ func checkGShockInterface(library: ThemeLibrary) throws {
     var now: TimeInterval = 0
     var sounds = 0
     let delegate = AppDelegate(library: library, renderer: renderer, defaults: defaults,
-        gshock: GShock(now: { now }), signalSound: { sounds += 1 })
+        gshock: GShock(now: { now }), signalSound: { sounds += 1 }, buttonSound: {})
     let window = ClockWindow(contentRect: NSRect(origin: .zero, size: renderer.displaySize(width: 280, showBezel: true)),
                              styleMask: [.borderless], backing: .buffered, defer: false)
     window.isReleasedWhenClosed = false
@@ -21,6 +22,7 @@ func checkGShockInterface(library: ThemeLibrary) throws {
     delegate.clockView = view
     view.onInteraction = { [weak delegate] in delegate?.performInteraction($0) }
     defer {
+        view.endPointerHover()
         delegate.timer?.invalidate(); delegate.gshockServiceTimer?.invalidate()
         defaults.removePersistentDomain(forName: suite)
         window.close()
@@ -159,4 +161,109 @@ func checkGShockInterface(library: ThemeLibrary) throws {
                "Live mode fields and backlight must visibly change the LCD")
     }
     print("Passed: G-Shock mechanical/menu controls, split, saved forms, background alarm, long press and cached LCD/backlight rendering")
+}
+
+@MainActor
+private func checkGShockButtonSound(library: ThemeLibrary) throws {
+    let renderer = try library.renderer(for: "casio-gshock")
+    let suite = "local.vremya.button-sound-tests.\(UUID().uuidString)"
+    let defaults = UserDefaults(suiteName: suite)!
+    defaults.set(280, forKey: "diameter")
+    var now: TimeInterval = 0
+    var beeps = 0, signals = 0
+    let delegate = AppDelegate(library: library, renderer: renderer, defaults: defaults,
+        gshock: GShock(now: { now }), signalSound: { signals += 1 }, buttonSound: { beeps += 1 })
+    let size = renderer.displaySize(width: 280, showBezel: true)
+    let window = ClockWindow(contentRect: NSRect(origin: .zero, size: size), styleMask: [.borderless], backing: .buffered, defer: false)
+    window.isReleasedWhenClosed = false
+    let view = ClockView(renderer: renderer, hapticFeedback: { _ in })
+    window.contentView = view
+    delegate.window = window; delegate.clockView = view
+    view.onInteraction = { [weak delegate] in delegate?.performInteraction($0) }
+    defer {
+        view.endPointerHover()
+        delegate.timer?.invalidate(); delegate.gshockServiceTimer?.invalidate()
+        defaults.removePersistentDomain(forName: suite)
+        window.close()
+    }
+    let menu = delegate.makeClockMenu()
+    delegate.menuNeedsUpdate(menu)
+    expect(delegate.gshockButtonSoundEnabled && delegate.menuActions["gshockButtonSound"]?.state == .on,
+           "Button sound must be enabled for a fresh installation without resetting existing G-Shock preferences")
+    let tone = AppDelegate.makeGShockButtonSound(resources: library.resources)
+    expect(tone != nil && abs(tone!.duration - 0.08) < 0.001, "The app must bundle a decodable short button tone")
+    let buttons = view.subviews.compactMap { $0 as? MechanicalButton }
+    view.layoutSubtreeIfNeeded()
+    for button in buttons {
+        delegate.gshock.selectMode(.time)
+        let before = beeps
+        button.performClick(nil)
+        expect(beeps == before + 1, "Each G-Shock pusher must request exactly one button sound")
+    }
+    let b = buttons.first { $0.control.action == .gshockB }!
+    let point = b.convert(NSPoint(x: b.bounds.midX, y: b.bounds.midY), to: nil)
+    let entered = NSEvent.enterExitEvent(with: .mouseEntered, location: point, modifierFlags: [], timestamp: 0,
+        windowNumber: window.windowNumber, context: nil, eventNumber: 0, trackingNumber: 0, userData: nil)!
+    let beforeHover = beeps
+    b.mouseEntered(with: entered)
+    expect(beeps == beforeHover, "Hover must not play button sounds")
+    let modes = delegate.menuActions["gshockModes"]!.submenu!
+    modes.performActionForItem(at: 3)
+    expect(beeps == beforeHover + 1, "Mode selection through Interaction must provide the same sound feedback")
+    let beforeNoOp = beeps
+    delegate.pressGShock(.b, long: true)
+    let invalid = NSMenuItem(); invalid.representedObject = "invalid-mode"
+    delegate.selectGShockMode(invalid)
+    expect(beeps == beforeNoOp, "Invalid mode actions and unsupported long presses must stay silent")
+    let options = delegate.menuActions["gshockButtonSound"]!.menu!
+    let mute = delegate.menuActions["gshockButtonSound"]!
+    options.performActionForItem(at: options.index(of: mute))
+    expect(!delegate.gshockButtonSoundEnabled && mute.state == .off && beeps == beforeNoOp,
+           "Muting must immediately update its checkmark without playing a sound")
+    let reloaded = AppDelegate(library: library, renderer: renderer, defaults: UserDefaults(suiteName: suite)!, buttonSound: {})
+    expect(!reloaded.gshockButtonSoundEnabled, "The mute preference must survive app relaunch")
+    for button in buttons { button.performClick(nil) }
+    delegate.gshock.selectMode(.time)
+    delegate.performInteraction(.gshockFlash)
+    modes.performActionForItem(at: 2)
+    expect(beeps == beforeNoOp, "Muted pushers, long actions and menu mode changes must stay silent")
+    var settings = delegate.gshock.settings
+    settings.countdownSeconds = 2; settings.alarmHour = 11; settings.alarmMinute = 42
+    delegate.applyGShockSettings(settings)
+    expect(beeps == beforeNoOp, "Applying settings must not produce button feedback")
+    let savedSettings = delegate.gshock.settings
+    delegate.pressGShock(.b)
+    now += 3
+    delegate.advanceGShock(date: Date())
+    expect(signals == 1 && delegate.gshock.isRinging && beeps == beforeNoOp,
+           "Muting button sound must not mute the countdown alarm")
+    options.performActionForItem(at: options.index(of: mute))
+    let savedAfterToggle = defaults.data(forKey: "gshockSettings").flatMap { try? JSONDecoder().decode(GShockSettings.self, from: $0) }
+    expect(savedAfterToggle == savedSettings,
+           "The separate sound preference must preserve the existing alarm/timer settings schema")
+    delegate.lastGShockSoundAt = .distantPast
+    delegate.pressGShock(.a)
+    expect(!delegate.gshock.isRinging && signals == 1 && beeps == beforeNoOp,
+           "Silencing a ringing alert must neither replay the alert nor add a button beep")
+    let restored = AppDelegate(library: library, renderer: renderer, defaults: UserDefaults(suiteName: suite)!, buttonSound: {})
+    expect(restored.gshockButtonSoundEnabled && restored.gshock.settings.alarmHour == 11 &&
+           restored.gshock.settings.alarmMinute == 42, "Sound and legacy G-Shock settings must both restore correctly")
+    delegate.gshock.selectMode(.time)
+    func pointer(_ type: NSEvent.EventType, _ location: NSPoint) -> NSEvent {
+        NSEvent.mouseEvent(with: type, location: location, modifierFlags: [], timestamp: 0, windowNumber: window.windowNumber,
+                           context: nil, eventNumber: 0, clickCount: 1, pressure: 0)!
+    }
+    let beforeHold = beeps
+    b.mouseDown(with: pointer(.leftMouseDown, point))
+    RunLoop.main.run(until: Date().addingTimeInterval(2.1))
+    b.mouseUp(with: pointer(.leftMouseUp, point))
+    expect(beeps == beforeHold + 1, "Long B must beep once without a second beep on release")
+    b.mouseDown(with: pointer(.leftMouseDown, point))
+    b.mouseDragged(with: pointer(.leftMouseDragged, NSPoint(x: point.x + 500, y: point.y)))
+    b.mouseUp(with: pointer(.leftMouseUp, point))
+    expect(beeps == beforeHold + 1, "A cancelled drag must not play a sound")
+    delegate.renderer = try library.renderer(for: "minimalism")
+    delegate.performInteraction(.gshockA)
+    expect(beeps == beforeHold + 1, "Other themes must not trigger G-Shock button audio")
+    print("Passed: bundled button tone, one beep per pusher/menu/hold, saved mute, silent hover/cancel and independent alarm sound")
 }

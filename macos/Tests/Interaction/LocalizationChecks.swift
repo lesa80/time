@@ -39,6 +39,11 @@ func checkLocalizedInterface(library: ThemeLibrary, expectedLanguage: String) th
            delegate.menuActions["interaction"]?.isHidden == false &&
            delegate.menuActions["chronoToggle"]?.title == L("Start chronograph") &&
            delegate.menuActions["chronoReset"]?.title == L("Reset chronograph"), "Chronograph controls must be localized")
+    delegate.renderer = try library.renderer(for: "casio-gshock")
+    delegate.menuNeedsUpdate(menu)
+    let soundTitle = ["ru": "Звук кнопок", "en": "Button sound", "de": "Tastenton", "fr": "Son des boutons", "es": "Sonido de los botones"][expectedLanguage]!
+    expect(delegate.menuActions["gshockButtonSound"]?.title == soundTitle &&
+           delegate.menuActions["gshockButtonSound"]?.state == .on, "The sound preference must be localized and checked by default")
     let clock = ClockView(renderer: renderer)
     expect(clock.accessibilityLabel()?.contains(expected[3]) == true, "VoiceOver must use the translated theme")
     expect(clock.toolTip?.contains("24") == true, "Tooltip format arguments must be substituted")

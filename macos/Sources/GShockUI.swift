@@ -35,6 +35,7 @@ extension AppDelegate {
         options.addItem(.separator())
         add("gshock24Hour", L("24-hour format"), #selector(toggleGShockFormat), to: options)
         add("gshockFlash", L("Flash Alert"), #selector(toggleGShockFlash), to: options)
+        add("gshockButtonSound", L("Button sound"), #selector(toggleGShockButtonSound), to: options)
         let optionItem = NSMenuItem(title: L("G-Shock settings"), action: nil, keyEquivalent: "")
         optionItem.submenu = options
         menu.addItem(optionItem)
@@ -69,7 +70,7 @@ extension AppDelegate {
         }
         for (key, enabled) in [("gshockAlarm", gshock.settings.alarmEnabled), ("gshockHourly", gshock.settings.hourlySignal),
                                ("gshockRepeat", gshock.settings.autoRepeat), ("gshock24Hour", gshock.settings.use24Hour),
-                               ("gshockFlash", gshock.settings.flashAlert)] {
+                               ("gshockFlash", gshock.settings.flashAlert), ("gshockButtonSound", gshockButtonSoundEnabled)] {
             menuActions[key]?.state = enabled ? .on : .off
         }
         menuActions["gshockSilence"]?.isHidden = !gshock.isRinging
@@ -114,15 +115,33 @@ extension AppDelegate {
     }
     func pressGShock(_ button: GShock.Button, long: Bool = false) {
         guard renderer.isGShock else { return }
-        advanceGShock(date: Date())
+        // Resolve due timers without replaying a signal immediately before the user silences it.
+        gshock.tick(date: Date())
+        let silencing = gshock.isRinging
+        let accepted = !long || (button == .b && gshock.mode == .time && !gshock.isEditing)
         gshock.press(button, long: long)
+        if !silencing && accepted { playGShockButtonSound() }
         finishGShockInteraction()
     }
     @objc func selectGShockMode(_ item: NSMenuItem) {
         guard renderer.isGShock, let value = item.representedObject as? String,
               let mode = GShock.Mode(rawValue: value) else { return }
         gshock.selectMode(mode)
+        playGShockButtonSound()
         finishGShockInteraction()
+    }
+    static func makeGShockButtonSound(resources: URL) -> NSSound? {
+        NSSound(contentsOf: resources.appendingPathComponent("GShockButton.wav"), byReference: false)
+    }
+    var gshockButtonSoundEnabled: Bool {
+        defaults.object(forKey: "gshockButtonSound") as? Bool ?? true
+    }
+    private func playGShockButtonSound() {
+        if gshockButtonSoundEnabled { buttonSound() }
+    }
+    @objc func toggleGShockButtonSound() {
+        defaults.set(!gshockButtonSoundEnabled, forKey: "gshockButtonSound")
+        updateGShockMenu()
     }
     @objc func gshockButtonA() { pressGShock(.a) }
     @objc func gshockButtonB() { pressGShock(.b) }

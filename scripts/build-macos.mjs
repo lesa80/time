@@ -28,6 +28,7 @@ if (!process.argv.includes('--reuse-artwork')) {
 run(process.execPath, [path.join(root, 'scripts/build-preview.mjs')]);
 run(process.execPath, [path.join(root, 'scripts/prepare-about.mjs')]);
 run(process.execPath, [path.join(root, 'scripts/prepare-icons.mjs')]);
+run(process.execPath, [path.join(root, 'scripts/prepare-sounds.mjs')]);
 
 const architectures = ['arm64', 'x86_64'];
 for (const arch of architectures) {
@@ -39,6 +40,7 @@ run('xcrun', ['lipo', '-create', ...architectures.map(a => path.join(scratch, `$
 fs.copyFileSync(path.join(root, 'macos/Info.plist'), path.join(contents, 'Info.plist'));
 fs.copyFileSync(path.join(root, 'themes.json'), path.join(resources, 'themes.json'));
 fs.copyFileSync(path.join(root, 'macos/PrivacyInfo.xcprivacy'), path.join(resources, 'PrivacyInfo.xcprivacy'));
+fs.copyFileSync(path.join(root, 'assets/sounds/gshock-button.wav'), path.join(resources, 'GShockButton.wav'));
 for (const language of ['ru', 'en', 'de', 'fr', 'es']) {
   const folder = `${language}.lproj`;
   fs.cpSync(path.join(root, 'macos/Resources', folder), path.join(resources, folder), { recursive: true });

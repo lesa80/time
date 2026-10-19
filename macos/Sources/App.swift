@@ -20,6 +20,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     var gshockServiceTimer: Timer?
     var lastGShockSoundAt = Date.distantPast
     let signalSound: () -> Void
+    let buttonSound: () -> Void
     private var positionSaveTimer: Timer?
     private var isSleeping = false
     private var notificationObservers: [(center: NotificationCenter, token: NSObjectProtocol)] = []
@@ -37,7 +38,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     lazy var menuBarLogoActive = makeMenuBarLogo(active: true)
 
     init(library: ThemeLibrary, renderer: DialRenderer, defaults: UserDefaults = .standard,
-         gshock: GShock? = nil, signalSound: (() -> Void)? = nil) {
+         gshock: GShock? = nil, signalSound: (() -> Void)? = nil, buttonSound: (() -> Void)? = nil) {
         self.library = library
         self.renderer = renderer
         self.defaults = defaults
@@ -45,12 +46,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         self.gshock = gshock ?? GShock(settings: saved ?? GShockSettings())
         self.gshock.resynchronizeWallClock(date: Date())
         self.signalSound = signalSound ?? { NSSound(named: NSSound.Name("Ping"))?.play() }
+        if let buttonSound { self.buttonSound = buttonSound } else {
+            let tone = Self.makeGShockButtonSound(resources: library.resources)
+            self.buttonSound = { tone?.stop(); tone?.play() }
+        }
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         defaults.register(defaults: ["diameter": 280, "showSeconds": true, "smooth": true,
                                       "aboveWindows": false, "locked": false, "showBezel": true,
-                                      "hapticFeedback": HapticMode.generic.rawValue])
+                                      "hapticFeedback": HapticMode.generic.rawValue, "gshockButtonSound": true])
         makeMenu()
         let side = CGFloat(defaults.integer(forKey: "diameter")).clamped(to: 160...466)
         let initialSize = renderer.displaySize(width: side, showBezel: defaults.bool(forKey: "showBezel"))
