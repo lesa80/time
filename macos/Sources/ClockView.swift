@@ -1,5 +1,26 @@
 import AppKit
 
+enum HapticMode: String, CaseIterable {
+    case disabled, generic, alignment, levelChange
+
+    var title: String {
+        switch self {
+        case .disabled: L("Disabled")
+        case .generic: L("Generic")
+        case .alignment: L("Alignment")
+        case .levelChange: L("Level change")
+        }
+    }
+    var pattern: NSHapticFeedbackManager.FeedbackPattern? {
+        switch self {
+        case .disabled: nil
+        case .generic: .generic
+        case .alignment: .alignment
+        case .levelChange: .levelChange
+        }
+    }
+}
+
 @MainActor
 final class ClockView: NSView {
     var renderer: DialRenderer { didSet { invalidateArtwork(); rebuildMechanicalControls(); updateThemeDescription() } }
@@ -14,14 +35,19 @@ final class ClockView: NSView {
         didSet { if oldValue != chronographIsRunning { updateMechanicalControls() } }
     }
     var onInteraction: ((DialSpecification.MechanicalAction) -> Void)?
+    var hapticMode: HapticMode = .generic {
+        didSet { mechanicalButtons.forEach { $0.hapticMode = hapticMode } }
+    }
     private var mechanicalButtons: [MechanicalButton] = []
+    private let hapticFeedback: ((NSHapticFeedbackManager.FeedbackPattern) -> Void)?
     var onDragEnded: (() -> Void)?
     private var dragStart: (pointer: NSPoint, windowOrigin: NSPoint)?
     private var didDrag = false
     private var artworkCache: (size: CGSize, scale: CGFloat, background: CGImage, foreground: CGImage)?
 
-    init(renderer: DialRenderer) {
+    init(renderer: DialRenderer, hapticFeedback: ((NSHapticFeedbackManager.FeedbackPattern) -> Void)? = nil) {
         self.renderer = renderer
+        self.hapticFeedback = hapticFeedback
         super.init(frame: .zero)
         setAccessibilityElement(true)
         rebuildMechanicalControls()
@@ -45,7 +71,8 @@ final class ClockView: NSView {
     private func rebuildMechanicalControls() {
         mechanicalButtons.forEach { $0.removeFromSuperview() }
         mechanicalButtons = (renderer.specification.mechanicalControls ?? []).map { control in
-            let button = MechanicalButton(control: control) { [weak self] in self?.onInteraction?(control.action) }
+            let button = MechanicalButton(control: control, hapticFeedback: hapticFeedback) { [weak self] in self?.onInteraction?(control.action) }
+            button.hapticMode = hapticMode
             addSubview(button)
             return button
         }
@@ -160,6 +187,16 @@ final class ClockView: NSView {
     override func rightMouseDown(with event: NSEvent) {
         if let clockMenu { NSMenu.popUpContextMenu(clockMenu, with: event, for: self) }
     }
+    func pointerMoved(with event: NSEvent) {
+        // A non-key window cannot rely on normal button cursor rectangles.
+        let point = superview?.convert(event.locationInWindow, from: nil) ?? event.locationInWindow
+        let target = hitTest(point) as? MechanicalButton
+        mechanicalButtons.filter { $0 !== target }.forEach { $0.endPointerHover() }
+        target?.mouseMoved(with: event)
+    }
+    func endPointerHover() {
+        mechanicalButtons.forEach { $0.endPointerHover() }
+    }
 }
 
 /// A real AppKit button over the photographed pusher. Normal artwork stays intact.
@@ -167,9 +204,19 @@ final class ClockView: NSView {
 final class MechanicalButton: NSButton {
     let control: DialSpecification.MechanicalControl
     private let onPress: () -> Void
-    init(control: DialSpecification.MechanicalControl, onPress: @escaping () -> Void) {
+    var hapticMode: HapticMode = .generic
+    private let hapticFeedback: (NSHapticFeedbackManager.FeedbackPattern) -> Void
+    private var hoverTrackingArea: NSTrackingArea?
+    private var pointerInside = false
+
+    init(control: DialSpecification.MechanicalControl, hapticFeedback: ((NSHapticFeedbackManager.FeedbackPattern) -> Void)? = nil,
+         onPress: @escaping () -> Void) {
         self.control = control
         self.onPress = onPress
+        self.hapticFeedback = hapticFeedback ?? { pattern in
+            // Resolve the performer per gesture so macOS can honor the input device and preferences.
+            NSHapticFeedbackManager.defaultPerformer.perform(pattern, performanceTime: .now)
+        }
         super.init(frame: .zero)
         title = ""
         isBordered = false
@@ -186,19 +233,72 @@ final class MechanicalButton: NSButton {
         super.mouseDown(with: event)
     }
     override func rightMouseDown(with event: NSEvent) { superview?.rightMouseDown(with: event) }
-    override func resetCursorRects() {
-        if isEnabled { addCursorRect(bounds, cursor: .pointingHand) }
+    override func updateTrackingAreas() {
+        super.updateTrackingAreas()
+        if let hoverTrackingArea { removeTrackingArea(hoverTrackingArea) }
+        // The desktop clock never becomes key; hover must also work while another app is active.
+        let area = NSTrackingArea(rect: .zero, options: [.mouseEnteredAndExited, .mouseMoved, .inVisibleRect, .activeAlways],
+                                  owner: self, userInfo: nil)
+        addTrackingArea(area)
+        hoverTrackingArea = area
     }
-    override func draw(_ dirtyRect: NSRect) {
-        if isHighlighted {
-            NSColor.white.withAlphaComponent(0.18).setFill()
-            NSBezierPath(roundedRect: bounds.insetBy(dx: 1, dy: 1), xRadius: 4, yRadius: 4).fill()
+    override func mouseEntered(with event: NSEvent) {
+        super.mouseEntered(with: event)
+        beginPointerHover()
+    }
+    override func mouseMoved(with event: NSEvent) {
+        // Also recover if AppKit did not deliver the initial entered event.
+        beginPointerHover()
+    }
+    private func beginPointerHover() {
+        guard isEnabled, !isHiddenOrHasHiddenAncestor, let window, !window.ignoresMouseEvents else {
+            endPointerHover()
+            return
         }
+        NSCursor.pointingHand.set()
+        guard !pointerInside else { return }
+        pointerInside = true
+        if let pattern = hapticMode.pattern { hapticFeedback(pattern) }
     }
+    override func mouseExited(with event: NSEvent) {
+        super.mouseExited(with: event)
+        endPointerHover()
+    }
+    func endPointerHover() {
+        let wasInside = pointerInside
+        pointerInside = false
+        if wasInside && NSCursor.current == .pointingHand { NSCursor.arrow.set() }
+    }
+    override var isEnabled: Bool {
+        didSet { if !isEnabled { endPointerHover() } }
+    }
+    override var isHidden: Bool {
+        didSet { if isHidden { endPointerHover() } }
+    }
+    override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        endPointerHover()
+    }
+    override var isOpaque: Bool { false }
+    // Only the parent draws the photographed case. Press/hover must not paint over it.
+    override func draw(_ dirtyRect: NSRect) { }
 }
 
 @MainActor
 final class ClockWindow: NSWindow {
+    override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask,
+                  backing backingStoreType: NSWindow.BackingStoreType, defer flag: Bool) {
+        super.init(contentRect: contentRect, styleMask: style, backing: backingStoreType, defer: flag)
+        acceptsMouseMovedEvents = true
+    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    override func sendEvent(_ event: NSEvent) {
+        super.sendEvent(event)
+        if event.type == .mouseMoved { (contentView as? ClockView)?.pointerMoved(with: event) }
+    }
+    override var ignoresMouseEvents: Bool {
+        didSet { if ignoresMouseEvents { (contentView as? ClockView)?.endPointerHover() } }
+    }
     override var canBecomeKey: Bool { false }
     override var canBecomeMain: Bool { false }
 }

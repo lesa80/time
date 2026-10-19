@@ -2,9 +2,9 @@
 
 [Русский](README.md) · [English](README.en.md)
 
-**Время (Vremya) 2.6.4** is a desktop clock app with an always-on-top mode. It includes 36 themes: four Minimalism variants, 21 Raketa models, and 11 variants in Legendary models. The app displays your Mac's local time, works offline, and remembers your settings.
+**Время (Vremya) 2.6.7** is a desktop clock app with an always-on-top mode. It includes 36 themes: four Minimalism variants, 21 Raketa models, and 11 variants in Legendary models. The app displays your Mac's local time, works offline, and remembers your settings.
 
-**[Download Vremya for macOS](https://github.com/lesa80/time/releases/download/v2.6.4/Vremya-2.6.4-macOS-universal.zip)** · [All releases](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.6.4/SHA256SUMS)
+**[Download Vremya for macOS](https://github.com/lesa80/time/releases/download/v2.6.7/Vremya-2.6.7-macOS-universal.zip)** · [All releases](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.6.7/SHA256SUMS)
 
 Requires **macOS 13 or later**. One universal archive for Apple Silicon and Intel. The current release is a test build with an ad-hoc signature and no Apple notarization. [Compatibility details](docs/RELEASE_NOTES.md) (in Russian).
 
@@ -21,6 +21,7 @@ Requires **macOS 13 or later**. One universal archive for Apple Silicon and Inte
 - Five sizes: 180, 240, 280, 360, and 466 points.
 - Smooth seconds hand with an option to hide it.
 - Speedmaster chronograph with start, pause, resume, and reset using case pushers or the Interaction menu.
+- Haptic feedback when hovering over watch pushers: three patterns or fully disabled.
 - Launch at login.
 - Theme, size, position, and display settings saved between launches.
 - Help, the watch collection, and project information in the About window.
@@ -108,7 +109,7 @@ Local digital time in 24-hour format, seconds, weekday, month, and date. Alarm, 
 
 ## Installation
 
-1. [Download the ZIP](https://github.com/lesa80/time/releases/download/v2.6.4/Vremya-2.6.4-macOS-universal.zip) and extract it.
+1. [Download the ZIP](https://github.com/lesa80/time/releases/download/v2.6.7/Vremya-2.6.7-macOS-universal.zip) and extract it.
 2. Move `Время.app` to Applications and open it.
 3. Drag the clock to your preferred position. Right-click the clock or its menu bar icon to open settings.
 
@@ -124,6 +125,7 @@ At launch, the app follows the primary macOS language: Russian, English, German,
 |---|---|
 | Appearance → Bezel and strap | Switch between the dial and the full watch |
 | Speedmaster pushers / Interaction | Start, pause, resume and reset the chronograph |
+| Haptic feedback | Disabled, Generic, Alignment, or Level change; the choice is saved |
 | Drag the clock | Move it |
 | Left-click the menu bar icon | Toggle always-on-top mode |
 | Right-click or Control-click | Open settings |
@@ -131,6 +133,8 @@ At launch, the app follows the primary macOS language: Russian, English, German,
 | Return to screen | Bring the clock back onto the screen and unlock its position |
 
 **Appearance** groups size, bezel, and hand settings; **Window** groups always-on-top, position lock, and return to screen. Clicking the dial does not toggle the bezel. **Interaction** appears directly below the model name when actions are available.
+
+Hovering over an enabled case pusher shows a pointing-hand cursor. A Force Touch trackpad can provide the selected feedback while your finger touches it and haptics are enabled in macOS. The system controls intensity and may suppress feedback.
 
 To launch at login, enable **Launch at login** in the app menu. If macOS requests approval, allow it in System Settings → General → Login Items.
 

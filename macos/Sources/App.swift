@@ -12,6 +12,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     var clockMenu: NSMenu!
     var themeMenu = NSMenu()
     var sizeMenu = NSMenu()
+    var hapticMenu = NSMenu()
     var titleItem: NSMenuItem!
     var timer: Timer?
     var chronograph = Chronograph()
@@ -39,7 +40,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         defaults.register(defaults: ["diameter": 280, "showSeconds": true, "smooth": true,
-                                      "aboveWindows": false, "locked": false, "showBezel": true])
+                                      "aboveWindows": false, "locked": false, "showBezel": true,
+                                      "hapticFeedback": HapticMode.generic.rawValue])
         makeMenu()
         let side = CGFloat(defaults.integer(forKey: "diameter")).clamped(to: 160...466)
         let initialSize = renderer.displaySize(width: side, showBezel: defaults.bool(forKey: "showBezel"))
@@ -55,6 +57,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         window.collectionBehavior = [.canJoinAllSpaces, .stationary, .ignoresCycle]
         window.animationBehavior = .none
         clockView = ClockView(renderer: renderer)
+        clockView.hapticMode = hapticMode
         clockView.clockMenu = clockMenu
         clockView.onInteraction = { [weak self] action in self?.performInteraction(action) }
         clockView.onDragEnded = { [weak self] in self?.keepOnScreen(); self?.savePosition() }
@@ -151,6 +154,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         let windowItem = NSMenuItem(title: L("Window"), action: nil, keyEquivalent: "")
         windowItem.submenu = windowMenu
         clockMenu.addItem(windowItem)
+        hapticMenu = NSMenu(title: L("Haptic feedback"))
+        hapticMenu.autoenablesItems = false
+        hapticMenu.delegate = self
+        for mode in HapticMode.allCases {
+            let item = NSMenuItem(title: mode.title, action: #selector(selectHapticMode(_:)), keyEquivalent: "")
+            item.representedObject = mode.rawValue
+            item.target = self
+            hapticMenu.addItem(item)
+        }
+        let hapticItem = NSMenuItem(title: L("Haptic feedback"), action: nil, keyEquivalent: "")
+        hapticItem.submenu = hapticMenu
+        hapticItem.toolTip = L("Trackpad feedback when hovering over mechanical watch buttons.")
+        clockMenu.addItem(hapticItem)
+        updateHapticMenuSelection()
         clockMenu.addItem(.separator())
         add("launchAtLogin", L("Launch at login"), #selector(toggleLaunchAtLogin))
         add("approveLaunchAtLogin", L("Allow launch at login in macOS…"), #selector(openLoginSettings))
@@ -275,6 +292,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     }
     func menuNeedsUpdate(_ menu: NSMenu) {
         updateChronographMenu()
+        updateHapticMenuSelection()
         let loginStatus = SMAppService.mainApp.status
         menuActions["launchAtLogin"]?.state = loginStatus == .enabled ? .on :
             loginStatus == .requiresApproval ? .mixed : .off
@@ -294,6 +312,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         for item in sizeMenu.items {
             item.state = item.tag == defaults.integer(forKey: "diameter") ? .on : .off
         }
+    }
+
+    var hapticMode: HapticMode {
+        HapticMode(rawValue: defaults.string(forKey: "hapticFeedback") ?? "") ?? .generic
+    }
+    private func updateHapticMenuSelection() {
+        for item in hapticMenu.items {
+            item.state = (item.representedObject as? String) == hapticMode.rawValue ? .on : .off
+        }
+    }
+    @objc func selectHapticMode(_ item: NSMenuItem) {
+        guard let rawValue = item.representedObject as? String, let mode = HapticMode(rawValue: rawValue) else { return }
+        defaults.set(mode.rawValue, forKey: "hapticFeedback")
+        clockView?.hapticMode = mode
+        updateHapticMenuSelection()
     }
 
     func applyWindowPreferences() {

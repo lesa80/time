@@ -18,6 +18,15 @@ func checkLocalizedInterface(library: ThemeLibrary, expectedLanguage: String) th
     let menu = delegate.makeClockMenu()
     expect(menu.items.contains { $0.title == expected[0] }, "Main menu must be translated")
     expect(delegate.menuActions["aboveWindows"]?.title == expected[1], "Action labels must be translated")
+    let feedbackTitles = [
+        "ru": ["Тактильный отклик", "Выключен", "Обычный", "Выравнивание", "Смена уровня"],
+        "en": ["Haptic feedback", "Disabled", "Generic", "Alignment", "Level change"],
+        "de": ["Haptisches Feedback", "Aus", "Allgemein", "Ausrichtung", "Stufenwechsel"],
+        "fr": ["Retour haptique", "Désactivé", "Général", "Alignement", "Changement de niveau"],
+        "es": ["Respuesta háptica", "Desactivada", "General", "Alineación", "Cambio de nivel"]
+    ][expectedLanguage]!
+    expect(menu.items.contains { $0.title == feedbackTitles[0] } &&
+           delegate.hapticMenu.items.map(\.title) == Array(feedbackTitles.dropFirst()), "Feedback choices must be localized")
     expect(delegate.titleItem.title.contains(expected[3]), "Current theme title must be translated")
     expect(delegate.themeMenu.items.first { $0.representedObject as? String == renderer.theme.id }?.title == expected[3],
            "Theme selection must use localized display names without changing IDs")

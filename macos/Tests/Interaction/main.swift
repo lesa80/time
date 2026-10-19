@@ -262,6 +262,167 @@ for width: CGFloat in [180, 280, 466] {
     lower.performClick(nil)
     expect(!chronoDelegate.chronograph.isRunning && view.chronograph.elapsed == 0, "Lower pusher must reset")
 }
+
+// Hover feedback is requested once per entry; tests never vibrate the user's trackpad.
+var hapticRequests = 0, probePresses = 0
+let pusherControl = moonwatch.specification.mechanicalControls!.first!
+let probe = MechanicalButton(control: pusherControl, hapticFeedback: { _ in hapticRequests += 1 }) { probePresses += 1 }
+probe.frame = NSRect(x: 0, y: 0, width: 32, height: 40)
+view.addSubview(probe)
+probe.updateTrackingAreas()
+let trackingCount = probe.trackingAreas.count
+probe.updateTrackingAreas()
+expect(probe.trackingAreas.count == trackingCount && probe.trackingAreas.contains { $0.options.contains(.activeAlways) },
+       "Hover tracking must work in the non-key clock window without accumulating tracking areas")
+@MainActor
+func hover(_ type: NSEvent.EventType) -> NSEvent {
+    NSEvent.enterExitEvent(with: type, location: .zero, modifierFlags: [], timestamp: 0,
+        windowNumber: window.windowNumber, context: nil, eventNumber: 0, trackingNumber: 0, userData: nil)!
+}
+probe.mouseEntered(with: hover(.mouseEntered))
+probe.mouseEntered(with: hover(.mouseEntered))
+expect(hapticRequests == 1 && probePresses == 0, "Hover must provide one pulse without activating the watch")
+probe.mouseExited(with: hover(.mouseExited))
+probe.mouseEntered(with: hover(.mouseEntered))
+expect(hapticRequests == 2, "Leaving and reentering an active pusher must provide a new pulse")
+probe.isEnabled = false
+probe.mouseExited(with: hover(.mouseExited))
+probe.mouseEntered(with: hover(.mouseEntered))
+expect(hapticRequests == 2, "Disabled pushers must not request haptics")
+probe.isEnabled = true
+probe.isHidden = true
+probe.mouseEntered(with: hover(.mouseEntered))
+expect(hapticRequests == 2, "Hidden pushers must not request haptics")
+probe.isHidden = false
+view.isHidden = true
+probe.mouseEntered(with: hover(.mouseEntered))
+expect(hapticRequests == 2, "A hidden parent must suppress haptics")
+view.isHidden = false
+window.ignoresMouseEvents = true
+probe.mouseEntered(with: hover(.mouseEntered))
+expect(hapticRequests == 2, "Locked clocks must not request hover feedback")
+window.ignoresMouseEvents = false
+probe.performClick(nil)
+expect(probePresses == 1 && hapticRequests == 2, "Removing visual feedback must preserve the button action")
+
+let pusherBitmap = CGContext(data: nil, width: 32, height: 40, bitsPerComponent: 8, bytesPerRow: 32 * 4,
+    space: CGColorSpace(name: CGColorSpace.sRGB)!, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
+NSGraphicsContext.saveGraphicsState()
+NSGraphicsContext.current = NSGraphicsContext(cgContext: pusherBitmap, flipped: false)
+for pressed in [false, true] {
+    pusherBitmap.clear(probe.bounds)
+    probe.highlight(pressed)
+    probe.draw(probe.bounds)
+    let bytes = UnsafeBufferPointer(start: pusherBitmap.data!.assumingMemoryBound(to: UInt8.self), count: 32 * 40 * 4)
+    expect(stride(from: 3, to: bytes.count, by: 4).allSatisfy { bytes[$0] == 0 },
+           "Resting and pressed pushers must leave the case artwork untouched")
+}
+probe.highlight(false)
+NSGraphicsContext.restoreGraphicsState()
+probe.removeFromSuperview()
+probe.mouseEntered(with: hover(.mouseEntered))
+expect(hapticRequests == 2, "Detached controls must not provide haptics")
+print("Passed: invisible pressed buttons, one hover pulse per entry and haptic suppression for disabled/hidden/locked controls")
+
+// Route motion through the actual non-key NSWindow, without manually calling mouseEntered.
+let originalContentSize = window.contentView!.frame.size
+let originalBounds = view.bounds
+var routedHaptics = 0
+let routedView = ClockView(renderer: moonwatch, hapticFeedback: { _ in routedHaptics += 1 })
+window.contentView = routedView
+window.setContentSize(moonwatch.displaySize(width: 280, showBezel: true))
+routedView.chronographIsRunning = true
+routedView.layoutSubtreeIfNeeded()
+expect(window.acceptsMouseMovedEvents && !window.canBecomeKey && !window.isKeyWindow,
+       "Desktop clock must accept motion without becoming the key window")
+let routedButtons = routedView.subviews.compactMap { $0 as? MechanicalButton }
+let routedUpper = routedButtons.first { $0.control.action == .chronographToggle }!
+let routedLower = routedButtons.first { $0.control.action == .chronographReset }!
+@MainActor
+func routeMotion(to button: MechanicalButton?) {
+    let point = button.map { $0.convert(NSPoint(x: $0.bounds.midX, y: $0.bounds.midY), to: nil) } ??
+        routedView.convert(NSPoint(x: routedView.bounds.midX, y: routedView.bounds.midY), to: nil)
+    let event = NSEvent.mouseEvent(with: .mouseMoved, location: point, modifierFlags: [], timestamp: 0,
+        windowNumber: window.windowNumber, context: nil, eventNumber: 0, clickCount: 0, pressure: 0)!
+    window.sendEvent(event)
+}
+routeMotion(to: routedUpper)
+expect(routedHaptics == 1 && NSCursor.current == .pointingHand,
+       "Window motion must establish hover and cursor even if no entered event arrived")
+routeMotion(to: routedUpper)
+expect(routedHaptics == 1, "Movement within the same pusher must not repeat the pulse")
+routeMotion(to: routedLower)
+expect(routedHaptics == 2 && NSCursor.current == .pointingHand, "Switching to the lower pusher must preserve the hand cursor")
+routeMotion(to: routedUpper)
+expect(routedHaptics == 3 && NSCursor.current == .pointingHand, "Switching back must clear old hover before setting the new cursor")
+routeMotion(to: nil)
+expect(routedHaptics == 3 && NSCursor.current == .arrow, "Leaving pushers must restore the cursor")
+routeMotion(to: routedUpper)
+window.ignoresMouseEvents = true
+expect(NSCursor.current == .arrow, "Locking the window must immediately clear hover")
+routeMotion(to: routedUpper)
+expect(routedHaptics == 4, "Window-level dispatch must honor click-through mode")
+window.ignoresMouseEvents = false
+routeMotion(to: routedUpper)
+expect(routedHaptics == 5, "Unlocking must allow a new hover without an entered event")
+routedView.showBezel = false
+routeMotion(to: routedUpper)
+expect(routedHaptics == 5 && NSCursor.current == .arrow, "Hidden case controls must not receive routed hover")
+window.contentView = view
+window.setContentSize(originalContentSize)
+view.bounds = originalBounds
+print("Passed: real non-key window motion dispatch, visible hand cursor, deduplicated hover and lock/hide cleanup")
+
+
+// Real settings actions select the requested native pattern and persist without affecting watch controls.
+do {
+    let hapticSuite = suite + ".haptics"
+    let hapticDefaults = UserDefaults(suiteName: hapticSuite)!
+    defer { hapticDefaults.removePersistentDomain(forName: hapticSuite); window.contentView = view }
+    var patterns: [NSHapticFeedbackManager.FeedbackPattern] = []
+    var presses = 0
+    let feedbackView = ClockView(renderer: moonwatch, hapticFeedback: { patterns.append($0) })
+    feedbackView.onInteraction = { _ in presses += 1 }
+    window.contentView = feedbackView
+    let feedbackDelegate = AppDelegate(library: library, renderer: moonwatch, defaults: hapticDefaults)
+    feedbackDelegate.clockView = feedbackView
+    expect(feedbackDelegate.hapticMode == .generic, "Fresh installs must retain generic feedback")
+    hapticDefaults.set("unknown", forKey: "hapticFeedback")
+    expect(feedbackDelegate.hapticMode == .generic, "Unknown saved patterns must fall back to generic feedback")
+    _ = feedbackDelegate.makeClockMenu()
+    let expectedPatterns: [NSHapticFeedbackManager.FeedbackPattern?] = [nil, .generic, .alignment, .levelChange]
+    expect(feedbackDelegate.hapticMenu.items.count == 4, "Settings must offer off and all three native patterns")
+    for (index, mode) in HapticMode.allCases.enumerated() {
+        feedbackDelegate.hapticMenu.performActionForItem(at: index)
+        expect(feedbackDelegate.hapticMode == mode && feedbackView.hapticMode == mode,
+               "Selecting a mode must immediately apply and save it")
+        expect(feedbackDelegate.hapticMenu.items.filter { $0.state == .on }.count == 1 &&
+               feedbackDelegate.hapticMenu.items[index].state == .on, "Exactly the selected feedback option must be checked")
+        let reloaded = AppDelegate(library: library, renderer: moonwatch, defaults: UserDefaults(suiteName: hapticSuite)!)
+        expect(reloaded.hapticMode == mode, "Selected feedback must survive reloading preferences")
+        feedbackView.renderer = moonwatch
+        let button = feedbackView.subviews.compactMap { $0 as? MechanicalButton }.first { $0.control.action == .chronographToggle }!
+        let previousCount = patterns.count
+        button.mouseEntered(with: hover(.mouseEntered))
+        button.mouseEntered(with: hover(.mouseEntered))
+        if let expected = expectedPatterns[index] {
+            expect(patterns.count == previousCount + 1 && patterns.last == expected,
+                   "The selected native pattern must be requested once after a theme rebuild")
+        } else {
+            expect(patterns.count == previousCount && NSCursor.current == .pointingHand,
+                   "Disabled feedback must suppress vibration while preserving the hover cursor")
+        }
+        button.performClick(nil)
+        button.mouseExited(with: hover(.mouseExited))
+    }
+    expect(presses == 4, "All feedback modes must preserve mechanical button actions")
+    let invalid = NSMenuItem()
+    invalid.representedObject = "unknown"
+    feedbackDelegate.selectHapticMode(invalid)
+    expect(feedbackDelegate.hapticMode == .levelChange, "Invalid settings actions must not overwrite the saved choice")
+}
+print("Passed: all haptic settings actions, exact native patterns, disabled feedback, saved preference and theme rebuilds")
+
 view.showBezel = false
 expect(view.subviews.compactMap { $0 as? MechanicalButton }.allSatisfy(\.isHidden), "Dial-only mode must hide pusher hit areas")
 expect(view.accessibilityRole() == .image, "Hidden case controls must not make the dial a button")
@@ -270,7 +431,9 @@ expect(view.accessibilityRole() == .group, "Visible case controls must be expose
 expect(chronoMenu.items[1] === chronoDelegate.menuActions["interaction"], "Interaction must immediately follow the current model title")
 expect(chronoDelegate.menuActions["showBezel"]?.menu?.title == L("Appearance") &&
        chronoDelegate.menuActions["aboveWindows"]?.menu?.title == L("Window"), "Settings must be grouped by purpose")
-expect(chronoMenu.items.filter { !$0.isSeparatorItem && !$0.isHidden }.count == 8, "The root menu must stay compact")
+expect(chronoMenu.items.filter { !$0.isSeparatorItem && !$0.isHidden }.count == 9 &&
+       chronoMenu.items.contains { $0.submenu === chronoDelegate.hapticMenu },
+       "Feedback choices must occupy one submenu and keep the root menu compact")
 let appearance = chronoDelegate.menuActions["showBezel"]!.menu!
 appearance.performActionForItem(at: appearance.index(of: chronoDelegate.menuActions["showBezel"]!))
 expect(view.showBezel == preferences.bool(forKey: "showBezel"), "The menu must remain the bezel toggle")
