@@ -136,7 +136,7 @@
 "Upper pusher: start/pause. Lower pusher: reset. Running seconds are at 9. Right-click → Interaction for all controls." = "Pulsador superior: inicio/pausa. Inferior: restablecer. Pequeño segundero a las 9. Clic derecho → Interacción para todas las acciones.";
 "Digital clock with local time and date. Drag to move. Right-click for settings." = "Reloj digital con hora local y fecha. Arrastra para mover. Clic derecho para los ajustes.";
 "Themes available: %ld. The clock shows local macOS time. Minimalism and Minimalism 24 are original 12- and 24-hour themes in light and dark variants. The default is Minimalism 24 — Dark; your saved selection takes priority.\n\nDrag the clock to move it. Use Appearance → Bezel and strap to change the display mode. Clicking the dial does not change its appearance.\n\nRight-click the clock or menu bar icon for settings. Appearance groups size, bezel and hand options; Window groups always on top, position lock and return to screen. Left-click the menu bar icon to toggle Always on top. Interaction appears directly under the model name when controls are available.\n\nLaunch at login starts the app after sign-in. Move the app to Applications first; macOS may require approval in General → Login Items." = "Esferas disponibles: %ld. El reloj muestra la hora local de macOS. Minimalismo y Minimalismo 24 son esferas originales de 12 y 24 horas en versiones claras y oscuras. La predeterminada es Minimalismo 24 — oscuro; tiene prioridad la selección guardada.\n\nArrastra el reloj para moverlo. Cambia el modo en Apariencia → Bisel y correa. Pulsar la esfera no cambia su aspecto.\n\nEl clic derecho sobre el reloj o el icono de la barra de menús abre los ajustes. Apariencia agrupa tamaño, bisel y agujas; Ventana agrupa primer plano, bloqueo y retorno a la pantalla. Un clic izquierdo sobre el icono alterna el primer plano. Interacción aparece bajo el nombre del modelo si hay acciones disponibles.\n\nEl inicio de sesión abre la app al entrar en el sistema. Primero mueve la app a Aplicaciones; macOS puede pedir autorización en General → Ítems de inicio.";
-"Legendary watch models and their color variants: Rolex Submariner, Omega Speedmaster, Cartier Tank, Audemars Piguet Royal Oak and Casio G-Shock. Submariner Date and Royal Oak show the local date; G-Shock shows local digital time, weekday and date. On Moonwatch, click the upper pusher to start, pause or resume the chronograph; the lower pusher stops and resets it. The same controls are in Interaction, including in dial-only mode. Running seconds are at 9, the 30-minute counter at 3, and the 12-hour counter at 6. Alarm and timer controls are not implemented." = "Modelos legendarios y variantes de color: Rolex Submariner, Omega Speedmaster, Cartier Tank, Audemars Piguet Royal Oak y Casio G-Shock. Submariner Date y Royal Oak muestran la fecha local; G-Shock muestra la hora digital local, el día y la fecha. En Moonwatch, el pulsador superior inicia, pausa o continúa el cronógrafo; el inferior lo detiene y restablece. Las mismas acciones están en Interacción, incluso sin caja. El pequeño segundero está a las 9, el contador de 30 minutos a las 3 y el de 12 horas a las 6. Los controles de alarma y temporizador no están implementados.";
+"Legendary watch models and their color variants: Rolex Submariner, Omega Speedmaster, Cartier Tank, Audemars Piguet Royal Oak and Casio G-Shock. Submariner Date and Royal Oak show the local date; G-Shock shows local digital time, weekday and date. On Moonwatch, click the upper pusher to start, pause or resume the chronograph; the lower pusher stops and resets it. The same controls are in Interaction, including in dial-only mode. Running seconds are at 9, the 30-minute counter at 3, and the 12-hour counter at 6." = "Modelos legendarios y variantes de color: Rolex Submariner, Omega Speedmaster, Cartier Tank, Audemars Piguet Royal Oak y Casio G-Shock. Submariner Date y Royal Oak muestran la fecha local; G-Shock muestra la hora digital local, el día y la fecha. En Moonwatch, el pulsador superior inicia, pausa o continúa el cronógrafo; el inferior lo detiene y restablece. Las mismas acciones están en Interacción, incluso sin caja. El pequeño segundero está a las 9, el contador de 30 minutos a las 3 y el de 12 horas a las 6.";
 
 /* Mechanical watch button feedback. */
 "Haptic feedback" = "Respuesta háptica";
@@ -145,3 +145,36 @@
 "Alignment" = "Alineación";
 "Level change" = "Cambio de nivel";
 "Trackpad feedback when hovering over mechanical watch buttons." = "Respuesta del trackpad al pasar el cursor sobre los botones mecánicos del reloj.";
+
+/* G-Shock controls and settings. */
+"Timekeeping" = "Hora";
+"Alarm" = "Alarma";
+"Countdown timer" = "Temporizador";
+"Stopwatch" = "Cronómetro";
+"Mode" = "Modo";
+"A · Adjust / split / reset" = "A · Ajuste / parcial / reinicio";
+"B · Start / stop / increment" = "B · Iniciar / detener / aumentar";
+"C · Mode / next field" = "C · Modo / siguiente campo";
+"D · Light / format / auto-repeat" = "D · Luz / formato / repetición automática";
+"Flash Alert" = "Alerta luminosa";
+"Hold for two seconds in Timekeeping to toggle Flash Alert." = "Mantén pulsado dos segundos en el modo Hora para activar o desactivar la alerta luminosa.";
+"A: adjust/split/reset. B: start/stop. C: mode. D: light. Hold B in Timekeeping for Flash Alert. Right-click → Interaction for settings." = "A: ajuste/parcial/reinicio. B: iniciar/detener. C: modo. D: luz. Mantén B en el modo Hora: alerta luminosa. Clic derecho → Interacción: ajustes.";
+"G-Shock settings" = "Ajustes de G-Shock";
+"Set alarm…" = "Configurar alarma…";
+"Alarm enabled" = "Alarma activada";
+"Hourly signal" = "Señal horaria";
+"Set countdown…" = "Configurar temporizador…";
+"Auto-repeat" = "Repetición automática";
+"24-hour format" = "Formato de 24 horas";
+"Stop alarm sound" = "Detener señal sonora";
+"Alarms sound while the app is running. A sleeping Mac is not woken; overdue timers and alarms are checked after wake." = "Las señales suenan mientras la app está abierta. El Mac no se despierta; los temporizadores y alarmas vencidos se comprueban al despertar.";
+"Save" = "Guardar";
+"Cancel" = "Cancelar";
+"Check the alarm date or choose a countdown from 1 second to 24 hours." = "Comprueba la fecha de la alarma o elige una duración de 1 segundo a 24 horas.";
+"Hour (0–23)" = "Hora (0–23)";
+"Minute" = "Minuto";
+"Month (0 = any)" = "Mes (0 = cualquiera)";
+"Day (0 = any)" = "Día (0 = cualquiera)";
+"Hour" = "Hora";
+"Second" = "Segundo";
+"G-Shock has Timekeeping, Alarm, Countdown and Stopwatch modes. A adjusts settings, records a split or resets; B starts/stops or increments; C changes mode or field; D illuminates the LCD. Hold B for two seconds in Timekeeping to toggle Flash Alert. Interaction offers the same controls and alarm/timer settings without the case.\n\nThe stopwatch supports split times and two finishes. The countdown runs from 1 second to 24 hours with optional auto-repeat. The alarm can be daily or limited by month/day; an hourly signal is also available. Settings are saved; elapsed timers last until the app is closed. Time follows macOS; A in Timekeeping selects only the 12/24-hour format, changed with D.\n\nSound requires the app to remain running. The app does not wake a sleeping Mac; overdue alarms are checked after wake, including when another theme is selected." = "G-Shock ofrece Hora, Alarma, Temporizador y Cronómetro. A ajusta, toma un parcial o reinicia; B inicia/detiene o aumenta; C cambia de modo o campo; D ilumina el LCD. Mantén B dos segundos en el modo Hora para la alerta luminosa. Interacción ofrece las mismas acciones y ajustes sin caja.\n\nEl cronómetro admite parciales y dos llegadas. El temporizador va de 1 segundo a 24 horas con repetición automática. La alarma puede ser diaria o limitada por mes/día; hay señal horaria. Los ajustes se guardan; las mediciones duran hasta cerrar la app. La hora sigue macOS; A en el modo Hora selecciona únicamente el formato de 12/24 horas, que se cambia con D.\n\nLa app debe seguir abierta para emitir sonidos. No despierta un Mac en reposo; las alarmas vencidas se comprueban al despertar, incluso con otra esfera seleccionada.";

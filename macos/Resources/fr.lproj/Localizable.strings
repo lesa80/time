@@ -136,7 +136,7 @@
 "Upper pusher: start/pause. Lower pusher: reset. Running seconds are at 9. Right-click → Interaction for all controls." = "Poussoir supérieur : démarrer/pause. Inférieur : réinitialiser. Petite seconde à 9 h. Clic droit → Interactions pour toutes les actions.";
 "Digital clock with local time and date. Drag to move. Right-click for settings." = "Horloge numérique avec heure locale et date. Faites glisser pour déplacer. Clic droit pour les réglages.";
 "Themes available: %ld. The clock shows local macOS time. Minimalism and Minimalism 24 are original 12- and 24-hour themes in light and dark variants. The default is Minimalism 24 — Dark; your saved selection takes priority.\n\nDrag the clock to move it. Use Appearance → Bezel and strap to change the display mode. Clicking the dial does not change its appearance.\n\nRight-click the clock or menu bar icon for settings. Appearance groups size, bezel and hand options; Window groups always on top, position lock and return to screen. Left-click the menu bar icon to toggle Always on top. Interaction appears directly under the model name when controls are available.\n\nLaunch at login starts the app after sign-in. Move the app to Applications first; macOS may require approval in General → Login Items." = "Cadrans disponibles : %ld. L’horloge affiche l’heure locale de macOS. Minimalisme et Minimalisme 24 sont des cadrans originaux de 12 et 24 heures en versions claires et sombres. Le choix par défaut est Minimalisme 24 — sombre ; la sélection enregistrée est prioritaire.\n\nFaites glisser l’horloge pour la déplacer. Changez le mode dans Apparence → Lunette et bracelet. Cliquer sur le cadran ne change pas son apparence.\n\nUn clic droit sur l’horloge ou l’icône de la barre des menus ouvre les réglages. Apparence regroupe taille, lunette et aiguilles ; Fenêtre regroupe premier plan, verrouillage et retour à l’écran. Un clic gauche sur l’icône active le premier plan. Interactions apparaît sous le nom du modèle lorsque des actions sont disponibles.\n\nLe lancement à la connexion ouvre l’app après la connexion. Placez d’abord l’app dans Applications ; macOS peut demander une autorisation dans Général → Ouverture.";
-"Legendary watch models and their color variants: Rolex Submariner, Omega Speedmaster, Cartier Tank, Audemars Piguet Royal Oak and Casio G-Shock. Submariner Date and Royal Oak show the local date; G-Shock shows local digital time, weekday and date. On Moonwatch, click the upper pusher to start, pause or resume the chronograph; the lower pusher stops and resets it. The same controls are in Interaction, including in dial-only mode. Running seconds are at 9, the 30-minute counter at 3, and the 12-hour counter at 6. Alarm and timer controls are not implemented." = "Modèles légendaires et variantes de couleur : Rolex Submariner, Omega Speedmaster, Cartier Tank, Audemars Piguet Royal Oak et Casio G-Shock. Submariner Date et Royal Oak affichent la date locale ; G-Shock affiche l’heure numérique locale, le jour et la date. Sur Moonwatch, le poussoir supérieur démarre, met en pause ou reprend le chronographe ; le poussoir inférieur l’arrête et le réinitialise. Ces actions sont aussi dans Interactions, même sans boîtier. La petite seconde est à 9 h, le compteur de 30 minutes à 3 h et celui de 12 heures à 6 h. Les commandes d’alarme et de minuterie ne sont pas implémentées.";
+"Legendary watch models and their color variants: Rolex Submariner, Omega Speedmaster, Cartier Tank, Audemars Piguet Royal Oak and Casio G-Shock. Submariner Date and Royal Oak show the local date; G-Shock shows local digital time, weekday and date. On Moonwatch, click the upper pusher to start, pause or resume the chronograph; the lower pusher stops and resets it. The same controls are in Interaction, including in dial-only mode. Running seconds are at 9, the 30-minute counter at 3, and the 12-hour counter at 6." = "Modèles légendaires et variantes de couleur : Rolex Submariner, Omega Speedmaster, Cartier Tank, Audemars Piguet Royal Oak et Casio G-Shock. Submariner Date et Royal Oak affichent la date locale ; G-Shock affiche l’heure numérique locale, le jour et la date. Sur Moonwatch, le poussoir supérieur démarre, met en pause ou reprend le chronographe ; le poussoir inférieur l’arrête et le réinitialise. Ces actions sont aussi dans Interactions, même sans boîtier. La petite seconde est à 9 h, le compteur de 30 minutes à 3 h et celui de 12 heures à 6 h.";
 
 /* Mechanical watch button feedback. */
 "Haptic feedback" = "Retour haptique";
@@ -145,3 +145,36 @@
 "Alignment" = "Alignement";
 "Level change" = "Changement de niveau";
 "Trackpad feedback when hovering over mechanical watch buttons." = "Retour du trackpad au survol des boutons mécaniques de la montre.";
+
+/* G-Shock controls and settings. */
+"Timekeeping" = "Heure";
+"Alarm" = "Alarme";
+"Countdown timer" = "Minuterie";
+"Stopwatch" = "Chronomètre";
+"Mode" = "Mode";
+"A · Adjust / split / reset" = "A · Réglage / intermédiaire / remise à zéro";
+"B · Start / stop / increment" = "B · Démarrer / arrêter / augmenter";
+"C · Mode / next field" = "C · Mode / champ suivant";
+"D · Light / format / auto-repeat" = "D · Éclairage / format / répétition auto";
+"Flash Alert" = "Alerte lumineuse";
+"Hold for two seconds in Timekeeping to toggle Flash Alert." = "Maintenez deux secondes en mode Heure pour activer ou désactiver l’alerte lumineuse.";
+"A: adjust/split/reset. B: start/stop. C: mode. D: light. Hold B in Timekeeping for Flash Alert. Right-click → Interaction for settings." = "A : réglage/intermédiaire/remise à zéro. B : démarrer/arrêter. C : mode. D : éclairage. Maintenez B en mode Heure : alerte lumineuse. Clic droit → Interactions : réglages.";
+"G-Shock settings" = "Réglages G-Shock";
+"Set alarm…" = "Régler l’alarme…";
+"Alarm enabled" = "Alarme activée";
+"Hourly signal" = "Signal horaire";
+"Set countdown…" = "Régler la minuterie…";
+"Auto-repeat" = "Répétition automatique";
+"24-hour format" = "Format 24 heures";
+"Stop alarm sound" = "Arrêter la sonnerie";
+"Alarms sound while the app is running. A sleeping Mac is not woken; overdue timers and alarms are checked after wake." = "Les sonneries fonctionnent tant que l’app est ouverte. Un Mac en veille n’est pas réveillé ; les échéances sont vérifiées à son réveil.";
+"Save" = "Enregistrer";
+"Cancel" = "Annuler";
+"Check the alarm date or choose a countdown from 1 second to 24 hours." = "Vérifiez la date de l’alarme ou choisissez une durée entre 1 seconde et 24 heures.";
+"Hour (0–23)" = "Heure (0–23)";
+"Minute" = "Minute";
+"Month (0 = any)" = "Mois (0 = tous)";
+"Day (0 = any)" = "Jour (0 = tous)";
+"Hour" = "Heure";
+"Second" = "Seconde";
+"G-Shock has Timekeeping, Alarm, Countdown and Stopwatch modes. A adjusts settings, records a split or resets; B starts/stops or increments; C changes mode or field; D illuminates the LCD. Hold B for two seconds in Timekeeping to toggle Flash Alert. Interaction offers the same controls and alarm/timer settings without the case.\n\nThe stopwatch supports split times and two finishes. The countdown runs from 1 second to 24 hours with optional auto-repeat. The alarm can be daily or limited by month/day; an hourly signal is also available. Settings are saved; elapsed timers last until the app is closed. Time follows macOS; A in Timekeeping selects only the 12/24-hour format, changed with D.\n\nSound requires the app to remain running. The app does not wake a sleeping Mac; overdue alarms are checked after wake, including when another theme is selected." = "G-Shock propose Heure, Alarme, Minuterie et Chronomètre. A règle, prend un intermédiaire ou remet à zéro ; B démarre/arrête ou augmente ; C change de mode ou de champ ; D éclaire le LCD. Maintenez B deux secondes en mode Heure pour l’alerte lumineuse. Interactions propose les mêmes commandes et réglages sans boîtier.\n\nLe chronomètre gère les intermédiaires et deux arrivées. La minuterie va de 1 seconde à 24 heures, avec répétition automatique. L’alarme peut être quotidienne ou limitée par mois/jour ; un signal horaire est disponible. Les réglages sont conservés ; les mesures durent jusqu’à la fermeture de l’app. L’heure suit macOS ; A en mode Heure sélectionne uniquement le format 12/24 heures, modifié avec D.\n\nL’app doit rester ouverte pour les sonneries. Elle ne réveille pas un Mac en veille ; les échéances sont vérifiées au réveil, même avec un autre cadran.";

@@ -19,6 +19,7 @@ final class DialRenderer {
     let layers: [Layer]
     let hasSeconds: Bool
     let hasChronograph: Bool
+    var isGShock: Bool { theme.id == "casio-gshock" }
     var hasBezel: Bool { layers.contains { $0.spec.image.hasSuffix("/bezel.png") } }
     enum DrawingPass { case all, background, live, foreground }
     private let firstLive: Int
@@ -70,7 +71,8 @@ final class DialRenderer {
     }
 
     func draw(in context: CGContext, size: CGSize, angles: HandAngles, showSeconds: Bool = true,
-              showBezel: Bool = true, pass: DrawingPass = .all, chronograph: ChronographReading = ChronographReading()) {
+              showBezel: Bool = true, pass: DrawingPass = .all, chronograph: ChronographReading = ChronographReading(),
+              gshock: GShockDisplay? = nil) {
         context.saveGState()
         context.translateBy(x: 0, y: size.height)
         let viewport = !showBezel ? specification.dialBounds : nil
@@ -85,12 +87,26 @@ final class DialRenderer {
             case .foreground: if index <= lastLive { continue }
             }
             let spec = layer.spec
+            if index == firstLive && isGShock && gshock?.backlit == true,
+               let origin = layers.first(where: { $0.spec.image.hasSuffix("/lcd-marks.png") })?.spec.position {
+                context.saveGState()
+                context.addPath(CGPath(roundedRect: CGRect(x: origin[0], y: origin[1], width: 270, height: 170),
+                                       cornerWidth: 8, cornerHeight: 8, transform: nil))
+                context.clip()
+                let colors = [CGColor(red: 0.30, green: 1, blue: 0.77, alpha: 0.7),
+                              CGColor(red: 0.03, green: 0.73, blue: 0.65, alpha: 0.65)]
+                if let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colors as CFArray, locations: [0, 1]) {
+                    context.drawLinearGradient(gradient, start: CGPoint(x: origin[0], y: origin[1]),
+                        end: CGPoint(x: origin[0], y: origin[1] + 170), options: [])
+                }
+                context.restoreGState()
+            }
             if !showBezel && spec.image.hasSuffix("bezel.png") { continue }
             if !showSeconds && spec.image.hasSuffix("/second.png") { continue }
             context.saveGState()
             let size = spec.size ?? specification.resolution
             if spec.type == "Text Res", let field = spec.field, let position = spec.position {
-                let text = Array(angles.text(for: field))
+                let text = Array((isGShock ? gshock?.fields[field] : nil) ?? angles.text(for: field))
                 let width = size[0] / Double(text.count)
                 for (offset, character) in text.enumerated() {
                     guard let glyph = layer.glyphs[character] else { continue }
@@ -121,14 +137,14 @@ final class DialRenderer {
         context.restoreGState()
     }
 
-    func png(side: Int, angles: HandAngles, showBezel: Bool = true) throws -> Data {
+    func png(side: Int, angles: HandAngles, showBezel: Bool = true, gshock: GShockDisplay? = nil) throws -> Data {
         let size = displaySize(width: CGFloat(side), showBezel: showBezel)
         guard let context = CGContext(data: nil, width: side, height: Int(size.height), bitsPerComponent: 8,
                 bytesPerRow: side * 4, space: CGColorSpace(name: CGColorSpace.sRGB)!,
                 bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else {
             throw DialError.resource("bitmap context")
         }
-        draw(in: context, size: size, angles: angles, showBezel: showBezel)
+        draw(in: context, size: size, angles: angles, showBezel: showBezel, gshock: gshock)
         guard let image = context.makeImage() else { throw DialError.resource("render") }
         let output = NSMutableData()
         guard let destination = CGImageDestinationCreateWithData(output, "public.png" as CFString, 1, nil) else {

@@ -136,7 +136,7 @@
 "Upper pusher: start/pause. Lower pusher: reset. Running seconds are at 9. Right-click → Interaction for all controls." = "Верхняя кнопка: запуск/пауза. Нижняя: сброс. Текущие секунды — на 9 часах. Правая кнопка → Interaction: все действия.";
 "Digital clock with local time and date. Drag to move. Right-click for settings." = "Цифровые часы с местным временем и датой. Перетаскивайте для перемещения. Правая кнопка — настройки.";
 "Themes available: %ld. The clock shows local macOS time. Minimalism and Minimalism 24 are original 12- and 24-hour themes in light and dark variants. The default is Minimalism 24 — Dark; your saved selection takes priority.\n\nDrag the clock to move it. Use Appearance → Bezel and strap to change the display mode. Clicking the dial does not change its appearance.\n\nRight-click the clock or menu bar icon for settings. Appearance groups size, bezel and hand options; Window groups always on top, position lock and return to screen. Left-click the menu bar icon to toggle Always on top. Interaction appears directly under the model name when controls are available.\n\nLaunch at login starts the app after sign-in. Move the app to Applications first; macOS may require approval in General → Login Items." = "Доступно тем: %ld. Часы показывают местное время macOS. «Минимализм» и «Минимализм 24» — собственные темы на 12 и 24 часа в светлом и тёмном вариантах. По умолчанию выбрана «Минимализм 24 — тёмный»; сохранённый выбор имеет приоритет.\n\nПеретаскивайте часы для перемещения. Режим отображения меняется в меню «Внешний вид → Безель и ремешок». Клик по циферблату не меняет его вид.\n\nНастройки открываются правым кликом по часам или значку в строке меню. «Внешний вид» объединяет размер, безель и стрелки; «Окно» — режим поверх окон, закрепление и возврат на экран. Левый клик по значку переключает «Поверх окон». Interaction появляется сразу под названием модели, если для неё предусмотрены действия.\n\nАвтозапуск открывает приложение после входа в систему. Сначала переместите приложение в «Программы»; macOS может запросить подтверждение в разделе «Основные → Объекты входа».";
-"Legendary watch models and their color variants: Rolex Submariner, Omega Speedmaster, Cartier Tank, Audemars Piguet Royal Oak and Casio G-Shock. Submariner Date and Royal Oak show the local date; G-Shock shows local digital time, weekday and date. On Moonwatch, click the upper pusher to start, pause or resume the chronograph; the lower pusher stops and resets it. The same controls are in Interaction, including in dial-only mode. Running seconds are at 9, the 30-minute counter at 3, and the 12-hour counter at 6. Alarm and timer controls are not implemented." = "Легендарные модели часов и их цветовые варианты: Rolex Submariner, Omega Speedmaster, Cartier Tank, Audemars Piguet Royal Oak и Casio G-Shock. Submariner Date и Royal Oak показывают местную дату; G-Shock — местное цифровое время, день недели и дату. У Moonwatch верхняя кнопка запускает, приостанавливает и продолжает хронограф; нижняя останавливает и сбрасывает его. Эти же действия доступны в Interaction, в том числе без корпуса. Текущие секунды — на 9 часах, 30-минутный счётчик — на 3, 12-часовой — на 6. Управление будильником и таймером не реализовано.";
+"Legendary watch models and their color variants: Rolex Submariner, Omega Speedmaster, Cartier Tank, Audemars Piguet Royal Oak and Casio G-Shock. Submariner Date and Royal Oak show the local date; G-Shock shows local digital time, weekday and date. On Moonwatch, click the upper pusher to start, pause or resume the chronograph; the lower pusher stops and resets it. The same controls are in Interaction, including in dial-only mode. Running seconds are at 9, the 30-minute counter at 3, and the 12-hour counter at 6." = "Легендарные модели часов и их цветовые варианты: Rolex Submariner, Omega Speedmaster, Cartier Tank, Audemars Piguet Royal Oak и Casio G-Shock. Submariner Date и Royal Oak показывают местную дату; G-Shock — местное цифровое время, день недели и дату. У Moonwatch верхняя кнопка запускает, приостанавливает и продолжает хронограф; нижняя останавливает и сбрасывает его. Эти же действия доступны в Interaction, в том числе без корпуса. Текущие секунды — на 9 часах, 30-минутный счётчик — на 3, 12-часовой — на 6.";
 
 /* Mechanical watch button feedback. */
 "Haptic feedback" = "Тактильный отклик";
@@ -145,3 +145,36 @@
 "Alignment" = "Выравнивание";
 "Level change" = "Смена уровня";
 "Trackpad feedback when hovering over mechanical watch buttons." = "Отклик трекпада при наведении на механические кнопки часов.";
+
+/* G-Shock controls and settings. */
+"Timekeeping" = "Текущее время";
+"Alarm" = "Будильник";
+"Countdown timer" = "Таймер";
+"Stopwatch" = "Секундомер";
+"Mode" = "Режим";
+"A · Adjust / split / reset" = "A · Настройка / отсечка / сброс";
+"B · Start / stop / increment" = "B · Старт / стоп / увеличить";
+"C · Mode / next field" = "C · Режим / следующее поле";
+"D · Light / format / auto-repeat" = "D · Подсветка / формат / автоповтор";
+"Flash Alert" = "Мигающий сигнал";
+"Hold for two seconds in Timekeeping to toggle Flash Alert." = "Удерживайте две секунды в режиме времени, чтобы переключить мигающий сигнал.";
+"A: adjust/split/reset. B: start/stop. C: mode. D: light. Hold B in Timekeeping for Flash Alert. Right-click → Interaction for settings." = "A — настройка/отсечка/сброс. B — старт/стоп. C — режим. D — подсветка. Удерживайте B в режиме времени для мигающего сигнала. Правый клик → Взаимодействие — настройки.";
+"G-Shock settings" = "Настройки G-Shock";
+"Set alarm…" = "Настроить будильник…";
+"Alarm enabled" = "Будильник включён";
+"Hourly signal" = "Ежечасный сигнал";
+"Set countdown…" = "Настроить таймер…";
+"Auto-repeat" = "Автоповтор";
+"24-hour format" = "24-часовой формат";
+"Stop alarm sound" = "Остановить звуковой сигнал";
+"Alarms sound while the app is running. A sleeping Mac is not woken; overdue timers and alarms are checked after wake." = "Сигналы звучат, пока приложение запущено. Спящий Mac не пробуждается; пропущенные таймеры и будильники проверяются после пробуждения.";
+"Save" = "Сохранить";
+"Cancel" = "Отмена";
+"Check the alarm date or choose a countdown from 1 second to 24 hours." = "Проверьте дату будильника или задайте таймер от 1 секунды до 24 часов.";
+"Hour (0–23)" = "Час (0–23)";
+"Minute" = "Минута";
+"Month (0 = any)" = "Месяц (0 — любой)";
+"Day (0 = any)" = "День (0 — любой)";
+"Hour" = "Час";
+"Second" = "Секунда";
+"G-Shock has Timekeeping, Alarm, Countdown and Stopwatch modes. A adjusts settings, records a split or resets; B starts/stops or increments; C changes mode or field; D illuminates the LCD. Hold B for two seconds in Timekeeping to toggle Flash Alert. Interaction offers the same controls and alarm/timer settings without the case.\n\nThe stopwatch supports split times and two finishes. The countdown runs from 1 second to 24 hours with optional auto-repeat. The alarm can be daily or limited by month/day; an hourly signal is also available. Settings are saved; elapsed timers last until the app is closed. Time follows macOS; A in Timekeeping selects only the 12/24-hour format, changed with D.\n\nSound requires the app to remain running. The app does not wake a sleeping Mac; overdue alarms are checked after wake, including when another theme is selected." = "У G-Shock четыре режима: текущее время, будильник, таймер и секундомер. A — настройка, отсечка или сброс; B — старт/стоп или увеличение значения; C — смена режима или поля; D — подсветка LCD. Удерживайте B две секунды в режиме времени для переключения мигающего сигнала. Взаимодействие содержит те же действия и настройки будильника/таймера, в том числе без корпуса.\n\nСекундомер поддерживает промежуточное время и два финиша. Таймер — от 1 секунды до 24 часов с автоповтором. Будильник может быть ежедневным или ограниченным месяцем/днём; есть ежечасный сигнал. Настройки сохраняются; отсчёты действуют до закрытия приложения. Время синхронизировано с macOS; A в режиме времени выбирает только формат 12/24 часа, D меняет его.\n\nДля звука приложение должно оставаться запущенным. Оно не будит спящий Mac; пропущенные сигналы проверяются после пробуждения, в том числе при другой выбранной теме.";

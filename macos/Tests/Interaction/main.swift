@@ -17,6 +17,7 @@ if let index = CommandLine.arguments.firstIndex(of: "--localization-only") {
     try checkLocalizedInterface(library: library, expectedLanguage: CommandLine.arguments[index + 1])
     exit(0)
 }
+try checkGShockInterface(library: library)
 let renderer = try library.renderer(for: "avangard")
 let window = ClockWindow(contentRect: NSRect(x: 200, y: 200, width: 280, height: 280),
                          styleMask: [.borderless], backing: .buffered, defer: false)

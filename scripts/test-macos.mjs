@@ -7,7 +7,7 @@ export function testNative(resources = path.join(root, 'dist/macos', `${appName}
   if (!fs.existsSync(path.join(resources, 'themes.json'))) throw new Error('Build Время.app before native interaction tests: npm run build');
   fs.mkdirSync(scratch, { recursive: true });
   const flags = compilerFlags();
-  run('xcrun', ['swiftc', ...flags, ...coreSources, 'macos/Tests/main.swift', '-o', path.join(scratch, 'ClockTests')]);
+  run('xcrun', ['swiftc', ...flags, ...coreSources, 'macos/Tests/GShockChecks.swift', 'macos/Tests/main.swift', '-o', path.join(scratch, 'ClockTests')]);
   run(path.join(scratch, 'ClockTests'), []);
   // A real test bundle exercises the same Bundle.main localization lookup as the app.
   const testApp = path.join(scratch, 'InteractionTests.app');
@@ -21,7 +21,7 @@ export function testNative(resources = path.join(root, 'dist/macos', `${appName}
   for (const language of ['ru', 'en', 'de', 'fr', 'es']) {
     fs.cpSync(path.join(resources, `${language}.lproj`), path.join(testResources, `${language}.lproj`), { recursive: true });
   }
-  run('xcrun', ['swiftc', ...flags, ...appSources, 'macos/Tests/Interaction/LocalizationChecks.swift',
+  run('xcrun', ['swiftc', ...flags, ...appSources, 'macos/Tests/Interaction/LocalizationChecks.swift', 'macos/Tests/Interaction/GShockChecks.swift',
     'macos/Tests/Interaction/main.swift', '-o', testBinary]);
   run(testBinary, [resources, '-AppleLanguages', '(en)']);
   for (const language of ['ru', 'en', 'de', 'fr', 'es']) {

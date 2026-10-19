@@ -14,17 +14,19 @@ function raster(folder,name,w,h,body,scale=4){const source=svg(w,h,body);fs.writ
 function bounds(p){let x0=p.width,y0=p.height,x1=0,y1=0;for(let y=0;y<p.height;y++)for(let x=0;x<p.width;x++)if(p.data[(y*p.width+x)*4+3]>16){x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y);}return [Math.max(0,x0-3),Math.max(0,y0-3),Math.min(p.width-1,x1+3)-Math.max(0,x0-3)+1,Math.min(p.height-1,y1+3)-Math.max(0,y0-3)+1];}
 function crop(p,[x,y,w,h]){const q=new PNG({width:w,height:h});for(let row=0;row<h;row++)p.data.copy(q.data,row*w*4,((y+row)*p.width+x)*4,((y+row)*p.width+x+w)*4);return q;}
 function hole(p,cx,cy,rx,ry){for(let y=Math.max(0,Math.floor(cy-ry-1));y<Math.min(p.height,cy+ry+1);y++)for(let x=Math.max(0,Math.floor(cx-rx-1));x<Math.min(p.width,cx+rx+1);x++){const coverage=Math.max(0,Math.min(1,(1-Math.hypot((x+.5-cx)/rx,(y+.5-cy)/ry))*Math.min(rx,ry)+.5));p.data[(y*p.width+x)*4+3]=Math.round(p.data[(y*p.width+x)*4+3]*(1-coverage));}}
-function atlas(folder,name,{color='#202a21',segment=false,font='Helvetica,Arial,sans-serif'}={}){
+function atlas(folder,name,{color='#202a21',segment=false,font='Helvetica,Arial,sans-serif',characters=chars}={}){
  const bits=[63,6,91,79,102,109,125,7,127,111];
  const paths=['M12 5H48L53 10L47 16H13L7 10Z','M49 17L55 11L55 49L49 55L44 49V23Z','M49 61L55 55V94L49 100L44 94V67Z','M12 96H47L53 102L47 108H12L6 102Z','M5 61L11 67V94L5 100L0 94V55Z','M5 17L11 23V49L5 55L0 49V11Z','M12 51H47L53 57L47 63H12L6 57Z'];
- const body=[...chars].map((c,i)=>{
+ const body=[...characters].map((c,i)=>{
   if(segment&&/\d/.test(c))return `<g transform="translate(${i*64+4},0)" fill="${color}">${paths.map((d,k)=>`<path d="${d}" opacity="${bits[Number(c)]&(1<<k)?1:.035}"/>`).join('')}</g>`;
   return `<text x="${i*64+32}" y="87" text-anchor="middle" font-family="${font}" font-size="87" font-weight="500" fill="${color}">${c}</text>`;
  }).join('');
- raster(folder,name,64*chars.length,112,body,2);
+ raster(folder,name,64*characters.length,112,body,2);
 }
 const entries=[];
-for(const model of iconModels){
+const only=process.argv.find(arg=>arg.startsWith('--only='))?.slice(7);
+if(only&&!iconModels.some(model=>model.id===only))throw new Error(`Unknown model: ${only}`);
+for(const model of iconModels.filter(model=>!only||model.id===only)){
  const base=`assets/icons-collection/${model.id}`,folder=path.join(root,base);
  const materialGradients=model.gold?gradients.replace('#f9faf9','#fff0b3').replace('#9ca2a5','#9c6e20').replace('stop-color="#fff"','stop-color="#ffea98"').replace('#787d82','#7b4d12'):gradients;
  const master=PNG.sync.read(fs.readFileSync(path.join(folder,'source/master.png')));
@@ -58,18 +60,21 @@ for(const model of iconModels){
   raster(folder,name,w,h,materialGradients+shape);
   layers.push({type:'Hand Res',image:`${base}/${name}.png`,handResPosition:pivot.map((v,i)=>v-box[i]),rotatePoint:[cx,length],size:[w,h]});
  }
- function text(name,field,position,size,atlasName){layers.push({type:'Text Res',image:`${base}/${atlasName}.png`,position:position.map((v,i)=>v-box[i]),size,field,characters:chars});}
+ function text(name,field,position,size,atlasName,characters=chars){layers.push({type:'Text Res',image:`${base}/${atlasName}.png`,position:position.map((v,i)=>v-box[i]),size,field,characters});}
  function chronoHand(name,pivot,length,tail=0){
   const w=16,h=length+Math.max(tail,8)+2,cx=w/2;
   raster(folder,name,w,h,`<path d="M${cx} 1V${length+tail}" fill="none" stroke="#e8ebdd" stroke-width="3"/><circle cx="${cx}" cy="${length}" r="${tail?4:6}" fill="#cdd2d0" stroke="#777"/>`);
   layers.push({type:'Hand Res',image:`${base}/${name}.png`,handResPosition:pivot.map((v,i)=>v-box[i]),rotatePoint:[cx,length],size:[w,h]});
  }
  if(model.digital){
-  atlas(folder,'lcd-digits',{segment:true});atlas(folder,'lcd-letters',{font:'Menlo,monospace'});
-  staticLayer('lcd-marks',[378,626],[270,170],'<g fill="#273127"><text x="7" y="17" font-size="10" font-family="Helvetica,Arial,sans-serif">24H</text><rect x="107" y="94" width="4" height="5"/><rect x="107" y="118" width="4" height="5"/><rect x="188" y="29" width="8" height="2"/></g>');
-  text('weekday','weekday',[417,645],[54,29],'lcd-letters');
-  text('month','month',[515,645],[46,27],'lcd-digits');text('day','day',[582,645],[46,27],'lcd-digits');
-  text('hours','hours',[391,699],[88,73],'lcd-digits');text('minutes','minutes',[494,699],[88,73],'lcd-digits');text('seconds','seconds',[591,726],[48,44],'lcd-digits');
+  const lcdChars=chars+'LPCIG-:';
+  atlas(folder,'lcd-digits',{segment:true,characters:lcdChars});atlas(folder,'lcd-letters',{font:'Menlo,monospace',characters:lcdChars});
+  staticLayer('lcd-marks',[378,626],[270,170],'<g fill="#273127"><rect x="107" y="94" width="4" height="5"/><rect x="107" y="118" width="4" height="5"/></g>');
+  const lcd=(field,position,size,atlasName='lcd-digits')=>text(field,field,position,size,atlasName,lcdChars);
+  lcd('format',[385,626],[35,13],'lcd-letters');lcd('indicators',[430,626],[202,13],'lcd-letters');
+  lcd('weekday',[417,645],[54,29],'lcd-letters');
+  lcd('month',[515,645],[46,27]);lcd('day',[582,645],[46,27]);lcd('separator',[565,646],[15,22],'lcd-letters');
+  lcd('hours',[391,699],[88,73]);lcd('minutes',[494,699],[88,73]);lcd('seconds',[591,726],[48,44]);
  }else{
   if(model.style==='speedmaster'){
    chronoHand('chrono-minute',model.chronographMinuteCenter,69);
@@ -98,5 +103,5 @@ for(const model of iconModels){
 }
 const registry=JSON.parse(fs.readFileSync(path.join(root,'themes.json')));
 const previous=registry.themes.filter(t=>t.brand!=='icons');
-registry.themes=[...previous.filter(t=>!t.brand),...entries,...previous.filter(t=>t.brand)];
+registry.themes=only?registry.themes.map(theme=>entries.find(entry=>entry.id===theme.id)??theme):[...previous.filter(t=>!t.brand),...entries,...previous.filter(t=>t.brand)];
 fs.writeFileSync(path.join(root,'themes.json'),JSON.stringify(registry,null,2)+'\n');

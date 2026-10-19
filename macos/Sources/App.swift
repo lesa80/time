@@ -16,6 +16,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     var titleItem: NSMenuItem!
     var timer: Timer?
     var chronograph = Chronograph()
+    var gshock: GShock
+    var gshockServiceTimer: Timer?
+    var lastGShockSoundAt = Date.distantPast
+    let signalSound: () -> Void
     private var positionSaveTimer: Timer?
     private var isSleeping = false
     private var notificationObservers: [(center: NotificationCenter, token: NSObjectProtocol)] = []
@@ -32,10 +36,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     lazy var menuBarLogo = makeMenuBarLogo(active: false)
     lazy var menuBarLogoActive = makeMenuBarLogo(active: true)
 
-    init(library: ThemeLibrary, renderer: DialRenderer, defaults: UserDefaults = .standard) {
+    init(library: ThemeLibrary, renderer: DialRenderer, defaults: UserDefaults = .standard,
+         gshock: GShock? = nil, signalSound: (() -> Void)? = nil) {
         self.library = library
         self.renderer = renderer
         self.defaults = defaults
+        let saved = defaults.data(forKey: "gshockSettings").flatMap { try? JSONDecoder().decode(GShockSettings.self, from: $0) }
+        self.gshock = gshock ?? GShock(settings: saved ?? GShockSettings())
+        self.gshock.resynchronizeWallClock(date: Date())
+        self.signalSound = signalSound ?? { NSSound(named: NSSound.Name("Ping"))?.play() }
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -71,8 +80,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         applyWindowPreferences()
         window.orderFrontRegardless()
         startTimer()
-        observe(.NSSystemClockDidChange) { $0.resynchronize() }
-        observe(.NSSystemTimeZoneDidChange) { $0.resynchronize() }
+        refreshGShockService()
+        observe(.NSSystemClockDidChange) { $0.systemClockChanged() }
+        observe(.NSSystemTimeZoneDidChange) { $0.systemClockChanged() }
         observe(NSApplication.didChangeScreenParametersNotification) { $0.screensChanged() }
         observe(.NSProcessInfoPowerStateDidChange) { $0.resynchronize() }
         let workspace = NSWorkspace.shared.notificationCenter
@@ -184,11 +194,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         menu.delegate = self
         add("chronoToggle", L("Start chronograph"), #selector(toggleChronograph), to: menu)
         add("chronoReset", L("Reset chronograph"), #selector(resetChronograph), to: menu)
-        menu.addItem(.separator())
+        let divider = NSMenuItem.separator()
+        menu.addItem(divider)
+        menuActions["chronoDivider"] = divider
         let elapsed = NSMenuItem(title: "", action: nil, keyEquivalent: "")
         elapsed.isEnabled = false
         menu.addItem(elapsed)
         menuActions["chronoElapsed"] = elapsed
+        addGShockMenuItems(to: menu)
         return menu
     }
 
@@ -340,13 +353,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         timer = nil
         updateClock()
         guard !isSleeping, window.occlusionState.contains(.visible) else { return }
-        let interval = AnimationPolicy.interval(smooth: defaults.bool(forKey: "smooth"), showSeconds: defaults.bool(forKey: "showSeconds") ||
+        var interval = AnimationPolicy.interval(smooth: defaults.bool(forKey: "smooth"), showSeconds: defaults.bool(forKey: "showSeconds") ||
             (renderer.hasChronograph && chronograph.isRunning),
             hasSeconds: renderer.hasSeconds, reduceMotion: NSWorkspace.shared.accessibilityDisplayShouldReduceMotion,
             lowPower: ProcessInfo.processInfo.isLowPowerModeEnabled)
+        if renderer.isGShock && gshock.needsFastRefresh {
+            interval = gshock.isEditing ? 0.25 :
+                (ProcessInfo.processInfo.isLowPowerModeEnabled || NSWorkspace.shared.accessibilityDisplayShouldReduceMotion ? 0.1 : 1.0 / 60)
+        }
         let timer = Timer(timeInterval: interval, repeats: true) { [weak self] _ in
             // This timer is registered exclusively on the main run loop.
-            MainActor.assumeIsolated { self?.updateClock() }
+            MainActor.assumeIsolated {
+                guard let self else { return }
+                self.updateClock()
+                if self.renderer.isGShock && !self.gshock.needsFastRefresh && (self.timer?.timeInterval ?? 1) < 1 {
+                    self.startTimer()
+                }
+            }
         }
         timer.tolerance = interval * 0.15
         RunLoop.main.add(timer, forMode: .common)
@@ -354,6 +377,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     }
     func updateClock() {
         clockView.date = Date()
+        advanceGShock(date: clockView.date)
+        clockView.gshockDisplay = renderer.isGShock ? gshock.display(date: clockView.date,
+            reduceMotion: NSWorkspace.shared.accessibilityDisplayShouldReduceMotion) : nil
         clockView.chronographIsRunning = chronograph.isRunning
         clockView.chronograph = chronograph.reading
         clockView.needsDisplay = true
@@ -363,7 +389,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             lastAccessibilitySecond = second
             lastChronographSecond = chronoSecond
             let time = accessibilityFormatter.string(from: clockView.date)
-            clockView.setAccessibilityValue(renderer.hasChronograph ? time + ", " + chronographDescription : time)
+            clockView.setAccessibilityValue(renderer.hasChronograph ? time + ", " + chronographDescription :
+                renderer.isGShock ? time + ", " + gshockDescription : time)
             updateChronographMenu()
         }
     }
@@ -372,15 +399,24 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         return L("Chronograph: %@ · %@", chronograph.reading.text, state)
     }
     func updateChronographMenu() {
-        menuActions["interaction"]?.isHidden = !renderer.hasChronograph
+        menuActions["interaction"]?.isHidden = !renderer.hasChronograph && !renderer.isGShock && !gshock.isRinging
+        for key in ["chronoToggle", "chronoReset", "chronoDivider", "chronoElapsed"] {
+            menuActions[key]?.isHidden = !renderer.hasChronograph
+        }
         menuActions["chronoToggle"]?.title = chronograph.isRunning ? L("Pause chronograph") : chronograph.reading.elapsed > 0 ? L("Resume chronograph") : L("Start chronograph")
         menuActions["chronoReset"]?.isEnabled = chronograph.isRunning || chronograph.reading.elapsed > 0
         menuActions["chronoElapsed"]?.title = chronographDescription
+        updateGShockMenu()
     }
     func performInteraction(_ action: DialSpecification.MechanicalAction) {
         switch action {
         case .chronographToggle: toggleChronograph()
         case .chronographReset: resetChronograph()
+        case .gshockA: pressGShock(.a)
+        case .gshockB: pressGShock(.b)
+        case .gshockC: pressGShock(.c)
+        case .gshockD: pressGShock(.d)
+        case .gshockFlash: pressGShock(.b, long: true)
         }
     }
     @objc func toggleChronograph() {
@@ -398,8 +434,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         startTimer()
     }
     @objc func resynchronize() { lastAccessibilitySecond = -1; startTimer() }
-    @objc func pauseForSleep() { isSleeping = true; timer?.invalidate(); timer = nil; savePosition() }
-    @objc func wakeFromSleep() { isSleeping = false; resynchronize() }
+    func systemClockChanged() { gshock.resynchronizeWallClock(date: Date()); resynchronize() }
+    @objc func pauseForSleep() {
+        isSleeping = true; timer?.invalidate(); timer = nil
+        gshockServiceTimer?.invalidate(); gshockServiceTimer = nil
+        savePosition()
+    }
+    @objc func wakeFromSleep() { isSleeping = false; resynchronize(); refreshGShockService() }
     @objc func screensChanged() { resizeForTheme(width: preferredWidth); startTimer() }
     func windowDidChangeOcclusionState(_ notification: Notification) {
         guard clockView != nil else { return }
@@ -524,6 +565,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool { true }
     func applicationWillTerminate(_ notification: Notification) {
         timer?.invalidate()
+        gshockServiceTimer?.invalidate()
+        saveGShockSettings()
         savePosition()
         for observer in notificationObservers { observer.center.removeObserver(observer.token) }
         notificationObservers.removeAll()

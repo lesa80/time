@@ -1,6 +1,8 @@
 import Foundation
 import CoreGraphics
 
+try checkGShock()
+
 for (preferences, expected) in [
     (["ru-RU"], "ru"), (["en-GB"], "en"), (["de-AT"], "de"),
     (["fr-CA"], "fr"), (["es-419"], "es"), (["ES_ES"], "es"),

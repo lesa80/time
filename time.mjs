@@ -47,6 +47,9 @@ export function displayText(field, reading) {
     case 'month': return two(reading.month ?? 1);
     case 'date': return String(reading.day ?? 1).padStart(2, ' ');
     case 'weekday': return ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'][(reading.weekday ?? 1) - 1];
+    case 'format': return '24H';
+    case 'indicators': return ' '.repeat(13);
+    case 'separator': return '-';
     default: throw new RangeError(`Unknown display field: ${field}`);
   }
 }

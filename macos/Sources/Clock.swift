@@ -52,6 +52,9 @@ struct HandAngles {
         case "month": return two(month)
         case "date": return day < 10 ? " \(day)" : String(day)
         case "weekday": return ["SU", "MO", "TU", "WE", "TH", "FR", "SA"][weekday - 1]
+        case "format": return "24H"
+        case "indicators": return String(repeating: " ", count: 13)
+        case "separator": return "-"
         default: return "  "
         }
     }
@@ -103,11 +106,17 @@ struct DialSpecification: Decodable {
     enum MechanicalAction: String, Decodable {
         case chronographToggle = "chronograph-toggle"
         case chronographReset = "chronograph-reset"
+        case gshockA = "gshock-a"
+        case gshockB = "gshock-b"
+        case gshockC = "gshock-c"
+        case gshockD = "gshock-d"
+        case gshockFlash = "gshock-flash"
     }
     struct MechanicalControl: Decodable {
         let action: MechanicalAction
         /// Top-left authoring coordinates, matching the visible pusher on the case.
         let bounds: [Double]
+        let longAction: MechanicalAction?
     }
     struct Layer: Decodable {
         let type: String
@@ -155,7 +164,7 @@ struct DialSpecification: Decodable {
             if layer.type == "Text Res" {
                 guard !hasSeenForeground, point(layer.position), layer.handResPosition == nil,
                       layer.rotatePoint == nil, let field = layer.field,
-                      ["hours", "minutes", "seconds", "day", "month", "weekday", "date"].contains(field),
+                      ["hours", "minutes", "seconds", "day", "month", "weekday", "date", "format", "indicators", "separator"].contains(field),
                       let characters = layer.characters, !characters.isEmpty, characters.count <= 64,
                       Set(characters).count == characters.count,
                       Set("0123456789 SUMOTWEHFR A").isSubset(of: Set(characters)) else {
@@ -189,8 +198,13 @@ struct DialSpecification: Decodable {
             throw ModelError.invalid(L("missing hands"))
         }
         if let controls = mechanicalControls {
+            let actions = Set(controls.map(\.action))
+            let analogActions: Set<MechanicalAction> = [.chronographToggle, .chronographReset]
+            let digitalActions: Set<MechanicalAction> = [.gshockA, .gshockB, .gshockC, .gshockD]
             guard Set(controls.map(\.action)).count == controls.count,
-                  handNames.isSuperset(of: chronographHands),
+                  (displayMode == "digital" ? actions == digitalActions :
+                    handNames.isSuperset(of: chronographHands) && actions.isSubset(of: analogActions)),
+                  controls.allSatisfy({ $0.longAction == nil || ($0.action == .gshockB && $0.longAction == .gshockFlash) }),
                   controls.allSatisfy({ control in
                       let b = control.bounds
                       return b.count == 4 && b.allSatisfy(\.isFinite) && b[0] >= 0 && b[1] >= 0 &&

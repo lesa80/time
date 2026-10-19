@@ -41,7 +41,10 @@ test('Tank has two hands, Moonwatch running seconds is at 9, Royal Oak date is l
  assert(!omega.layers.some(l=>l.image.endsWith('/chronograph.png')),'Frozen chronograph artwork must not remain under live hands');
  const royal=specFor('ap-royal-oak');assert(royal.layers.some(l=>l.type==='Text Res'&&l.field==='date'));
  const casio=specFor('casio-gshock');assert.equal(casio.displayMode,'digital');assert(!casio.layers.some(l=>l.type==='Hand Res'));
- assert.deepEqual(casio.layers.filter(l=>l.type==='Text Res').map(l=>l.field).sort(),['day','hours','minutes','month','seconds','weekday']);
+ assert.deepEqual(casio.layers.filter(l=>l.type==='Text Res').map(l=>l.field).sort(),['day','format','hours','indicators','minutes','month','seconds','separator','weekday']);
+ assert.deepEqual(casio.mechanicalControls.map(c=>c.action),['gshock-a','gshock-b','gshock-c','gshock-d']);
+ assert.equal(casio.mechanicalControls.find(c=>c.action==='gshock-b').longAction,'gshock-flash');
+ for(const c of casio.mechanicalControls){const [x,y,w,h]=c.bounds;assert(x>=0&&y>=0&&w>0&&h>0&&x+w<=casio.resolution[0]&&y+h<=casio.resolution[1]);}
 });
 
 test('LCD and date formatting follow local leap-day and midnight rollover',()=>{

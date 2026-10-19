@@ -18,6 +18,45 @@
     2048,
     1751
   ],
+  "mechanicalControls": [
+    {
+      "action": "gshock-a",
+      "bounds": [
+        12,
+        562,
+        62,
+        86
+      ]
+    },
+    {
+      "action": "gshock-b",
+      "bounds": [
+        561,
+        562,
+        54,
+        86
+      ],
+      "longAction": "gshock-flash"
+    },
+    {
+      "action": "gshock-c",
+      "bounds": [
+        12,
+        768,
+        62,
+        86
+      ]
+    },
+    {
+      "action": "gshock-d",
+      "bounds": [
+        561,
+        768,
+        54,
+        86
+      ]
+    }
+  ],
   "layers": [
     {
       "type": "Single Res",
@@ -59,6 +98,34 @@
       "type": "Text Res",
       "image": "assets/icons-collection/casio-gshock/lcd-letters.png",
       "position": [
+        182,
+        608
+      ],
+      "size": [
+        35,
+        13
+      ],
+      "field": "format",
+      "characters": "0123456789 SUMOTWEHFRALPCIG-:"
+    },
+    {
+      "type": "Text Res",
+      "image": "assets/icons-collection/casio-gshock/lcd-letters.png",
+      "position": [
+        227,
+        608
+      ],
+      "size": [
+        202,
+        13
+      ],
+      "field": "indicators",
+      "characters": "0123456789 SUMOTWEHFRALPCIG-:"
+    },
+    {
+      "type": "Text Res",
+      "image": "assets/icons-collection/casio-gshock/lcd-letters.png",
+      "position": [
         214,
         627
       ],
@@ -67,7 +134,7 @@
         29
       ],
       "field": "weekday",
-      "characters": "0123456789 SUMOTWEHFRA"
+      "characters": "0123456789 SUMOTWEHFRALPCIG-:"
     },
     {
       "type": "Text Res",
@@ -81,7 +148,7 @@
         27
       ],
       "field": "month",
-      "characters": "0123456789 SUMOTWEHFRA"
+      "characters": "0123456789 SUMOTWEHFRALPCIG-:"
     },
     {
       "type": "Text Res",
@@ -95,7 +162,21 @@
         27
       ],
       "field": "day",
-      "characters": "0123456789 SUMOTWEHFRA"
+      "characters": "0123456789 SUMOTWEHFRALPCIG-:"
+    },
+    {
+      "type": "Text Res",
+      "image": "assets/icons-collection/casio-gshock/lcd-letters.png",
+      "position": [
+        362,
+        628
+      ],
+      "size": [
+        15,
+        22
+      ],
+      "field": "separator",
+      "characters": "0123456789 SUMOTWEHFRALPCIG-:"
     },
     {
       "type": "Text Res",
@@ -109,7 +190,7 @@
         73
       ],
       "field": "hours",
-      "characters": "0123456789 SUMOTWEHFRA"
+      "characters": "0123456789 SUMOTWEHFRALPCIG-:"
     },
     {
       "type": "Text Res",
@@ -123,7 +204,7 @@
         73
       ],
       "field": "minutes",
-      "characters": "0123456789 SUMOTWEHFRA"
+      "characters": "0123456789 SUMOTWEHFRALPCIG-:"
     },
     {
       "type": "Text Res",
@@ -137,7 +218,7 @@
         44
       ],
       "field": "seconds",
-      "characters": "0123456789 SUMOTWEHFRA"
+      "characters": "0123456789 SUMOTWEHFRALPCIG-:"
     }
   ]
 }

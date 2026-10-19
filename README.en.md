@@ -2,9 +2,9 @@
 
 [Русский](README.md) · [English](README.en.md)
 
-**Время (Vremya) 2.6.7** is a desktop clock app with an always-on-top mode. It includes 36 themes: four Minimalism variants, 21 Raketa models, and 11 variants in Legendary models. The app displays your Mac's local time, works offline, and remembers your settings.
+**Время (Vremya) 2.7.0** is a desktop clock app with an always-on-top mode. It includes 36 themes: four Minimalism variants, 21 Raketa models, and 11 variants in Legendary models. The app displays your Mac's local time, works offline, and remembers your settings.
 
-**[Download Vremya for macOS](https://github.com/lesa80/time/releases/download/v2.6.7/Vremya-2.6.7-macOS-universal.zip)** · [All releases](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.6.7/SHA256SUMS)
+**[Download Vremya for macOS](https://github.com/lesa80/time/releases/download/v2.7.0/Vremya-2.7.0-macOS-universal.zip)** · [All releases](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.7.0/SHA256SUMS)
 
 Requires **macOS 13 or later**. One universal archive for Apple Silicon and Intel. The current release is a test build with an ad-hoc signature and no Apple notarization. [Compatibility details](docs/RELEASE_NOTES.md) (in Russian).
 
@@ -21,6 +21,7 @@ Requires **macOS 13 or later**. One universal archive for Apple Silicon and Inte
 - Five sizes: 180, 240, 280, 360, and 466 points.
 - Smooth seconds hand with an option to hide it.
 - Speedmaster chronograph with start, pause, resume, and reset using case pushers or the Interaction menu.
+- G-Shock alarm, countdown with auto-repeat, stopwatch with splits, backlight, and case-button controls.
 - Haptic feedback when hovering over watch pushers: three patterns or fully disabled.
 - Launch at login.
 - Theme, size, position, and display settings saved between launches.
@@ -70,7 +71,21 @@ Blue dial, three live hands, local date, and an integrated steel bracelet.
 
 [Casio website](https://www.casio.com/) · [DW-5600E-1V](https://www.casio.com/us/watches/gshock/product.DW-5600E-1V/) · [DW-5600UE-1](https://www.casio.com/europe/watches/casio/product.DW-5600UE-1/)
 
-Local digital time in 24-hour format, seconds, weekday, month, and date. Alarm, countdown timer, and additional physical-watch modes are not implemented.
+Four modes: **Timekeeping, Alarm, Countdown timer, and Stopwatch**.
+
+- Local time in 12/24-hour format, seconds, weekday, month, and date, synchronized with macOS.
+- Stopwatch with hundredths during the first hour, split times, and two finishes. After the first hour it shows hours, minutes, and seconds; the display wraps at 24 hours.
+- Countdown from 1 second to 24 hours, with start, pause, resume, reset, and auto-repeat.
+- Alarm with hour, minute, and optional month/day: daily, monthly, within a selected month, or on a selected date. An hourly signal is also available.
+- Blue-green LCD backlight for two seconds and Flash Alert. With Reduce Motion enabled in macOS, flashing is disabled.
+
+All four case buttons work: **A**, upper left, adjusts/splits/resets; **B**, upper right, starts/stops/increments; **C**, lower left, changes mode or field; **D**, lower right, illuminates the screen or changes the time format/auto-repeat while editing. Hold B for two seconds in Timekeeping to toggle Flash Alert.
+
+Use **Interaction → Mode** to select a function directly and **G-Shock settings** to configure the alarm and countdown. The menu also works without the case. Settings persist between launches; elapsed timers last until the app quits and continue across theme changes and Mac sleep.
+
+Sound requires the app to remain running. The app does not wake a sleeping Mac: overdue countdowns and alarms are checked after wake. Interaction offers a stop-sound command regardless of the selected theme.
+
+[Detailed controls](docs/GSHOCK.en.md) · [Official Casio manual](https://www.casio.com/content/dam/casio/global/support/manuals/watches/pdf/32/3229/qw3229_EN.pdf)
 
 ### Raketa
 
@@ -109,7 +124,7 @@ Local digital time in 24-hour format, seconds, weekday, month, and date. Alarm, 
 
 ## Installation
 
-1. [Download the ZIP](https://github.com/lesa80/time/releases/download/v2.6.7/Vremya-2.6.7-macOS-universal.zip) and extract it.
+1. [Download the ZIP](https://github.com/lesa80/time/releases/download/v2.7.0/Vremya-2.7.0-macOS-universal.zip) and extract it.
 2. Move `Время.app` to Applications and open it.
 3. Drag the clock to your preferred position. Right-click the clock or its menu bar icon to open settings.
 
@@ -125,6 +140,7 @@ At launch, the app follows the primary macOS language: Russian, English, German,
 |---|---|
 | Appearance → Bezel and strap | Switch between the dial and the full watch |
 | Speedmaster pushers / Interaction | Start, pause, resume and reset the chronograph |
+| G-Shock A/B/C/D buttons / Interaction | Modes, settings, stopwatch, countdown, and backlight |
 | Haptic feedback | Disabled, Generic, Alignment, or Level change; the choice is saved |
 | Drag the clock | Move it |
 | Left-click the menu bar icon | Toggle always-on-top mode |

@@ -24,5 +24,11 @@ export const iconModels = [
   { id: 'casio-gshock', title: 'Casio G-Shock DW-5600', reference: 'DW-5600E / DW-5600UE', hourCycle: 24,
     url: 'https://www.casio.com/us/watches/gshock/product.DW-5600E-1V/',
     dial: [314, 540, 400, 342], center: [512, 711], shape: 'rectangle', digital: true,
+    mechanicalControls: [
+      {action: 'gshock-a', bounds: [215, 580, 62, 86]},
+      {action: 'gshock-b', bounds: [764, 580, 54, 86], longAction: 'gshock-flash'},
+      {action: 'gshock-c', bounds: [215, 786, 62, 86]},
+      {action: 'gshock-d', bounds: [764, 786, 54, 86]},
+    ],
     holes: [1258, 1306, 1357, 1408, 1459] }
 ];
