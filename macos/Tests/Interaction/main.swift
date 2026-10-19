@@ -18,6 +18,7 @@ if let index = CommandLine.arguments.firstIndex(of: "--localization-only") {
     exit(0)
 }
 try checkGShockInterface(library: library)
+try checkPulsarInterface(library: library)
 let renderer = try library.renderer(for: "avangard")
 let window = ClockWindow(contentRect: NSRect(x: 200, y: 200, width: 280, height: 280),
                          styleMask: [.borderless], backing: .buffered, defer: false)
@@ -93,6 +94,7 @@ func pixels(cached: Bool, renderer: DialRenderer, showBezel: Bool, width: CGFloa
     view.showBezel = showBezel
     view.showSeconds = seconds
     view.chronograph = ChronographReading()
+    view.pulsarDisplay = PulsarReading(mode: .time)
     view.date = Date(timeIntervalSince1970: 1_700_000_000)
     let scale = window.backingScaleFactor
     let pixelWidth = Int(ceil(size.width * scale)), height = Int(ceil(size.height * scale))
@@ -196,7 +198,7 @@ let brand = menu.items.first { $0.title == L("Raketa") }!
 expect(brand.image != nil && brand.image?.isTemplate == false, "Brand section must keep the red logo")
 expect(brand.submenu?.items.count == 21, "All manufacturer themes must be grouped")
 let icons = menu.items.first { $0.title == L("Legendary models") }!
-expect(icons.submenu?.items.count == 11, "All legendary models and color variants must be grouped")
+expect(icons.submenu?.items.count == 12, "All legendary models and color variants must be grouped")
 
 // Exercise the actual NSMenu targets with a deterministic monotonic clock.
 var chronographNow: TimeInterval = 100

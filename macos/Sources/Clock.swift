@@ -46,6 +46,8 @@ struct HandAngles {
         func two(_ value: Int) -> String { value < 10 ? "0\(value)" : String(value) }
         switch field {
         case "hours": return two(hours)
+        case "hours12": return String(format: "%2d", hours % 12 == 0 ? 12 : hours % 12)
+        case "colon": return ":"
         case "minutes": return two(minutes)
         case "seconds": return two(seconds)
         case "day": return two(day)
@@ -111,6 +113,11 @@ struct DialSpecification: Decodable {
         case gshockC = "gshock-c"
         case gshockD = "gshock-d"
         case gshockFlash = "gshock-flash"
+        case pulsarLight = "pulsar-light"
+        case pulsarSeconds = "pulsar-seconds"
+        case pulsarPress = "pulsar-press"
+        case pulsarRelease = "pulsar-release"
+        case pulsarCancel = "pulsar-cancel"
     }
     struct MechanicalControl: Decodable {
         let action: MechanicalAction
@@ -127,6 +134,7 @@ struct DialSpecification: Decodable {
         let size: [Double]?
         let field: String?
         let characters: String?
+        let visibility: String?
     }
     let resolution: [Double]
     let dialBounds: [Double]?
@@ -134,6 +142,7 @@ struct DialSpecification: Decodable {
     let layers: [Layer]
     let displayMode: String?
     let mechanicalControls: [MechanicalControl]?
+    let interactionProfile: String?
 
     func validate() throws {
         func point(_ vector: [Double]?) -> Bool {
@@ -145,7 +154,8 @@ struct DialSpecification: Decodable {
             return point(vector) && vector.allSatisfy { $0 > 0 && $0 <= 16_384 }
         }
         guard size(resolution), [nil, "circle", "rectangle"].contains(dialShape),
-              [nil, "analog", "digital"].contains(displayMode), !layers.isEmpty else {
+              [nil, "analog", "digital"].contains(displayMode),
+              [nil, "pulsar"].contains(interactionProfile), !layers.isEmpty else {
             throw ModelError.invalid(L("dial size or shape"))
         }
         if let bounds = dialBounds {
@@ -158,13 +168,18 @@ struct DialSpecification: Decodable {
         var handNames = Set<String>()
         var hasSeenHand = false, hasSeenForeground = false
         for layer in layers {
+            if let visibility = layer.visibility {
+                guard (interactionProfile == "pulsar" && ["led-time", "led-seconds"].contains(visibility) && layer.type == "Text Res") else {
+                    throw ModelError.invalid(L("layer resource: %@", layer.image))
+                }
+            }
             guard isSafeResourcePath(layer.image), layer.image.hasSuffix(".png"), size(layer.size ?? resolution) else {
                 throw ModelError.invalid(L("layer resource: %@", layer.image))
             }
             if layer.type == "Text Res" {
                 guard !hasSeenForeground, point(layer.position), layer.handResPosition == nil,
                       layer.rotatePoint == nil, let field = layer.field,
-                      ["hours", "minutes", "seconds", "day", "month", "weekday", "date", "format", "indicators", "separator"].contains(field),
+                      ["hours", "hours12", "colon", "minutes", "seconds", "day", "month", "weekday", "date", "format", "indicators", "separator"].contains(field),
                       let characters = layer.characters, !characters.isEmpty, characters.count <= 64,
                       Set(characters).count == characters.count,
                       Set("0123456789 SUMOTWEHFR A").isSubset(of: Set(characters)) else {
@@ -186,8 +201,9 @@ struct DialSpecification: Decodable {
             }
         }
         if displayMode == "digital" {
+            let required: Set<String> = interactionProfile == "pulsar" ? ["hours12", "colon", "minutes", "seconds"] : ["hours", "minutes", "seconds"]
             guard handNames.isEmpty,
-                  Set(layers.filter { $0.type == "Text Res" }.compactMap(\.field)).isSuperset(of: ["hours", "minutes", "seconds"]) else {
+                  Set(layers.filter { $0.type == "Text Res" }.compactMap(\.field)).isSuperset(of: required) else {
                 throw ModelError.invalid(L("missing digital fields"))
             }
         } else {
@@ -201,10 +217,12 @@ struct DialSpecification: Decodable {
             let actions = Set(controls.map(\.action))
             let analogActions: Set<MechanicalAction> = [.chronographToggle, .chronographReset]
             let digitalActions: Set<MechanicalAction> = [.gshockA, .gshockB, .gshockC, .gshockD]
-            guard Set(controls.map(\.action)).count == controls.count,
-                  (displayMode == "digital" ? actions == digitalActions :
-                    handNames.isSuperset(of: chronographHands) && actions.isSubset(of: analogActions)),
-                  controls.allSatisfy({ $0.longAction == nil || ($0.action == .gshockB && $0.longAction == .gshockFlash) }),
+            let validActions = interactionProfile == "pulsar" ? actions == [.pulsarLight] :
+                displayMode == "digital" ? actions == digitalActions :
+                handNames.isSuperset(of: chronographHands) && actions.isSubset(of: analogActions)
+            guard Set(controls.map(\.action)).count == controls.count, validActions,
+                  controls.allSatisfy({ $0.longAction == nil || ($0.action == .gshockB && $0.longAction == .gshockFlash) ||
+                    (interactionProfile == "pulsar" && $0.action == .pulsarLight && $0.longAction == .pulsarSeconds) }),
                   controls.allSatisfy({ control in
                       let b = control.bounds
                       return b.count == 4 && b.allSatisfy(\.isFinite) && b[0] >= 0 && b[1] >= 0 &&

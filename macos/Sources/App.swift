@@ -16,11 +16,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     var titleItem: NSMenuItem!
     var timer: Timer?
     var chronograph = Chronograph()
+    var pulsar = Pulsar()
     var gshock: GShock
     var gshockServiceTimer: Timer?
     var lastGShockSoundAt = Date.distantPast
     let signalSound: () -> Void
-    let buttonSound: () -> Void
+    let buttonSound: (Float) -> Void
     private var positionSaveTimer: Timer?
     private var isSleeping = false
     private var notificationObservers: [(center: NotificationCenter, token: NSObjectProtocol)] = []
@@ -38,7 +39,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     lazy var menuBarLogoActive = makeMenuBarLogo(active: true)
 
     init(library: ThemeLibrary, renderer: DialRenderer, defaults: UserDefaults = .standard,
-         gshock: GShock? = nil, signalSound: (() -> Void)? = nil, buttonSound: (() -> Void)? = nil) {
+         gshock: GShock? = nil, signalSound: (() -> Void)? = nil, buttonSound: ((Float) -> Void)? = nil) {
         self.library = library
         self.renderer = renderer
         self.defaults = defaults
@@ -48,7 +49,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         self.signalSound = signalSound ?? { NSSound(named: NSSound.Name("Ping"))?.play() }
         if let buttonSound { self.buttonSound = buttonSound } else {
             let tone = Self.makeGShockButtonSound(resources: library.resources)
-            self.buttonSound = { tone?.stop(); tone?.play() }
+            self.buttonSound = { volume in
+                tone?.stop()
+                tone?.volume = volume
+                tone?.play()
+            }
         }
     }
 
@@ -207,6 +212,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         menu.addItem(elapsed)
         menuActions["chronoElapsed"] = elapsed
         addGShockMenuItems(to: menu)
+        addPulsarMenuItems(to: menu)
         return menu
     }
 
@@ -274,6 +280,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     }
 
     func updateStatusItem() {
+        guard let statusItem else { return }
         let above = defaults.bool(forKey: "aboveWindows")
         let state = above ? L("on") : L("off")
         statusItem.button?.image = above ? menuBarLogoActive : menuBarLogo
@@ -366,12 +373,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             interval = gshock.isEditing ? 0.25 :
                 (ProcessInfo.processInfo.isLowPowerModeEnabled || NSWorkspace.shared.accessibilityDisplayShouldReduceMotion ? 0.1 : 1.0 / 60)
         }
+        if renderer.isPulsar && pulsar.reading.isLit {
+            interval = ProcessInfo.processInfo.isLowPowerModeEnabled ? 1.0 / 30 : 1.0 / 60
+        }
         let timer = Timer(timeInterval: interval, repeats: true) { [weak self] _ in
             // This timer is registered exclusively on the main run loop.
             MainActor.assumeIsolated {
                 guard let self else { return }
                 self.updateClock()
                 if self.renderer.isGShock && !self.gshock.needsFastRefresh && (self.timer?.timeInterval ?? 1) < 1 {
+                    self.startTimer()
+                }
+                if (self.renderer.isPulsar && !self.pulsar.reading.isLit) && (self.timer?.timeInterval ?? 1) < 1 {
                     self.startTimer()
                 }
             }
@@ -382,6 +395,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     }
     func updateClock() {
         clockView.date = Date()
+        let reading = pulsar.reading
+        if clockView.pulsarDisplay.mode != reading.mode {
+            lastAccessibilitySecond = -1
+        }
+        clockView.pulsarDisplay = reading
         advanceGShock(date: clockView.date)
         clockView.gshockDisplay = renderer.isGShock ? gshock.display(date: clockView.date,
             reduceMotion: NSWorkspace.shared.accessibilityDisplayShouldReduceMotion) : nil
@@ -395,7 +413,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             lastChronographSecond = chronoSecond
             let time = accessibilityFormatter.string(from: clockView.date)
             clockView.setAccessibilityValue(renderer.hasChronograph ? time + ", " + chronographDescription :
-                renderer.isGShock ? time + ", " + gshockDescription : time)
+                renderer.isGShock ? time + ", " + gshockDescription :
+                renderer.isPulsar && !reading.isLit ? L("Display off") : time)
             updateChronographMenu()
         }
     }
@@ -404,7 +423,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         return L("Chronograph: %@ · %@", chronograph.reading.text, state)
     }
     func updateChronographMenu() {
-        menuActions["interaction"]?.isHidden = !renderer.hasChronograph && !renderer.isGShock && !gshock.isRinging
+        menuActions["interaction"]?.isHidden = !renderer.hasChronograph && !renderer.isGShock &&
+            !renderer.isPulsar && !gshock.isRinging
         for key in ["chronoToggle", "chronoReset", "chronoDivider", "chronoElapsed"] {
             menuActions[key]?.isHidden = !renderer.hasChronograph
         }
@@ -412,6 +432,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         menuActions["chronoReset"]?.isEnabled = chronograph.isRunning || chronograph.reading.elapsed > 0
         menuActions["chronoElapsed"]?.title = chronographDescription
         updateGShockMenu()
+        updatePulsarMenu()
     }
     func performInteraction(_ action: DialSpecification.MechanicalAction) {
         switch action {
@@ -422,6 +443,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         case .gshockC: pressGShock(.c)
         case .gshockD: pressGShock(.d)
         case .gshockFlash: pressGShock(.b, long: true)
+        case .pulsarLight: illuminatePulsar()
+        case .pulsarSeconds: showPulsarSeconds()
+        case .pulsarPress:
+            guard renderer.isPulsar else { return }
+            pulsar.press(); finishPulsarInteraction()
+        case .pulsarRelease:
+            guard renderer.isPulsar else { return }
+            pulsar.release(); finishPulsarInteraction()
+        case .pulsarCancel:
+            guard renderer.isPulsar else { return }
+            pulsar.cancel(); finishPulsarInteraction()
         }
     }
     @objc func toggleChronograph() {
@@ -438,9 +470,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         updateChronographMenu()
         startTimer()
     }
-    @objc func resynchronize() { lastAccessibilitySecond = -1; startTimer() }
+    @objc func resynchronize() {
+        lastAccessibilitySecond = -1
+        startTimer()
+    }
     func systemClockChanged() { gshock.resynchronizeWallClock(date: Date()); resynchronize() }
     @objc func pauseForSleep() {
+        pulsar.cancel()
         isSleeping = true; timer?.invalidate(); timer = nil
         gshockServiceTimer?.invalidate(); gshockServiceTimer = nil
         savePosition()
@@ -493,6 +529,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             let alert = NSAlert(); alert.messageText = L("Could not open theme")
             alert.informativeText = String(describing: error); alert.addButton(withTitle: L("OK")); alert.runModal(); return
         }
+        pulsar.cancel()
         renderer = selected
         defaults.set(id, forKey: "themeID")
         clockView.renderer = selected

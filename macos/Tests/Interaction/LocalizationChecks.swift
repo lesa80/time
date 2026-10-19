@@ -44,6 +44,17 @@ func checkLocalizedInterface(library: ThemeLibrary, expectedLanguage: String) th
     let soundTitle = ["ru": "Звук кнопок", "en": "Button sound", "de": "Tastenton", "fr": "Son des boutons", "es": "Sonido de los botones"][expectedLanguage]!
     expect(delegate.menuActions["gshockButtonSound"]?.title == soundTitle &&
            delegate.menuActions["gshockButtonSound"]?.state == .on, "The sound preference must be localized and checked by default")
+    let volumeTitle = ["ru": "Громкость кнопок…", "en": "Button volume…", "de": "Tastenlautstärke…",
+                       "fr": "Volume des boutons…", "es": "Volumen de los botones…"][expectedLanguage]!
+    expect(delegate.menuActions["gshockButtonVolume"]?.title == volumeTitle,
+           "The button volume setting must be localized in all supported languages")
+    let pulsarTitles = ["ru": ["Показать время", "Показать секунды"],
+        "en": ["Show time", "Show seconds"], "de": ["Uhrzeit anzeigen", "Sekunden anzeigen"],
+        "fr": ["Afficher l’heure", "Afficher les secondes"],
+        "es": ["Mostrar la hora", "Mostrar los segundos"]][expectedLanguage]!
+    expect(["pulsarTime", "pulsarSeconds"].enumerated().allSatisfy {
+        delegate.menuActions[$0.element]?.title == pulsarTitles[$0.offset]
+    }, "Pulsar interactions must be localized in all supported languages")
     let clock = ClockView(renderer: renderer)
     expect(clock.accessibilityLabel()?.contains(expected[3]) == true, "VoiceOver must use the translated theme")
     expect(clock.toolTip?.contains("24") == true, "Tooltip format arguments must be substituted")

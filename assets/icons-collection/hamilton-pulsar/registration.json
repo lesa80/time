@@ -1,0 +1,24 @@
+{
+  "master": [
+    1024,
+    1536
+  ],
+  "bodyCrop": [
+    178,
+    6,
+    668,
+    1522
+  ],
+  "dialBox": [
+    295,
+    563,
+    435,
+    280
+  ],
+  "center": [
+    512,
+    704
+  ],
+  "source": "https://americanwatchmuseum.org/catalog/pulsar-p1-time-computer/",
+  "reference": "P1"
+}

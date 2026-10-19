@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-19",
+  "date": "2026-10-20",
   "scope": "Local testing only; no publication",
   "models": [
     {
@@ -100,6 +100,17 @@
       "photo": "reference/icons/casio-front.png",
       "master": "assets/icons-collection/casio-gshock/source/master.png",
       "sha256": "3c403b50adcc68ffbaf096b9d84d4dac44ada26801b22c1861af59f7487be3f1"
+    },
+    {
+      "id": "hamilton-pulsar",
+      "title": "Hamilton Pulsar P1 · 1972",
+      "reference": "P1 · 1972",
+      "page": "https://theledwatch.com/pulsar_p1_18k",
+      "photo": "reference/icons/pulsar-p1-original.png",
+      "master": "assets/icons-collection/hamilton-pulsar/source/master.png",
+      "sha256": "83bdbdbfeee9b9e86b2d9117cda9093284ee963bf7f9f9dfb499072849b0589f",
+      "photoURL": "https://theledwatch.com/sites/default/files/styles/large/public/field/image/pulsar_p1_18k_2.png?itok=fePb5pCE",
+      "photoSHA256": "11c5db0986ee4c84153c05806763410f03dc334d1ffd96c3a97ace711ecd8140"
     }
   ],
   "submarinerCatalog": {

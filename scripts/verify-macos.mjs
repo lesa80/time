@@ -91,7 +91,7 @@ for (const [time, showBezel] of cases) {
       ...(layer.spec.handResPosition ? { handResPosition: layer.spec.handResPosition.map((n, i) => n - viewport[i]) } : {})
     }
   }));
-  const expected = PNG.sync.read(composePreview(visibleLayers, viewport.slice(2), handAngles(parseTime(time), theme.hourCycle, theme.direction ?? 1), verificationSize));
+  const expected = PNG.sync.read(composePreview(visibleLayers, viewport.slice(2), handAngles(parseTime(time), theme.hourCycle, theme.direction ?? 1), verificationSize, parseTime(time)));
   assert.equal(native.width, verificationSize);
   assert.equal(native.height, expected.height);
   // Compare premultiplied pixels so invisible RGB never affects the result.

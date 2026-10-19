@@ -11,6 +11,51 @@ const registry=JSON.parse(fs.readFileSync(new URL('themes.json',root)));
 const specFor=id=>JSON.parse(fs.readFileSync(new URL(`assets/icons-collection/${id}/theme.json`,root)));
 const pixel=(p,x,y)=>[...p.data.slice((Math.floor(y)*p.width+Math.floor(x))*4,(Math.floor(y)*p.width+Math.floor(x))*4+4)];
 
+test('Pulsar uses live red LED fields and its original front pusher',()=>{
+ const pulsar=specFor('hamilton-pulsar');
+ assert.equal(pulsar.interactionProfile,'pulsar');
+ assert.deepEqual(pulsar.mechanicalControls.map(c=>[c.action,c.longAction]),[['pulsar-light','pulsar-seconds']]);
+ const [px,py,pw,ph]=pulsar.mechanicalControls[0].bounds;
+ const [dx,dy,dw,dh]=pulsar.dialBounds;
+ assert(py>dy+dh&&Math.abs(px+pw/2-(dx+dw/2))<dw*.15,'Original P1 has its front button below the glass, not a side pusher');
+ assert.deepEqual(pulsar.layers.filter(l=>l.visibility==='led-time').map(l=>l.field),['hours12','colon','minutes']);
+ assert.deepEqual(pulsar.layers.filter(l=>l.visibility==='led-seconds').map(l=>l.field),['seconds']);
+ const lower=pulsar.layers.find(l=>l.field==='seconds');
+ const upper=pulsar.layers.filter(l=>l.visibility==='led-time');
+ const glassMidline=dy+dh/2;
+ assert(upper.every(l=>l.position[1]+l.size[1]<=glassMidline),'Time must occupy the upper half of the original P1 display');
+ assert(lower.position[1]>=glassMidline&&lower.position[1]+lower.size[1]<=dy+dh,'Seconds must occupy a separate lower pair inside the glass');
+ assert(Math.abs(lower.position[0]+lower.size[0]/2-(dx+dw/2))<1,'The lower seconds pair must be centered');
+ const atlas=PNG.sync.read(fs.readFileSync(new URL(pulsar.layers.find(l=>l.type==='Text Res').image,root)));
+ let dots=0;for(let i=0;i<atlas.data.length;i+=4)if(atlas.data[i+3]>200){dots++;assert(atlas.data[i]>atlas.data[i+1]*1.25,'LED dots must glow red');}
+ assert(dots>100,'The LED atlas must contain real illuminated dots');
+ assert.equal(displayText('hours12',{hours:0}),'12');assert.equal(displayText('hours12',{hours:13}),' 1');
+ assert.equal(displayText('colon',{}),':');
+});
+
+test('Pulsar preview preserves 12-hour readings at midnight, morning and afternoon',()=>{
+ const spec=specFor('hamilton-pulsar');
+ const layers=spec.layers.map(l=>({name:path.basename(l.image,'.png'),spec:l,size:l.size,png:fs.readFileSync(new URL(l.image,root))}));
+ for(const time of ['00:10:20','01:10:20','13:10:20','23:59:59']){
+  const reading=parseTime(time),angles=handAngles(reading,12);
+  assert.deepEqual(composePreview(layers,spec.resolution,angles,240),composePreview(layers,spec.resolution,angles,240,reading),time);
+ }
+});
+
+test('Pulsar glass stays opaque at the edges of a rounded Retina viewport',()=>{
+ const spec=specFor('hamilton-pulsar'),viewport=spec.dialBounds;
+ const layers=spec.layers.filter(l=>!l.image.endsWith('/bezel.png')).map(l=>({
+  name:path.basename(l.image,'.png'),spec:{...l,position:l.position.map((v,i)=>v-viewport[i])},
+  size:l.size,png:fs.readFileSync(new URL(l.image,root))
+ }));
+ const reading=parseTime('01:10:20');
+ const image=PNG.sync.read(composePreview(layers,viewport.slice(2),handAngles(reading,12),2048,reading));
+ assert.equal(image.height,1318);
+ for(const [x,y] of [[0,0],[image.width-1,0],[0,image.height-1],[image.width-1,image.height-1]]){
+  assert.equal(pixel(image,x,y)[3],255,'An opaque glass crop must not gain transparent letterbox pixels');
+ }
+});
+
 test('Legendary models has all models and color variants, with matching full watch and dial resources',()=>{
  assert.deepEqual(registry.themes.filter(t=>t.brand==='icons').map(t=>t.id),iconModels.map(t=>t.id));
  for(const model of iconModels){

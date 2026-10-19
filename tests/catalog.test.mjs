@@ -3,7 +3,7 @@ const catalog=JSON.parse(fs.readFileSync(new URL('../themes.json',import.meta.ur
 const official=JSON.parse(fs.readFileSync(new URL('../reference/catalog/index.json',import.meta.url)));
 const specFor=t=>JSON.parse(fs.readFileSync(new URL(`../${t.sourceSpec}`,import.meta.url)));
 test('every current official catalog variant is represented, including sold-out models',()=>{
- assert.equal(catalog.themes.length,official.items.length+4+11);
+ assert.equal(catalog.themes.length,official.items.length+4+12);
  const urls=new Set(catalog.themes.map(t=>t.referenceURL));for(const item of official.items)assert(urls.has(item.productURL),item.code);
  assert.equal(new Set(catalog.themes.map(t=>t.id)).size,catalog.themes.length);
  assert(!catalog.themes.some(t=>t.id==='polar'),'legacy photo theme removed');

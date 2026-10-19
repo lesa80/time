@@ -2,6 +2,7 @@ import Foundation
 import CoreGraphics
 
 try checkGShock()
+checkPulsarModel()
 
 for (preferences, expected) in [
     (["ru-RU"], "ru"), (["en-GB"], "en"), (["de-AT"], "de"),
@@ -64,8 +65,8 @@ let reverse = HandAngles(hours: 1, minutes: 10, seconds: 20, hourCycle: 12, dire
 close(reverse.hour, -35.1666666667, "Russian Code hour counterclockwise")
 close(reverse.minute, -62, "Russian Code minute counterclockwise")
 close(reverse.second, -120, "Russian Code seconds counterclockwise")
-precondition(catalog.themes.count == 36)
-precondition(catalog.themes.filter(\.isIcon).count == 11)
+precondition(catalog.themes.count == 37)
+precondition(catalog.themes.filter(\.isIcon).count == 12)
 precondition(catalog.theme(for: "russkiy-kod-0344")!.rotationDirection == -1)
 precondition(catalog.theme(for: "raketa-avgvst")!.dialShape == "rectangle")
 print("Passed: complete catalog, reverse movement and rectangular Avgvst metadata")

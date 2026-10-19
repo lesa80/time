@@ -41,6 +41,8 @@ export function displayText(field, reading) {
   const two = value => String(Math.floor(value)).padStart(2, '0');
   switch (field) {
     case 'hours': return two(reading.hours);
+    case 'hours12': return String(reading.hours % 12 || 12).padStart(2, ' ');
+    case 'colon': return ':';
     case 'minutes': return two(reading.minutes);
     case 'seconds': return two(reading.seconds);
     case 'day': return two(reading.day ?? 1);

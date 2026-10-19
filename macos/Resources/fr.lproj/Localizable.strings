@@ -180,3 +180,16 @@
 "G-Shock has Timekeeping, Alarm, Countdown and Stopwatch modes. A adjusts settings, records a split or resets; B starts/stops or increments; C changes mode or field; D illuminates the LCD. Hold B for two seconds in Timekeeping to toggle Flash Alert. Interaction offers the same controls and alarm/timer settings without the case.\n\nThe stopwatch supports split times and two finishes. The countdown runs from 1 second to 24 hours with optional auto-repeat. The alarm can be daily or limited by month/day; an hourly signal is also available. Settings are saved; elapsed timers last until the app is closed. Time follows macOS; A in Timekeeping selects only the 12/24-hour format, changed with D.\n\nSound requires the app to remain running. The app does not wake a sleeping Mac; overdue alarms are checked after wake, including when another theme is selected." = "G-Shock propose Heure, Alarme, Minuterie et Chronomètre. A règle, prend un intermédiaire ou remet à zéro ; B démarre/arrête ou augmente ; C change de mode ou de champ ; D éclaire le LCD. Maintenez B deux secondes en mode Heure pour l’alerte lumineuse. Interactions propose les mêmes commandes et réglages sans boîtier.\n\nLe chronomètre gère les intermédiaires et deux arrivées. La minuterie va de 1 seconde à 24 heures, avec répétition automatique. L’alarme peut être quotidienne ou limitée par mois/jour ; un signal horaire est disponible. Les réglages sont conservés ; les mesures durent jusqu’à la fermeture de l’app. L’heure suit macOS ; A en mode Heure sélectionne uniquement le format 12/24 heures, modifié avec D.\n\nL’app doit rester ouverte pour les sonneries. Elle ne réveille pas un Mac en veille ; les échéances sont vérifiées au réveil, même avec un autre cadran.";
 
 "Button sound" = "Son des boutons";
+
+"Button volume…" = "Volume des boutons…";
+"Button volume" = "Volume des boutons";
+
+"Show time" = "Afficher l’heure";
+"Show seconds" = "Afficher les secondes";
+"Turn off display" = "Éteindre l’affichage";
+"Display off" = "Affichage éteint";
+"Press the front button to show time. Keep holding to show seconds. Right-click → Interaction for controls." = "Appuyez sur le bouton sur la face avant pour afficher l’heure. Maintenez-le pour afficher les secondes. Clic droit → Interaction pour les commandes.";
+"Press to show time; keep holding to show seconds." = "Appuyez pour afficher l’heure ; maintenez pour les secondes.";
+"Pulsar P1 lights its red LED display for 1.25 seconds when its front button is pressed; keep holding to show seconds. Interaction offers time, seconds and display-off commands, also without the case." = "Le bouton de la Pulsar P1 allume son affichage LED rouge pendant 1,25 seconde ; maintenez-le pour les secondes. Interaction propose l’heure, les secondes et l’extinction, même sans boîtier.";
+
+"Hamilton Pulsar P1 · 1972" = "Hamilton Pulsar P1 · 1972";

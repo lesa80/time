@@ -2,9 +2,11 @@
 
 [Русский](README.md) · [English](README.en.md)
 
-**Время (Vremya) 2.7.1** is a desktop clock app with an always-on-top mode. It includes 36 themes: four Minimalism variants, 21 Raketa models, and 11 variants in Legendary models. The app displays your Mac's local time, works offline, and remembers your settings.
+**Время (Vremya) 2.8.0** is a desktop clock app with an always-on-top mode. It includes 37 themes: four Minimalism variants, 21 Raketa models, and 12 variants in Legendary models. The app displays your Mac's local time, works offline, and remembers your settings.
 
-**[Download Vremya for macOS](https://github.com/lesa80/time/releases/download/v2.7.1/Vremya-2.7.1-macOS-universal.zip)** · [All releases](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.7.1/SHA256SUMS)
+Version 2.8.0 adds Hamilton Pulsar P1 with a button-operated LED display and adjustable G-Shock button volume.
+
+**[Download Vremya for macOS](https://github.com/lesa80/time/releases/download/v2.8.0/Vremya-2.8.0-macOS-universal.zip)** · [All releases](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.8.0/SHA256SUMS)
 
 Requires **macOS 13 or later**. One universal archive for Apple Silicon and Intel. The current release is a test build with an ad-hoc signature and no Apple notarization. [Compatibility details](docs/RELEASE_NOTES.md) (in Russian).
 
@@ -84,11 +86,19 @@ All four case buttons work: **A**, upper left, adjusts/splits/resets; **B**, upp
 
 Use **Interaction → Mode** to select a function directly and **G-Shock settings** to configure the alarm and countdown. The menu also works without the case. Settings persist between launches; elapsed timers last until the app quits and continue across theme changes and Mac sleep.
 
-Button presses and mode selection in Interaction produce a short 80 ms beep. Sound is enabled by default; turn it off under **Interaction → G-Shock settings → Button sound**. The choice is saved and does not affect the alarm, countdown, or hourly signal. Hovering stays silent, a long press produces one beep, and stopping a ringing alert adds no button beep.
+Button presses and mode selection in Interaction produce a short 80 ms beep. Sound is enabled by default; turn it off under **Interaction → G-Shock settings → Button sound**. Set the volume from 0 to 100% under **G-Shock settings → Button volume…**. Volume and mute choices are saved and do not affect the alarm, countdown, or hourly signal. Hovering stays silent, a long press produces one beep, and stopping a ringing alert adds no button beep.
 
 Sound requires the app to remain running. The app does not wake a sleeping Mac: overdue countdowns and alarms are checked after wake. Interaction offers a stop-sound command regardless of the selected theme.
 
 [Detailed controls](docs/GSHOCK.en.md) · [Official Casio manual](https://www.casio.com/content/dam/casio/global/support/manuals/watches/pdf/32/3229/qw3229_EN.pdf)
+
+### Hamilton Pulsar P1 · 1972
+
+[Hamilton / Swatch Group](https://www.swatchgroup.com/en/services/archive/2020/hamilton-psr) · [P1 at the American Watch Museum](https://americanwatchmuseum.org/catalog/pulsar-p1-time-computer/)
+
+A gold case and bracelet, dark ruby crystal and red seven-segment LED digits made of individual dots. The oval button on the lower front immediately shows local time in 12-hour format for 1.25 seconds. Hours and minutes occupy the upper row. Keep holding to extinguish that row and show live seconds on the separate lower pair of LED digits until release. **Interaction → Show time / Show seconds / Turn off display** also works without the case. Sleep and theme changes turn off the display.
+
+[Pulsar controls and checks](docs/PULSAR.md) (in Russian).
 
 ### Raketa
 
@@ -127,7 +137,7 @@ Sound requires the app to remain running. The app does not wake a sleeping Mac: 
 
 ## Installation
 
-1. [Download the ZIP](https://github.com/lesa80/time/releases/download/v2.7.1/Vremya-2.7.1-macOS-universal.zip) and extract it.
+1. [Download the ZIP](https://github.com/lesa80/time/releases/download/v2.8.0/Vremya-2.8.0-macOS-universal.zip) and extract it.
 2. Move `Время.app` to Applications and open it.
 3. Drag the clock to your preferred position. Right-click the clock or its menu bar icon to open settings.
 

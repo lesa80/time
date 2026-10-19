@@ -1,0 +1,120 @@
+{
+  "name": "Hamilton Pulsar P1 · 1972",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "displayMode": "digital",
+  "interactionProfile": "pulsar",
+  "resolution": [
+    668,
+    1522
+  ],
+  "dialBounds": [
+    117,
+    557,
+    435,
+    280
+  ],
+  "dialShape": "rectangle",
+  "rasterResolution": [
+    2048,
+    1318
+  ],
+  "mechanicalControls": [
+    {
+      "action": "pulsar-light",
+      "bounds": [
+        270,
+        1009,
+        132,
+        71
+      ],
+      "longAction": "pulsar-seconds"
+    }
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/hamilton-pulsar/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        668,
+        1522
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/hamilton-pulsar/dial.png",
+      "position": [
+        117,
+        557
+      ],
+      "size": [
+        435,
+        280
+      ]
+    },
+    {
+      "type": "Text Res",
+      "image": "assets/icons-collection/hamilton-pulsar/led-digits.png",
+      "position": [
+        214,
+        577
+      ],
+      "size": [
+        104,
+        100
+      ],
+      "field": "hours12",
+      "characters": "0123456789 SUMOTWEHFRA:",
+      "visibility": "led-time"
+    },
+    {
+      "type": "Text Res",
+      "image": "assets/icons-collection/hamilton-pulsar/led-digits.png",
+      "position": [
+        322,
+        577
+      ],
+      "size": [
+        22,
+        100
+      ],
+      "field": "colon",
+      "characters": "0123456789 SUMOTWEHFRA:",
+      "visibility": "led-time"
+    },
+    {
+      "type": "Text Res",
+      "image": "assets/icons-collection/hamilton-pulsar/led-digits.png",
+      "position": [
+        350,
+        577
+      ],
+      "size": [
+        104,
+        100
+      ],
+      "field": "minutes",
+      "characters": "0123456789 SUMOTWEHFRA:",
+      "visibility": "led-time"
+    },
+    {
+      "type": "Text Res",
+      "image": "assets/icons-collection/hamilton-pulsar/led-digits.png",
+      "position": [
+        282,
+        717
+      ],
+      "size": [
+        104,
+        100
+      ],
+      "field": "seconds",
+      "characters": "0123456789 SUMOTWEHFRA:",
+      "visibility": "led-seconds"
+    }
+  ]
+}

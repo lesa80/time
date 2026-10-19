@@ -2,7 +2,7 @@
 
 [Русский](GSHOCK.md) · [English](GSHOCK.en.md)
 
-Vremya 2.7.1. Select **Theme → Legendary models → Casio G-Shock DW-5600**.
+Vremya 2.8.0. Select **Theme → Legendary models → Casio G-Shock DW-5600**.
 
 The **Interaction** menu appears immediately below the watch name. It works in dial-only mode too. Use **Mode** to go directly to a function.
 
@@ -52,7 +52,7 @@ The first 60 minutes show minutes, seconds, and hundredths. Later, the display s
 
 ## Persistence and sound
 
-Short electronic button feedback is enabled by default. Turn it off in **Interaction → G-Shock settings → Button sound**. The choice persists between launches and does not mute alarms, the countdown, or the hourly signal. Hovering stays silent; a long press gives one beep.
+Short electronic button feedback is enabled by default. Turn it off in **Interaction → G-Shock settings → Button sound**. Set the volume from 0 to 100% in **Interaction → G-Shock settings → Button volume…**. Volume and mute choices persist between launches and do not mute alarms, the countdown, or the hourly signal. Hovering stays silent; a long press gives one beep.
 
 Alarm settings, time format, initial countdown, and signal options persist between launches. Running stopwatch and countdown sessions last until the app quits.
 

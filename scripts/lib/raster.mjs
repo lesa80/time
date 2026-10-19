@@ -6,7 +6,7 @@ import { displayText } from '../../time.mjs';
 const previewAngles = { hour: 303.25, minute: 62.4, second: 144 };
 const pngURI = data => `data:image/png;base64,${data.toString('base64')}`;
 const imageSVG = (body, width, height) => `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${body}</svg>`;
-const embeddedImage = (png, width, height, attrs = '') => `<image width="${width}" height="${height}" href="${pngURI(png)}" ${attrs}/>`;
+const embeddedImage = (png, width, height, attrs = '') => `<image width="${width}" height="${height}" preserveAspectRatio="none" href="${pngURI(png)}" ${attrs}/>`;
 
 function rectangle(value, fallback, label) {
   const rect = value ?? fallback;
@@ -46,8 +46,10 @@ export function normalizeRaster(png, width, height, options = {}) {
 }
 
 export function composePreview(layers, resolution, angles = previewAngles, outputWidth = resolution[0], reading = null) {
-  reading ??= { hours: Math.floor(angles.hour / 15), minutes: Math.floor(angles.minute / 6), seconds: Math.floor(angles.second / 6) };
+  const degreesPerHour = layers.some(layer => layer.spec.field === 'hours12') ? 30 : 15;
+  reading ??= { hours: Math.floor(angles.hour / degreesPerHour), minutes: Math.floor(angles.minute / 6), seconds: Math.floor(angles.second / 6) };
   const body = layers.map(({ name, spec, png, size }) => {
+    if (spec.visibility === 'led-seconds') return '';
     if (spec.type === 'Text Res') {
       const image = PNG.sync.read(png), characters = [...spec.characters];
       const glyphWidth = image.width / characters.length;
@@ -65,7 +67,10 @@ export function composePreview(layers, resolution, angles = previewAngles, outpu
     }
     return embeddedImage(png, size[0], size[1], `x="${spec.position[0]}" y="${spec.position[1]}"`);
   }).join('');
-  return new Resvg(imageSVG(body, ...resolution), { fitTo: { mode: 'width', value: outputWidth }, font: { loadSystemFonts: false } }).render().asPng();
+  // Match CoreGraphics' independently fitted, integer-sized bitmap viewport.
+  const outputHeight = Math.round(outputWidth * resolution[1] / resolution[0]);
+  const output = `<svg xmlns="http://www.w3.org/2000/svg" width="${outputWidth}" height="${outputHeight}" viewBox="0 0 ${resolution[0]} ${resolution[1]}" preserveAspectRatio="none">${body}</svg>`;
+  return new Resvg(output, { font: { loadSystemFonts: false } }).render().asPng();
 }
 
 function lanczos(x) {

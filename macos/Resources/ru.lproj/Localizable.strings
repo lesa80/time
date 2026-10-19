@@ -180,3 +180,16 @@
 "G-Shock has Timekeeping, Alarm, Countdown and Stopwatch modes. A adjusts settings, records a split or resets; B starts/stops or increments; C changes mode or field; D illuminates the LCD. Hold B for two seconds in Timekeeping to toggle Flash Alert. Interaction offers the same controls and alarm/timer settings without the case.\n\nThe stopwatch supports split times and two finishes. The countdown runs from 1 second to 24 hours with optional auto-repeat. The alarm can be daily or limited by month/day; an hourly signal is also available. Settings are saved; elapsed timers last until the app is closed. Time follows macOS; A in Timekeeping selects only the 12/24-hour format, changed with D.\n\nSound requires the app to remain running. The app does not wake a sleeping Mac; overdue alarms are checked after wake, including when another theme is selected." = "У G-Shock четыре режима: текущее время, будильник, таймер и секундомер. A — настройка, отсечка или сброс; B — старт/стоп или увеличение значения; C — смена режима или поля; D — подсветка LCD. Удерживайте B две секунды в режиме времени для переключения мигающего сигнала. Взаимодействие содержит те же действия и настройки будильника/таймера, в том числе без корпуса.\n\nСекундомер поддерживает промежуточное время и два финиша. Таймер — от 1 секунды до 24 часов с автоповтором. Будильник может быть ежедневным или ограниченным месяцем/днём; есть ежечасный сигнал. Настройки сохраняются; отсчёты действуют до закрытия приложения. Время синхронизировано с macOS; A в режиме времени выбирает только формат 12/24 часа, D меняет его.\n\nДля звука приложение должно оставаться запущенным. Оно не будит спящий Mac; пропущенные сигналы проверяются после пробуждения, в том числе при другой выбранной теме.";
 
 "Button sound" = "Звук кнопок";
+
+"Button volume…" = "Громкость кнопок…";
+"Button volume" = "Громкость кнопок";
+
+"Show time" = "Показать время";
+"Show seconds" = "Показать секунды";
+"Turn off display" = "Выключить дисплей";
+"Display off" = "Дисплей выключен";
+"Press the front button to show time. Keep holding to show seconds. Right-click → Interaction for controls." = "Нажмите кнопку спереди снизу для показа времени. Удерживайте для показа секунд. Правый клик → Interaction — управление.";
+"Press to show time; keep holding to show seconds." = "Нажмите для показа времени; удерживайте для показа секунд.";
+"Pulsar P1 lights its red LED display for 1.25 seconds when its front button is pressed; keep holding to show seconds. Interaction offers time, seconds and display-off commands, also without the case." = "У Pulsar P1 кнопка спереди снизу включает красный LED-дисплей на 1,25 секунды; удерживайте её для показа секунд. В Interaction доступны время, секунды и выключение дисплея, в том числе без корпуса.";
+
+"Hamilton Pulsar P1 · 1972" = "Hamilton Pulsar P1 · 1972";

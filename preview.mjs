@@ -37,6 +37,7 @@ function layoutTheme() {
   for (const key of Object.keys(hands)) delete hands[key];
   fields = [];
   for (const layer of spec.layers) {
+    if (layer.visibility === 'led-seconds') continue;
     const name = layer.image.split('/').at(-1).replace('.png', '');
     const image = document.createElement(layer.type === 'Text Res' ? 'div' : 'img');
     image.className = layer.type === 'Text Res' ? 'atlas-field' : name;
@@ -85,7 +86,7 @@ function selectTheme(id) {
   document.getElementById('theme-name').textContent = theme.title;
   document.getElementById('theme-label').textContent = `${theme.title} · РАСТР ${theme.spec.rasterResolution.join(" × ")}`;
   document.getElementById('theme-description').textContent = `${theme.hourCycle}-часовой циферблат${theme.direction === -1 ? ' · обратный ход стрелок' : ''}. ${theme.brand === 'icons' ? 'Легендарные модели: растровые корпус и ремешок, местное время.' : theme.brand === 'raketa' ? 'Корпус и ремешок из референса.' : 'Однотонный фон с тонким контуром, крупные цифры, прямые стрелки. Собственный корпус и матовый ремешок.'}`;
-  document.getElementById('clock-note').textContent = theme.spec.displayMode === 'digital' ? 'Локальное превью · цифровые часы, местное время и дата' : `Локальное превью · полный оборот часовой стрелки за ${theme.hourCycle} часов`;
+  document.getElementById('clock-note').textContent = theme.spec.interactionProfile === 'pulsar' ? 'Локальное превью · Pulsar P1, 12-часовой LED-дисплей' : theme.spec.displayMode === 'digital' ? 'Локальное превью · цифровые часы, местное время и дата' : `Локальное превью · полный оборот часовой стрелки за ${theme.hourCycle} часов`;
   layoutTheme();
   render();
 

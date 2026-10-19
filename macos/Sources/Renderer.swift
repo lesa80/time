@@ -20,8 +20,9 @@ final class DialRenderer {
     let hasSeconds: Bool
     let hasChronograph: Bool
     var isGShock: Bool { theme.id == "casio-gshock" }
+    var isPulsar: Bool { specification.interactionProfile == "pulsar" }
     var hasBezel: Bool { layers.contains { $0.spec.image.hasSuffix("/bezel.png") } }
-    enum DrawingPass { case all, background, live, foreground }
+    enum DrawingPass: Equatable { case all, background, live, foreground }
     private let firstLive: Int
     private let lastLive: Int
 
@@ -72,7 +73,7 @@ final class DialRenderer {
 
     func draw(in context: CGContext, size: CGSize, angles: HandAngles, showSeconds: Bool = true,
               showBezel: Bool = true, pass: DrawingPass = .all, chronograph: ChronographReading = ChronographReading(),
-              gshock: GShockDisplay? = nil) {
+              gshock: GShockDisplay? = nil, pulsar: PulsarReading? = nil) {
         context.saveGState()
         context.translateBy(x: 0, y: size.height)
         let viewport = !showBezel ? specification.dialBounds : nil
@@ -87,6 +88,10 @@ final class DialRenderer {
             case .foreground: if index <= lastLive { continue }
             }
             let spec = layer.spec
+            if let visibility = spec.visibility, visibility.hasPrefix("led-") {
+                let mode = pulsar?.mode ?? .time
+                if mode == .off || (visibility == "led-seconds") != (mode == .seconds) { continue }
+            }
             if index == firstLive && isGShock && gshock?.backlit == true,
                let origin = layers.first(where: { $0.spec.image.hasSuffix("/lcd-marks.png") })?.spec.position {
                 context.saveGState()
@@ -103,48 +108,55 @@ final class DialRenderer {
             }
             if !showBezel && spec.image.hasSuffix("bezel.png") { continue }
             if !showSeconds && spec.image.hasSuffix("/second.png") { continue }
-            context.saveGState()
-            let size = spec.size ?? specification.resolution
-            if spec.type == "Text Res", let field = spec.field, let position = spec.position {
-                let text = Array((isGShock ? gshock?.fields[field] : nil) ?? angles.text(for: field))
-                let width = size[0] / Double(text.count)
-                for (offset, character) in text.enumerated() {
-                    guard let glyph = layer.glyphs[character] else { continue }
-                    context.saveGState()
-                    context.translateBy(x: position[0] + Double(offset) * width, y: position[1] + size[1])
-                    context.scaleBy(x: 1, y: -1)
-                    context.draw(glyph, in: CGRect(x: 0, y: 0, width: width, height: size[1]))
-                    context.restoreGState()
-                }
-                context.restoreGState()
-                continue
-            }
-            if let center = spec.handResPosition, let pivot = spec.rotatePoint {
-                context.translateBy(x: center[0], y: center[1])
-                let name = URL(fileURLWithPath: spec.image).deletingPathExtension().lastPathComponent
-                let angle = name.hasPrefix("chrono-") ? chronograph.angle(for: spec.image) : angles.angle(for: spec.image)
-                context.rotate(by: angle * .pi / 180)
-                context.translateBy(x: -pivot[0], y: -pivot[1])
-            } else if let position = spec.position {
-                context.translateBy(x: position[0], y: position[1])
-            }
-            // Preserve PNG orientation inside the flipped authoring canvas.
-            context.translateBy(x: 0, y: size[1])
-            context.scaleBy(x: 1, y: -1)
-            context.draw(layer.image, in: CGRect(x: 0, y: 0, width: size[0], height: size[1]))
-            context.restoreGState()
+            drawLayer(layer, in: context, angles: angles, chronograph: chronograph, gshock: gshock)
         }
         context.restoreGState()
     }
 
-    func png(side: Int, angles: HandAngles, showBezel: Bool = true, gshock: GShockDisplay? = nil) throws -> Data {
+    private func drawLayer(_ layer: Layer, in context: CGContext, angles: HandAngles,
+                   chronograph: ChronographReading = ChronographReading(), gshock: GShockDisplay? = nil) {
+        let spec = layer.spec
+        context.saveGState()
+        let size = spec.size ?? specification.resolution
+        if spec.type == "Text Res", let field = spec.field, let position = spec.position {
+            let text = Array((isGShock ? gshock?.fields[field] : nil) ?? angles.text(for: field))
+            let width = size[0] / Double(text.count)
+            for (offset, character) in text.enumerated() {
+                guard let glyph = layer.glyphs[character] else { continue }
+                context.saveGState()
+                context.translateBy(x: position[0] + Double(offset) * width, y: position[1] + size[1])
+                context.scaleBy(x: 1, y: -1)
+                context.draw(glyph, in: CGRect(x: 0, y: 0, width: width, height: size[1]))
+                context.restoreGState()
+            }
+            context.restoreGState()
+            return
+        }
+        if let center = spec.handResPosition, let pivot = spec.rotatePoint {
+            context.translateBy(x: center[0], y: center[1])
+            let name = URL(fileURLWithPath: spec.image).deletingPathExtension().lastPathComponent
+            let angle = name.hasPrefix("chrono-") ? chronograph.angle(for: spec.image) : angles.angle(for: spec.image)
+            context.rotate(by: angle * .pi / 180)
+            context.translateBy(x: -pivot[0], y: -pivot[1])
+        } else if let position = spec.position {
+            context.translateBy(x: position[0], y: position[1])
+        }
+        // Preserve PNG orientation inside the flipped authoring canvas.
+        context.translateBy(x: 0, y: size[1])
+        context.scaleBy(x: 1, y: -1)
+        context.draw(layer.image, in: CGRect(x: 0, y: 0, width: size[0], height: size[1]))
+        context.restoreGState()
+    }
+
+    func png(side: Int, angles: HandAngles, showBezel: Bool = true, gshock: GShockDisplay? = nil,
+             pulsar: PulsarReading? = nil) throws -> Data {
         let size = displaySize(width: CGFloat(side), showBezel: showBezel)
         guard let context = CGContext(data: nil, width: side, height: Int(size.height), bitsPerComponent: 8,
                 bytesPerRow: side * 4, space: CGColorSpace(name: CGColorSpace.sRGB)!,
                 bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else {
             throw DialError.resource("bitmap context")
         }
-        draw(in: context, size: size, angles: angles, showBezel: showBezel, gshock: gshock)
+        draw(in: context, size: size, angles: angles, showBezel: showBezel, gshock: gshock, pulsar: pulsar)
         guard let image = context.makeImage() else { throw DialError.resource("render") }
         let output = NSMutableData()
         guard let destination = CGImageDestinationCreateWithData(output, "public.png" as CFString, 1, nil) else {

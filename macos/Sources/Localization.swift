@@ -47,6 +47,7 @@ struct Localization: Sendable {
         "rolex-submariner": "Rolex Submariner", "omega-speedmaster": "Omega Speedmaster Moonwatch",
         "cartier-tank": "Cartier Tank Must", "ap-royal-oak": "Audemars Piguet Royal Oak",
         "casio-gshock": "Casio G-Shock DW-5600",
+        "hamilton-pulsar": "Hamilton Pulsar P1 · 1972",
         "minimalism": "Minimalism", "minimalism-24": "Minimalism 24",
         "minimalism-dark": "Minimalism — Dark", "minimalism-24-dark": "Minimalism 24 — Dark",
         "avangard": "Avangard 0292", "raketa-su": "Raketa Su 0331",

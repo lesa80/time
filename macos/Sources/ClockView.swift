@@ -36,6 +36,7 @@ final class ClockView: NSView {
     }
     var onInteraction: ((DialSpecification.MechanicalAction) -> Void)?
     var gshockDisplay: GShockDisplay?
+    var pulsarDisplay = PulsarReading()
     var hapticMode: HapticMode = .generic {
         didSet { mechanicalButtons.forEach { $0.hapticMode = hapticMode } }
     }
@@ -69,6 +70,7 @@ final class ClockView: NSView {
         if renderer.isGShock {
             toolTip = L("A: adjust/split/reset. B: start/stop. C: mode. D: light. Hold B in Timekeeping for Flash Alert. Right-click → Interaction for settings.")
         }
+        if renderer.isPulsar { toolTip = L("Press the front button to show time. Keep holding to show seconds. Right-click → Interaction for controls.") }
         setAccessibilityRole(mechanicalButtons.contains { !$0.isHidden } ? .group : .image)
         setAccessibilityHelp(toolTip)
     }
@@ -78,6 +80,11 @@ final class ClockView: NSView {
             let button = MechanicalButton(control: control, hapticFeedback: hapticFeedback) { [weak self] in self?.onInteraction?(control.action) }
             if let action = control.longAction {
                 button.onLongPress = { [weak self] in self?.onInteraction?(action) }
+            }
+            if control.action == .pulsarLight {
+                button.onPressBegan = { [weak self] in self?.onInteraction?(.pulsarPress) }
+                button.onPressEnded = { [weak self] in self?.onInteraction?(.pulsarRelease) }
+                button.onPressCancelled = { [weak self] in self?.onInteraction?(.pulsarCancel) }
             }
             button.hapticMode = hapticMode
             addSubview(button)
@@ -119,6 +126,11 @@ final class ClockView: NSView {
             case .gshockC: label = L("C · Mode / next field")
             case .gshockD: label = L("D · Light / format / auto-repeat")
             case .gshockFlash: label = L("Flash Alert")
+            case .pulsarLight:
+                label = L("Show time")
+                button.toolTip = L("Press to show time; keep holding to show seconds.")
+            case .pulsarSeconds: label = L("Show seconds")
+            case .pulsarPress, .pulsarRelease, .pulsarCancel: label = L("Show time")
             }
             if button.toolTip == nil { button.toolTip = label }
             button.setAccessibilityLabel(label)
@@ -145,10 +157,10 @@ final class ClockView: NSView {
         }
         if let cache = artworkCache {
             context.draw(cache.background, in: bounds)
-            renderer.draw(in: context, size: bounds.size, angles: angles, showSeconds: showSeconds, showBezel: showBezel, pass: .live, chronograph: chronograph, gshock: gshockDisplay)
+            renderer.draw(in: context, size: bounds.size, angles: angles, showSeconds: showSeconds, showBezel: showBezel, pass: .live, chronograph: chronograph, gshock: gshockDisplay, pulsar: renderer.isPulsar ? pulsarDisplay : nil)
             context.draw(cache.foreground, in: bounds)
         } else {
-            renderer.draw(in: context, size: bounds.size, angles: angles, showSeconds: showSeconds, showBezel: showBezel, chronograph: chronograph, gshock: gshockDisplay)
+            renderer.draw(in: context, size: bounds.size, angles: angles, showSeconds: showSeconds, showBezel: showBezel, chronograph: chronograph, gshock: gshockDisplay, pulsar: renderer.isPulsar ? pulsarDisplay : nil)
         }
     }
     private func invalidateArtwork() {
@@ -212,6 +224,7 @@ final class ClockView: NSView {
     func endPointerHover() {
         mechanicalButtons.forEach { $0.endPointerHover() }
     }
+    func cancelMechanicalPresses() { mechanicalButtons.forEach { $0.cancelPressTracking() } }
 }
 
 /// A real AppKit button over the photographed pusher. Normal artwork stays intact.
@@ -226,10 +239,13 @@ final class MechanicalButton: NSButton {
     var onLongPress: (() -> Void)? {
         didSet {
             setAccessibilityCustomActions(onLongPress == nil ? [] : [
-                NSAccessibilityCustomAction(name: L("Flash Alert"), target: self, selector: #selector(accessibilityLongPress))
+                NSAccessibilityCustomAction(name: control.longAction == .pulsarSeconds ? L("Show seconds") : L("Flash Alert"), target: self, selector: #selector(accessibilityLongPress))
             ])
         }
     }
+    var onPressBegan: (() -> Void)?
+    var onPressEnded: (() -> Void)?
+    var onPressCancelled: (() -> Void)?
     private var longPressTimer: Timer?
     private var trackingLongPress = false
     private var longPressFired = false
@@ -264,12 +280,13 @@ final class MechanicalButton: NSButton {
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
     override func mouseDown(with event: NSEvent) {
         if event.modifierFlags.contains(.control) { superview?.rightMouseDown(with: event); return }
-        guard onLongPress != nil else { super.mouseDown(with: event); return }
+        guard onLongPress != nil || onPressBegan != nil else { super.mouseDown(with: event); return }
         guard isEnabled, !isHiddenOrHasHiddenAncestor, window?.ignoresMouseEvents == false else { return }
         cancelLongPress()
         trackingLongPress = true
         longPressFired = false
         pressCancelled = false
+        if let onPressBegan { onPressBegan(); return }
         let timer = Timer(timeInterval: 2, repeats: false) { [weak self] _ in
             MainActor.assumeIsolated {
                 guard let self, self.trackingLongPress, !self.pressCancelled, self.isEnabled,
@@ -284,6 +301,7 @@ final class MechanicalButton: NSButton {
     override func mouseDragged(with event: NSEvent) {
         guard trackingLongPress else { super.mouseDragged(with: event); return }
         if !bounds.contains(convert(event.locationInWindow, from: nil)) {
+            if !pressCancelled { onPressCancelled?() }
             pressCancelled = true
             longPressTimer?.invalidate()
         }
@@ -292,14 +310,22 @@ final class MechanicalButton: NSButton {
         guard trackingLongPress else { super.mouseUp(with: event); return }
         let fire = !longPressFired && !pressCancelled && isEnabled && !isHiddenOrHasHiddenAncestor &&
             window?.ignoresMouseEvents == false && bounds.contains(convert(event.locationInWindow, from: nil))
+        if onPressBegan != nil {
+            if fire { onPressEnded?() } else if !pressCancelled { onPressCancelled?() }
+            pressCancelled = true
+            cancelLongPress()
+            return
+        }
         cancelLongPress()
         if fire { performClick(nil) }
     }
     private func cancelLongPress() {
+        if trackingLongPress && !pressCancelled { onPressCancelled?() }
         longPressTimer?.invalidate()
         longPressTimer = nil
         trackingLongPress = false
     }
+    func cancelPressTracking() { cancelLongPress() }
     override func rightMouseDown(with event: NSEvent) { superview?.rightMouseDown(with: event) }
     override func updateTrackingAreas() {
         super.updateTrackingAreas()
@@ -366,7 +392,12 @@ final class ClockWindow: NSWindow {
         if event.type == .mouseMoved { (contentView as? ClockView)?.pointerMoved(with: event) }
     }
     override var ignoresMouseEvents: Bool {
-        didSet { if ignoresMouseEvents { (contentView as? ClockView)?.endPointerHover() } }
+        didSet {
+            if ignoresMouseEvents {
+                (contentView as? ClockView)?.endPointerHover()
+                (contentView as? ClockView)?.cancelMechanicalPresses()
+            }
+        }
     }
     override var canBecomeKey: Bool { false }
     override var canBecomeMain: Bool { false }

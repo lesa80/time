@@ -180,3 +180,16 @@
 "G-Shock has Timekeeping, Alarm, Countdown and Stopwatch modes. A adjusts settings, records a split or resets; B starts/stops or increments; C changes mode or field; D illuminates the LCD. Hold B for two seconds in Timekeeping to toggle Flash Alert. Interaction offers the same controls and alarm/timer settings without the case.\n\nThe stopwatch supports split times and two finishes. The countdown runs from 1 second to 24 hours with optional auto-repeat. The alarm can be daily or limited by month/day; an hourly signal is also available. Settings are saved; elapsed timers last until the app is closed. Time follows macOS; A in Timekeeping selects only the 12/24-hour format, changed with D.\n\nSound requires the app to remain running. The app does not wake a sleeping Mac; overdue alarms are checked after wake, including when another theme is selected." = "G-Shock bietet Uhrzeit, Wecker, Countdown und Stoppuhr. A stellt ein, nimmt eine Zwischenzeit oder setzt zurück; B startet/stoppt oder erhöht; C wechselt Modus oder Feld; D beleuchtet das LCD. B im Uhrzeitmodus zwei Sekunden halten: Blinksignal. Interaktion bietet dieselben Aktionen und Wecker-/Timer-Einstellungen auch ohne Gehäuse.\n\nDie Stoppuhr unterstützt Zwischenzeiten und zwei Zieleinläufe. Der Countdown reicht von 1 Sekunde bis 24 Stunden mit automatischer Wiederholung. Der Wecker kann täglich oder nach Monat/Tag begrenzt sein; ein Stundensignal ist verfügbar. Einstellungen werden gespeichert; laufende Messungen enden beim Beenden der App. Die Zeit folgt macOS; A im Uhrzeitmodus wählt nur das 12/24-Stunden-Format, D ändert es.\n\nTöne erfordern eine laufende App. Ein schlafender Mac wird nicht geweckt; fällige Signale werden nach dem Aufwachen geprüft, auch bei einem anderen Zifferblatt.";
 
 "Button sound" = "Tastenton";
+
+"Button volume…" = "Tastenlautstärke…";
+"Button volume" = "Tastenlautstärke";
+
+"Show time" = "Uhrzeit anzeigen";
+"Show seconds" = "Sekunden anzeigen";
+"Turn off display" = "Anzeige ausschalten";
+"Display off" = "Anzeige aus";
+"Press the front button to show time. Keep holding to show seconds. Right-click → Interaction for controls." = "Die vordere Taste drücken, um die Uhrzeit zu sehen. Gedrückt halten für Sekunden. Rechtsklick → Interaction für die Steuerung.";
+"Press to show time; keep holding to show seconds." = "Drücken für die Uhrzeit; gedrückt halten für Sekunden.";
+"Pulsar P1 lights its red LED display for 1.25 seconds when its front button is pressed; keep holding to show seconds. Interaction offers time, seconds and display-off commands, also without the case." = "Bei der Pulsar P1 leuchtet die rote LED-Anzeige nach einem Tastendruck 1,25 Sekunden; gedrückt halten zeigt die Sekunden. Interaction bietet Uhrzeit, Sekunden und Ausschalten auch ohne Gehäuse.";
+
+"Hamilton Pulsar P1 · 1972" = "Hamilton Pulsar P1 · 1972";

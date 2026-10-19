@@ -241,6 +241,23 @@
       "referenceURL": "https://www.casio.com/us/watches/gshock/product.DW-5600E-1V/"
     },
     {
+      "id": "hamilton-pulsar",
+      "title": "Hamilton Pulsar P1 · 1972",
+      "brand": "icons",
+      "hourCycle": 12,
+      "dialShape": "rectangle",
+      "displayMode": "digital",
+      "specification": "icons-collection/hamilton-pulsar/theme.json",
+      "sourceSpec": "assets/icons-collection/hamilton-pulsar/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 305.25000000000006,
+        "minute": 63,
+        "second": 180
+      },
+      "referenceURL": "https://americanwatchmuseum.org/catalog/pulsar-p1-time-computer/"
+    },
+    {
       "id": "avangard",
       "title": "Авангард 0292",
       "hourCycle": 12,

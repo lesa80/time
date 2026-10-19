@@ -30,5 +30,10 @@ export const iconModels = [
       {action: 'gshock-c', bounds: [215, 786, 62, 86]},
       {action: 'gshock-d', bounds: [764, 786, 54, 86]},
     ],
-    holes: [1258, 1306, 1357, 1408, 1459] }
+    holes: [1258, 1306, 1357, 1408, 1459] },
+  { id: 'hamilton-pulsar', title: 'Hamilton Pulsar P1 · 1972', reference: 'P1', hourCycle: 12,
+    url: 'https://americanwatchmuseum.org/catalog/pulsar-p1-time-computer/',
+    dial: [295, 563, 435, 280], center: [512, 704], shape: 'rectangle', digital: true,
+    interactionProfile: 'pulsar',
+    mechanicalControls: [{action: 'pulsar-light', bounds: [448, 1015, 132, 71], longAction: 'pulsar-seconds'}] }
 ];

@@ -36,6 +36,7 @@ extension AppDelegate {
         add("gshock24Hour", L("24-hour format"), #selector(toggleGShockFormat), to: options)
         add("gshockFlash", L("Flash Alert"), #selector(toggleGShockFlash), to: options)
         add("gshockButtonSound", L("Button sound"), #selector(toggleGShockButtonSound), to: options)
+        add("gshockButtonVolume", L("Button volume…"), #selector(configureGShockButtonVolume), to: options)
         let optionItem = NSMenuItem(title: L("G-Shock settings"), action: nil, keyEquivalent: "")
         optionItem.submenu = options
         menu.addItem(optionItem)
@@ -136,12 +137,31 @@ extension AppDelegate {
     var gshockButtonSoundEnabled: Bool {
         defaults.object(forKey: "gshockButtonSound") as? Bool ?? true
     }
+    var gshockButtonVolume: Float {
+        let value = (defaults.object(forKey: "gshockButtonVolume") as? NSNumber)?.floatValue ?? 1
+        return value.isFinite ? min(max(value, 0), 1) : 1
+    }
+    func setGShockButtonVolume(_ value: Float) {
+        guard value.isFinite else { return }
+        defaults.set(min(max(value, 0), 1), forKey: "gshockButtonVolume")
+    }
     private func playGShockButtonSound() {
-        if gshockButtonSoundEnabled { buttonSound() }
+        if gshockButtonSoundEnabled && gshockButtonVolume > 0 { buttonSound(gshockButtonVolume) }
     }
     @objc func toggleGShockButtonSound() {
         defaults.set(!gshockButtonSoundEnabled, forKey: "gshockButtonSound")
         updateGShockMenu()
+    }
+    @objc func configureGShockButtonVolume() {
+        let form = GShockButtonVolumeForm(volume: gshockButtonVolume)
+        let dialog = NSAlert()
+        dialog.messageText = L("Button volume…")
+        dialog.accessoryView = form.view
+        dialog.addButton(withTitle: L("Save"))
+        dialog.addButton(withTitle: L("Cancel"))
+        dialog.window.initialFirstResponder = form.slider
+        NSApp.activate(ignoringOtherApps: true)
+        if dialog.runModal() == .alertFirstButtonReturn { setGShockButtonVolume(form.volume) }
     }
     @objc func gshockButtonA() { pressGShock(.a) }
     @objc func gshockButtonB() { pressGShock(.b) }
@@ -172,6 +192,35 @@ extension AppDelegate {
             }
             dialog.informativeText = L("Check the alarm date or choose a countdown from 1 second to 24 hours.")
         }
+    }
+}
+
+@MainActor
+final class GShockButtonVolumeForm: NSObject {
+    let slider: NSSlider
+    let readout = NSTextField(labelWithString: "")
+    let view: NSStackView
+    var volume: Float { Float(slider.doubleValue.rounded() / 100) }
+
+    init(volume: Float) {
+        slider = NSSlider(value: Double(volume) * 100, minValue: 0, maxValue: 100, target: nil, action: nil)
+        view = NSStackView(views: [slider, readout])
+        super.init()
+        view.orientation = .horizontal
+        view.alignment = .centerY
+        view.spacing = 12
+        slider.widthAnchor.constraint(equalToConstant: 220).isActive = true
+        readout.widthAnchor.constraint(equalToConstant: 46).isActive = true
+        readout.alignment = .right
+        slider.setAccessibilityLabel(L("Button volume"))
+        slider.target = self
+        slider.action = #selector(volumeChanged)
+        volumeChanged()
+        view.frame.size = view.fittingSize
+    }
+    @objc func volumeChanged() {
+        slider.doubleValue = slider.doubleValue.rounded()
+        readout.stringValue = "\(Int(slider.doubleValue))%"
     }
 }
 
