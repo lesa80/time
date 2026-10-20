@@ -1,8 +1,8 @@
 {
   "name": "vremya-macos",
-  "version": "2.8.0",
+  "version": "2.9.0",
   "private": true,
-  "description": "Время — часы для рабочего стола macOS с 37 темами: Минимализм, Ракета и Легендарные модели",
+  "description": "Время — часы для рабочего стола macOS с 40 темами: Минимализм, Ракета и Легендарные модели",
   "type": "module",
   "scripts": {
     "build": "node scripts/build-macos.mjs",

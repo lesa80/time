@@ -241,6 +241,57 @@
       "referenceURL": "https://www.casio.com/us/watches/gshock/product.DW-5600E-1V/"
     },
     {
+      "id": "jlc-memovox-parking",
+      "title": "Jaeger-LeCoultre Memovox Parking · 1958",
+      "brand": "icons",
+      "hourCycle": 12,
+      "dialShape": "circle",
+      "displayMode": "analog",
+      "specification": "icons-collection/jlc-memovox-parking/theme.json",
+      "sourceSpec": "assets/icons-collection/jlc-memovox-parking/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 305.25000000000006,
+        "minute": 63,
+        "second": 180
+      },
+      "referenceURL": "https://www.jaeger-lecoultre.com/us-en/watches/collectibles/qve85801"
+    },
+    {
+      "id": "omega-chronostop",
+      "title": "Omega Chronostop · 145.009",
+      "brand": "icons",
+      "hourCycle": 12,
+      "dialShape": "circle",
+      "displayMode": "analog",
+      "specification": "icons-collection/omega-chronostop/theme.json",
+      "sourceSpec": "assets/icons-collection/omega-chronostop/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 305.25000000000006,
+        "minute": 63,
+        "second": 180
+      },
+      "referenceURL": "https://shop.hodinkee.com/products/2578-omega-chronostop-w-paper"
+    },
+    {
+      "id": "breitling-navitimer",
+      "title": "Breitling Navitimer Ref. 806 · 1959",
+      "brand": "icons",
+      "hourCycle": 12,
+      "dialShape": "circle",
+      "displayMode": "analog",
+      "specification": "icons-collection/breitling-navitimer/theme.json",
+      "sourceSpec": "assets/icons-collection/breitling-navitimer/theme.json",
+      "referenceTime": "10:10:30",
+      "referenceAngles": {
+        "hour": 305.25000000000006,
+        "minute": 63,
+        "second": 180
+      },
+      "referenceURL": "https://www.breitling.com/fi-en/watches/navitimer/navitimer-ref-806-1959-re-edition/AB0910371B1X1/"
+    },
+    {
       "id": "hamilton-pulsar",
       "title": "Hamilton Pulsar P1 · 1972",
       "brand": "icons",

@@ -193,3 +193,24 @@
 "Pulsar P1 lights its red LED display for 1.25 seconds when its front button is pressed; keep holding to show seconds. Interaction offers time, seconds and display-off commands, also without the case." = "Pulsar P1 lights its red LED display for 1.25 seconds when its front button is pressed; keep holding to show seconds. Interaction offers time, seconds and display-off commands, also without the case.";
 
 "Hamilton Pulsar P1 · 1972" = "Hamilton Pulsar P1 · 1972";
+
+"%ld min" = "%ld min";
+"Alarm: %@" = "Alarm: %@";
+"Hold reading" = "Hold reading";
+"Parking alarm crown" = "Parking alarm crown";
+"Parking reminder" = "Parking reminder";
+"Reset slide rule" = "Reset slide rule";
+"Rotate scale +1°" = "Rotate scale +1°";
+"Rotate scale −1°" = "Rotate scale −1°";
+"Slide rule" = "Slide rule";
+"Start 60-second timer" = "Start 60-second timer";
+"Press to start; hold to read; release to reset." = "Press to start; hold to read; release to reset.";
+"Press to start. Press and hold to read; release to reset. Right-click → Interaction for controls." = "Press to start. Press and hold to read; release to reset. Right-click → Interaction for controls.";
+"Drag or scroll to rotate the slide rule." = "Drag or scroll to rotate the slide rule.";
+"Drag vertically or scroll to rotate the alarm disc. Click to arm or cancel." = "Drag vertically or scroll to rotate the alarm disc. Click to arm or cancel.";
+"Drag the upper crown vertically or scroll to set the alarm disc. Click it to arm or cancel. Right-click → Interaction for reminders." = "Drag the upper crown vertically or scroll to set the alarm disc. Click it to arm or cancel. Right-click → Interaction for reminders.";
+"Drag or scroll the outer scale to calculate. Upper pusher starts/pauses the chronograph; lower pusher resets it." = "Drag or scroll the outer scale to calculate. Upper pusher starts/pauses the chronograph; lower pusher resets it.";
+
+"Jaeger-LeCoultre Memovox Parking · 1958" = "Jaeger-LeCoultre Memovox Parking · 1958";
+"Omega Chronostop · 145.009" = "Omega Chronostop · 145.009";
+"Breitling Navitimer Ref. 806 · 1959" = "Breitling Navitimer Ref. 806 · 1959";

@@ -118,6 +118,10 @@ struct DialSpecification: Decodable {
         case pulsarPress = "pulsar-press"
         case pulsarRelease = "pulsar-release"
         case pulsarCancel = "pulsar-cancel"
+        case chronostop = "chronostop"
+        case chronostopPress = "chronostop-press"
+        case chronostopRelease = "chronostop-release"
+        case parkingCrown = "parking-crown"
     }
     struct MechanicalControl: Decodable {
         let action: MechanicalAction
@@ -155,7 +159,7 @@ struct DialSpecification: Decodable {
         }
         guard size(resolution), [nil, "circle", "rectangle"].contains(dialShape),
               [nil, "analog", "digital"].contains(displayMode),
-              [nil, "pulsar"].contains(interactionProfile), !layers.isEmpty else {
+              [nil, "pulsar", "chronostop", "parking", "navitimer"].contains(interactionProfile), !layers.isEmpty else {
             throw ModelError.invalid(L("dial size or shape"))
         }
         if let bounds = dialBounds {
@@ -188,7 +192,7 @@ struct DialSpecification: Decodable {
                 hasSeenHand = true
             } else if layer.type == "Hand Res" {
                 let name = URL(fileURLWithPath: layer.image).deletingPathExtension().lastPathComponent
-                guard !hasSeenForeground, ["hour", "minute", "second", "chrono-second", "chrono-minute", "chrono-hour"].contains(name), handNames.insert(name).inserted,
+                guard !hasSeenForeground, ["hour", "minute", "second", "chrono-second", "chrono-minute", "chrono-hour", "alarm-disc", "slide-rule"].contains(name), handNames.insert(name).inserted,
                       point(layer.handResPosition), point(layer.rotatePoint), layer.position == nil else {
                     throw ModelError.invalid(L("hand geometry: %@", layer.image))
                 }
@@ -210,14 +214,17 @@ struct DialSpecification: Decodable {
             guard handNames.isSuperset(of: ["hour", "minute"]) else { throw ModelError.invalid(L("missing hands")) }
         }
         let chronographHands: Set<String> = ["chrono-second", "chrono-minute", "chrono-hour"]
-        guard handNames.isDisjoint(with: chronographHands) || handNames.isSuperset(of: chronographHands) else {
+        guard (interactionProfile == "chronostop" && handNames.intersection(chronographHands) == ["chrono-second"]) ||
+            handNames.isDisjoint(with: chronographHands) || handNames.isSuperset(of: chronographHands) else {
             throw ModelError.invalid(L("missing hands"))
         }
         if let controls = mechanicalControls {
             let actions = Set(controls.map(\.action))
             let analogActions: Set<MechanicalAction> = [.chronographToggle, .chronographReset]
             let digitalActions: Set<MechanicalAction> = [.gshockA, .gshockB, .gshockC, .gshockD]
-            let validActions = interactionProfile == "pulsar" ? actions == [.pulsarLight] :
+            let validActions = interactionProfile == "chronostop" ? actions == [.chronostop] :
+                interactionProfile == "parking" ? actions == [.parkingCrown] :
+                interactionProfile == "pulsar" ? actions == [.pulsarLight] :
                 displayMode == "digital" ? actions == digitalActions :
                 handNames.isSuperset(of: chronographHands) && actions.isSubset(of: analogActions)
             guard Set(controls.map(\.action)).count == controls.count, validActions,

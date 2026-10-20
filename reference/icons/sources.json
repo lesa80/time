@@ -111,6 +111,36 @@
       "sha256": "83bdbdbfeee9b9e86b2d9117cda9093284ee963bf7f9f9dfb499072849b0589f",
       "photoURL": "https://theledwatch.com/sites/default/files/styles/large/public/field/image/pulsar_p1_18k_2.png?itok=fePb5pCE",
       "photoSHA256": "11c5db0986ee4c84153c05806763410f03dc334d1ffd96c3a97ace711ecd8140"
+    },
+    {
+      "id": "jlc-memovox-parking",
+      "title": "Jaeger-LeCoultre Memovox Parking · 1958",
+      "reference": "E858",
+      "page": "https://www.jaeger-lecoultre.com/us-en/watches/collectibles/qve85801",
+      "photo": "reference/icons/memovox-parking-original.jpg",
+      "master": "assets/icons-collection/jlc-memovox-parking/source/master.png",
+      "sha256": "0ca24049e45ed19fdf8eeaca04cec12cc75b2be63f79a5ff4a944940ea4d5c28",
+      "photoSHA256": "529886535aa6a95d4174df3c771cf352e809bddbe529c7a5e77f19ed9e0acbcb"
+    },
+    {
+      "id": "omega-chronostop",
+      "title": "Omega Chronostop · 145.009",
+      "reference": "145.009 / calibre 865",
+      "page": "https://shop.hodinkee.com/products/2578-omega-chronostop-w-paper",
+      "photo": "reference/icons/chronostop-original.jpg",
+      "master": "assets/icons-collection/omega-chronostop/source/master.png",
+      "sha256": "5cdda7e1a8d966d434f7a3f4dae8ea6bdd6acae7041cfd9121e7b69b6b604d81",
+      "photoSHA256": "7bf514196abe4202cc10ac629c09b6ac65f6ad9e7e1ca1c8bf123d442372e507"
+    },
+    {
+      "id": "breitling-navitimer",
+      "title": "Breitling Navitimer Ref. 806 · 1959",
+      "reference": "806 / design of 1959",
+      "page": "https://www.breitling.com/fi-en/watches/navitimer/navitimer-ref-806-1959-re-edition/AB0910371B1X1/",
+      "photo": "reference/icons/navitimer-806-original.webp",
+      "master": "assets/icons-collection/breitling-navitimer/source/master.png",
+      "sha256": "8cf7fa4e93941c247e1b5082e78fc082b8f17c99677c9effa49d1f7aa946e6d0",
+      "photoSHA256": "37b77dc447145f64f9a56d5d1669248008883e0cf88a76ae16f75d41111fc46b"
     }
   ],
   "submarinerCatalog": {

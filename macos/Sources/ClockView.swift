@@ -34,11 +34,14 @@ final class ClockView: NSView {
     var chronographIsRunning = false {
         didSet { if oldValue != chronographIsRunning { updateMechanicalControls() } }
     }
+    var heritage = HeritageReading()
+    var onRotation: ((Double) -> Void)?
+    private var rotaryRing: RotaryRing?
     var onInteraction: ((DialSpecification.MechanicalAction) -> Void)?
     var gshockDisplay: GShockDisplay?
     var pulsarDisplay = PulsarReading()
     var hapticMode: HapticMode = .generic {
-        didSet { mechanicalButtons.forEach { $0.hapticMode = hapticMode } }
+        didSet { mechanicalButtons.forEach { $0.hapticMode = hapticMode }; rotaryRing?.hapticMode = hapticMode }
     }
     private var mechanicalButtons: [MechanicalButton] = []
     private let hapticFeedback: ((NSHapticFeedbackManager.FeedbackPattern) -> Void)?
@@ -67,15 +70,19 @@ final class ClockView: NSView {
         if renderer.hasChronograph {
             toolTip = L("Upper pusher: start/pause. Lower pusher: reset. Running seconds are at 9. Right-click → Interaction for all controls.")
         }
+        if renderer.isChronostop { toolTip = L("Press to start. Press and hold to read; release to reset. Right-click → Interaction for controls.") }
+        if renderer.isParking { toolTip = L("Drag the upper crown vertically or scroll to set the alarm disc. Click it to arm or cancel. Right-click → Interaction for reminders.") }
+        if renderer.isNavitimer { toolTip = L("Drag or scroll the outer scale to calculate. Upper pusher starts/pauses the chronograph; lower pusher resets it.") }
         if renderer.isGShock {
             toolTip = L("A: adjust/split/reset. B: start/stop. C: mode. D: light. Hold B in Timekeeping for Flash Alert. Right-click → Interaction for settings.")
         }
         if renderer.isPulsar { toolTip = L("Press the front button to show time. Keep holding to show seconds. Right-click → Interaction for controls.") }
-        setAccessibilityRole(mechanicalButtons.contains { !$0.isHidden } ? .group : .image)
+        setAccessibilityRole(rotaryRing != nil || mechanicalButtons.contains { !$0.isHidden } ? .group : .image)
         setAccessibilityHelp(toolTip)
     }
     private func rebuildMechanicalControls() {
         mechanicalButtons.forEach { $0.removeFromSuperview() }
+        rotaryRing?.removeFromSuperview(); rotaryRing = nil
         mechanicalButtons = (renderer.specification.mechanicalControls ?? []).map { control in
             let button = MechanicalButton(control: control, hapticFeedback: hapticFeedback) { [weak self] in self?.onInteraction?(control.action) }
             if let action = control.longAction {
@@ -86,9 +93,19 @@ final class ClockView: NSView {
                 button.onPressEnded = { [weak self] in self?.onInteraction?(.pulsarRelease) }
                 button.onPressCancelled = { [weak self] in self?.onInteraction?(.pulsarCancel) }
             }
+            if control.action == .chronostop {
+                button.onPressBegan = { [weak self] in self?.onInteraction?(.chronostopPress) }
+                button.onPressEnded = { [weak self] in self?.onInteraction?(.chronostopRelease) }
+                button.onPressCancelled = { [weak self] in self?.onInteraction?(.chronostopRelease) }
+            }
+            if control.action == .parkingCrown { button.onRotationDelta = { [weak self] in self?.onRotation?($0) } }
             button.hapticMode = hapticMode
             addSubview(button)
             return button
+        }
+        if renderer.isNavitimer {
+            let ring = RotaryRing(hapticFeedback: hapticFeedback) { [weak self] in self?.onRotation?($0) }
+            ring.hapticMode = hapticMode; addSubview(ring); rotaryRing = ring
         }
         layoutMechanicalControls()
         updateMechanicalControls()
@@ -99,6 +116,16 @@ final class ClockView: NSView {
     }
     private func layoutMechanicalControls() {
         let resolution = renderer.specification.resolution
+        if let ring = rotaryRing, let b = renderer.specification.dialBounds {
+            // The live scale stays usable in both full-watch and dial-only views.
+            if showBezel {
+                let dial = NSRect(x: b[0] / resolution[0] * bounds.width, y: (1 - (b[1] + b[3]) / resolution[1]) * bounds.height,
+                    width: b[2] / resolution[0] * bounds.width, height: b[3] / resolution[1] * bounds.height)
+                // Include the physical beaded metal rim, just outside the glass.
+                ring.frame = dial.insetBy(dx: -dial.width * 0.025, dy: -dial.height * 0.025)
+                ring.innerRadiusFraction = 0.84 / 1.05
+            } else { ring.frame = bounds; ring.innerRadiusFraction = 0.84 }
+        }
         for button in mechanicalButtons {
             let b = button.control.bounds
             button.frame = NSRect(x: b[0] / resolution[0] * bounds.width,
@@ -126,6 +153,11 @@ final class ClockView: NSView {
             case .gshockC: label = L("C · Mode / next field")
             case .gshockD: label = L("D · Light / format / auto-repeat")
             case .gshockFlash: label = L("Flash Alert")
+            case .chronostop, .chronostopPress, .chronostopRelease:
+                label = L("Press to start; hold to read; release to reset.")
+            case .parkingCrown:
+                label = L("Parking alarm crown")
+                button.toolTip = L("Drag vertically or scroll to rotate the alarm disc. Click to arm or cancel.")
             case .pulsarLight:
                 label = L("Show time")
                 button.toolTip = L("Press to show time; keep holding to show seconds.")
@@ -157,10 +189,10 @@ final class ClockView: NSView {
         }
         if let cache = artworkCache {
             context.draw(cache.background, in: bounds)
-            renderer.draw(in: context, size: bounds.size, angles: angles, showSeconds: showSeconds, showBezel: showBezel, pass: .live, chronograph: chronograph, gshock: gshockDisplay, pulsar: renderer.isPulsar ? pulsarDisplay : nil)
+            renderer.draw(in: context, size: bounds.size, angles: angles, showSeconds: showSeconds, showBezel: showBezel, pass: .live, chronograph: chronograph, gshock: gshockDisplay, pulsar: renderer.isPulsar ? pulsarDisplay : nil, heritage: heritage)
             context.draw(cache.foreground, in: bounds)
         } else {
-            renderer.draw(in: context, size: bounds.size, angles: angles, showSeconds: showSeconds, showBezel: showBezel, chronograph: chronograph, gshock: gshockDisplay, pulsar: renderer.isPulsar ? pulsarDisplay : nil)
+            renderer.draw(in: context, size: bounds.size, angles: angles, showSeconds: showSeconds, showBezel: showBezel, chronograph: chronograph, gshock: gshockDisplay, pulsar: renderer.isPulsar ? pulsarDisplay : nil, heritage: heritage)
         }
     }
     private func invalidateArtwork() {
@@ -214,22 +246,38 @@ final class ClockView: NSView {
     override func rightMouseDown(with event: NSEvent) {
         if let clockMenu { NSMenu.popUpContextMenu(clockMenu, with: event, for: self) }
     }
+    /// Does not activate the desktop window or intercept scrolling in About/settings.
+    @discardableResult func handleRotationScroll(_ event: NSEvent) -> Bool {
+        guard event.type == .scrollWheel, !isHiddenOrHasHiddenAncestor,
+              let window, !window.ignoresMouseEvents else { return false }
+        // A CGEvent-backed event with no window uses Cocoa screen coordinates.
+        let pointInWindow = event.window === window ? event.locationInWindow : window.convertPoint(fromScreen: event.locationInWindow)
+        let point = superview?.convert(pointInWindow, from: nil) ?? pointInWindow
+        guard let control = hitTest(point) as? any ScrollRotatingControl else { return false }
+        return control.rotateFromScroll(event)
+    }
+    override func scrollWheel(with event: NSEvent) { handleRotationScroll(event) }
     func pointerMoved(with event: NSEvent) {
         // A non-key window cannot rely on normal button cursor rectangles.
         let point = superview?.convert(event.locationInWindow, from: nil) ?? event.locationInWindow
+        if let ring = hitTest(point) as? RotaryRing {
+            mechanicalButtons.forEach { $0.endPointerHover() }
+            ring.pointerMoved(with: event); return
+        }
+        rotaryRing?.endPointerHover()
         let target = hitTest(point) as? MechanicalButton
         mechanicalButtons.filter { $0 !== target }.forEach { $0.endPointerHover() }
         target?.mouseMoved(with: event)
     }
     func endPointerHover() {
-        mechanicalButtons.forEach { $0.endPointerHover() }
+        mechanicalButtons.forEach { $0.endPointerHover() }; rotaryRing?.endPointerHover()
     }
-    func cancelMechanicalPresses() { mechanicalButtons.forEach { $0.cancelPressTracking() } }
+    func cancelMechanicalPresses() { mechanicalButtons.forEach { $0.cancelPressTracking() }; rotaryRing?.cancelTracking() }
 }
 
 /// A real AppKit button over the photographed pusher. Normal artwork stays intact.
 @MainActor
-final class MechanicalButton: NSButton {
+final class MechanicalButton: NSButton, ScrollRotatingControl {
     let control: DialSpecification.MechanicalControl
     private let onPress: () -> Void
     var hapticMode: HapticMode = .generic
@@ -243,6 +291,9 @@ final class MechanicalButton: NSButton {
             ])
         }
     }
+    var onRotationDelta: ((Double) -> Void)?
+    private var rotationPoint: NSPoint?
+    private var didRotate = false
     var onPressBegan: (() -> Void)?
     var onPressEnded: (() -> Void)?
     var onPressCancelled: (() -> Void)?
@@ -280,6 +331,10 @@ final class MechanicalButton: NSButton {
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
     override func mouseDown(with event: NSEvent) {
         if event.modifierFlags.contains(.control) { superview?.rightMouseDown(with: event); return }
+        if onRotationDelta != nil {
+            guard isEnabled, !isHiddenOrHasHiddenAncestor, window?.ignoresMouseEvents == false else { return }
+            rotationPoint = event.locationInWindow; didRotate = false; return
+        }
         guard onLongPress != nil || onPressBegan != nil else { super.mouseDown(with: event); return }
         guard isEnabled, !isHiddenOrHasHiddenAncestor, window?.ignoresMouseEvents == false else { return }
         cancelLongPress()
@@ -299,6 +354,11 @@ final class MechanicalButton: NSButton {
         RunLoop.main.add(timer, forMode: .common)
     }
     override func mouseDragged(with event: NSEvent) {
+        if let start = rotationPoint, let onRotationDelta {
+            let delta = event.locationInWindow.y - start.y
+            if didRotate || abs(delta) >= 3 { didRotate = true; rotationPoint = event.locationInWindow; onRotationDelta(-delta * 0.5) }
+            return
+        }
         guard trackingLongPress else { super.mouseDragged(with: event); return }
         if !bounds.contains(convert(event.locationInWindow, from: nil)) {
             if !pressCancelled { onPressCancelled?() }
@@ -307,6 +367,11 @@ final class MechanicalButton: NSButton {
         }
     }
     override func mouseUp(with event: NSEvent) {
+        if rotationPoint != nil {
+            rotationPoint = nil
+            if !didRotate && bounds.contains(convert(event.locationInWindow, from: nil)) { performClick(nil) }
+            return
+        }
         guard trackingLongPress else { super.mouseUp(with: event); return }
         let fire = !longPressFired && !pressCancelled && isEnabled && !isHiddenOrHasHiddenAncestor &&
             window?.ignoresMouseEvents == false && bounds.contains(convert(event.locationInWindow, from: nil))
@@ -319,7 +384,17 @@ final class MechanicalButton: NSButton {
         cancelLongPress()
         if fire { performClick(nil) }
     }
+    @discardableResult func rotateFromScroll(_ event: NSEvent) -> Bool {
+        guard let onRotationDelta, isEnabled, !isHiddenOrHasHiddenAncestor,
+              window?.ignoresMouseEvents == false else { return false }
+        if let delta = RotationScroll.degrees(for: event) { onRotationDelta(delta) }
+        return true
+    }
+    override func scrollWheel(with event: NSEvent) {
+        (superview as? ClockView)?.handleRotationScroll(event)
+    }
     private func cancelLongPress() {
+        rotationPoint = nil; didRotate = false
         if trackingLongPress && !pressCancelled { onPressCancelled?() }
         longPressTimer?.invalidate()
         longPressTimer = nil
@@ -388,6 +463,12 @@ final class ClockWindow: NSWindow {
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override func sendEvent(_ event: NSEvent) {
+        if event.type == .scrollWheel, let view = contentView as? ClockView {
+            // Accessory windows never become key. Route directly to the hovered
+            // rotary part, without activating the app or retaining a gesture target.
+            view.handleRotationScroll(event)
+            return
+        }
         super.sendEvent(event)
         if event.type == .mouseMoved { (contentView as? ClockView)?.pointerMoved(with: event) }
     }

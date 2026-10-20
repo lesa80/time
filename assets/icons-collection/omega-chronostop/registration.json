@@ -1,0 +1,24 @@
+{
+  "master": [
+    1024,
+    1536
+  ],
+  "bodyCrop": [
+    294,
+    8,
+    464,
+    1524
+  ],
+  "dialBox": [
+    340,
+    522,
+    344,
+    344
+  ],
+  "center": [
+    512,
+    694
+  ],
+  "source": "https://shop.hodinkee.com/products/2578-omega-chronostop-w-paper",
+  "reference": "145.009 / calibre 865"
+}

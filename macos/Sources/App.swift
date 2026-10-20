@@ -17,6 +17,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     var timer: Timer?
     var chronograph = Chronograph()
     var pulsar = Pulsar()
+    var chronostop = Chronostop()
+    var parking = ParkingAlarm()
+    var slideRuleAngle: Double = 0
+    var lastParkingSoundAt = Date.distantPast
     var gshock: GShock
     var gshockServiceTimer: Timer?
     var lastGShockSoundAt = Date.distantPast
@@ -43,6 +47,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         self.library = library
         self.renderer = renderer
         self.defaults = defaults
+        let parkingSettings = defaults.data(forKey: "parkingSettings").flatMap { try? JSONDecoder().decode(ParkingSettings.self, from: $0) }
+        self.parking = ParkingAlarm(settings: parkingSettings ?? ParkingSettings(angle: ParkingAlarm.angle(at: Date().addingTimeInterval(1800))))
+        self.slideRuleAngle = ParkingAlarm.normalized(defaults.double(forKey: "slideRuleAngle"))
         let saved = defaults.data(forKey: "gshockSettings").flatMap { try? JSONDecoder().decode(GShockSettings.self, from: $0) }
         self.gshock = gshock ?? GShock(settings: saved ?? GShockSettings())
         self.gshock.resynchronizeWallClock(date: Date())
@@ -78,6 +85,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         clockView = ClockView(renderer: renderer)
         clockView.hapticMode = hapticMode
         clockView.clockMenu = clockMenu
+        clockView.onRotation = { [weak self] in self?.rotateHeritage(by: $0) }
         clockView.onInteraction = { [weak self] action in self?.performInteraction(action) }
         clockView.onDragEnded = { [weak self] in self?.keepOnScreen(); self?.savePosition() }
         clockView.showSeconds = defaults.bool(forKey: "showSeconds")
@@ -213,6 +221,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         menuActions["chronoElapsed"] = elapsed
         addGShockMenuItems(to: menu)
         addPulsarMenuItems(to: menu)
+        addHeritageMenuItems(to: menu)
         return menu
     }
 
@@ -366,8 +375,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         updateClock()
         guard !isSleeping, window.occlusionState.contains(.visible) else { return }
         var interval = AnimationPolicy.interval(smooth: defaults.bool(forKey: "smooth"), showSeconds: defaults.bool(forKey: "showSeconds") ||
-            (renderer.hasChronograph && chronograph.isRunning),
-            hasSeconds: renderer.hasSeconds, reduceMotion: NSWorkspace.shared.accessibilityDisplayShouldReduceMotion,
+            (renderer.hasChronograph && chronograph.isRunning) || (renderer.isChronostop && chronostop.isRunning),
+            hasSeconds: renderer.hasSeconds || (renderer.isChronostop && chronostop.isRunning), reduceMotion: NSWorkspace.shared.accessibilityDisplayShouldReduceMotion,
             lowPower: ProcessInfo.processInfo.isLowPowerModeEnabled)
         if renderer.isGShock && gshock.needsFastRefresh {
             interval = gshock.isEditing ? 0.25 :
@@ -400,6 +409,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             lastAccessibilitySecond = -1
         }
         clockView.pulsarDisplay = reading
+        advanceParking(date: clockView.date)
+        clockView.heritage = HeritageReading(parkingAngle: parking.settings.angle, slideRuleAngle: slideRuleAngle, chronostop: chronostop.reading)
         advanceGShock(date: clockView.date)
         clockView.gshockDisplay = renderer.isGShock ? gshock.display(date: clockView.date,
             reduceMotion: NSWorkspace.shared.accessibilityDisplayShouldReduceMotion) : nil
@@ -424,7 +435,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     }
     func updateChronographMenu() {
         menuActions["interaction"]?.isHidden = !renderer.hasChronograph && !renderer.isGShock &&
-            !renderer.isPulsar && !gshock.isRinging
+            !renderer.isPulsar && !renderer.isChronostop && !renderer.isParking && !renderer.isNavitimer && !gshock.isRinging && !parking.isRinging
         for key in ["chronoToggle", "chronoReset", "chronoDivider", "chronoElapsed"] {
             menuActions[key]?.isHidden = !renderer.hasChronograph
         }
@@ -433,9 +444,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         menuActions["chronoElapsed"]?.title = chronographDescription
         updateGShockMenu()
         updatePulsarMenu()
+        updateHeritageMenu()
     }
     func performInteraction(_ action: DialSpecification.MechanicalAction) {
         switch action {
+        case .chronostop: chronostopMenuAction()
+        case .chronostopPress:
+            guard renderer.isChronostop else { return }
+            chronostop.press(); finishHeritageInteraction()
+        case .chronostopRelease:
+            chronostop.release(); finishHeritageInteraction()
+        case .parkingCrown: toggleParkingAlarm()
         case .chronographToggle: toggleChronograph()
         case .chronographReset: resetChronograph()
         case .gshockA: pressGShock(.a)
@@ -476,7 +495,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     }
     func systemClockChanged() { gshock.resynchronizeWallClock(date: Date()); resynchronize() }
     @objc func pauseForSleep() {
-        pulsar.cancel()
+        pulsar.cancel(); chronostop.release()
+        saveParking()
         isSleeping = true; timer?.invalidate(); timer = nil
         gshockServiceTimer?.invalidate(); gshockServiceTimer = nil
         savePosition()
@@ -529,10 +549,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             let alert = NSAlert(); alert.messageText = L("Could not open theme")
             alert.informativeText = String(describing: error); alert.addButton(withTitle: L("OK")); alert.runModal(); return
         }
-        pulsar.cancel()
+        pulsar.cancel(); chronostop.release()
         renderer = selected
         defaults.set(id, forKey: "themeID")
         clockView.renderer = selected
+        clockView.onRotation = { [weak self] in self?.rotateHeritage(by: $0) }
         clockView.updateThemeDescription()
         window.title = L("%@ · %@", L("Vremya"), selected.theme.localizedTitle)
         updateStatusItem()

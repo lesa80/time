@@ -86,14 +86,15 @@ extension AppDelegate {
             signalSound()
             lastGShockSoundAt = date
         }
-        if !gshock.needsService { gshockServiceTimer?.invalidate(); gshockServiceTimer = nil }
+        if !gshock.needsService && !parking.needsService { gshockServiceTimer?.invalidate(); gshockServiceTimer = nil }
     }
     func refreshGShockService() {
-        guard gshock.needsService else { gshockServiceTimer?.invalidate(); gshockServiceTimer = nil; return }
+        guard gshock.needsService || parking.needsService else { gshockServiceTimer?.invalidate(); gshockServiceTimer = nil; return }
         guard gshockServiceTimer == nil else { return }
         let timer = Timer(timeInterval: 0.5, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated {
                 guard let self else { return }
+                self.advanceParking(date: Date())
                 self.advanceGShock(date: Date())
                 self.updateChronographMenu()
             }

@@ -193,3 +193,24 @@
 "Pulsar P1 lights its red LED display for 1.25 seconds when its front button is pressed; keep holding to show seconds. Interaction offers time, seconds and display-off commands, also without the case." = "Le bouton de la Pulsar P1 allume son affichage LED rouge pendant 1,25 seconde ; maintenez-le pour les secondes. Interaction propose l’heure, les secondes et l’extinction, même sans boîtier.";
 
 "Hamilton Pulsar P1 · 1972" = "Hamilton Pulsar P1 · 1972";
+
+"%ld min" = "%ld min";
+"Alarm: %@" = "Alarme : %@";
+"Hold reading" = "Figer la mesure";
+"Parking alarm crown" = "Couronne de l’alarme Parking";
+"Parking reminder" = "Rappel de stationnement";
+"Reset slide rule" = "Réinitialiser la règle à calcul";
+"Rotate scale +1°" = "Tourner l’échelle de +1°";
+"Rotate scale −1°" = "Tourner l’échelle de −1°";
+"Slide rule" = "Règle à calcul";
+"Start 60-second timer" = "Démarrer le compteur de 60 secondes";
+"Press to start; hold to read; release to reset." = "Appuyez pour démarrer ; maintenez pour lire ; relâchez pour remettre à zéro.";
+"Press to start. Press and hold to read; release to reset. Right-click → Interaction for controls." = "Appuyez pour démarrer. Appuyez à nouveau et maintenez pour lire ; relâchez pour remettre à zéro. Clic droit → Interaction pour les commandes.";
+"Drag or scroll to rotate the slide rule." = "Faites glisser ou défiler pour tourner la règle à calcul.";
+"Drag vertically or scroll to rotate the alarm disc. Click to arm or cancel." = "Glissez verticalement ou faites défiler pour tourner le disque. Cliquez pour activer ou annuler l’alarme.";
+"Drag the upper crown vertically or scroll to set the alarm disc. Click it to arm or cancel. Right-click → Interaction for reminders." = "Glissez la couronne supérieure verticalement ou faites défiler pour régler le disque. Cliquez pour activer ou annuler. Clic droit → Interaction pour les rappels.";
+"Drag or scroll the outer scale to calculate. Upper pusher starts/pauses the chronograph; lower pusher resets it." = "Glissez ou faites défiler l’échelle extérieure pour calculer. Le poussoir supérieur démarre/met en pause le chronographe ; celui du bas le remet à zéro.";
+
+"Jaeger-LeCoultre Memovox Parking · 1958" = "Jaeger-LeCoultre Memovox Parking · 1958";
+"Omega Chronostop · 145.009" = "Omega Chronostop · 145.009";
+"Breitling Navitimer Ref. 806 · 1959" = "Breitling Navitimer Ref. 806 · 1959";

@@ -1,0 +1,36 @@
+{
+  "master": [
+    1024,
+    1536
+  ],
+  "bodyCrop": [
+    290,
+    5,
+    482,
+    1523
+  ],
+  "dialBox": [
+    300,
+    466,
+    424,
+    424
+  ],
+  "center": [
+    512,
+    678
+  ],
+  "secondsCenter": [
+    429,
+    679
+  ],
+  "chronographMinuteCenter": [
+    597,
+    679
+  ],
+  "chronographHourCenter": [
+    513,
+    762
+  ],
+  "source": "https://www.breitling.com/fi-en/watches/navitimer/navitimer-ref-806-1959-re-edition/AB0910371B1X1/",
+  "reference": "806 · 1959"
+}

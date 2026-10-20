@@ -45,6 +45,12 @@ final class AboutWindowController: NSWindowController {
         addLink("Casio G-Shock DW-5600 ↗", url: URL(string: "https://www.casio.com/us/watches/gshock/product.DW-5600E-1V/")!, to: content)
         add(label(L("Pulsar P1 lights its red LED display for 1.25 seconds when its front button is pressed; keep holding to show seconds. Interaction offers time, seconds and display-off commands, also without the case."), color: .secondaryLabelColor), to: content)
         addLink("Hamilton Pulsar P1 · 1972 ↗", url: URL(string: "https://www.swatchgroup.com/en/services/archive/2020/hamilton-psr")!, to: content)
+        addLink("Jaeger-LeCoultre Memovox Parking · 1958 ↗", url: URL(string: "https://www.jaeger-lecoultre.com/us-en/watches/collectibles/qve85801")!, to: content)
+        add(label(L("Drag the upper crown vertically or scroll to set the alarm disc. Click it to arm or cancel. Right-click → Interaction for reminders."), color: .secondaryLabelColor), to: content)
+        addLink("Omega Chronostop · 145.009 ↗", url: URL(string: "https://shop.hodinkee.com/products/2578-omega-chronostop-w-paper")!, to: content)
+        add(label(L("Press to start. Press and hold to read; release to reset. Right-click → Interaction for controls."), color: .secondaryLabelColor), to: content)
+        addLink("Breitling Navitimer Ref. 806 · 1959 ↗", url: URL(string: "https://www.breitling.com/fi-en/watches/navitimer/navitimer-ref-806-1959-re-edition/AB0910371B1X1/")!, to: content)
+        add(label(L("Drag or scroll the outer scale to calculate. Upper pusher starts/pauses the chronograph; lower pusher resets it."), color: .secondaryLabelColor), to: content)
         section(L("Raketa"), identifier: "section-raketa")
         if let logo = NSImage(contentsOf: resources.appendingPathComponent("RaketaLogo.png")) {
             let image = NSImageView()

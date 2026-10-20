@@ -1,0 +1,204 @@
+{
+  "name": "Breitling Navitimer Ref. 806 · 1959",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "displayMode": "analog",
+  "interactionProfile": "navitimer",
+  "resolution": [
+    482,
+    1523
+  ],
+  "dialBounds": [
+    10,
+    461,
+    424,
+    424
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "mechanicalControls": [
+    {
+      "action": "chronograph-toggle",
+      "bounds": [
+        411,
+        518,
+        58,
+        56
+      ]
+    },
+    {
+      "action": "chronograph-reset",
+      "bounds": [
+        412,
+        785,
+        59,
+        61
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/breitling-navitimer/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        482,
+        1523
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/breitling-navitimer/dial.png",
+      "position": [
+        10,
+        461
+      ],
+      "size": [
+        424,
+        424
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/breitling-navitimer/fixed-scale.png",
+      "position": [
+        10,
+        461
+      ],
+      "size": [
+        424,
+        424
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/breitling-navitimer/slide-rule.png",
+      "handResPosition": [
+        222,
+        673
+      ],
+      "rotatePoint": [
+        212,
+        212
+      ],
+      "size": [
+        424,
+        424
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/breitling-navitimer/chrono-minute.png",
+      "handResPosition": [
+        307,
+        674
+      ],
+      "rotatePoint": [
+        8,
+        35
+      ],
+      "size": [
+        16,
+        45
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/breitling-navitimer/chrono-hour.png",
+      "handResPosition": [
+        223,
+        757
+      ],
+      "rotatePoint": [
+        8,
+        32
+      ],
+      "size": [
+        16,
+        42
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/breitling-navitimer/second.png",
+      "handResPosition": [
+        139,
+        674
+      ],
+      "rotatePoint": [
+        11,
+        34
+      ],
+      "size": [
+        22,
+        48
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/breitling-navitimer/hour.png",
+      "handResPosition": [
+        222,
+        673
+      ],
+      "rotatePoint": [
+        11,
+        95.9088
+      ],
+      "size": [
+        22,
+        120
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/breitling-navitimer/minute.png",
+      "handResPosition": [
+        222,
+        673
+      ],
+      "rotatePoint": [
+        11,
+        142.20960000000002
+      ],
+      "size": [
+        22,
+        171
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/breitling-navitimer/chrono-second.png",
+      "handResPosition": [
+        222,
+        673
+      ],
+      "rotatePoint": [
+        8,
+        144
+      ],
+      "size": [
+        16,
+        166
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/breitling-navitimer/cap.png",
+      "position": [
+        216,
+        667
+      ],
+      "size": [
+        12,
+        12
+      ]
+    }
+  ]
+}

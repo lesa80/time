@@ -20,7 +20,7 @@
 
 ## Коллекция «Легендарные модели»
 
-В версии 2.8.0 представлены 12 вариантов шести семейств часов с корпусом и браслетом/ремешком. Исходные фотографии и сведения получены со страниц производителей; растровые основы доработаны для живых стрелок и цифровых полей. Материалы хранятся в `reference/icons/` и `assets/icons-collection/`, промпты — в `source/generation.json` каждой темы. Графика, названия, логотипы и дизайн соответствующих моделей исключены из MIT. Проект не связан с этими производителями.
+В версии 2.9.0 представлены 15 вариантов девяти семейств часов с корпусом и браслетом/ремешком. Исходные фотографии и сведения получены со страниц производителей; растровые основы доработаны для живых стрелок и цифровых полей. Материалы хранятся в `reference/icons/` и `assets/icons-collection/`, промпты — в `source/generation.json` каждой темы. Графика, названия, логотипы и дизайн соответствующих моделей исключены из MIT. Проект не связан с этими производителями.
 
 | Тема | Официальный источник |
 |---|---|
@@ -46,3 +46,5 @@ Tank подготовлен по описанию модели без входн
 В CI используются официальные `actions/checkout`, `actions/setup-node` и `actions/upload-artifact`, закреплённые SHA. Их код не включается в приложение и сохраняет собственные условия лицензирования.
 
 Добавлен Hamilton Pulsar P1 (1972). Источники: [Hamilton / Swatch Group](https://www.swatchgroup.com/en/services/archive/2020/hamilton-psr), [American Watch Museum](https://americanwatchmuseum.org/catalog/pulsar-p1-time-computer/). Графика и обозначения этой модели также исключены из MIT.
+
+Темы версии 2.9.0: [Jaeger-LeCoultre Memovox Parking E858, 1958](https://www.jaeger-lecoultre.com/us-en/watches/collectibles/qve85801), [Omega Chronostop 145.009](https://shop.hodinkee.com/products/2578-omega-chronostop-w-paper), [Breitling Navitimer Ref. 806, дизайн 1959 года](https://www.breitling.com/fi-en/watches/navitimer/navitimer-ref-806-1959-re-edition/AB0910371B1X1/). Для Navitimer использовано официальное изображение точного переиздания 1959 Re-Edition; логарифмические шкалы построены заново по [инструкции производителя](https://www.breitling.com/media/document/2/archive-archive-archive-archive-archive-archive-archive-archive-archive-archive-archive-archive-archive-navitimer_slide_rule.pdf). Фотографии, обозначения и дизайн исключены из MIT. Источники и происхождение графики сохранены в `reference/icons/sources.json` и `source/generation.json` соответствующих тем.

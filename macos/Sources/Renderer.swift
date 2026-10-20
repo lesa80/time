@@ -20,6 +20,9 @@ final class DialRenderer {
     let hasSeconds: Bool
     let hasChronograph: Bool
     var isGShock: Bool { theme.id == "casio-gshock" }
+    var isChronostop: Bool { specification.interactionProfile == "chronostop" }
+    var isParking: Bool { specification.interactionProfile == "parking" }
+    var isNavitimer: Bool { specification.interactionProfile == "navitimer" }
     var isPulsar: Bool { specification.interactionProfile == "pulsar" }
     var hasBezel: Bool { layers.contains { $0.spec.image.hasSuffix("/bezel.png") } }
     enum DrawingPass: Equatable { case all, background, live, foreground }
@@ -73,7 +76,7 @@ final class DialRenderer {
 
     func draw(in context: CGContext, size: CGSize, angles: HandAngles, showSeconds: Bool = true,
               showBezel: Bool = true, pass: DrawingPass = .all, chronograph: ChronographReading = ChronographReading(),
-              gshock: GShockDisplay? = nil, pulsar: PulsarReading? = nil) {
+              gshock: GShockDisplay? = nil, pulsar: PulsarReading? = nil, heritage: HeritageReading = HeritageReading()) {
         context.saveGState()
         context.translateBy(x: 0, y: size.height)
         let viewport = !showBezel ? specification.dialBounds : nil
@@ -108,13 +111,13 @@ final class DialRenderer {
             }
             if !showBezel && spec.image.hasSuffix("bezel.png") { continue }
             if !showSeconds && spec.image.hasSuffix("/second.png") { continue }
-            drawLayer(layer, in: context, angles: angles, chronograph: chronograph, gshock: gshock)
+            drawLayer(layer, in: context, angles: angles, chronograph: chronograph, gshock: gshock, heritage: heritage)
         }
         context.restoreGState()
     }
 
     private func drawLayer(_ layer: Layer, in context: CGContext, angles: HandAngles,
-                   chronograph: ChronographReading = ChronographReading(), gshock: GShockDisplay? = nil) {
+                   chronograph: ChronographReading = ChronographReading(), gshock: GShockDisplay? = nil, heritage: HeritageReading = HeritageReading()) {
         let spec = layer.spec
         context.saveGState()
         let size = spec.size ?? specification.resolution
@@ -135,7 +138,9 @@ final class DialRenderer {
         if let center = spec.handResPosition, let pivot = spec.rotatePoint {
             context.translateBy(x: center[0], y: center[1])
             let name = URL(fileURLWithPath: spec.image).deletingPathExtension().lastPathComponent
-            let angle = name.hasPrefix("chrono-") ? chronograph.angle(for: spec.image) : angles.angle(for: spec.image)
+            let angle = name == "alarm-disc" ? heritage.parkingAngle : name == "slide-rule" ? heritage.slideRuleAngle :
+                name == "chrono-second" && isChronostop ? heritage.chronostop.angle(for: spec.image) :
+                name.hasPrefix("chrono-") ? chronograph.angle(for: spec.image) : angles.angle(for: spec.image)
             context.rotate(by: angle * .pi / 180)
             context.translateBy(x: -pivot[0], y: -pivot[1])
         } else if let position = spec.position {

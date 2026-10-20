@@ -2,11 +2,11 @@
 
 [Русский](README.md) · [English](README.en.md)
 
-**Время (Vremya) 2.8.0** is a desktop clock app with an always-on-top mode. It includes 37 themes: four Minimalism variants, 21 Raketa models, and 12 variants in Legendary models. The app displays your Mac's local time, works offline, and remembers your settings.
+**Время (Vremya) 2.9.0** is a desktop clock app with an always-on-top mode. It includes 40 themes: four Minimalism variants, 21 Raketa models, and 15 variants in Legendary models. The app displays your Mac's local time, works offline, and remembers your settings.
 
-Version 2.8.0 adds Hamilton Pulsar P1 with a button-operated LED display and adjustable G-Shock button volume.
+Version 2.9.0 adds Memovox Parking, Chronostop and Navitimer, with hover-and-scroll control for the alarm crown and slide-rule bezel.
 
-**[Download Vremya for macOS](https://github.com/lesa80/time/releases/download/v2.8.0/Vremya-2.8.0-macOS-universal.zip)** · [All releases](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.8.0/SHA256SUMS)
+**[Download Vremya for macOS](https://github.com/lesa80/time/releases/download/v2.9.0/Vremya-2.9.0-macOS-universal.zip)** · [All releases](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.9.0/SHA256SUMS)
 
 Requires **macOS 13 or later**. One universal archive for Apple Silicon and Intel. The current release is a test build with an ad-hoc signature and no Apple notarization. [Compatibility details](docs/RELEASE_NOTES.md) (in Russian).
 
@@ -100,6 +100,16 @@ A gold case and bracelet, dark ruby crystal and red seven-segment LED digits mad
 
 [Pulsar controls and checks](docs/PULSAR.md) (in Russian).
 
+### Historical models
+
+- **Jaeger-LeCoultre Memovox Parking · 1958:** drag the upper crown vertically or scroll to set the alarm disc; click to arm/cancel. Interaction offers 15/30/60/120-minute reminders. The alarm is saved and remains active across theme changes.
+- **Omega Chronostop · 145.009:** press to start the 60-second stopwatch; press again and hold to read, then release to reset. The menu also provides a latched reading.
+- **Breitling Navitimer Ref. 806 · 1959:** drag or scroll the outer logarithmic scale to calculate. The upper pusher starts/pauses the chronograph, the lower pusher resets; all three subdials work.
+
+To rotate, hover over the Memovox crown or Navitimer bezel and scroll with two fingers on the trackpad, without clicking. Both gesture axes work; rotation stops when you lift your fingers.
+
+[Controls, sources and checks](docs/HISTORICAL_INTERACTIONS.md) (in Russian).
+
 ### Raketa
 
 [Raketa website](https://raketa.com/) · [Watch catalog](https://raketa.com/watches)
@@ -137,7 +147,7 @@ A gold case and bracelet, dark ruby crystal and red seven-segment LED digits mad
 
 ## Installation
 
-1. [Download the ZIP](https://github.com/lesa80/time/releases/download/v2.8.0/Vremya-2.8.0-macOS-universal.zip) and extract it.
+1. [Download the ZIP](https://github.com/lesa80/time/releases/download/v2.9.0/Vremya-2.9.0-macOS-universal.zip) and extract it.
 2. Move `Время.app` to Applications and open it.
 3. Drag the clock to your preferred position. Right-click the clock or its menu bar icon to open settings.
 

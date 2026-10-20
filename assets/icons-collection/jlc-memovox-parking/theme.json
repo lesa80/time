@@ -1,0 +1,135 @@
+{
+  "name": "Jaeger-LeCoultre Memovox Parking · 1958",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "displayMode": "analog",
+  "interactionProfile": "parking",
+  "resolution": [
+    439,
+    1523
+  ],
+  "dialBounds": [
+    42,
+    484,
+    344,
+    344
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "mechanicalControls": [
+    {
+      "action": "parking-crown",
+      "bounds": [
+        382,
+        527,
+        57,
+        72
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/jlc-memovox-parking/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        439,
+        1523
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/jlc-memovox-parking/dial.png",
+      "position": [
+        42,
+        484
+      ],
+      "size": [
+        344,
+        344
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/jlc-memovox-parking/alarm-disc.png",
+      "handResPosition": [
+        214,
+        656
+      ],
+      "rotatePoint": [
+        90,
+        90
+      ],
+      "size": [
+        180,
+        180
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/jlc-memovox-parking/hour.png",
+      "handResPosition": [
+        214,
+        656
+      ],
+      "rotatePoint": [
+        15,
+        99.75999999999999
+      ],
+      "size": [
+        30,
+        112
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/jlc-memovox-parking/minute.png",
+      "handResPosition": [
+        214,
+        656
+      ],
+      "rotatePoint": [
+        11,
+        147.92
+      ],
+      "size": [
+        22,
+        159
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/jlc-memovox-parking/second.png",
+      "handResPosition": [
+        214,
+        656
+      ],
+      "rotatePoint": [
+        11,
+        156.52
+      ],
+      "size": [
+        22,
+        185
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/jlc-memovox-parking/cap.png",
+      "position": [
+        208,
+        650
+      ],
+      "size": [
+        12,
+        12
+      ]
+    }
+  ]
+}

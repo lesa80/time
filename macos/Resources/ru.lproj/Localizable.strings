@@ -193,3 +193,24 @@
 "Pulsar P1 lights its red LED display for 1.25 seconds when its front button is pressed; keep holding to show seconds. Interaction offers time, seconds and display-off commands, also without the case." = "У Pulsar P1 кнопка спереди снизу включает красный LED-дисплей на 1,25 секунды; удерживайте её для показа секунд. В Interaction доступны время, секунды и выключение дисплея, в том числе без корпуса.";
 
 "Hamilton Pulsar P1 · 1972" = "Hamilton Pulsar P1 · 1972";
+
+"%ld min" = "%ld мин";
+"Alarm: %@" = "Будильник: %@";
+"Hold reading" = "Зафиксировать показание";
+"Parking alarm crown" = "Головка будильника Parking";
+"Parking reminder" = "Напоминание о парковке";
+"Reset slide rule" = "Сбросить расчётную шкалу";
+"Rotate scale +1°" = "Повернуть шкалу на +1°";
+"Rotate scale −1°" = "Повернуть шкалу на −1°";
+"Slide rule" = "Логарифмическая линейка";
+"Start 60-second timer" = "Запустить 60-секундный отсчёт";
+"Press to start; hold to read; release to reset." = "Нажмите для старта; удерживайте для считывания; отпустите для сброса.";
+"Press to start. Press and hold to read; release to reset. Right-click → Interaction for controls." = "Нажмите для старта. Нажмите повторно и удерживайте для считывания; отпустите для сброса. Правый клик → Interaction — управление.";
+"Drag or scroll to rotate the slide rule." = "Перетаскивайте или прокручивайте для вращения расчётной шкалы.";
+"Drag vertically or scroll to rotate the alarm disc. Click to arm or cancel." = "Тяните по вертикали или прокручивайте для вращения диска. Нажмите для включения или отмены будильника.";
+"Drag the upper crown vertically or scroll to set the alarm disc. Click it to arm or cancel. Right-click → Interaction for reminders." = "Тяните верхнюю головку по вертикали или прокручивайте для установки диска. Нажмите её для включения или отмены будильника. Правый клик → Interaction — напоминания.";
+"Drag or scroll the outer scale to calculate. Upper pusher starts/pauses the chronograph; lower pusher resets it." = "Перетаскивайте или прокручивайте внешнюю шкалу для вычислений. Верхняя кнопка запускает и приостанавливает хронограф, нижняя сбрасывает его.";
+
+"Jaeger-LeCoultre Memovox Parking · 1958" = "Jaeger-LeCoultre Memovox Parking · 1958";
+"Omega Chronostop · 145.009" = "Omega Chronostop · 145.009";
+"Breitling Navitimer Ref. 806 · 1959" = "Breitling Navitimer Ref. 806 · 1959";

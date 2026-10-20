@@ -1,0 +1,7 @@
+{
+  "mode": "built-in image_gen",
+  "useCase": "precise-object-edit",
+  "prompt": "Use case: precise-object-edit. Reference image shows original Omega Chronostop Geneve 145.009, calibre 865, late 1960s. Create an accurate production sprite of THIS watch. Photorealistic perfectly straight-on orthographic front view, full black perforated racing leather strap laid flat vertically including buckle and extended lower strap with open holes. Transparent background. Portrait 1024x1536 canvas. Dial center approximately (512,720), circular charcoal grey dial diameter 570 pixels, original brushed steel cushion/tonneau case width about 700. One single round steel chronograph pushbutton at 2 o'clock and a separate knurled winding crown at 4 o'clock. No button at 4 and no crown at 3. Reproduce reference raised silver rectangular baton markers with cream lume and distinctive triangular 12 marker, finely checked black/white minute track, orange Omega emblem at 12, exact white 'OMEGA' and 'CHRONOSTOP' under emblem and cursive 'Genève' at 6. No date, no subdials. Crucially REMOVE ALL HANDS including the orange hand and ALL center hub, leaving clean uninterrupted grey dial texture with no ghosts or shadows. Soft studio illumination, authentic metal and leather grain, no perspective, no cast shadow outside watch, no background, no captions. Complete strap ends inside image with margins.",
+  "referenceImage": "reference/icons/chronostop-original.jpg",
+  "output": "assets/icons-collection/omega-chronostop/source/master.png"
+}

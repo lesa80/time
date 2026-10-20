@@ -1,6 +1,6 @@
 # Легендарные модели
 
-Коллекция из 12 вариантов шести семейств часов. [Submariner: семь конфигураций](SUBMARINER.md). [Проверка приложения](../../docs/LOCAL_TESTING.md), [официальные источники](../../reference/icons/sources.json).
+Коллекция из 15 вариантов девяти семейств часов. [Submariner: семь конфигураций](SUBMARINER.md). [Проверка приложения](../../docs/LOCAL_TESTING.md), [официальные источники](../../reference/icons/sources.json).
 
 | Тема | Мастер и параметры генерации |
 |---|---|
@@ -17,3 +17,5 @@
 Открытое пространство пряжки и отверстия ремешков имеют альфа-вырезы. Сами ремешки и металл непрозрачные; сглаживание сохраняется по контуру. Источники и графика имеют отдельный статус, описанный в [LICENSE_SCOPE.md](../../LICENSE_SCOPE.md) и [THIRD_PARTY_NOTICES.md](../../THIRD_PARTY_NOTICES.md).
 
 Hamilton Pulsar P1: [Pulsar — управление и проверка](../../docs/PULSAR.md). Его источники и промпты находятся в `hamilton-pulsar/source/`. Растровые основы подготовлены встроенным image_gen; сборка не вызывает генерацию.
+
+Исторические темы: [Memovox Parking, Chronostop и Navitimer](../../docs/HISTORICAL_INTERACTIONS.md).

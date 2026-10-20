@@ -193,3 +193,24 @@
 "Pulsar P1 lights its red LED display for 1.25 seconds when its front button is pressed; keep holding to show seconds. Interaction offers time, seconds and display-off commands, also without the case." = "El botón del Pulsar P1 enciende su pantalla LED roja durante 1,25 segundos; mantenlo pulsado para ver los segundos. Interaction permite mostrar la hora, los segundos y apagar la pantalla, incluso sin caja.";
 
 "Hamilton Pulsar P1 · 1972" = "Hamilton Pulsar P1 · 1972";
+
+"%ld min" = "%ld min";
+"Alarm: %@" = "Alarma: %@";
+"Hold reading" = "Retener lectura";
+"Parking alarm crown" = "Corona de alarma Parking";
+"Parking reminder" = "Recordatorio de aparcamiento";
+"Reset slide rule" = "Restablecer regla de cálculo";
+"Rotate scale +1°" = "Girar escala +1°";
+"Rotate scale −1°" = "Girar escala −1°";
+"Slide rule" = "Regla de cálculo";
+"Start 60-second timer" = "Iniciar contador de 60 segundos";
+"Press to start; hold to read; release to reset." = "Pulsa para iniciar; mantén para leer; suelta para restablecer.";
+"Press to start. Press and hold to read; release to reset. Right-click → Interaction for controls." = "Pulsa para iniciar. Vuelve a pulsar y mantén para leer; suelta para restablecer. Clic derecho → Interaction para los controles.";
+"Drag or scroll to rotate the slide rule." = "Arrastra o desplázate para girar la regla de cálculo.";
+"Drag vertically or scroll to rotate the alarm disc. Click to arm or cancel." = "Arrastra verticalmente o desplázate para girar el disco. Haz clic para activar o cancelar.";
+"Drag the upper crown vertically or scroll to set the alarm disc. Click it to arm or cancel. Right-click → Interaction for reminders." = "Arrastra la corona superior verticalmente o desplázate para ajustar el disco. Haz clic para activar o cancelar. Clic derecho → Interaction para recordatorios.";
+"Drag or scroll the outer scale to calculate. Upper pusher starts/pauses the chronograph; lower pusher resets it." = "Arrastra o desplázate por la escala exterior para calcular. El pulsador superior inicia/pausa el cronógrafo; el inferior lo restablece.";
+
+"Jaeger-LeCoultre Memovox Parking · 1958" = "Jaeger-LeCoultre Memovox Parking · 1958";
+"Omega Chronostop · 145.009" = "Omega Chronostop · 145.009";
+"Breitling Navitimer Ref. 806 · 1959" = "Breitling Navitimer Ref. 806 · 1959";

@@ -39,6 +39,7 @@ for(const model of iconModels.filter(model=>!only||model.id===only)){
  const master=PNG.sync.read(fs.readFileSync(path.join(folder,'source/master.png')));
  for(let i=0;i<master.data.length;i+=4){const a=master.data[i+3];if(a<=4)master.data.fill(0,i,i+4);else if(a>=240)master.data[i+3]=255;}
  for(const y of model.holes??[])hole(master,512,y,model.digital?21:8,model.digital?7:8);
+ for(const [x,y,r] of model.strapHoles??[])hole(master,x,y,r,r);
  if(model.id==='casio-gshock'){
   // Open buckle interior, leaving the center metal tongue intact.
   for(let y=56;y<110;y++)for(let x=405;x<619;x++)if(x<493||x>532)master.data[(y*master.width+x)*4+3]=0;
@@ -60,6 +61,7 @@ for(const model of iconModels.filter(model=>!only||model.id===only)){
  function hand(name,length,width,{lume=false,blue=false,mercedes=false,pivot=model.center,tail=18,cap=false}={}){
   const w=Math.ceil(Math.max(width*2+4,mercedes?42:22)),h=Math.ceil(length+tail+4),cx=w/2;
   let shape=`<path d="M${cx} 1L${cx+width/2} ${Math.min(length*.2,30)}V${h-3}H${cx-width/2}V${Math.min(length*.2,30)}Z" fill="url(#${blue?'blue':'steel'})" stroke="${blue?'#06162d':'#53595c'}" stroke-width="1"/>`;
+  if(model.style==='dauphine')shape=`<path d="M${cx} 1L${cx+width/2} ${length}L${cx} ${length+tail}L${cx-width/2} ${length}Z" fill="url(#steel)" stroke="#7a7770" stroke-width=".5"/><path d="M${cx} 1V${length+tail}L${cx-width/2} ${length}Z" fill="#dfddd7"/>`;
   if(lume)shape+=`<path d="M${cx} 10L${cx+width*.26} 27V${length*.85}H${cx-width*.26}V27Z" fill="${model.style==='speedmaster'?'#d6e3b6':'#edf0e0'}"/>`;
   if(mercedes){const cy=length*.33;shape+=`<circle cx="${cx}" cy="${cy}" r="18" fill="url(#steel)" stroke="#74797b"/><circle cx="${cx}" cy="${cy}" r="14" fill="#edf0e0"/><path d="M${cx} ${cy}V${cy-15}M${cx} ${cy}L${cx-13} ${cy+8}M${cx} ${cy}L${cx+13} ${cy+8}" stroke="#777f80" stroke-width="3"/>`;}
   if(name==='second'&&model.style==='mercedes')shape+=`<circle cx="${cx}" cy="${length*.18}" r="7" fill="#edf0e0" stroke="#b3b9bd" stroke-width="2"/>`;
@@ -72,6 +74,37 @@ for(const model of iconModels.filter(model=>!only||model.id===only)){
   const w=16,h=length+Math.max(tail,8)+2,cx=w/2;
   raster(folder,name,w,h,`<path d="M${cx} 1V${length+tail}" fill="none" stroke="#e8ebdd" stroke-width="3"/><circle cx="${cx}" cy="${length}" r="${tail?4:6}" fill="#cdd2d0" stroke="#777"/>`);
   layers.push({type:'Hand Res',image:`${base}/${name}.png`,handResPosition:pivot.map((v,i)=>v-box[i]),rotatePoint:[cx,length],size:[w,h]});
+ }
+ if(model.interactionProfile==='parking'){
+  const [x,y,w,h]=model.alarmDisc,disc=crop(master,model.alarmDisc);
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+   const a=Math.max(0,Math.min(1,w/2-.4-Math.hypot(x+.5-w/2,y+.5-h/2)));
+   disc.data[(y*w+x)*4+3]=Math.round(255*a);
+  }
+  fs.writeFileSync(path.join(folder,'alarm-disc.png'),PNG.sync.write(disc));
+  layers.push({type:'Hand Res',image:`${base}/alarm-disc.png`,handResPosition:center,rotatePoint:[w/2,h/2],size:[w,h]});
+ }
+ if(model.style==='navitimer'){
+  // Both scales use the same true logarithmic geometry. 60 sits at twelve,
+  // matching the historical Ref. 806; moving the outer scale performs arithmetic.
+  const scale=(outer)=>{
+   const ink=outer?'#232323':'#f1eee3',r=outer?211:178,inner=outer?178:147,c=212;
+   let body=`<path d="M${c-r} ${c}a${r} ${r} 0 1 0 ${r*2} 0a${r} ${r} 0 1 0 ${-r*2} 0M${c-inner} ${c}a${inner} ${inner} 0 1 1 ${inner*2} 0a${inner} ${inner} 0 1 1 ${-inner*2} 0" fill="${outer?'#e4dfd2':'#101112'}" fill-rule="evenodd"/>`;
+   for(let n=100;n<1000;n++){
+    const value=n/10,angle=Math.log10(value/60)*360,major=n%100===0,mid=n%50===0;
+    if(n%5!==0&&!major)continue;
+    const length=major?8:mid?6:3.5;
+    body+=`<g transform="rotate(${angle} ${c} ${c})"><path d="M${c} ${c-(outer?inner:r)}v${outer?-length:length}" stroke="${ink}" stroke-width="${major?.7:.4}"/></g>`;
+   }
+   for(const value of [10,11,12,13,14,15,16,17,18,19,20,22,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95]){
+    const angle=Math.log10(value/60)*360;
+    body+=`<text transform="rotate(${angle} ${c} ${c})" x="${c}" y="${c-(outer?198:162)}" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="${outer?9.2:8.2}" font-weight="500" fill="${value===10?'#bf2420':ink}">${value}</text>`;
+   }
+   return body;
+  };
+  staticLayer('fixed-scale',model.dial.slice(0,2),[424,424],scale(false));
+  raster(folder,'slide-rule',424,424,scale(true),6);
+  layers.push({type:'Hand Res',image:`${base}/slide-rule.png`,handResPosition:center,rotatePoint:[212,212],size:[424,424]});
  }
  if(model.interactionProfile==='pulsar'){
   const ledChars=chars+':';atlas(folder,'led-digits',{dots:true,characters:ledChars});
@@ -90,22 +123,30 @@ for(const model of iconModels.filter(model=>!only||model.id===only)){
   lcd('month',[515,645],[46,27]);lcd('day',[582,645],[46,27]);lcd('separator',[565,646],[15,22],'lcd-letters');
   lcd('hours',[391,699],[88,73]);lcd('minutes',[494,699],[88,73]);lcd('seconds',[591,726],[48,44]);
  }else{
-  if(model.style==='speedmaster'){
-   chronoHand('chrono-minute',model.chronographMinuteCenter,69);
-   chronoHand('chrono-hour',model.chronographHourCenter,62);
+  if(['speedmaster','navitimer'].includes(model.style)){
+   chronoHand('chrono-minute',model.chronographMinuteCenter,model.style==='navitimer'?35:69);
+   chronoHand('chrono-hour',model.chronographHourCenter,model.style==='navitimer'?32:62);
   }
   if(model.date){atlas(folder,'date-atlas',{color:model.dateInk??'#e8ece8'});text('date','date',model.date.slice(0,2),model.date.slice(2),'date-atlas');}
-  const radius=dw/2;
+  const radius=dw/2*(model.style==='navitimer'?.78:1);
   // All subsidiary hands and their hubs sit below the central hand stack.
-  if(model.secondsCenter)hand('second',67,2,{pivot:model.secondsCenter,tail:10,cap:true});
-  const dress=model.style==='sword';
-  hand('hour',model.style==='sword'?73:radius*.58,model.style==='sword'?7:model.style==='mercedes'?15:12,{lume:!dress,blue:model.style==='sword',mercedes:model.style==='mercedes',tail:dress?8:20});
-  hand('minute',model.style==='sword'?99:radius*.86,model.style==='sword'?5:model.style==='mercedes'?11:9,{lume:!dress,blue:model.style==='sword',tail:dress?7:24});
-  if(!dress&&!model.secondsCenter)hand('second',radius*.91,2.2,{tail:36});
-  if(model.style==='speedmaster')chronoHand('chrono-second',model.center,292,38);
+  if(model.secondsCenter)hand('second',model.style==='navitimer'?34:67,2,{pivot:model.secondsCenter,tail:10,cap:true});
+  const dress=['sword','dauphine'].includes(model.style);
+  hand('hour',model.style==='sword'?73:radius*.58,model.style==='navitimer'?8:model.style==='dauphine'?13:model.style==='sword'?7:model.style==='mercedes'?15:12,{lume:!dress,blue:model.style==='sword',mercedes:model.style==='mercedes',tail:dress?8:20});
+  hand('minute',model.style==='sword'?99:radius*.86,model.style==='navitimer'?6:model.style==='sword'?5:model.style==='mercedes'?11:9,{lume:!dress,blue:model.style==='sword',tail:dress?7:24});
+  if(!model.secondsCenter&&model.style!=='sword'&&model.style!=='chronostop')hand('second',radius*.91,model.style==='dauphine'?1.2:2.2,{tail:model.style==='dauphine'?24:36});
+  if(['speedmaster','navitimer'].includes(model.style))chronoHand('chrono-second',model.center,model.style==='navitimer'?144:292,model.style==='navitimer'?20:38);
+  if(model.style==='chronostop'){
+   raster(folder,'chrono-second',16,187,'<path d="M8 1L10 24V179H6V24Z" fill="#f65a20"/><circle cx="8" cy="157" r="4" fill="#f65a20"/>');
+   layers.push({type:'Hand Res',image:`${base}/chrono-second.png`,handResPosition:center,rotatePoint:[8,157],size:[16,187]});
+  }
   staticLayer('cap',model.center.map(v=>v-6),[12,12],`<circle cx="6" cy="6" r="5.5" fill="${model.style==='sword'?'url(#blue)':'url(#steel)'}" stroke="#7a7e81"/>`);
  }
- const mechanicalControls=model.mechanicalControls?.map(control=>({...control,bounds:control.bounds.map((v,i)=>i<2?v-box[i]:v)}));
+ const mechanicalControls=model.mechanicalControls?.map(control=>{
+  const [x,y,w,h]=control.bounds;
+  const left=Math.max(0,x-bx),top=Math.max(0,y-by);
+  return {...control,bounds:[left,top,Math.min(bw,x-bx+w)-left,Math.min(bh,y-by+h)-top]};
+ });
  const spec={name:model.title,target:'macOS / Retina',hourCycle:model.hourCycle,displayMode:model.digital?'digital':'analog',interactionProfile:model.interactionProfile,resolution:[bw,bh],dialBounds,dialShape:model.shape,rasterResolution:[dial.width,dial.height],mechanicalControls,layers};
  fs.writeFileSync(path.join(folder,'theme.json'),JSON.stringify(spec,null,2)+'\n');
  fs.writeFileSync(path.join(folder,'registration.json'),JSON.stringify({master:[master.width,master.height],bodyCrop:box,dialBox:model.dial,center:model.center,secondsCenter:model.secondsCenter,chronographMinuteCenter:model.chronographMinuteCenter,chronographHourCenter:model.chronographHourCenter,source:model.url,reference:model.reference,chronograph:model.style==='speedmaster'?'Interactive: central 60-second, right 30-minute, bottom 12-hour; running seconds at 9':undefined},null,2)+'\n');

@@ -1,0 +1,24 @@
+{
+  "master": [
+    1024,
+    1536
+  ],
+  "bodyCrop": [
+    298,
+    8,
+    439,
+    1523
+  ],
+  "dialBox": [
+    340,
+    492,
+    344,
+    344
+  ],
+  "center": [
+    512,
+    664
+  ],
+  "source": "https://www.jaeger-lecoultre.com/us-en/watches/collectibles/qve85801",
+  "reference": "E858"
+}

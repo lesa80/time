@@ -193,3 +193,24 @@
 "Pulsar P1 lights its red LED display for 1.25 seconds when its front button is pressed; keep holding to show seconds. Interaction offers time, seconds and display-off commands, also without the case." = "Bei der Pulsar P1 leuchtet die rote LED-Anzeige nach einem Tastendruck 1,25 Sekunden; gedrückt halten zeigt die Sekunden. Interaction bietet Uhrzeit, Sekunden und Ausschalten auch ohne Gehäuse.";
 
 "Hamilton Pulsar P1 · 1972" = "Hamilton Pulsar P1 · 1972";
+
+"%ld min" = "%ld Min.";
+"Alarm: %@" = "Alarm: %@";
+"Hold reading" = "Messwert halten";
+"Parking alarm crown" = "Krone des Parkalarms";
+"Parking reminder" = "Parkerinnerung";
+"Reset slide rule" = "Rechenschieber zurücksetzen";
+"Rotate scale +1°" = "Skala um +1° drehen";
+"Rotate scale −1°" = "Skala um −1° drehen";
+"Slide rule" = "Rechenschieber";
+"Start 60-second timer" = "60-Sekunden-Messung starten";
+"Press to start; hold to read; release to reset." = "Zum Start drücken; zum Ablesen halten; zum Zurücksetzen loslassen.";
+"Press to start. Press and hold to read; release to reset. Right-click → Interaction for controls." = "Zum Start drücken. Erneut drücken und zum Ablesen halten; zum Zurücksetzen loslassen. Rechtsklick → Interaction für die Steuerung.";
+"Drag or scroll to rotate the slide rule." = "Ziehen oder scrollen, um den Rechenschieber zu drehen.";
+"Drag vertically or scroll to rotate the alarm disc. Click to arm or cancel." = "Vertikal ziehen oder scrollen, um die Alarmscheibe zu drehen. Zum Aktivieren oder Abbrechen klicken.";
+"Drag the upper crown vertically or scroll to set the alarm disc. Click it to arm or cancel. Right-click → Interaction for reminders." = "Obere Krone vertikal ziehen oder scrollen, um die Alarmscheibe einzustellen. Zum Aktivieren oder Abbrechen klicken. Rechtsklick → Interaction für Erinnerungen.";
+"Drag or scroll the outer scale to calculate. Upper pusher starts/pauses the chronograph; lower pusher resets it." = "Äußere Skala zum Rechnen ziehen oder scrollen. Oberer Drücker startet/pausiert den Chronographen; unterer setzt ihn zurück.";
+
+"Jaeger-LeCoultre Memovox Parking · 1958" = "Jaeger-LeCoultre Memovox Parking · 1958";
+"Omega Chronostop · 145.009" = "Omega Chronostop · 145.009";
+"Breitling Navitimer Ref. 806 · 1959" = "Breitling Navitimer Ref. 806 · 1959";

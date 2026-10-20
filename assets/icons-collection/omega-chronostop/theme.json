@@ -1,0 +1,119 @@
+{
+  "name": "Omega Chronostop · 145.009",
+  "target": "macOS / Retina",
+  "hourCycle": 12,
+  "displayMode": "analog",
+  "interactionProfile": "chronostop",
+  "resolution": [
+    464,
+    1524
+  ],
+  "dialBounds": [
+    46,
+    514,
+    344,
+    344
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "mechanicalControls": [
+    {
+      "action": "chronostop",
+      "bounds": [
+        400,
+        552,
+        64,
+        78
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/omega-chronostop/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        464,
+        1524
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/omega-chronostop/dial.png",
+      "position": [
+        46,
+        514
+      ],
+      "size": [
+        344,
+        344
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/omega-chronostop/hour.png",
+      "handResPosition": [
+        218,
+        686
+      ],
+      "rotatePoint": [
+        14,
+        99.75999999999999
+      ],
+      "size": [
+        28,
+        124
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/omega-chronostop/minute.png",
+      "handResPosition": [
+        218,
+        686
+      ],
+      "rotatePoint": [
+        11,
+        147.92
+      ],
+      "size": [
+        22,
+        176
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/icons-collection/omega-chronostop/chrono-second.png",
+      "handResPosition": [
+        218,
+        686
+      ],
+      "rotatePoint": [
+        8,
+        157
+      ],
+      "size": [
+        16,
+        187
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/icons-collection/omega-chronostop/cap.png",
+      "position": [
+        212,
+        680
+      ],
+      "size": [
+        12,
+        12
+      ]
+    }
+  ]
+}
