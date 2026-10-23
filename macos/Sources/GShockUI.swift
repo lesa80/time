@@ -81,7 +81,10 @@ extension AppDelegate {
         if let data = try? JSONEncoder().encode(gshock.settings) { defaults.set(data, forKey: "gshockSettings") }
     }
     func advanceGShock(date: Date) {
+        let previousAlert = gshock.alert
         let event = gshock.tick(date: date)
+        // A consumed deadline must not ring again on every relaunch. No per-frame writes.
+        if event != nil || previousAlert != gshock.alert { saveStopwatches() }
         if gshock.isRinging && (event != nil || date.timeIntervalSince(lastGShockSoundAt) >= 1) {
             signalSound()
             lastGShockSoundAt = date

@@ -86,7 +86,7 @@ func checkGShockInterface(library: ThemeLibrary) throws {
            "G-Shock settings must persist independently of the selected theme")
     expect(!reloaded.gshock.countdownRunning && reloaded.gshock.stopwatchRunning &&
            reloaded.gshock.stopwatchElapsed >= delegate.gshock.stopwatchElapsed,
-           "A running stopwatch must resume after relaunch; the countdown remains a session timer")
+           "A running stopwatch must resume after relaunch; a completed, silenced countdown must stay stopped")
 
     let alarmForm = GShockSettingsForm(settings: GShockSettings(), alarm: true)
     expect(alarmForm.fields.count == 4 && alarmForm.view.fittingSize.width > 200,

@@ -22,6 +22,7 @@ try checkPulsarInterface(library: library)
 try checkHeritageInterface(library: library)
 try checkScrollRotation(library: library)
 try checkSavedStopwatchInterface(library: library)
+try checkSavedCountdownInterface(library: library)
 let renderer = try library.renderer(for: "avangard")
 let window = ClockWindow(contentRect: NSRect(x: 200, y: 200, width: 280, height: 280),
                          styleMask: [.borderless], backing: .buffered, defer: false)

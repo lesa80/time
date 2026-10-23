@@ -26,7 +26,7 @@ struct GShockDisplay {
     let backlit: Bool
 }
 
-/// Active timers use monotonic time, including sleep. Stopwatch checkpoints also
+/// Active timers use monotonic time, including sleep. Timer checkpoints also
 /// restore time between launches. Alarm scheduling uses the local calendar.
 /// No redraw, theme switch or wall-clock adjustment changes measured elapsed time.
 struct GShock {
@@ -46,10 +46,27 @@ struct GShock {
         let split: TimeInterval?
         let wasVisible: Bool
     }
+    struct CountdownState: Codable {
+        var version = 1
+        let duration: Int
+        let autoRepeat: Bool
+        /// Keep overdue time negative until tick consumes it, preserving repeat phase.
+        let remaining: TimeInterval
+        let savedAt: Date
+        let isRunning: Bool
+        let wasVisible: Bool
+
+        var isValid: Bool {
+            version == 1 && (1...86_400).contains(duration) && remaining.isFinite &&
+                remaining <= Double(duration) && (isRunning || remaining >= 0) &&
+                savedAt.timeIntervalSinceReferenceDate.isFinite
+        }
+    }
     enum Button { case a, b, c, d }
     enum Alert { case alarm, countdown, hourly }
 
     private let now: () -> TimeInterval
+    private let wallNow: () -> Date
     var settings: GShockSettings
     private(set) var mode: Mode = .time
     private(set) var editingIndex: Int?
@@ -65,7 +82,8 @@ struct GShock {
     private var pausedRemaining: TimeInterval
 
     init(settings: GShockSettings = GShockSettings(), now: (() -> TimeInterval)? = nil,
-         wallNow: @escaping () -> Date = Date.init, restoringStopwatch state: StopwatchState? = nil) {
+         wallNow: @escaping () -> Date = Date.init, restoringStopwatch state: StopwatchState? = nil,
+         restoringCountdown countdown: CountdownState? = nil) {
         let clock: () -> TimeInterval
         if let now { clock = now } else {
             let origin = ContinuousClock.now
@@ -75,6 +93,7 @@ struct GShock {
             }
         }
         self.now = clock
+        self.wallNow = wallNow
         self.settings = settings.isValid ? settings : GShockSettings()
         pausedRemaining = Double(self.settings.countdownSeconds)
         stopwatch = Chronograph(now: clock, wallNow: wallNow, restoring: state?.timer)
@@ -82,10 +101,26 @@ struct GShock {
             if let split = state.split, split.isFinite, split >= 0, split <= state.timer.elapsed { self.split = split }
             if state.wasVisible { mode = .stopwatch }
         }
+        if let countdown, countdown.isValid, countdown.duration == self.settings.countdownSeconds,
+           countdown.autoRepeat == self.settings.autoRepeat {
+            let gap = countdown.isRunning ? max(0, wallNow().timeIntervalSince(countdown.savedAt)) : 0
+            let restored = countdown.remaining - gap
+            if restored.isFinite {
+                // A completed, already acknowledged one-shot is ready for another run.
+                pausedRemaining = !countdown.isRunning && restored == 0 ? Double(countdown.duration) : restored
+                if countdown.isRunning { countdownStartedAt = clock() }
+                if countdown.wasVisible { mode = .countdown }
+            }
+        }
     }
 
     var savedStopwatch: StopwatchState {
         StopwatchState(timer: stopwatch.savedState, split: split, wasVisible: mode == .stopwatch)
+    }
+    var savedCountdown: CountdownState {
+        CountdownState(duration: settings.countdownSeconds, autoRepeat: settings.autoRepeat,
+                       remaining: pausedRemaining - (countdownStartedAt.map { max(0, now() - $0) } ?? 0),
+                       savedAt: wallNow(), isRunning: countdownRunning, wasVisible: mode == .countdown)
     }
     var isEditing: Bool { editingIndex != nil }
     var stopwatchRunning: Bool { stopwatch.isRunning }

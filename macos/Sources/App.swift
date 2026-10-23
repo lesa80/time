@@ -55,7 +55,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         self.parking = ParkingAlarm(settings: parkingSettings ?? ParkingSettings(angle: ParkingAlarm.angle(at: Date().addingTimeInterval(1800))))
         self.slideRuleAngle = ParkingAlarm.normalized(defaults.double(forKey: "slideRuleAngle"))
         let saved = defaults.data(forKey: "gshockSettings").flatMap { try? JSONDecoder().decode(GShockSettings.self, from: $0) }
-        self.gshock = gshock ?? GShock(settings: saved ?? GShockSettings(), restoringStopwatch: timers?.gshock)
+        self.gshock = gshock ?? GShock(settings: saved ?? GShockSettings(), restoringStopwatch: timers?.gshock,
+                                     restoringCountdown: timers?.countdown)
         self.gshock.resynchronizeWallClock(date: Date())
         self.signalSound = signalSound ?? { NSSound(named: NSSound.Name("Ping"))?.play() }
         if let buttonSound { self.buttonSound = buttonSound } else {

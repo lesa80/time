@@ -2,11 +2,11 @@
 
 [Русский](README.md) · [English](README.en.md)
 
-**Время (Vremya) 2.9.1** is a desktop clock app with an always-on-top mode. It includes 40 themes: four Minimalism variants, 21 Raketa models, and 15 variants in Legendary models. The app displays your Mac's local time, works offline, and remembers your settings.
+**Время (Vremya) 2.9.2** is a desktop clock app with an always-on-top mode. It includes 40 themes: four Minimalism variants, 21 Raketa models, and 15 variants in Legendary models. The app displays your Mac's local time, works offline, and remembers your settings.
 
-Version 2.9.1 saves chronograph and stopwatch start times and states: running measurements resume after relaunch, including time while the app was closed.
+Version 2.9.2 also saves the G-Shock countdown and resumes it after relaunch.
 
-**[Download Vremya for macOS](https://github.com/lesa80/time/releases/download/v2.9.1/Vremya-2.9.1-macOS-universal.zip)** · [All releases](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.9.1/SHA256SUMS)
+**[Download Vremya for macOS](https://github.com/lesa80/time/releases/download/v2.9.2/Vremya-2.9.2-macOS-universal.zip)** · [All releases](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.9.2/SHA256SUMS)
 
 Requires **macOS 13 or later**. One universal archive for Apple Silicon and Intel. The current release is a test build with an ad-hoc signature and no Apple notarization. [Compatibility details](docs/RELEASE_NOTES.md) (in Russian).
 
@@ -42,7 +42,13 @@ Speedmaster, Navitimer, Chronostop, and the G-Shock stopwatch automatically save
 - Reset clears the saved measurement; an earlier running session will not return after relaunch.
 - G-Shock also restores its split reading and selected Stopwatch mode. A Chronostop reading held through the menu remains paused.
 
-Speedmaster and Navitimer share one chronograph, so switching between them keeps the same measurement. Chronostop and G-Shock stopwatches run independently. G-Shock countdown sessions last until the app quits.
+Speedmaster and Navitimer share one chronograph, so switching between them keeps the same measurement. Chronostop and G-Shock stopwatches run independently. Version 2.9.2 also restores the G-Shock countdown after relaunch.
+
+### G-Shock countdown · version 2.9.2
+
+Remaining time, running/paused state, auto-repeat, and the selected Countdown mode are saved. Relaunching subtracts the interval while the app was closed. A manual pause excludes that interval; reset restores the configured duration. Changing the duration starts a fresh measurement.
+
+If the countdown expires while the app is closed, it sounds once on the next launch. An acknowledged completion does not sound again on every relaunch. Auto-repeat retains the current cycle phase without replaying a burst of missed signals. Sound requires the app to be running: it does not start or wake the Mac to deliver a signal.
 
 ## Manufacturer models
 
@@ -96,7 +102,7 @@ Four modes: **Timekeeping, Alarm, Countdown timer, and Stopwatch**.
 
 All four case buttons work: **A**, upper left, adjusts/splits/resets; **B**, upper right, starts/stops/increments; **C**, lower left, changes mode or field; **D**, lower right, illuminates the screen or changes the time format/auto-repeat while editing. Hold B for two seconds in Timekeeping to toggle Flash Alert.
 
-Use **Interaction → Mode** to select a function directly and **G-Shock settings** to configure the alarm and countdown. The menu also works without the case. Settings persist between launches. In version 2.9.1, the stopwatch also resumes after relaunch, including time while the app is closed; pause, reset and split readings are saved. Countdown sessions last until the app quits.
+Use **Interaction → Mode** to select a function directly and **G-Shock settings** to configure the alarm and countdown. The menu also works without the case. Settings persist between launches. In version 2.9.1, the stopwatch also resumes after relaunch, including time while the app is closed; pause, reset and split readings are saved. Version 2.9.2 also saves the countdown: a running timer includes time while the app is closed, and manual pause and reset persist.
 
 Button presses and mode selection in Interaction produce a short 80 ms beep. Sound is enabled by default; turn it off under **Interaction → G-Shock settings → Button sound**. Set the volume from 0 to 100% under **G-Shock settings → Button volume…**. Volume and mute choices are saved and do not affect the alarm, countdown, or hourly signal. Hovering stays silent, a long press produces one beep, and stopping a ringing alert adds no button beep.
 
@@ -159,7 +165,7 @@ To rotate, hover over the Memovox crown or Navitimer bezel and scroll with two f
 
 ## Installation
 
-1. [Download the ZIP](https://github.com/lesa80/time/releases/download/v2.9.1/Vremya-2.9.1-macOS-universal.zip) and extract it.
+1. [Download the ZIP](https://github.com/lesa80/time/releases/download/v2.9.2/Vremya-2.9.2-macOS-universal.zip) and extract it.
 2. Move `Время.app` to Applications and open it.
 3. Drag the clock to your preferred position. Right-click the clock or its menu bar icon to open settings.
 

@@ -5,6 +5,7 @@ try checkGShock()
 checkPulsarModel()
 try checkHeritageModels()
 try checkStopwatchPersistence()
+try checkCountdownPersistence()
 
 for (preferences, expected) in [
     (["ru-RU"], "ru"), (["en-GB"], "en"), (["de-AT"], "de"),
