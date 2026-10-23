@@ -110,6 +110,7 @@ extension AppDelegate {
     }
     private func finishGShockInteraction() {
         saveGShockSettings()
+        saveStopwatches()
         refreshGShockService()
         updateChronographMenu()
         lastAccessibilitySecond = -1

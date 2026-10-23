@@ -45,9 +45,10 @@ extension AppDelegate {
         if chronostop.isRunning { chronostop.read() }
         else if chronostop.readingHeld { chronostop.reset() }
         else { chronostop.start() }
+        saveStopwatches()
         finishHeritageInteraction()
     }
-    @objc func resetChronostop() { guard renderer.isChronostop else { return }; chronostop.reset(); finishHeritageInteraction() }
+    @objc func resetChronostop() { guard renderer.isChronostop else { return }; chronostop.reset(); saveStopwatches(); finishHeritageInteraction() }
     @objc func setParkingDuration(_ item: NSMenuItem) {
         guard renderer.isParking else { return }
         parking.set(minutes: item.tag, date: Date()); saveParking(); finishHeritageInteraction()

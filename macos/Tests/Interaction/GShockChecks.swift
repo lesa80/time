@@ -84,8 +84,9 @@ func checkGShockInterface(library: ThemeLibrary) throws {
     let reloaded = AppDelegate(library: library, renderer: renderer, defaults: UserDefaults(suiteName: suite)!, signalSound: {})
     expect(!reloaded.gshock.settings.use24Hour && reloaded.gshock.settings.countdownSeconds == 2,
            "G-Shock settings must persist independently of the selected theme")
-    expect(!reloaded.gshock.countdownRunning && reloaded.gshock.stopwatchElapsed == 0,
-           "Elapsed session timers must not be restored as stale running timers")
+    expect(!reloaded.gshock.countdownRunning && reloaded.gshock.stopwatchRunning &&
+           reloaded.gshock.stopwatchElapsed >= delegate.gshock.stopwatchElapsed,
+           "A running stopwatch must resume after relaunch; the countdown remains a session timer")
 
     let alarmForm = GShockSettingsForm(settings: GShockSettings(), alarm: true)
     expect(alarmForm.fields.count == 4 && alarmForm.view.fittingSize.width > 200,

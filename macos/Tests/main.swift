@@ -4,6 +4,7 @@ import CoreGraphics
 try checkGShock()
 checkPulsarModel()
 try checkHeritageModels()
+try checkStopwatchPersistence()
 
 for (preferences, expected) in [
     (["ru-RU"], "ru"), (["en-GB"], "en"), (["de-AT"], "de"),

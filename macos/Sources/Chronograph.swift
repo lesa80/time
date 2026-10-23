@@ -1,13 +1,32 @@
 import Foundation
 
-/// Elapsed time is independent of the wall clock, timezone and redraw timer.
-/// ContinuousClock also includes time spent asleep. State lasts for this app session.
+/// Continuous time measures the active process, including sleep. A wall-clock
+/// checkpoint restores the interval while the app was closed or the Mac rebooted.
 struct Chronograph {
+    struct SavedState: Codable {
+        var version = 1
+        let elapsed: TimeInterval
+        let savedAt: Date
+        let startDate: Date?
+        let isRunning: Bool
+
+        var isValid: Bool {
+            version == 1 && elapsed.isFinite && elapsed >= 0 &&
+                savedAt.timeIntervalSinceReferenceDate.isFinite &&
+                (startDate?.timeIntervalSinceReferenceDate.isFinite ?? true) &&
+                (startDate != nil || (!isRunning && elapsed == 0))
+        }
+    }
+
     private let now: () -> TimeInterval
+    private let wallNow: () -> Date
     private var accumulated: TimeInterval = 0
     private var startedAt: TimeInterval?
+    private(set) var startDate: Date?
 
-    init(now: (() -> TimeInterval)? = nil) {
+    init(now: (() -> TimeInterval)? = nil, wallNow: @escaping () -> Date = Date.init,
+         restoring state: SavedState? = nil) {
+        self.wallNow = wallNow
         if let now { self.now = now } else {
             let origin = ContinuousClock.now
             self.now = {
@@ -15,14 +34,26 @@ struct Chronograph {
                 return Double(duration.seconds) + Double(duration.attoseconds) / 1e18
             }
         }
+        if let state, state.isValid {
+            let gap = state.isRunning ? max(0, wallNow().timeIntervalSince(state.savedAt)) : 0
+            let restored = state.elapsed + gap
+            guard restored.isFinite else { return }
+            accumulated = restored
+            startDate = state.startDate
+            if state.isRunning { startedAt = self.now() }
+        }
     }
 
     var isRunning: Bool { startedAt != nil }
     var reading: ChronographReading {
         ChronographReading(elapsed: accumulated + (startedAt.map { max(0, now() - $0) } ?? 0))
     }
+    var savedState: SavedState {
+        SavedState(elapsed: reading.elapsed, savedAt: wallNow(), startDate: startDate, isRunning: isRunning)
+    }
     mutating func start() {
         guard !isRunning else { return }
+        if startDate == nil { startDate = wallNow() }
         startedAt = now()
     }
     mutating func pause() {
@@ -33,6 +64,7 @@ struct Chronograph {
     mutating func reset() {
         accumulated = 0
         startedAt = nil
+        startDate = nil
     }
 }
 

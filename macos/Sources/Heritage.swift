@@ -5,7 +5,12 @@ import Foundation
 struct Chronostop {
     private var timer: Chronograph
     private(set) var readingHeld = false
-    init(now: (() -> TimeInterval)? = nil) { timer = Chronograph(now: now) }
+    init(now: (() -> TimeInterval)? = nil, wallNow: @escaping () -> Date = Date.init,
+         restoring state: Chronograph.SavedState? = nil) {
+        timer = Chronograph(now: now, wallNow: wallNow, restoring: state)
+        readingHeld = !timer.isRunning && timer.startDate != nil
+    }
+    var savedState: Chronograph.SavedState { timer.savedState }
     var isRunning: Bool { timer.isRunning }
     var reading: ChronographReading { timer.reading }
     mutating func press() {

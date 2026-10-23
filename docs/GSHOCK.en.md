@@ -2,7 +2,7 @@
 
 [Русский](GSHOCK.md) · [English](GSHOCK.en.md)
 
-Vremya 2.8.0. Select **Theme → Legendary models → Casio G-Shock DW-5600**.
+Vremya 2.9.1. Select **Theme → Legendary models → Casio G-Shock DW-5600**.
 
 The **Interaction** menu appears immediately below the watch name. It works in dial-only mode too. Use **Mode** to go directly to a function.
 
@@ -54,7 +54,7 @@ The first 60 minutes show minutes, seconds, and hundredths. Later, the display s
 
 Short electronic button feedback is enabled by default. Turn it off in **Interaction → G-Shock settings → Button sound**. Set the volume from 0 to 100% in **Interaction → G-Shock settings → Button volume…**. Volume and mute choices persist between launches and do not mute alarms, the countdown, or the hourly signal. Hovering stays silent; a long press gives one beep.
 
-Alarm settings, time format, initial countdown, and signal options persist between launches. Running stopwatch and countdown sessions last until the app quits.
+Alarm settings, time format, initial countdown, and signal options persist between launches. In version 2.9.1, the stopwatch also saves its start time, running/paused state and split reading. A running stopwatch includes time while the app is closed; manual pause and reset are preserved. Countdown sessions last until the app quits.
 
 Sound requires the app to remain running and system volume to be audible. Signals work with another theme selected or the clock window hidden. The app does not wake a sleeping Mac: overdue countdowns and alarms are checked after wake. Missed hourly signals are not replayed in a burst.
 

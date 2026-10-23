@@ -2,11 +2,11 @@
 
 [Русский](README.md) · [English](README.en.md)
 
-**Время (Vremya) 2.9.0** is a desktop clock app with an always-on-top mode. It includes 40 themes: four Minimalism variants, 21 Raketa models, and 15 variants in Legendary models. The app displays your Mac's local time, works offline, and remembers your settings.
+**Время (Vremya) 2.9.1** is a desktop clock app with an always-on-top mode. It includes 40 themes: four Minimalism variants, 21 Raketa models, and 15 variants in Legendary models. The app displays your Mac's local time, works offline, and remembers your settings.
 
-Version 2.9.0 adds Memovox Parking, Chronostop and Navitimer, with hover-and-scroll control for the alarm crown and slide-rule bezel.
+Version 2.9.1 saves chronograph and stopwatch start times and states: running measurements resume after relaunch, including time while the app was closed.
 
-**[Download Vremya for macOS](https://github.com/lesa80/time/releases/download/v2.9.0/Vremya-2.9.0-macOS-universal.zip)** · [All releases](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.9.0/SHA256SUMS)
+**[Download Vremya for macOS](https://github.com/lesa80/time/releases/download/v2.9.1/Vremya-2.9.1-macOS-universal.zip)** · [All releases](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.9.1/SHA256SUMS)
 
 Requires **macOS 13 or later**. One universal archive for Apple Silicon and Intel. The current release is a test build with an ad-hoc signature and no Apple notarization. [Compatibility details](docs/RELEASE_NOTES.md) (in Russian).
 
@@ -22,7 +22,8 @@ Requires **macOS 13 or later**. One universal archive for Apple Silicon and Inte
 - Drag to reposition, keep the clock above other windows, or lock its position and let clicks pass through.
 - Five sizes: 180, 240, 280, 360, and 466 points.
 - Smooth seconds hand with an option to hide it.
-- Speedmaster chronograph with start, pause, resume, and reset using case pushers or the Interaction menu.
+- Speedmaster and Navitimer chronographs with start, pause, resume, and reset using case pushers or the Interaction menu.
+- Automatic preservation of chronograph and stopwatch start times and states across relaunches.
 - G-Shock alarm, countdown with auto-repeat, stopwatch with splits, backlight, and case-button controls.
 - Short G-Shock button beeps with an option to turn them off.
 - Haptic feedback when hovering over watch pushers: three patterns or fully disabled.
@@ -31,6 +32,17 @@ Requires **macOS 13 or later**. One universal archive for Apple Silicon and Inte
 - Help, the watch collection, and project information in the About window.
 
 The default theme is **Minimalism 24 — Dark**. All four Minimalism variants appear in the main theme list. Manufacturer models are under **Theme → Raketa** and **Theme → Legendary models**.
+
+## Saved chronographs and stopwatches
+
+Speedmaster, Navitimer, Chronostop, and the G-Shock stopwatch automatically save their start times and states when operated using case buttons or Interaction. No extra setting is required.
+
+- A running measurement resumes after quitting and reopening the app, including elapsed time while it was closed or the Mac was rebooting.
+- A manual pause keeps the result frozen: time while the app is closed is excluded. Resuming adds only the new running interval.
+- Reset clears the saved measurement; an earlier running session will not return after relaunch.
+- G-Shock also restores its split reading and selected Stopwatch mode. A Chronostop reading held through the menu remains paused.
+
+Speedmaster and Navitimer share one chronograph, so switching between them keeps the same measurement. Chronostop and G-Shock stopwatches run independently. G-Shock countdown sessions last until the app quits.
 
 ## Manufacturer models
 
@@ -56,7 +68,7 @@ Seven case, bracelet, and color configurations. Date variants display the curren
 
 [Omega website](https://www.omegawatches.com/) · [Model 310.30.42.50.01.001](https://www.omegawatches.com.hk/en-hk/watch-omega-speedmaster-moonwatch-professional-co-axial-master-chronometer-chronograph-42-mm-31030425001001)
 
-The small left hand shows running seconds. The central chronograph hand and 30-minute and 12-hour counters measure elapsed time. The upper case pusher starts, pauses, and resumes; the lower pusher stops and resets. The same actions appear under **Interaction** immediately below the model name, including in dial-only mode. Elapsed time continues across theme changes and Mac sleep, but resets when the app quits.
+The small left hand shows running seconds. The central chronograph hand and 30-minute and 12-hour counters measure elapsed time. The upper case pusher starts, pauses, and resumes; the lower pusher stops and resets. The same actions appear under **Interaction** immediately below the model name, including in dial-only mode. In version 2.9.1, start times and states are saved automatically: running measurements include time while the app is closed, and manual pause and reset remain in effect after relaunch.
 
 ### Cartier Tank Must
 
@@ -84,7 +96,7 @@ Four modes: **Timekeeping, Alarm, Countdown timer, and Stopwatch**.
 
 All four case buttons work: **A**, upper left, adjusts/splits/resets; **B**, upper right, starts/stops/increments; **C**, lower left, changes mode or field; **D**, lower right, illuminates the screen or changes the time format/auto-repeat while editing. Hold B for two seconds in Timekeeping to toggle Flash Alert.
 
-Use **Interaction → Mode** to select a function directly and **G-Shock settings** to configure the alarm and countdown. The menu also works without the case. Settings persist between launches; elapsed timers last until the app quits and continue across theme changes and Mac sleep.
+Use **Interaction → Mode** to select a function directly and **G-Shock settings** to configure the alarm and countdown. The menu also works without the case. Settings persist between launches. In version 2.9.1, the stopwatch also resumes after relaunch, including time while the app is closed; pause, reset and split readings are saved. Countdown sessions last until the app quits.
 
 Button presses and mode selection in Interaction produce a short 80 ms beep. Sound is enabled by default; turn it off under **Interaction → G-Shock settings → Button sound**. Set the volume from 0 to 100% under **G-Shock settings → Button volume…**. Volume and mute choices are saved and do not affect the alarm, countdown, or hourly signal. Hovering stays silent, a long press produces one beep, and stopping a ringing alert adds no button beep.
 
@@ -147,7 +159,7 @@ To rotate, hover over the Memovox crown or Navitimer bezel and scroll with two f
 
 ## Installation
 
-1. [Download the ZIP](https://github.com/lesa80/time/releases/download/v2.9.0/Vremya-2.9.0-macOS-universal.zip) and extract it.
+1. [Download the ZIP](https://github.com/lesa80/time/releases/download/v2.9.1/Vremya-2.9.1-macOS-universal.zip) and extract it.
 2. Move `Время.app` to Applications and open it.
 3. Drag the clock to your preferred position. Right-click the clock or its menu bar icon to open settings.
 

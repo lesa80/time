@@ -26,7 +26,8 @@ struct GShockDisplay {
     let backlit: Bool
 }
 
-/// Session timers use monotonic time, including sleep. Alarm scheduling uses the local calendar.
+/// Active timers use monotonic time, including sleep. Stopwatch checkpoints also
+/// restore time between launches. Alarm scheduling uses the local calendar.
 /// No redraw, theme switch or wall-clock adjustment changes measured elapsed time.
 struct GShock {
     enum Mode: String, CaseIterable {
@@ -39,6 +40,11 @@ struct GShock {
             case .stopwatch: L("Stopwatch")
             }
         }
+    }
+    struct StopwatchState: Codable {
+        let timer: Chronograph.SavedState
+        let split: TimeInterval?
+        let wasVisible: Bool
     }
     enum Button { case a, b, c, d }
     enum Alert { case alarm, countdown, hourly }
@@ -58,7 +64,8 @@ struct GShock {
     private var countdownStartedAt: TimeInterval?
     private var pausedRemaining: TimeInterval
 
-    init(settings: GShockSettings = GShockSettings(), now: (() -> TimeInterval)? = nil) {
+    init(settings: GShockSettings = GShockSettings(), now: (() -> TimeInterval)? = nil,
+         wallNow: @escaping () -> Date = Date.init, restoringStopwatch state: StopwatchState? = nil) {
         let clock: () -> TimeInterval
         if let now { clock = now } else {
             let origin = ContinuousClock.now
@@ -70,9 +77,16 @@ struct GShock {
         self.now = clock
         self.settings = settings.isValid ? settings : GShockSettings()
         pausedRemaining = Double(self.settings.countdownSeconds)
-        stopwatch = Chronograph(now: clock)
+        stopwatch = Chronograph(now: clock, wallNow: wallNow, restoring: state?.timer)
+        if let state, state.timer.isValid {
+            if let split = state.split, split.isFinite, split >= 0, split <= state.timer.elapsed { self.split = split }
+            if state.wasVisible { mode = .stopwatch }
+        }
     }
 
+    var savedStopwatch: StopwatchState {
+        StopwatchState(timer: stopwatch.savedState, split: split, wasVisible: mode == .stopwatch)
+    }
     var isEditing: Bool { editingIndex != nil }
     var stopwatchRunning: Bool { stopwatch.isRunning }
     var stopwatchElapsed: TimeInterval { stopwatch.reading.elapsed }

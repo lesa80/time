@@ -47,11 +47,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         self.library = library
         self.renderer = renderer
         self.defaults = defaults
+        let savedTimers = defaults.data(forKey: "stopwatchState").flatMap { try? JSONDecoder().decode(SavedStopwatches.self, from: $0) }
+        let timers = savedTimers?.version == 1 ? savedTimers : nil
+        self.chronograph = Chronograph(restoring: timers?.analog)
+        self.chronostop = Chronostop(restoring: timers?.chronostop)
         let parkingSettings = defaults.data(forKey: "parkingSettings").flatMap { try? JSONDecoder().decode(ParkingSettings.self, from: $0) }
         self.parking = ParkingAlarm(settings: parkingSettings ?? ParkingSettings(angle: ParkingAlarm.angle(at: Date().addingTimeInterval(1800))))
         self.slideRuleAngle = ParkingAlarm.normalized(defaults.double(forKey: "slideRuleAngle"))
         let saved = defaults.data(forKey: "gshockSettings").flatMap { try? JSONDecoder().decode(GShockSettings.self, from: $0) }
-        self.gshock = gshock ?? GShock(settings: saved ?? GShockSettings())
+        self.gshock = gshock ?? GShock(settings: saved ?? GShockSettings(), restoringStopwatch: timers?.gshock)
         self.gshock.resynchronizeWallClock(date: Date())
         self.signalSound = signalSound ?? { NSSound(named: NSSound.Name("Ping"))?.play() }
         if let buttonSound { self.buttonSound = buttonSound } else {
@@ -451,9 +455,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         case .chronostop: chronostopMenuAction()
         case .chronostopPress:
             guard renderer.isChronostop else { return }
-            chronostop.press(); finishHeritageInteraction()
+            chronostop.press(); saveStopwatches(); finishHeritageInteraction()
         case .chronostopRelease:
-            chronostop.release(); finishHeritageInteraction()
+            chronostop.release(); saveStopwatches(); finishHeritageInteraction()
         case .parkingCrown: toggleParkingAlarm()
         case .chronographToggle: toggleChronograph()
         case .chronographReset: resetChronograph()
@@ -478,6 +482,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     @objc func toggleChronograph() {
         guard renderer.hasChronograph else { return }
         if chronograph.isRunning { chronograph.pause() } else { chronograph.start() }
+        saveStopwatches()
         lastAccessibilitySecond = -1
         updateChronographMenu()
         startTimer()
@@ -485,6 +490,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     @objc func resetChronograph() {
         guard renderer.hasChronograph else { return }
         chronograph.reset()
+        saveStopwatches()
         lastAccessibilitySecond = -1
         updateChronographMenu()
         startTimer()
@@ -493,9 +499,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         lastAccessibilitySecond = -1
         startTimer()
     }
-    func systemClockChanged() { gshock.resynchronizeWallClock(date: Date()); resynchronize() }
+    func systemClockChanged() {
+        gshock.resynchronizeWallClock(date: Date())
+        saveStopwatches()
+        resynchronize()
+    }
     @objc func pauseForSleep() {
         pulsar.cancel(); chronostop.release()
+        saveStopwatches()
         saveParking()
         isSleeping = true; timer?.invalidate(); timer = nil
         gshockServiceTimer?.invalidate(); gshockServiceTimer = nil
@@ -550,6 +561,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
             alert.informativeText = String(describing: error); alert.addButton(withTitle: L("OK")); alert.runModal(); return
         }
         pulsar.cancel(); chronostop.release()
+        saveStopwatches()
         renderer = selected
         defaults.set(id, forKey: "themeID")
         clockView.renderer = selected
@@ -630,6 +642,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         timer?.invalidate()
         gshockServiceTimer?.invalidate()
         saveGShockSettings()
+        saveStopwatches()
         savePosition()
         for observer in notificationObservers { observer.center.removeObserver(observer.token) }
         notificationObservers.removeAll()

@@ -10,7 +10,7 @@ export const iconName = 'Vremya';
 export const archiveName = `${appName} macOS.zip`;
 export const run = (command, args, options = {}) => execFileSync(command, args, { cwd: root, stdio: 'inherit', ...options });
 export const coreSources = ['Localization.swift', 'Clock.swift', 'Chronograph.swift', 'Heritage.swift', 'GShock.swift', 'Pulsar.swift', 'WindowGeometry.swift', 'LaunchOptions.swift'].map(f => `macos/Sources/${f}`);
-export const appSources = [...coreSources, ...['Renderer.swift', 'ClockView.swift', 'RotaryRing.swift', 'RotationScroll.swift', 'App.swift', 'GShockUI.swift', 'PulsarUI.swift', 'HeritageUI.swift', 'About.swift'].map(f => `macos/Sources/${f}`)];
+export const appSources = [...coreSources, ...['Renderer.swift', 'ClockView.swift', 'RotaryRing.swift', 'RotationScroll.swift', 'App.swift', 'GShockUI.swift', 'PulsarUI.swift', 'HeritageUI.swift', 'StopwatchPersistence.swift', 'About.swift'].map(f => `macos/Sources/${f}`)];
 export function compilerFlags() {
   if (process.platform !== 'darwin') throw new Error('Native builds require macOS and Command Line Tools.');
   const sdk = execFileSync('xcrun', ['--show-sdk-path'], { encoding: 'utf8' }).trim();
