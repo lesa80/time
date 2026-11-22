@@ -21,6 +21,9 @@ extension AppDelegate {
         add("slideLeft", L("Rotate scale −1°"), #selector(rotateScaleLeft), to: menu)
         add("slideRight", L("Rotate scale +1°"), #selector(rotateScaleRight), to: menu)
         add("slideReset", L("Reset slide rule"), #selector(resetSlideRule), to: menu)
+        add("cityLeft", L("City ring −1 time zone"), #selector(turnCityRingLeft), to: menu)
+        add("cityRight", L("City ring +1 time zone"), #selector(turnCityRingRight), to: menu)
+        add("cityReset", L("Reset city ring"), #selector(resetCityRing), to: menu)
     }
     func updateHeritageMenu() {
         for key in ["stopStep", "stopReset", "stopReading"] { menuActions[key]?.isHidden = !renderer.isChronostop }
@@ -34,6 +37,9 @@ extension AppDelegate {
             menuActions["parkingStatus"]?.title = L("Alarm: %@", DateFormatter.localizedString(from: deadline, dateStyle: .none, timeStyle: .short))
         } else { menuActions["parkingStatus"]?.title = parking.isRinging ? L("Alarm") : L("Disabled") }
         for key in ["slideLeft", "slideRight", "slideReset"] { menuActions[key]?.isHidden = !renderer.isNavitimer }
+        for key in ["cityLeft", "cityRight", "cityReset"] {
+            menuActions[key]?.isHidden = !renderer.isWorldTime
+        }
     }
     func finishHeritageInteraction() {
         lastAccessibilitySecond = -1
@@ -77,6 +83,11 @@ extension AppDelegate {
         else if renderer.isNavitimer {
             slideRuleAngle = ParkingAlarm.normalized(slideRuleAngle + delta)
             defaults.set(slideRuleAngle, forKey: "slideRuleAngle")
+        } else if renderer.isWorldTime {
+            let next = CityRing.snappedAngle(cityRingAngle + delta)
+            guard next != cityRingAngle else { return }
+            cityRingAngle = next
+            defaults.set(cityRingAngle, forKey: "cityRingAngle")
         } else { return }
         // Rotation redraws the shared live layers; static textures remain cached.
         if clockView != nil { updateClock() }
@@ -85,4 +96,8 @@ extension AppDelegate {
     @objc func rotateScaleLeft() { rotateHeritage(by: -1) }
     @objc func rotateScaleRight() { rotateHeritage(by: 1) }
     @objc func resetSlideRule() { guard renderer.isNavitimer else { return }; rotateHeritage(by: -slideRuleAngle) }
+
+    @objc func turnCityRingLeft() { guard renderer.isWorldTime else { return }; rotateHeritage(by: -CityRing.degreesPerZone) }
+    @objc func turnCityRingRight() { guard renderer.isWorldTime else { return }; rotateHeritage(by: CityRing.degreesPerZone) }
+    @objc func resetCityRing() { guard renderer.isWorldTime else { return }; rotateHeritage(by: -cityRingAngle) }
 }

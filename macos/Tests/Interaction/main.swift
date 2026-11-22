@@ -20,6 +20,7 @@ if let index = CommandLine.arguments.firstIndex(of: "--localization-only") {
 try checkGShockInterface(library: library)
 try checkPulsarInterface(library: library)
 try checkHeritageInterface(library: library)
+try checkWorldTimeInterface(library: library)
 try checkScrollRotation(library: library)
 try checkSavedStopwatchInterface(library: library)
 try checkSavedCountdownInterface(library: library)
@@ -89,7 +90,7 @@ expect(view.acceptsFirstMouse(for: nil), "A click must work when the app is inac
 // Compare the live view's static-layer cache against the uncached renderer.
 // Render locally into bitmaps; no screen capture permission is involved.
 @MainActor
-func pixels(cached: Bool, renderer: DialRenderer, showBezel: Bool, width: CGFloat = 280, seconds: Bool = false, advance: TimeInterval = 61, elapsed: TimeInterval = 0) -> [UInt8] {
+func pixels(cached: Bool, renderer: DialRenderer, showBezel: Bool, width: CGFloat = 280, seconds: Bool = false, advance: TimeInterval = 61, elapsed: TimeInterval = 0, cityAngle: Double = 0) -> [UInt8] {
     let size = renderer.displaySize(width: width, showBezel: showBezel)
     window.setContentSize(size)
     // AppKit rounds window frames to pixels; explicitly exercise fractional view bounds too.
@@ -98,6 +99,7 @@ func pixels(cached: Bool, renderer: DialRenderer, showBezel: Bool, width: CGFloa
     view.showBezel = showBezel
     view.showSeconds = seconds
     view.chronograph = ChronographReading()
+    view.heritage = HeritageReading()
     view.pulsarDisplay = PulsarReading(mode: .time)
     view.date = Date(timeIntervalSince1970: 1_700_000_000)
     let scale = window.backingScaleFactor
@@ -113,12 +115,13 @@ func pixels(cached: Bool, renderer: DialRenderer, showBezel: Bool, width: CGFloa
         bitmap.clear(CGRect(origin: .zero, size: size))
         view.date = view.date.addingTimeInterval(advance)
         view.chronograph = ChronographReading(elapsed: elapsed)
+        view.heritage.cityRingAngle = cityAngle
         view.draw(view.bounds)
         NSGraphicsContext.restoreGraphicsState()
     } else {
         renderer.draw(in: bitmap, size: size, angles: HandAngles(date: view.date.addingTimeInterval(advance),
             hourCycle: renderer.theme.hourCycle, direction: renderer.theme.rotationDirection), showSeconds: seconds, showBezel: showBezel,
-            chronograph: ChronographReading(elapsed: elapsed))
+            chronograph: ChronographReading(elapsed: elapsed), heritage: HeritageReading(cityRingAngle: cityAngle))
     }
     return Array(UnsafeBufferPointer(start: bitmap.data!.assumingMemoryBound(to: UInt8.self), count: pixelWidth * height * 4))
 }
@@ -134,6 +137,33 @@ for theme in library.catalog.themes {
         let difference = zip(cached, direct).reduce(0.0) { $0 + abs(Double($1.0) - Double($1.1)) } / Double(cached.count)
         expect(difference < 0.6, "Cached artwork differs from direct rendering: \(theme.id), bezel=\(bezel), error=\(difference)")
     }
+}
+
+let worldTime = try library.renderer(for: "goroda")
+for withCase in [true, false] {
+    let still = pixels(cached: true, renderer: worldTime, showBezel: withCase)
+    let turned = pixels(cached: true, renderer: worldTime, showBezel: withCase, cityAngle: 15)
+    let direct = pixels(cached: false, renderer: worldTime, showBezel: withCase, cityAngle: 15)
+    let error = zip(turned, direct).reduce(0.0) { $0 + abs(Double($1.0) - Double($1.1)) } / Double(turned.count)
+    expect(error < 0.6, "World Time's city ring must update when the static cache is reused")
+    let width = Int(ceil(280 * window.backingScaleFactor))
+    let dial = worldTime.specification.dialBounds!
+    let scale = Double(width) / (withCase ? worldTime.specification.resolution[0] : dial[2])
+    let radius = dial[2] * scale / 2
+    let cx = radius + (withCase ? dial[0] * scale : 0)
+    let cy = radius + (withCase ? dial[1] * scale : 0)
+    var changedCities = 0, changedStationary = 0
+    let height = turned.count / (width * 4)
+    for y in stride(from: 0, to: height, by: 2) {
+        for x in stride(from: 0, to: width, by: 2) {
+            let i = (y * width + x) * 4
+            guard (0..<3).contains(where: { abs(Int(still[i + $0]) - Int(turned[i + $0])) > 4 }) else { continue }
+            let r = hypot(Double(x) - cx, Double(y) - cy) / radius
+            if r > 0.84 && r < 0.98 { changedCities += 1 }
+            if r < 0.77 || r > 1.16 { changedStationary += 1 }
+        }
+    }
+    expect(changedCities > 100 && changedStationary == 0, "Rotating must move the city band while keeping the map, hour dial, hands, case and strap stationary")
 }
 
 // Running seconds must animate inside the left subdial, including with the static cache reused.
@@ -200,7 +230,7 @@ let menu = delegate.makeThemeMenu()
 expect(menu.items.first?.representedObject as? String == "minimalism", "Own theme must be outside the Raketa section")
 let brand = menu.items.first { $0.title == L("Raketa") }!
 expect(brand.image != nil && brand.image?.isTemplate == false, "Brand section must keep the red logo")
-expect(brand.submenu?.items.count == 21, "All manufacturer themes must be grouped")
+expect(brand.submenu?.items.count == library.catalog.themes.filter(\.isRaketa).count, "All manufacturer themes must be grouped")
 let icons = menu.items.first { $0.title == L("Legendary models") }!
 expect(icons.submenu?.items.count == 15, "All legendary models and color variants must be grouped")
 
@@ -486,7 +516,7 @@ for active in [false, true] {
     expect(icon.isTemplate && icon.size == NSSize(width: 24, height: 18) && icon.representations.count == 3,
            "Neutral tray icon must use template rendering and three Retina representations")
 }
-let about = AboutWindowController(resources: library.resources, themeCount: library.catalog.themes.count, raketaCount: 21)
+let about = AboutWindowController(resources: library.resources, themeCount: library.catalog.themes.count, raketaCount: library.catalog.themes.filter(\.isRaketa).count)
 @MainActor
 func descendants(_ root: NSView) -> [NSView] { [root] + root.subviews.flatMap { descendants($0) } }
 let aboutViews = descendants(about.window!.contentView!)

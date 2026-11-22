@@ -43,6 +43,11 @@
           <button type="button" data-mode="custom" aria-pressed="false">Своё время</button>
         </div>
         <button type="button" id="toggle-bezel" aria-pressed="true">Безель и ремешок</button>
+        <div class="city-ring-control" id="city-ring-control" hidden>
+          <label for="city-ring-angle">Кольцо городов</label>
+          <input id="city-ring-angle" type="range" min="0" max="23" step="1" value="0" aria-describedby="world-time-help">
+          <p id="world-time-help">Прокручивайте или перетаскивайте диск городов. Каждый шаг сдвигает его на один час (15°).</p>
+        </div>
         <div class="custom-time" id="custom-time" hidden>
           <label for="time-input">Время, 24 часа</label>
           <input type="time" id="time-input" value="10:10:30" step="1" required aria-describedby="time-error">

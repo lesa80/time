@@ -20,6 +20,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     var chronostop = Chronostop()
     var parking = ParkingAlarm()
     var slideRuleAngle: Double = 0
+    var cityRingAngle: Double
     var lastParkingSoundAt = Date.distantPast
     var gshock: GShock
     var gshockServiceTimer: Timer?
@@ -54,6 +55,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         let parkingSettings = defaults.data(forKey: "parkingSettings").flatMap { try? JSONDecoder().decode(ParkingSettings.self, from: $0) }
         self.parking = ParkingAlarm(settings: parkingSettings ?? ParkingSettings(angle: ParkingAlarm.angle(at: Date().addingTimeInterval(1800))))
         self.slideRuleAngle = ParkingAlarm.normalized(defaults.double(forKey: "slideRuleAngle"))
+        let savedCityAngle = defaults.double(forKey: "cityRingAngle")
+        cityRingAngle = CityRing.snappedAngle(savedCityAngle)
+        if savedCityAngle != cityRingAngle { defaults.set(cityRingAngle, forKey: "cityRingAngle") }
         let saved = defaults.data(forKey: "gshockSettings").flatMap { try? JSONDecoder().decode(GShockSettings.self, from: $0) }
         self.gshock = gshock ?? GShock(settings: saved ?? GShockSettings(), restoringStopwatch: timers?.gshock,
                                      restoringCountdown: timers?.countdown)
@@ -415,7 +419,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         }
         clockView.pulsarDisplay = reading
         advanceParking(date: clockView.date)
-        clockView.heritage = HeritageReading(parkingAngle: parking.settings.angle, slideRuleAngle: slideRuleAngle, chronostop: chronostop.reading)
+        clockView.heritage = HeritageReading(parkingAngle: parking.settings.angle, slideRuleAngle: slideRuleAngle,
+                                            cityRingAngle: cityRingAngle, chronostop: chronostop.reading)
         advanceGShock(date: clockView.date)
         clockView.gshockDisplay = renderer.isGShock ? gshock.display(date: clockView.date,
             reduceMotion: NSWorkspace.shared.accessibilityDisplayShouldReduceMotion) : nil
@@ -440,7 +445,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     }
     func updateChronographMenu() {
         menuActions["interaction"]?.isHidden = !renderer.hasChronograph && !renderer.isGShock &&
-            !renderer.isPulsar && !renderer.isChronostop && !renderer.isParking && !renderer.isNavitimer && !gshock.isRinging && !parking.isRinging
+            !renderer.isPulsar && !renderer.isChronostop && !renderer.isParking && !renderer.isNavitimer &&
+            !renderer.isWorldTime && !gshock.isRinging && !parking.isRinging
         for key in ["chronoToggle", "chronoReset", "chronoDivider", "chronoElapsed"] {
             menuActions[key]?.isHidden = !renderer.hasChronograph
         }
@@ -460,6 +466,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         case .chronostopRelease:
             chronostop.release(); saveStopwatches(); finishHeritageInteraction()
         case .parkingCrown: toggleParkingAlarm()
+        case .cityCrown: break // The upper crown rotates without changing position.
         case .chronographToggle: toggleChronograph()
         case .chronographReset: resetChronograph()
         case .gshockA: pressGShock(.a)

@@ -4,7 +4,7 @@ import AppKit
 func checkScrollRotation(library: ThemeLibrary) throws {
     // Real CG scroll events, delivered only to our own unshown windows.
     // They are never posted to the system and do not move the user's pointer.
-    for id in ["jlc-memovox-parking", "breitling-navitimer"] {
+    for id in ["jlc-memovox-parking", "breitling-navitimer", "goroda"] {
         let renderer = try library.renderer(for: id)
         let window = ClockWindow(contentRect: NSRect(x: 200, y: 200, width: 280, height: 280), styleMask: [.borderless], backing: .buffered, defer: false)
         window.isReleasedWhenClosed = false
@@ -36,8 +36,8 @@ func checkScrollRotation(library: ThemeLibrary) throws {
             let frame = window.frame
             let point: NSPoint
             if let ring = view.subviews.compactMap({ $0 as? RotaryRing }).first {
-                // Test the metal rim beyond the glass, not just the printed scale.
-                point = ring.convert(NSPoint(x: ring.bounds.midX, y: ring.bounds.height * 0.99), to: nil)
+                let band = renderer.isWorldTime ? 0.95 : 0.99
+                point = ring.convert(NSPoint(x: ring.bounds.midX, y: ring.bounds.height * band), to: nil)
             } else {
                 let crown = view.subviews.compactMap { $0 as? MechanicalButton }.first!
                 point = crown.convert(NSPoint(x: crown.bounds.midX, y: crown.bounds.midY), to: nil)
@@ -46,22 +46,32 @@ func checkScrollRotation(library: ThemeLibrary) throws {
             let vertical = scroll(at: point, y: 20)
             expect(vertical.hasPreciseScrollingDeltas && !window.isKeyWindow, "Use a real high-resolution event in a non-key desktop window")
             window.sendEvent(vertical)
-            expect(rotations == [-10], "Hover + vertical trackpad scroll must rotate once without clicking at every size: \(id), \(width), event=\(vertical.locationInWindow)")
+            if renderer.isWorldTime {
+                expect(rotations.isEmpty, "A partial hour must not visibly rotate the city disk")
+            } else {
+                expect(rotations == [-10], "Hover + vertical trackpad scroll must rotate once without clicking at every size: \(id), \(width)")
+            }
             window.sendEvent(scroll(at: point, x: 20))
-            expect(rotations.last == -10 && rotations.count == 2, "Horizontal trackpad scrolling must also rotate")
+            expect(rotations == (renderer.isWorldTime ? [-15] : [-10, -10]), "Horizontal and vertical deltas drive the same rotary part")
             window.sendEvent(scroll(at: point, y: -20))
-            expect(rotations.last == 10, "Reversing the gesture must reverse rotation")
+            if renderer.isWorldTime {
+                window.sendEvent(scroll(at: point, y: -20))
+                expect(rotations == [-15, 15], "Consecutive reverse deltas must undo a complete time-zone step")
+            } else {
+                expect(rotations.last == 10, "Reversing the gesture must reverse rotation")
+            }
             window.sendEvent(scroll(at: point, x: 12, y: 3))
-            expect(rotations.last == -6, "Diagonal gestures must use one dominant axis")
+            expect(rotations.last == (renderer.isWorldTime ? 15 : -6), "Diagonal gestures must use one dominant axis")
             window.sendEvent(scroll(at: point, y: 1))
-            expect(rotations.last == -0.5, "Precise trackpad deltas must retain sub-degree movement")
+            expect(rotations.last == (renderer.isWorldTime ? 15 : -0.5), "Sub-degree trackpad movement must respect the scale's detents")
             let count = rotations.count
             window.sendEvent(scroll(at: point, y: 20, momentum: 2))
             window.sendEvent(scroll(at: point, y: 20, phase: 4))
             window.sendEvent(scroll(at: point, y: 20, phase: 8))
             expect(rotations.count == count, "Inertia, ended and cancelled phases must not spin the mechanism")
             window.sendEvent(scroll(at: point, y: 1, precise: false))
-            expect(rotations.last == -3 && rotations.count == count + 1, "A mouse-wheel notch also rotates the same mechanism")
+            expect(rotations.last == (renderer.isWorldTime ? -15 : -3) && rotations.count == count + 1,
+                   "One wheel notch must rotate the city disk one time zone and other scales by their usual amount")
             let beforeOutside = rotations.count
             let center = view.convert(NSPoint(x: view.bounds.midX, y: view.bounds.midY), to: nil)
             window.sendEvent(scroll(at: center, y: 20))
@@ -79,19 +89,25 @@ func checkScrollRotation(library: ThemeLibrary) throws {
                 expect(haptics == beforeHover, "The square bounding box must not cause hover feedback over the dial center")
                 hover(at: point); hover(at: point)
                 expect(haptics == beforeHover + 1 && NSCursor.current == .pointingHand, "The actual bezel must establish hover once")
-                let upper = view.subviews.compactMap { $0 as? MechanicalButton }.first!
-                let pusher = upper.convert(NSPoint(x: upper.bounds.midX, y: upper.bounds.midY), to: nil)
-                window.sendEvent(scroll(at: pusher, y: 20))
-                expect(rotations.count == beforeOutside, "A chronograph pusher does not rotate")
                 ring.isEnabled = false
                 window.sendEvent(scroll(at: point, y: 20))
                 expect(rotations.count == beforeOutside, "A disabled bezel must ignore scrolling")
                 ring.isEnabled = true
+                let upper = view.subviews.compactMap { $0 as? MechanicalButton }.max { $0.frame.midY < $1.frame.midY }!
+                let upperPoint = upper.convert(NSPoint(x: upper.bounds.midX, y: upper.bounds.midY), to: nil)
+                window.sendEvent(scroll(at: upperPoint, y: 1, precise: false))
+                if renderer.isWorldTime {
+                    expect(rotations.count == beforeOutside + 1 && rotations.last == -15, "One notch over the upper crown must move one zone")
+                } else {
+                    expect(rotations.count == beforeOutside, "A chronograph pusher does not rotate")
+                }
+                let beforeBare = rotations.count
                 view.showBezel = false
                 window.setContentSize(renderer.displaySize(width: width, showBezel: false)); view.layoutSubtreeIfNeeded()
                 let barePoint = ring.convert(NSPoint(x: ring.bounds.midX, y: ring.bounds.height * 0.95), to: nil)
-                window.sendEvent(scroll(at: barePoint, y: 20))
-                expect(rotations.count == beforeOutside + 1, "The visible calculation scale remains usable without the case")
+                window.sendEvent(scroll(at: barePoint, y: -1, precise: false))
+                expect(rotations.count == beforeBare + 1 && rotations.last == (renderer.isWorldTime ? 15 : 3),
+                       "The visible ring must retain its stepping behavior without the case")
             } else {
                 let crown = view.subviews.compactMap { $0 as? MechanicalButton }.first!
                 crown.isEnabled = false

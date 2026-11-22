@@ -22,7 +22,7 @@ export function testNative(resources = path.join(root, 'dist/macos', `${appName}
     fs.cpSync(path.join(resources, `${language}.lproj`), path.join(testResources, `${language}.lproj`), { recursive: true });
   }
   run('xcrun', ['swiftc', ...flags, ...appSources, 'macos/Tests/Interaction/LocalizationChecks.swift', 'macos/Tests/Interaction/GShockChecks.swift', 'macos/Tests/Interaction/PulsarChecks.swift', 'macos/Tests/Interaction/HeritageChecks.swift', 'macos/Tests/Interaction/ScrollChecks.swift', 'macos/Tests/Interaction/StopwatchPersistenceChecks.swift', 'macos/Tests/Interaction/CountdownPersistenceChecks.swift',
-    'macos/Tests/Interaction/main.swift', '-o', testBinary]);
+    'macos/Tests/Interaction/WorldTimeChecks.swift', 'macos/Tests/Interaction/main.swift', '-o', testBinary]);
   run(testBinary, [resources, '-AppleLanguages', '(en)']);
   for (const language of ['ru', 'en', 'de', 'fr', 'es']) {
     run(testBinary, [resources, '--localization-only', language, '-AppleLanguages', `(${language})`]);

@@ -65,7 +65,7 @@
 "The original code, Minimalism theme geometry, and menu bar icon are MIT licensed. The БОЛТ42 logo, app icon, and manufacturer graphics have a separate rights status; sources and restrictions are listed below and in the third-party notices.\n\nThe app works locally, without analytics, an account, or background network requests." = "Der eigene Code, die Geometrie der Minimalismus-Zifferblätter und das Menüleistensymbol stehen unter MIT. Für das БОЛТ42-Logo, das App-Symbol und die Herstellergrafiken gelten gesonderte Rechte. Quellen und Einschränkungen stehen unten und in den Hinweisen zu Drittmaterialien.\n\nDie App arbeitet lokal, ohne Analyse, Benutzerkonto oder Netzwerkanfragen im Hintergrund.";
 "Licenses and sources" = "Lizenzen und Quellen";
 "All %ld Raketa models: dials, cases, and straps" = "Alle %ld Raketa-Modelle: Zifferblätter, Gehäuse und Armbänder";
-"A fixed catalog snapshot from October 18, 2026. Dial photographs have been prepared to display the time; they are not production designs. The model list does not update automatically." = "Feste Katalogaufnahme vom 18. Oktober 2026. Die Zifferblattfotos sind für die Zeitanzeige aufbereitet und keine Produktionsvorlagen. Die Modellliste wird nicht automatisch aktualisiert.";
+"Models are added to this collection with app updates. The dial photographs are adapted to display the time." = "Neue Modelle kommen mit App-Updates zur Sammlung hinzu. Die Fotos der Zifferblätter sind für die Zeitanzeige aufbereitet.";
 "Collection in the app · %ld models" = "Kollektion in der App · %ld Modelle";
 "Official watch catalog ↗" = "Offizieller Uhrenkatalog ↗";
 "Home page · raketa.com ↗" = "Startseite · raketa.com ↗";
@@ -216,3 +216,13 @@
 "Breitling Navitimer Ref. 806 · 1959" = "Breitling Navitimer Ref. 806 · 1959";
 
 "Stopwatch start times and states are saved automatically. Running stopwatches include time while the app is closed; manual pause and reset remain in effect after relaunch." = "Startzeiten und Zustände der Stoppuhren werden automatisch gespeichert. Laufende Stoppuhren berücksichtigen die Zeit bei geschlossener App; manuelle Pause und Zurücksetzen bleiben nach dem Neustart erhalten.";
+
+"World Time 0343" = "Weltzeit 0343";
+
+"City ring −1 time zone" = "Städtering −1 Zeitzone";
+"City ring +1 time zone" = "Städtering +1 Zeitzone";
+"Reset city ring" = "Städtering zurücksetzen";
+"City ring" = "Städtering";
+"City ring crown" = "Krone für den Städtering";
+"Drag or scroll the city ring in one-hour steps." = "Ziehen oder scrollen Sie auf dem Städtering, um ihn in Stundenschritten zu drehen.";
+"Drag or scroll the upper crown or the city ring in one-hour steps." = "Ziehen oder scrollen Sie auf der oberen Krone oder dem Städtering, um den Ring in Stundenschritten zu drehen.";

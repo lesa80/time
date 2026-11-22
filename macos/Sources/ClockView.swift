@@ -28,6 +28,9 @@ final class ClockView: NSView {
     var showBezel = true { didSet { invalidateArtwork(); layoutMechanicalControls(); updateThemeDescription() } }
     var clockMenu: NSMenu?
     var date = Date()
+    var handAngles: HandAngles {
+        HandAngles(date: date, hourCycle: renderer.theme.hourCycle, direction: renderer.theme.rotationDirection)
+    }
     var chronograph = ChronographReading() {
         didSet { if (oldValue.elapsed > 0) != (chronograph.elapsed > 0) { updateMechanicalControls() } }
     }
@@ -73,6 +76,11 @@ final class ClockView: NSView {
         if renderer.isChronostop { toolTip = L("Press to start. Press and hold to read; release to reset. Right-click → Interaction for controls.") }
         if renderer.isParking { toolTip = L("Drag the upper crown vertically or scroll to set the alarm disc. Click it to arm or cancel. Right-click → Interaction for reminders.") }
         if renderer.isNavitimer { toolTip = L("Drag or scroll the outer scale to calculate. Upper pusher starts/pauses the chronograph; lower pusher resets it.") }
+        if renderer.isWorldTime {
+            toolTip = showBezel
+                ? L("Drag or scroll the upper crown or the city ring in one-hour steps.")
+                : L("Drag or scroll the city ring in one-hour steps.")
+        }
         if renderer.isGShock {
             toolTip = L("A: adjust/split/reset. B: start/stop. C: mode. D: light. Hold B in Timekeeping for Flash Alert. Right-click → Interaction for settings.")
         }
@@ -98,13 +106,15 @@ final class ClockView: NSView {
                 button.onPressEnded = { [weak self] in self?.onInteraction?(.chronostopRelease) }
                 button.onPressCancelled = { [weak self] in self?.onInteraction?(.chronostopRelease) }
             }
-            if control.action == .parkingCrown { button.onRotationDelta = { [weak self] in self?.onRotation?($0) } }
+            if control.action == .parkingCrown || control.action == .cityCrown {
+                button.onRotationDelta = { [weak self] in self?.onRotation?($0) }
+            }
             button.hapticMode = hapticMode
             addSubview(button)
             return button
         }
-        if renderer.isNavitimer {
-            let ring = RotaryRing(hapticFeedback: hapticFeedback) { [weak self] in self?.onRotation?($0) }
+        if renderer.isNavitimer || renderer.isWorldTime {
+            let ring = RotaryRing(isCityRing: renderer.isWorldTime, hapticFeedback: hapticFeedback) { [weak self] in self?.onRotation?($0) }
             ring.hapticMode = hapticMode; addSubview(ring); rotaryRing = ring
         }
         layoutMechanicalControls()
@@ -118,13 +128,12 @@ final class ClockView: NSView {
         let resolution = renderer.specification.resolution
         if let ring = rotaryRing, let b = renderer.specification.dialBounds {
             // The live scale stays usable in both full-watch and dial-only views.
-            if showBezel {
-                let dial = NSRect(x: b[0] / resolution[0] * bounds.width, y: (1 - (b[1] + b[3]) / resolution[1]) * bounds.height,
-                    width: b[2] / resolution[0] * bounds.width, height: b[3] / resolution[1] * bounds.height)
-                // Include the physical beaded metal rim, just outside the glass.
-                ring.frame = dial.insetBy(dx: -dial.width * 0.025, dy: -dial.height * 0.025)
-                ring.innerRadiusFraction = 0.84 / 1.05
-            } else { ring.frame = bounds; ring.innerRadiusFraction = 0.84 }
+            let dial = showBezel ? NSRect(x: b[0] / resolution[0] * bounds.width, y: (1 - (b[1] + b[3]) / resolution[1]) * bounds.height,
+                width: b[2] / resolution[0] * bounds.width, height: b[3] / resolution[1] * bounds.height) : bounds
+            // Only the Navitimer's exposed rim extends beyond the glass.
+            let overhang = showBezel && renderer.isNavitimer ? 0.025 : 0
+            ring.frame = dial.insetBy(dx: -dial.width * overhang, dy: -dial.height * overhang)
+            ring.innerRadiusFraction = renderer.isWorldTime ? 0.81 : 0.84 / (1 + 2 * overhang)
         }
         for button in mechanicalButtons {
             let b = button.control.bounds
@@ -158,6 +167,9 @@ final class ClockView: NSView {
             case .parkingCrown:
                 label = L("Parking alarm crown")
                 button.toolTip = L("Drag vertically or scroll to rotate the alarm disc. Click to arm or cancel.")
+            case .cityCrown:
+                label = L("City ring crown")
+                button.toolTip = L("Drag or scroll the upper crown or the city ring in one-hour steps.")
             case .pulsarLight:
                 label = L("Show time")
                 button.toolTip = L("Press to show time; keep holding to show seconds.")
@@ -166,6 +178,9 @@ final class ClockView: NSView {
             }
             if button.toolTip == nil { button.toolTip = label }
             button.setAccessibilityLabel(label)
+            if button.control.action == .cityCrown {
+                button.setAccessibilityHelp(button.toolTip)
+            }
         }
     }
     override var isOpaque: Bool { false }
@@ -182,7 +197,7 @@ final class ClockView: NSView {
     override func draw(_ dirtyRect: NSRect) {
         guard let context = NSGraphicsContext.current?.cgContext else { return }
         context.clear(bounds)
-        let angles = HandAngles(date: date, hourCycle: renderer.theme.hourCycle, direction: renderer.theme.rotationDirection)
+        let angles = handAngles
         let scale = window?.backingScaleFactor ?? 1
         if artworkCache?.size != bounds.size || artworkCache?.scale != scale {
             artworkCache = makeArtworkCache(scale: scale)
@@ -292,6 +307,7 @@ final class MechanicalButton: NSButton, ScrollRotatingControl {
         }
     }
     var onRotationDelta: ((Double) -> Void)?
+    private var rotation: RotationGesture
     private var rotationPoint: NSPoint?
     private var didRotate = false
     var onPressBegan: (() -> Void)?
@@ -305,6 +321,7 @@ final class MechanicalButton: NSButton, ScrollRotatingControl {
     init(control: DialSpecification.MechanicalControl, hapticFeedback: ((NSHapticFeedbackManager.FeedbackPattern) -> Void)? = nil,
          onPress: @escaping () -> Void) {
         self.control = control
+        self.rotation = RotationGesture(step: control.action == .cityCrown ? CityRing.degreesPerZone : nil)
         self.onPress = onPress
         self.hapticFeedback = hapticFeedback ?? { pattern in
             // Resolve the performer per gesture so macOS can honor the input device and preferences.
@@ -319,9 +336,20 @@ final class MechanicalButton: NSButton, ScrollRotatingControl {
         setAccessibilityRole(.button)
         target = self
         action = #selector(pressed)
+        if control.action == .cityCrown {
+            setAccessibilityCustomActions([
+                NSAccessibilityCustomAction(name: L("City ring −1 time zone")) { [weak self] in self?.turnCityCrown(-CityRing.degreesPerZone) ?? false },
+                NSAccessibilityCustomAction(name: L("City ring +1 time zone")) { [weak self] in self?.turnCityCrown(CityRing.degreesPerZone) ?? false }
+            ])
+        }
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     @objc private func pressed() { onPress() }
+    private func turnCityCrown(_ degrees: Double) -> Bool {
+        guard isEnabled, !isHiddenOrHasHiddenAncestor, window?.ignoresMouseEvents == false, let onRotationDelta else { return false }
+        onRotationDelta(degrees)
+        return true
+    }
     @objc private func accessibilityLongPress() -> Bool {
         guard isEnabled, !isHiddenOrHasHiddenAncestor, window?.ignoresMouseEvents == false,
               let onLongPress else { return false }
@@ -333,6 +361,7 @@ final class MechanicalButton: NSButton, ScrollRotatingControl {
         if event.modifierFlags.contains(.control) { superview?.rightMouseDown(with: event); return }
         if onRotationDelta != nil {
             guard isEnabled, !isHiddenOrHasHiddenAncestor, window?.ignoresMouseEvents == false else { return }
+            rotation.reset()
             rotationPoint = event.locationInWindow; didRotate = false; return
         }
         guard onLongPress != nil || onPressBegan != nil else { super.mouseDown(with: event); return }
@@ -356,7 +385,11 @@ final class MechanicalButton: NSButton, ScrollRotatingControl {
     override func mouseDragged(with event: NSEvent) {
         if let start = rotationPoint, let onRotationDelta {
             let delta = event.locationInWindow.y - start.y
-            if didRotate || abs(delta) >= 3 { didRotate = true; rotationPoint = event.locationInWindow; onRotationDelta(-delta * 0.5) }
+            if didRotate || abs(delta) >= 3 {
+                didRotate = true
+                rotationPoint = event.locationInWindow
+                if let movement = rotation.consume(-delta * 0.5) { onRotationDelta(movement) }
+            }
             return
         }
         guard trackingLongPress else { super.mouseDragged(with: event); return }
@@ -368,6 +401,7 @@ final class MechanicalButton: NSButton, ScrollRotatingControl {
     }
     override func mouseUp(with event: NSEvent) {
         if rotationPoint != nil {
+            rotation.reset()
             rotationPoint = nil
             if !didRotate && bounds.contains(convert(event.locationInWindow, from: nil)) { performClick(nil) }
             return
@@ -387,13 +421,14 @@ final class MechanicalButton: NSButton, ScrollRotatingControl {
     @discardableResult func rotateFromScroll(_ event: NSEvent) -> Bool {
         guard let onRotationDelta, isEnabled, !isHiddenOrHasHiddenAncestor,
               window?.ignoresMouseEvents == false else { return false }
-        if let delta = RotationScroll.degrees(for: event) { onRotationDelta(delta) }
+        if let delta = rotation.scroll(event) { onRotationDelta(delta) }
         return true
     }
     override func scrollWheel(with event: NSEvent) {
         (superview as? ClockView)?.handleRotationScroll(event)
     }
     private func cancelLongPress() {
+        rotation.reset()
         rotationPoint = nil; didRotate = false
         if trackingLongPress && !pressCancelled { onPressCancelled?() }
         longPressTimer?.invalidate()

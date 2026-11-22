@@ -65,7 +65,7 @@
 "The original code, Minimalism theme geometry, and menu bar icon are MIT licensed. The БОЛТ42 logo, app icon, and manufacturer graphics have a separate rights status; sources and restrictions are listed below and in the third-party notices.\n\nThe app works locally, without analytics, an account, or background network requests." = "Оригинальный код, геометрия тем «Минимализм» и значок строки меню — MIT. Логотип БОЛТ42, иконка приложения и графика производителя имеют отдельный статус; источники и ограничения приведены ниже и в уведомлениях о сторонних материалах.\n\nПриложение работает локально, без аналитики, учётной записи и фоновых сетевых запросов.";
 "Licenses and sources" = "Лицензии и источники";
 "All %ld Raketa models: dials, cases, and straps" = "Все %ld модели Ракета: циферблаты, корпуса и ремешки";
-"A fixed catalog snapshot from October 18, 2026. Dial photographs have been prepared to display the time; they are not production designs. The model list does not update automatically." = "Фиксированный снимок каталога от 18 октября 2026 года. Фотографии циферблатов подготовлены для отображения времени; это не производственные макеты. Список моделей не обновляется автоматически.";
+"Models are added to this collection with app updates. The dial photographs are adapted to display the time." = "Модели добавляются в коллекцию с обновлениями приложения. Фотографии циферблатов адаптированы для отображения времени.";
 "Collection in the app · %ld models" = "Коллекция в приложении · %ld модель";
 "Official watch catalog ↗" = "Официальный каталог часов ↗";
 "Home page · raketa.com ↗" = "Главная страница · raketa.com ↗";
@@ -216,3 +216,13 @@
 "Breitling Navitimer Ref. 806 · 1959" = "Breitling Navitimer Ref. 806 · 1959";
 
 "Stopwatch start times and states are saved automatically. Running stopwatches include time while the app is closed; manual pause and reset remain in effect after relaunch." = "Время старта и состояние секундомеров сохраняются автоматически. Если отсчёт запущен, время при закрытом приложении учитывается; ручная пауза и сброс сохраняются после перезапуска.";
+
+"World Time 0343" = "Города 0343";
+
+"City ring −1 time zone" = "Кольцо городов −1 часовой пояс";
+"City ring +1 time zone" = "Кольцо городов +1 часовой пояс";
+"Reset city ring" = "Сбросить положение кольца городов";
+"City ring" = "Кольцо городов";
+"City ring crown" = "Переводная головка кольца городов";
+"Drag or scroll the city ring in one-hour steps." = "Прокручивайте или перетаскивайте диск городов. Каждый шаг равен одному часу.";
+"Drag or scroll the upper crown or the city ring in one-hour steps." = "Прокрутите или потяните верхнюю головку либо сам диск городов. Диск поворачивается с шагом в один час.";

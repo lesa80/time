@@ -26,6 +26,12 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const themeSelect = document.getElementById('theme-select');
 const bezelButton = document.getElementById('toggle-bezel');
 let showFullWatch = true;
+const ringSlider = document.getElementById('city-ring-angle');
+const ringControls = document.getElementById('city-ring-control');
+const degreesPerZone = 15;
+let cityRingPosition = 0;
+let wheelGesture = null;
+let drag = null;
 
 function layoutTheme() {
   const spec = theme.spec;
@@ -73,6 +79,11 @@ function layoutTheme() {
   const hasBezel = spec.layers.some(layer => layer.image.endsWith('/bezel.png'));
   bezelButton.disabled = !hasBezel;
   bezelButton.setAttribute('aria-pressed', String(hasBezel && showFullWatch));
+  ringControls.hidden = spec.interactionProfile !== 'world-time';
+  dial.style.cursor = '';
+  drag = null;
+  wheelGesture = null;
+  if (hands['city-ring']) setRingPosition(cityRingPosition);
 }
 
 function selectTheme(id) {
@@ -106,9 +117,10 @@ function render() {
   const label = formatTime(time);
   digitalTime.value = label;
   digitalTime.textContent = label;
-  if (`${mode}:${label}` !== lastLabel) {
+  const labelKey = `${theme.id}:${mode}:${label}`;
+  if (labelKey !== lastLabel) {
     dial.setAttribute('aria-label', `Циферблат «${theme.title}», ${label}. ${descriptions[mode]}.`);
-    lastLabel = `${mode}:${label}`;
+    lastLabel = labelKey;
   }
 }
 
@@ -134,10 +146,91 @@ function setMode(nextMode) {
   if (mode === 'custom') input.focus();
 }
 
+function setRingPosition(position) {
+  cityRingPosition = (position % 24 + 24) % 24;
+  hands['city-ring'].style.transform = `rotate(${cityRingPosition * degreesPerZone}deg)`;
+  ringSlider.value = cityRingPosition;
+  ringSlider.setAttribute('aria-valuetext', `${cityRingPosition} ч`);
+}
+
+function turnRing(gesture, degrees) {
+  gesture.remainder += degrees;
+  const steps = Math.trunc(gesture.remainder / degreesPerZone);
+  if (steps === 0) return;
+  gesture.remainder -= steps * degreesPerZone;
+  setRingPosition(cityRingPosition + steps);
+}
+
+// Map pointer positions to the same top-left photo coordinates as the native controls.
+function worldTimePoint(event) {
+  if (theme.spec.interactionProfile !== 'world-time') return {};
+  const bounds = dial.getBoundingClientRect();
+  const spec = theme.spec;
+  const [dx, dy, dw, dh] = spec.dialBounds;
+  const [vx, vy, vw, vh] = showFullWatch ? [0, 0, ...spec.resolution] : spec.dialBounds;
+  const x = vx + (event.clientX - bounds.left) * vw / bounds.width;
+  const y = vy + (event.clientY - bounds.top) * vh / bounds.height;
+  const nx = (x - dx) * 2 / dw - 1, ny = (y - dy) * 2 / dh - 1;
+  const angle = Math.atan2(nx, -ny) * 180 / Math.PI;
+  if (showFullWatch) {
+    for (const {action, bounds: [left, top, width, height]} of spec.mechanicalControls) {
+      if (x >= left && x <= left + width && y >= top && y <= top + height) return { part: action, angle };
+    }
+  }
+  const radius = Math.hypot(nx, ny);
+  return { part: radius >= 0.81 && radius <= 1 ? 'ring' : null, angle };
+}
+
+ringSlider.addEventListener('input', () => {
+  wheelGesture = null;
+  setRingPosition(Number(ringSlider.value));
+});
+dial.addEventListener('wheel', event => {
+  const {part} = worldTimePoint(event);
+  if (!part || event.ctrlKey || drag) { wheelGesture = null; return; }
+  event.preventDefault();
+  const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+  if (event.deltaMode !== 0) {
+    wheelGesture = null;
+    setRingPosition(cityRingPosition + Math.sign(delta));
+    return;
+  }
+  // Browser wheel events have no gesture-ended phase. Discard any partial
+  // step after a pause or when moving to the other control.
+  if (wheelGesture?.part !== part || event.timeStamp - wheelGesture.lastEvent > 200) {
+    wheelGesture = { part, remainder: 0 };
+  }
+  wheelGesture.lastEvent = event.timeStamp;
+  // Some mice report a single notch as a large pixel delta.
+  turnRing(wheelGesture, Math.sign(delta) * Math.min(Math.abs(delta) * 0.5, degreesPerZone));
+}, { passive: false });
+dial.addEventListener('pointerdown', event => {
+  const {part, angle} = worldTimePoint(event);
+  if (!part || event.button !== 0 || !event.isPrimary || event.ctrlKey) return;
+  wheelGesture = null;
+  dial.setPointerCapture(event.pointerId);
+  drag = { part, angle, id: event.pointerId, y: event.clientY, remainder: 0 };
+});
+dial.addEventListener('pointermove', event => {
+  const {part, angle} = worldTimePoint(event);
+  if (!drag) { dial.style.cursor = part ? 'grab' : ''; return; }
+  if (event.pointerId !== drag.id) return;
+  if (drag.part === 'ring') {
+    turnRing(drag, (angle - drag.angle + 540) % 360 - 180);
+    drag.angle = angle;
+  } else {
+    turnRing(drag, (event.clientY - drag.y) * 0.5);
+    drag.y = event.clientY;
+  }
+});
+dial.addEventListener('lostpointercapture', event => { if (drag?.id === event.pointerId) drag = null; });
+dial.addEventListener('pointerleave', () => { wheelGesture = null; });
+
 for (const button of modeButtons) button.addEventListener('click', () => setMode(button.dataset.mode));
 bezelButton.addEventListener('click', () => {
   showFullWatch = !showFullWatch;
   layoutTheme();
+  render();
 });
 themeSelect.addEventListener('change', () => {
   selectTheme(themeSelect.value);

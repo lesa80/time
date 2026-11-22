@@ -57,6 +57,7 @@ struct Localization: Sendable {
         "zolotoy-klyuchik": "Golden Key 0328", "sovremennik": "Contemporary 0352",
         "russkiy-kod-0302": "Russian Code 0302", "russkiy-kod-0344": "Russian Code Meridian 0344",
         "raketa-x-lebedev": "BIG ZERO Lebedev 0333", "baykonur-0325": "Baikonur 0325",
+        "goroda": "World Time 0343",
         "big-zero-yankovskaya": "BIG ZERO Yankovskaya 0330", "big-zero-azur-blue": "BIG ZERO Azure 0308",
         "amfibiya-0321": "Amphibian 0321", "kopernik-0293": "Copernicus 0307",
         "podvodnik-0317": "Submariner 0317", "polyarnye-0300": "Polar 0300",

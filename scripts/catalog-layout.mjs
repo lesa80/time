@@ -17,6 +17,19 @@ const genericBigZero=(secondTip,secondAngle,overrides={})=>({
  second:needle(secondTip,secondAngle,58,2.8),...overrides
 });
 export const catalogLayouts={
+ 'goroda': {
+  title: 'Города 0343', center: [350, 350], radius: 259, capRadius: 14.5,
+  cropOrigin: [101, 336], hourCycle: 24, hourSpriteZero: 180, referenceTime: '08:10:36',
+  restoredInPlace: true,
+  cityRingInnerRadius: 209,
+  interactionProfile: 'world-time',
+  mechanicalControls: [{action: 'city-crown', bounds: [632, 386, 73, 96]}],
+  hands: {
+   hour: poly([[229,270],[246,278],[352,328],[379,364],[379,371],[361,371],[329,353]], 303.3),
+   minute: poly([[517,247],[521,248],[521,254],[369,356],[318,368],[314,362],[334,339]], 58.8),
+   second: hand(bar(350,350,233,493,5.6,65,4.8)+circle(235,491,14)+circle(390,299,6.8), 219.2)
+  }
+ },
  'zolotoy-klyuchik':{title:'Золотой Ключик 0328',center:[350,347],radius:220,capRadius:9,hourCycle:12,referenceTime:'10:10:27',hands:{
   hour:poly([[244,262],[390,368],[379,382],[236,278]],304),
   minute:poly([[312,373],[307,364],[504,253],[514,260]],60),

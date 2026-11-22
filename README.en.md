@@ -2,11 +2,11 @@
 
 [Русский](README.md) · [English](README.en.md)
 
-**Время (Vremya) 2.9.2** is a desktop clock app with an always-on-top mode. It includes 40 themes: four Minimalism variants, 21 Raketa models, and 15 variants in Legendary models. The app displays your Mac's local time, works offline, and remembers your settings.
+**Время (Vremya) 2.9.3** is a desktop clock with an always-on-top mode. Its 41 themes include four Minimalism variants, 22 Raketa models, and 15 variants in Legendary models. The app displays your Mac's local time, works offline, and remembers your settings.
 
-Version 2.9.2 also saves the G-Shock countdown and resumes it after relaunch.
+Version 2.9.3 adds **Theme → Raketa → World Time 0343**. The city ring turns in either direction in one-hour steps (15°) while the hands keep local time.
 
-**[Download Vremya for macOS](https://github.com/lesa80/time/releases/download/v2.9.2/Vremya-2.9.2-macOS-universal.zip)** · [All releases](https://github.com/lesa80/time/releases) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.9.2/SHA256SUMS)
+**[Download Vremya for macOS](https://github.com/lesa80/time/releases/download/v2.9.3/Vremya-2.9.3-macOS-universal.zip)** · [Release 2.9.3](https://github.com/lesa80/time/releases/tag/v2.9.3) · [SHA-256](https://github.com/lesa80/time/releases/download/v2.9.3/SHA256SUMS) · [All releases](https://github.com/lesa80/time/releases)
 
 Requires **macOS 13 or later**. One universal archive for Apple Silicon and Intel. The current release is a test build with an ad-hoc signature and no Apple notarization. [Compatibility details](docs/RELEASE_NOTES.md) (in Russian).
 
@@ -132,9 +132,13 @@ To rotate, hover over the Memovox crown or Navitimer bezel and scroll with two f
 
 [Raketa website](https://raketa.com/) · [Watch catalog](https://raketa.com/watches)
 
-21 themes with dials, cases, and straps based on the corresponding models. The collection is a snapshot from October 18, 2026.
+22 themes with dials, cases, and straps based on the corresponding models.
 
-![Raketa collection: 21 models](assets/about/collection.png)
+**World Time 0343.** The hands show macOS time. Drag or scroll on the upper right crown or the city ring to turn the ring in one-hour steps (15°). In dial-only mode, drag or scroll on the city names. The **Interaction** menu lets you move one step in either direction or reset the ring. The ring keeps its position after a restart.
+
+To read the time elsewhere, line up your city with the current hour mark on the fixed 24-hour scale. Midnight is at the bottom. For example, at 08:09 in Moscow, line up Moscow with 08. Beijing will line up with 13, so the time there is 13:09. The minute hand serves both cities. The ring uses standard time throughout the year. [Raketa manual, section 6 (in Russian)](https://admin.raketa.com/upload/iblock/8cb/2ilb4rm04zaepb2idcih4m3vil9xxn74.pdf)
+
+![Raketa collection: 22 models](assets/about/collection.png)
 
 <details>
 <summary>All Raketa models and manufacturer links</summary>
@@ -147,6 +151,7 @@ To rotate, hover over the Memovox crown or Navitimer bezel and scroll with two f
 - [Russian Code Meridian 0344](https://raketa.com/product/russkiy-kod-0344)
 - [BIG ZERO Lebedev 0333](https://raketa.com/product/raketa-x-lebedev)
 - [Baikonur 0325](https://raketa.com/product/baykonur-0325)
+- [World Time 0343](https://raketa.com/en/product/goroda)
 - [BIG ZERO Yankovskaya 0330](https://raketa.com/product/big-zero-yankovskaya)
 - [BIG ZERO Azure 0308](https://raketa.com/product/big-zero-azur-blue)
 - [Amphibian 0321](https://raketa.com/product/amfibiya-0321)
@@ -165,7 +170,7 @@ To rotate, hover over the Memovox crown or Navitimer bezel and scroll with two f
 
 ## Installation
 
-1. [Download the ZIP](https://github.com/lesa80/time/releases/download/v2.9.2/Vremya-2.9.2-macOS-universal.zip) and extract it.
+1. [Download the ZIP](https://github.com/lesa80/time/releases/download/v2.9.3/Vremya-2.9.3-macOS-universal.zip) and extract it.
 2. Move `Время.app` to Applications and open it.
 3. Drag the clock to your preferred position. Right-click the clock or its menu bar icon to open settings.
 

@@ -12,8 +12,18 @@ test('every current official catalog variant is represented, including sold-out 
 });
 test('Russian Code runs backwards for all three hands; 24h models retain their own cycle',()=>{
  for(const id of ['russkiy-kod-0302','russkiy-kod-0344']){const t=catalog.themes.find(t=>t.id===id);assert.equal(t.direction,-1);const a=handAngles(parseTime('01:10:20'),t.hourCycle,t.direction);assert(a.hour<0&&a.minute<0&&a.second<0);assert.equal(a.second,-120);}
- for(const id of ['baykonur-0325','podvodnik-0317','polyarnye-0300'])assert.equal(catalog.themes.find(t=>t.id===id).hourCycle,24);
+ for(const id of ['baykonur-0325','goroda','podvodnik-0317','polyarnye-0300'])assert.equal(catalog.themes.find(t=>t.id===id).hourCycle,24);
  assert.throws(()=>handAngles(parseTime('00:00:00'),12,0),RangeError);
+});
+test('World Time has midnight at the bottom of its 24-hour dial', () => {
+ const theme = catalog.themes.find(t => t.id === 'goroda');
+ const spec = specFor(theme);
+ assert.deepEqual(spec.mechanicalControls.map(control => control.action), ['city-crown']);
+ const layer = spec.layers.find(l => l.image.endsWith('/hour.png'));
+ assert.equal(layer.valueType, 'Hour 24 Ratio');
+ const hand = PNG.sync.read(fs.readFileSync(new URL(`../${layer.image}`, import.meta.url)));
+ const pivotY = layer.rotatePoint[1] * hand.height / layer.size[1];
+ assert(pivotY < hand.height * 0.3, 'The hour blade must extend downwards from the pivot before rotation');
 });
 test('Avgvst keeps square glass, two hands and no invented seconds',()=>{
  for(const t of catalog.themes.filter(t=>t.id.startsWith('raketa-avgvst'))){const s=specFor(t);assert.equal(s.dialShape,'rectangle');assert.equal(s.layers.filter(l=>l.type==='Hand Res').length,2);assert(!s.layers.some(l=>l.image.endsWith('/second.png')));const dial=PNG.sync.read(fs.readFileSync(new URL(`../${s.layers.find(l=>l.image.endsWith('/dial.png')).image}`,import.meta.url)));assert(dial.data[(20*dial.width+20)*4+3]>240,'rectangle corners must not be cut to a circle');}

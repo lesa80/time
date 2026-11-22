@@ -90,6 +90,9 @@ input[type="time"] {
 }
 .time-error { margin: 6px 0 0; font-size: 11px; color: #e2a69a; }
 .time-error:empty { display: none; }
+.city-ring-control { margin: 18px auto 0; color: #a3afaa; font-size: 12px; }
+.city-ring-control input { vertical-align: middle; margin-inline-start: 8px; }
+.city-ring-control p { margin: 7px auto; max-width: 38em; }
 
 footer { margin-top: 30px; }
 .downloads { display: flex; justify-content: center; gap: 24px; align-items: center; margin-bottom: 24px; flex-wrap: wrap; }

@@ -1,0 +1,150 @@
+{
+  "name": "Города 0343",
+  "target": "macOS / Retina",
+  "hourCycle": 24,
+  "direction": 1,
+  "resolution": [
+    711,
+    1214
+  ],
+  "dialBounds": [
+    81,
+    304,
+    518,
+    518
+  ],
+  "dialShape": "circle",
+  "rasterResolution": [
+    2048,
+    2048
+  ],
+  "layers": [
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/goroda/bezel.png",
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        711,
+        1214
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/goroda/dial.png",
+      "position": [
+        81,
+        304
+      ],
+      "size": [
+        518,
+        518
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/goroda/city-ring.png",
+      "handResPosition": [
+        340,
+        563
+      ],
+      "rotatePoint": [
+        259,
+        259
+      ],
+      "size": [
+        518,
+        518
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/goroda/hour.png",
+      "valueType": "Hour 24 Ratio",
+      "handResPosition": [
+        340,
+        563
+      ],
+      "rotatePoint": [
+        21.5,
+        37.5
+      ],
+      "size": [
+        37.5,
+        184
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/goroda/minute.png",
+      "valueType": "Minute Ratio",
+      "handResPosition": [
+        340,
+        563
+      ],
+      "rotatePoint": [
+        19.5,
+        201
+      ],
+      "size": [
+        36.5,
+        240
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Hand Res",
+      "image": "assets/catalog/goroda/second.png",
+      "valueType": "Second Ratio",
+      "handResPosition": [
+        340,
+        563
+      ],
+      "rotatePoint": [
+        16,
+        198
+      ],
+      "size": [
+        32,
+        271.5
+      ],
+      "angle": [
+        0,
+        360
+      ]
+    },
+    {
+      "type": "Single Res",
+      "image": "assets/catalog/goroda/cap.png",
+      "position": [
+        325.5,
+        548.5
+      ],
+      "size": [
+        29,
+        29
+      ]
+    }
+  ],
+  "interactionProfile": "world-time",
+  "mechanicalControls": [
+    {
+      "action": "city-crown",
+      "bounds": [
+        632,
+        386,
+        73,
+        96
+      ]
+    }
+  ]
+}

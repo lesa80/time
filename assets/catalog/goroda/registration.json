@@ -1,0 +1,41 @@
+{
+  "source": "https://admin.raketa.com/upload/iblock/f44/73zn9mpmh236hld8v6ev0733iw5j2xvw.png",
+  "bodySource": "reference/catalog/goroda/front.png",
+  "cropOrigin": [
+    101,
+    336
+  ],
+  "bodyCrop": [
+    111,
+    123,
+    711,
+    1214
+  ],
+  "center": [
+    350,
+    350
+  ],
+  "dialBox": [
+    91,
+    91,
+    518,
+    518
+  ],
+  "hands": {
+    "hour": {
+      "shape": "<polygon points=\"229,270 246,278 352,328 379,364 379,371 361,371 329,353\"/>",
+      "angle": 303.3
+    },
+    "minute": {
+      "shape": "<polygon points=\"517,247 521,248 521,254 369,356 318,368 314,362 334,339\"/>",
+      "angle": 58.8
+    },
+    "second": {
+      "shape": "<polygon points=\"230.8329195622307,491.22693418727965 235.1670804377693,494.77306581272035 393.0179538848101,301.2125462484016 389.3029588486341,298.1730048551667\"/><circle cx=\"235\" cy=\"491\" r=\"14\"/><circle cx=\"390\" cy=\"299\" r=\"6.8\"/>",
+      "angle": 219.2
+    }
+  },
+  "restoration": {
+    "registeredMaster": "assets/catalog/goroda/source/restored.png"
+  }
+}

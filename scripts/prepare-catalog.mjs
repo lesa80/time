@@ -46,14 +46,66 @@ function staticDial(original,restored,config){
  return {png:out,registration,bias};
 }
 function coverage(config,x,y){if(config.radius)return clamp(config.radius+.5-Math.hypot(x-config.center[0],y-config.center[1]));const[rx,ry,w,h]=config.rectangle;return clamp(Math.min(x-rx,y-ry,rx+w-x,ry+h-y)+.5);}
-function handSprite(source,hand,center,id,name){
+
+// The printed GMT disc turns independently of the polar map, hour track and glass.
+// A narrow overlap at its inner edge keeps subpixel rotations free of seams.
+function separateCityRing(dial, radius, innerRadius) {
+ const ring = new PNG({width: dial.width, height: dial.height});
+ const scale = 2 * radius / dial.width;
+ for (let y = 0; y < dial.height; y++) {
+  for (let x = 0; x < dial.width; x++) {
+   const distance = Math.hypot(x + .5 - dial.width / 2, y + .5 - dial.height / 2) * scale;
+   const alpha = clamp(distance - innerRadius + .5);
+   const i = (y * dial.width + x) * 4;
+   if (alpha === 0 || dial.data[i + 3] === 0) continue;
+   dial.data.copy(ring.data, i, i, i + 4);
+   ring.data[i + 3] = Math.round(ring.data[i + 3] * alpha);
+   if (distance > innerRadius + 1.5) dial.data.fill(0, i, i + 4);
+  }
+ }
+ return ring;
+}
+
+// The original glass reflects two narrow bands of city lettering beyond the
+// disc. Refinish those bands with unprinted glass from the same photograph.
+// The outer steel case, crowns and strap keep their original pixels.
+function clearCityReflections(bezel, center) {
+ const [cx, cy] = [center[0] + 1, center[1] - 2.5];
+ const first = 264, last = 292;
+ const profile = [];
+ const rayAngles = [23, 24, 25, 26].map(degrees => degrees * Math.PI / 180);
+ for (let r = first; r <= last; r++) {
+  profile[r] = [0, 1, 2].map(c => {
+   const samples = rayAngles.map(a => sample(bezel, cx + r * Math.sin(a), cy - r * Math.cos(a), c));
+   return samples.reduce((sum, v) => sum + v, 0) / samples.length;
+  });
+ }
+ for (let y = Math.max(0, Math.floor(cy - last)); y <= cy + last && y < bezel.height; y++) {
+  for (let x = Math.max(0, Math.floor(cx - last)); x <= cx + last && x < bezel.width; x++) {
+   const dx = x - cx, dy = y - cy, radius = Math.hypot(dx, dy);
+   if (radius <= first || radius >= last) continue;
+   const blend = clamp(Math.min(radius - first, last - radius) / 2);
+   const r = Math.floor(radius), fraction = radius - r;
+   const i = (y * bezel.width + x) * 4;
+   // Recover local illumination from the clean outer lip on the same ray.
+   const outerX = cx + dx / radius * (last + 3), outerY = cy + dy / radius * (last + 3);
+   const light = (sample(bezel, outerX, outerY, 1) - 205) * .5;
+   for (let c = 0; c < 3; c++) {
+    const glass = profile[r][c] * (1 - fraction) + profile[r + 1][c] * fraction + light;
+    bezel.data[i + c] = Math.round(clamp(glass * blend + bezel.data[i + c] * (1 - blend), 0, 255));
+   }
+  }
+ }
+}
+
+function handSprite(source,hand,center,id,name,zeroAngle=0){
  const side=1400,mask=svgMask(hand.shape,side),photo=resample(source,[0,0,700,700],side,side);
  for(let i=0;i<photo.data.length;i+=4){
   photo.data[i+3]=mask.data[i+3];
   if(name==='second'&&['polyarnye-0300','podvodnik-0317'].includes(id)&&!(photo.data[i]>100&&photo.data[i]>photo.data[i+1]*1.45&&photo.data[i]>photo.data[i+2]*1.35))photo.data[i+3]=0;
   if(name==='second'&&id==='letchik'&&!(photo.data[i]>140&&photo.data[i+1]>125&&photo.data[i+2]<130))photo.data[i+3]=0;
  }
- const bytes=PNG.sync.write(photo),angle=-hand.angle;
+ const bytes=PNG.sync.write(photo),angle=zeroAngle-hand.angle;
  const png=PNG.sync.read(new Resvg(`<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1400" viewBox="0 0 700 700"><image x="0" y="0" width="700" height="700" transform="rotate(${angle} ${center[0]} ${center[1]})" href="data:image/png;base64,${bytes.toString('base64')}"/></svg>`).render().asPng());
  let box=bounds(png);box=[Math.max(0,box[0]-3),Math.max(0,box[1]-3),Math.min(side,box[2]+6),Math.min(side,box[3]+6)];if(box[0]+box[2]>side)box[2]=side-box[0];if(box[1]+box[3]>side)box[3]=side-box[1];
  return{png:crop(png,box),size:box.slice(2).map(v=>v/2),rotatePoint:[center[0]-box[0]/2,center[1]-box[1]/2]};
@@ -66,30 +118,42 @@ export function prepareCatalog({only}={}){
  for(const item of official.items){if(item.code==='avangard-0292')continue;const id=item.code,config=catalogLayouts[id];if(!config)throw Error(`No geometry for ${id}`);const base=`assets/catalog/${id}`;fs.mkdirSync(path.join(root,base),{recursive:true});const restored=`${base}/source/restored.png`;
  if(only&&id!==only)continue;
  if(!fs.existsSync(path.join(root,restored)))throw Error(`Missing restored dial: ${id}`);
- const source=read(`reference/catalog/${id}/face-source.png`),prepared=staticDial(`reference/catalog/${id}/face-source.png`,restored,config);
+ const source=read(`reference/catalog/${id}/face-source.png`);
+ const prepared=config.restoredInPlace?{png:read(restored)}:staticDial(`reference/catalog/${id}/face-source.png`,restored,config);
  const dialBox=config.radius?[config.center[0]-config.radius,config.center[1]-config.radius,config.radius*2,config.radius*2]:config.rectangle;
  const dial=resample(prepared.png,dialBox,2048,2048);
  for(let y=0;y<2048;y++)for(let x=0;x<2048;x++){const a=coverage(config,dialBox[0]+(x+.5)/2048*dialBox[2],dialBox[1]+(y+.5)/2048*dialBox[3]);dial.data[(y*2048+x)*4+3]=Math.round(a*255);}
+ if(config.cityRingInnerRadius)write(`${base}/city-ring.png`,separateCityRing(dial,config.radius,config.cityRingInnerRadius));
  write(`${base}/dial.png`,dial);
  const body=read(config.bodySource??`reference/catalog/${id}/front.png`),bb=bounds(body,8),pad=6;
  const bodyCrop=[Math.max(0,bb[0]-pad),Math.max(0,bb[1]-pad),Math.min(body.width,bb[2]+pad*2),Math.min(body.height,bb[3]+pad*2)];bodyCrop[2]=Math.min(bodyCrop[2],body.width-bodyCrop[0]);bodyCrop[3]=Math.min(bodyCrop[3],body.height-bodyCrop[1]);
  const origin=config.cropOrigin??[100,350],center=config.center.map((v,i)=>v+origin[i]-bodyCrop[i]),dialOrigin=dialBox.slice(0,2).map((v,i)=>v+origin[i]-bodyCrop[i]);
  const bezel=crop(body,bodyCrop);
+ if(config.cityRingInnerRadius)clearCityReflections(bezel,center);
  for(let y=0;y<bezel.height;y++)for(let x=0;x<bezel.width;x++){const a=coverage(config,x+bodyCrop[0]-origin[0]+.5,y+bodyCrop[1]-origin[1]+.5);const i=(y*bezel.width+x)*4+3;bezel.data[i]=Math.round(bezel.data[i]*(1-a));}
  write(`${base}/bezel.png`,bezel);
  const layers=[{type:'Single Res',image:`${base}/bezel.png`,position:[0,0],size:bodyCrop.slice(2)},{type:'Single Res',image:`${base}/dial.png`,position:dialOrigin,size:dialBox.slice(2)}];
- for(const[name,hand]of Object.entries(config.hands)){const sprite=generatedHand(id,name,root)??handSprite(source,hand,config.center,id,name);write(`${base}/${name}.png`,sprite.png);layers.push({type:'Hand Res',image:`${base}/${name}.png`,valueType:name==='hour'?`Hour ${config.hourCycle} Ratio`:name==='minute'?'Minute Ratio':'Second Ratio',handResPosition:center,rotatePoint:sprite.rotatePoint,size:sprite.size,angle:[0,360]});}
+ if(config.cityRingInnerRadius)layers.push({type:'Hand Res',image:`${base}/city-ring.png`,handResPosition:center,rotatePoint:[config.radius,config.radius],size:dialBox.slice(2)});
+ const spriteZero=name=>name==='hour'?(config.hourSpriteZero??0):0;
+ for(const[name,hand]of Object.entries(config.hands)){const sprite=generatedHand(id,name,root)??handSprite(source,hand,config.center,id,name,spriteZero(name));write(`${base}/${name}.png`,sprite.png);layers.push({type:'Hand Res',image:`${base}/${name}.png`,valueType:name==='hour'?`Hour ${config.hourCycle} Ratio`:name==='minute'?'Minute Ratio':'Second Ratio',handResPosition:center,rotatePoint:sprite.rotatePoint,size:sprite.size,angle:[0,360]});}
  if(config.capRadius){const r=config.capRadius,cap=resample(source,[config.center[0]-r,config.center[1]-r,r*2,r*2],Math.round(r*8),Math.round(r*8));for(let y=0;y<cap.height;y++)for(let x=0;x<cap.width;x++)cap.data[(y*cap.width+x)*4+3]=Math.round(clamp(cap.width/2+.5-Math.hypot(x+.5-cap.width/2,y+.5-cap.height/2))*255);write(`${base}/cap.png`,cap);layers.push({type:'Single Res',image:`${base}/cap.png`,position:center.map(v=>v-r),size:[r*2,r*2]});}
  const spec={name:config.title,target:'macOS / Retina',hourCycle:config.hourCycle,direction:config.direction,resolution:bodyCrop.slice(2),dialBounds:[...dialOrigin,...dialBox.slice(2)],dialShape:config.rectangle?'rectangle':'circle',rasterResolution:[2048,2048],layers};
+ if(config.interactionProfile){
+  spec.interactionProfile=config.interactionProfile;
+  spec.mechanicalControls=config.mechanicalControls;
+ }
  fs.writeFileSync(path.join(root,base,'theme.json'),JSON.stringify(spec,null,2)+'\n');
- const angles=Object.fromEntries(Object.entries(config.hands).map(([name,h])=>[name,h.angle]));
+ // A few dials put midnight away from twelve o'clock. Orient the sprite
+ // itself so both renderers can keep using the standard 24-hour rotation.
+ const angles=Object.fromEntries(Object.entries(config.hands).map(([name,h])=>[name,h.angle-spriteZero(name)]));
  const entry={id,brand:'raketa',title:config.title,hourCycle:config.hourCycle,direction:config.direction,dialShape:spec.dialShape,specification:`catalog/${id}/theme.json`,sourceSpec:`${base}/theme.json`,referenceTime:config.referenceTime,referenceAngles:angles,referenceURL:item.productURL,section:item.sectionCode};entries.push(entry);
- fs.writeFileSync(path.join(root,base,'registration.json'),JSON.stringify({source:item.previewPicture,bodySource:config.bodySource??`reference/catalog/${id}/front.png`,cropOrigin:origin,bodyCrop,center:config.center,dialBox,hands:config.hands,restoration:{registration:prepared.registration,bias:prepared.bias}},null,2)+'\n');
+ fs.writeFileSync(path.join(root,base,'registration.json'),JSON.stringify({source:item.previewPicture,bodySource:config.bodySource??`reference/catalog/${id}/front.png`,cropOrigin:origin,bodyCrop,center:config.center,dialBox,hands:config.hands,restoration:config.restoredInPlace?{registeredMaster:restored}:{registration:prepared.registration,bias:prepared.bias}},null,2)+'\n');
  const composed=layers.map(l=>({name:path.basename(l.image,'.png'),spec:l,png:fs.readFileSync(path.join(root,l.image)),size:l.size}));
  fs.writeFileSync(path.join(root,`macos/.build/previews/catalog/${id}-full.png`),composePreview(composed,spec.resolution,angles,280));
  const dialLayers=composed.filter(l=>l.name!=='bezel').map(l=>({...l,spec:{...l.spec,...(l.spec.position?{position:l.spec.position.map((v,i)=>v-dialOrigin[i])}:{}),...(l.spec.handResPosition?{handResPosition:l.spec.handResPosition.map((v,i)=>v-dialOrigin[i])}:{})}}));
  fs.writeFileSync(path.join(root,`macos/.build/previews/catalog/${id}-dial.png`),composePreview(dialLayers,dialBox.slice(2),angles,466));
- console.log(`Prepared ${id}: ${config.hourCycle}h, ${config.direction===-1?'counterclockwise':'clockwise'}, ${Object.keys(config.hands).length} hands; registration error ${prepared.registration.error.toFixed(2)}`);
+ const registration=prepared.registration?`registration error ${prepared.registration.error.toFixed(2)}`:'pre-registered master';
+ console.log(`Prepared ${id}: ${config.hourCycle}h, ${config.direction===-1?'counterclockwise':'clockwise'}, ${Object.keys(config.hands).length} hands; ${registration}`);
  }
  if(!only){registry.themes=[...existing,...entries];fs.writeFileSync(path.join(root,'themes.json'),JSON.stringify(registry,null,2)+'\n');}
  return entries;

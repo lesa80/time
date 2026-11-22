@@ -65,7 +65,7 @@
 "The original code, Minimalism theme geometry, and menu bar icon are MIT licensed. The БОЛТ42 logo, app icon, and manufacturer graphics have a separate rights status; sources and restrictions are listed below and in the third-party notices.\n\nThe app works locally, without analytics, an account, or background network requests." = "The original code, Minimalism theme geometry, and menu bar icon are MIT licensed. The БОЛТ42 logo, app icon, and manufacturer graphics have a separate rights status; sources and restrictions are listed below and in the third-party notices.\n\nThe app works locally, without analytics, an account, or background network requests.";
 "Licenses and sources" = "Licenses and sources";
 "All %ld Raketa models: dials, cases, and straps" = "All %ld Raketa models: dials, cases, and straps";
-"A fixed catalog snapshot from October 18, 2026. Dial photographs have been prepared to display the time; they are not production designs. The model list does not update automatically." = "A fixed catalog snapshot from October 18, 2026. Dial photographs have been prepared to display the time; they are not production designs. The model list does not update automatically.";
+"Models are added to this collection with app updates. The dial photographs are adapted to display the time." = "Models are added to this collection with app updates. The dial photographs are adapted to display the time.";
 "Collection in the app · %ld models" = "Collection in the app · %ld models";
 "Official watch catalog ↗" = "Official watch catalog ↗";
 "Home page · raketa.com ↗" = "Home page · raketa.com ↗";
@@ -216,3 +216,13 @@
 "Breitling Navitimer Ref. 806 · 1959" = "Breitling Navitimer Ref. 806 · 1959";
 
 "Stopwatch start times and states are saved automatically. Running stopwatches include time while the app is closed; manual pause and reset remain in effect after relaunch." = "Stopwatch start times and states are saved automatically. Running stopwatches include time while the app is closed; manual pause and reset remain in effect after relaunch.";
+
+"World Time 0343" = "World Time 0343";
+
+"City ring −1 time zone" = "City ring −1 time zone";
+"City ring +1 time zone" = "City ring +1 time zone";
+"Reset city ring" = "Reset city ring";
+"City ring" = "City ring";
+"City ring crown" = "City ring crown";
+"Drag or scroll the city ring in one-hour steps." = "Drag or scroll the city ring in one-hour steps.";
+"Drag or scroll the upper crown or the city ring in one-hour steps." = "Drag or scroll the upper crown or the city ring in one-hour steps.";

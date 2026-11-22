@@ -67,7 +67,7 @@ final class AboutWindowController: NSWindowController {
         addLink(L("Home page · raketa.com ↗"), url: URL(string: "https://raketa.com/")!, to: content)
         addLink(L("Official watch catalog ↗"), url: URL(string: "https://raketa.com/watches")!, to: content)
         add(label(L("Collection in the app · %ld models", raketaCount), size: 17, weight: .semibold), to: content)
-        add(label(L("A fixed catalog snapshot from October 18, 2026. Dial photographs have been prepared to display the time; they are not production designs. The model list does not update automatically."), color: .secondaryLabelColor), to: content)
+        add(label(L("Models are added to this collection with app updates. The dial photographs are adapted to display the time."), color: .secondaryLabelColor), to: content)
         if let image = NSImage(contentsOf: resources.appendingPathComponent("collection.png")), image.size.width > 0 {
             let gallery = NSImageView()
             gallery.image = image

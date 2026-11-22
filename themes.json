@@ -450,6 +450,24 @@
       "section": "specialized"
     },
     {
+      "id": "goroda",
+      "brand": "raketa",
+      "title": "Города 0343",
+      "hourCycle": 24,
+      "direction": 1,
+      "dialShape": "circle",
+      "specification": "catalog/goroda/theme.json",
+      "sourceSpec": "assets/catalog/goroda/theme.json",
+      "referenceTime": "08:10:36",
+      "referenceAngles": {
+        "hour": 123.30000000000001,
+        "minute": 58.8,
+        "second": 219.2
+      },
+      "referenceURL": "https://raketa.com/product/goroda",
+      "section": "specialized"
+    },
+    {
       "id": "big-zero-yankovskaya",
       "brand": "raketa",
       "title": "BIG ZERO Янковская 0330",

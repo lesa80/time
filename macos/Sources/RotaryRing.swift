@@ -1,27 +1,31 @@
 import AppKit
 
-/// Transparent hit area over the physical slide-rule rim. The center remains
+/// Transparent hit area over a rotating scale. The center remains
 /// available for moving the clock, and the photographed pushers remain separate.
 @MainActor
 final class RotaryRing: NSButton, ScrollRotatingControl {
     var innerRadiusFraction: CGFloat = 0.84
     var hapticMode: HapticMode = .generic
     private let change: (Double) -> Void
+    private let actionStep: Double
+    private var rotation: RotationGesture
     private let haptic: (NSHapticFeedbackManager.FeedbackPattern) -> Void
     private var previousAngle: Double?
     private var hovering = false
     private var area: NSTrackingArea?
-    init(hapticFeedback: ((NSHapticFeedbackManager.FeedbackPattern) -> Void)?, change: @escaping (Double) -> Void) {
+    init(isCityRing: Bool = false, hapticFeedback: ((NSHapticFeedbackManager.FeedbackPattern) -> Void)?, change: @escaping (Double) -> Void) {
         self.change = change
+        self.actionStep = isCityRing ? CityRing.degreesPerZone : 1
+        self.rotation = RotationGesture(step: isCityRing ? CityRing.degreesPerZone : nil)
         self.haptic = hapticFeedback ?? { NSHapticFeedbackManager.defaultPerformer.perform($0, performanceTime: .now) }
         super.init(frame: .zero)
         title = ""; isBordered = false; focusRingType = .none
-        setAccessibilityLabel(L("Slide rule"))
+        setAccessibilityLabel(isCityRing ? L("City ring") : L("Slide rule"))
         setAccessibilityCustomActions([
-            NSAccessibilityCustomAction(name: L("Rotate scale −1°"), target: self, selector: #selector(left)),
-            NSAccessibilityCustomAction(name: L("Rotate scale +1°"), target: self, selector: #selector(right))
+            NSAccessibilityCustomAction(name: isCityRing ? L("City ring −1 time zone") : L("Rotate scale −1°"), target: self, selector: #selector(left)),
+            NSAccessibilityCustomAction(name: isCityRing ? L("City ring +1 time zone") : L("Rotate scale +1°"), target: self, selector: #selector(right))
         ])
-        toolTip = L("Drag or scroll to rotate the slide rule.")
+        toolTip = isCityRing ? L("Drag or scroll the city ring in one-hour steps.") : L("Drag or scroll to rotate the slide rule.")
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
@@ -41,6 +45,7 @@ final class RotaryRing: NSButton, ScrollRotatingControl {
     override func mouseDown(with event: NSEvent) {
         if event.modifierFlags.contains(.control) { superview?.rightMouseDown(with: event); return }
         guard window?.ignoresMouseEvents == false else { return }
+        rotation.reset()
         previousAngle = angle(event)
     }
     override func mouseDragged(with event: NSEvent) {
@@ -48,21 +53,21 @@ final class RotaryRing: NSButton, ScrollRotatingControl {
         let current = angle(event)
         let delta = (current - previousAngle + 540).truncatingRemainder(dividingBy: 360) - 180
         self.previousAngle = current
-        change(delta)
+        if let movement = rotation.consume(delta) { change(movement) }
     }
     override func mouseUp(with event: NSEvent) { cancelTracking() }
     @discardableResult func rotateFromScroll(_ event: NSEvent) -> Bool {
         guard isEnabled, !isHiddenOrHasHiddenAncestor, window?.ignoresMouseEvents == false else { return false }
-        if let delta = RotationScroll.degrees(for: event) { change(delta) }
+        if let delta = rotation.scroll(event) { change(delta) }
         return true
     }
     override func scrollWheel(with event: NSEvent) {
         (superview as? ClockView)?.handleRotationScroll(event)
     }
-    func cancelTracking() { previousAngle = nil }
+    func cancelTracking() { previousAngle = nil; rotation.reset() }
     override func rightMouseDown(with event: NSEvent) { superview?.rightMouseDown(with: event) }
-    @objc private func left() -> Bool { change(-1); return true }
-    @objc private func right() -> Bool { change(1); return true }
+    @objc private func left() -> Bool { change(-actionStep); return true }
+    @objc private func right() -> Bool { change(actionStep); return true }
     override func draw(_ dirtyRect: NSRect) { }
     override func updateTrackingAreas() {
         super.updateTrackingAreas()

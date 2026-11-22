@@ -23,6 +23,7 @@ final class DialRenderer {
     var isChronostop: Bool { specification.interactionProfile == "chronostop" }
     var isParking: Bool { specification.interactionProfile == "parking" }
     var isNavitimer: Bool { specification.interactionProfile == "navitimer" }
+    var isWorldTime: Bool { specification.interactionProfile == "world-time" }
     var isPulsar: Bool { specification.interactionProfile == "pulsar" }
     var hasBezel: Bool { layers.contains { $0.spec.image.hasSuffix("/bezel.png") } }
     enum DrawingPass: Equatable { case all, background, live, foreground }
@@ -138,9 +139,14 @@ final class DialRenderer {
         if let center = spec.handResPosition, let pivot = spec.rotatePoint {
             context.translateBy(x: center[0], y: center[1])
             let name = URL(fileURLWithPath: spec.image).deletingPathExtension().lastPathComponent
-            let angle = name == "alarm-disc" ? heritage.parkingAngle : name == "slide-rule" ? heritage.slideRuleAngle :
-                name == "chrono-second" && isChronostop ? heritage.chronostop.angle(for: spec.image) :
-                name.hasPrefix("chrono-") ? chronograph.angle(for: spec.image) : angles.angle(for: spec.image)
+            let angle: Double
+            switch name {
+            case "city-ring": angle = heritage.cityRingAngle
+            case "alarm-disc": angle = heritage.parkingAngle
+            case "slide-rule": angle = heritage.slideRuleAngle
+            case "chrono-second" where isChronostop: angle = heritage.chronostop.angle(for: spec.image)
+            default: angle = name.hasPrefix("chrono-") ? chronograph.angle(for: spec.image) : angles.angle(for: spec.image)
+            }
             context.rotate(by: angle * .pi / 180)
             context.translateBy(x: -pivot[0], y: -pivot[1])
         } else if let position = spec.position {

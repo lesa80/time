@@ -58,7 +58,7 @@ func checkLocalizedInterface(library: ThemeLibrary, expectedLanguage: String) th
     let clock = ClockView(renderer: renderer)
     expect(clock.accessibilityLabel()?.contains(expected[3]) == true, "VoiceOver must use the translated theme")
     expect(clock.toolTip?.contains("24") == true, "Tooltip format arguments must be substituted")
-    let about = AboutWindowController(resources: library.resources, themeCount: library.catalog.themes.count, raketaCount: 21)
+    let about = AboutWindowController(resources: library.resources, themeCount: library.catalog.themes.count, raketaCount: library.catalog.themes.filter(\.isRaketa).count)
     defer { about.close() }
     expect(about.window?.title == expected[2], "About title must be translated")
     for width in [640, 960] {

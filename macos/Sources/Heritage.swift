@@ -79,8 +79,18 @@ struct ParkingAlarm {
     }
 }
 
+enum CityRing {
+    static let degreesPerZone = 360.0 / 24
+
+    static func snappedAngle(_ degrees: Double) -> Double {
+        let zone = (ParkingAlarm.normalized(degrees) / degreesPerZone).rounded()
+        return (zone * degreesPerZone).truncatingRemainder(dividingBy: 360)
+    }
+}
+
 struct HeritageReading {
     var parkingAngle: Double = 0
     var slideRuleAngle: Double = 0
+    var cityRingAngle: Double = 0
     var chronostop = ChronographReading()
 }

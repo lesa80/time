@@ -122,6 +122,7 @@ struct DialSpecification: Decodable {
         case chronostopPress = "chronostop-press"
         case chronostopRelease = "chronostop-release"
         case parkingCrown = "parking-crown"
+        case cityCrown = "city-crown"
     }
     struct MechanicalControl: Decodable {
         let action: MechanicalAction
@@ -159,7 +160,7 @@ struct DialSpecification: Decodable {
         }
         guard size(resolution), [nil, "circle", "rectangle"].contains(dialShape),
               [nil, "analog", "digital"].contains(displayMode),
-              [nil, "pulsar", "chronostop", "parking", "navitimer"].contains(interactionProfile), !layers.isEmpty else {
+              [nil, "pulsar", "chronostop", "parking", "navitimer", "world-time"].contains(interactionProfile), !layers.isEmpty else {
             throw ModelError.invalid(L("dial size or shape"))
         }
         if let bounds = dialBounds {
@@ -192,7 +193,7 @@ struct DialSpecification: Decodable {
                 hasSeenHand = true
             } else if layer.type == "Hand Res" {
                 let name = URL(fileURLWithPath: layer.image).deletingPathExtension().lastPathComponent
-                guard !hasSeenForeground, ["hour", "minute", "second", "chrono-second", "chrono-minute", "chrono-hour", "alarm-disc", "slide-rule"].contains(name), handNames.insert(name).inserted,
+                guard !hasSeenForeground, ["hour", "minute", "second", "chrono-second", "chrono-minute", "chrono-hour", "alarm-disc", "slide-rule", "city-ring"].contains(name), handNames.insert(name).inserted,
                       point(layer.handResPosition), point(layer.rotatePoint), layer.position == nil else {
                     throw ModelError.invalid(L("hand geometry: %@", layer.image))
                 }
@@ -214,6 +215,10 @@ struct DialSpecification: Decodable {
             guard handNames.isSuperset(of: ["hour", "minute"]) else { throw ModelError.invalid(L("missing hands")) }
         }
         let chronographHands: Set<String> = ["chrono-second", "chrono-minute", "chrono-hour"]
+        guard handNames.contains("city-ring") == (interactionProfile == "world-time"),
+              interactionProfile != "world-time" || mechanicalControls != nil else {
+            throw ModelError.invalid(L("missing hands"))
+        }
         guard (interactionProfile == "chronostop" && handNames.intersection(chronographHands) == ["chrono-second"]) ||
             handNames.isDisjoint(with: chronographHands) || handNames.isSuperset(of: chronographHands) else {
             throw ModelError.invalid(L("missing hands"))
@@ -224,6 +229,7 @@ struct DialSpecification: Decodable {
             let digitalActions: Set<MechanicalAction> = [.gshockA, .gshockB, .gshockC, .gshockD]
             let validActions = interactionProfile == "chronostop" ? actions == [.chronostop] :
                 interactionProfile == "parking" ? actions == [.parkingCrown] :
+                interactionProfile == "world-time" ? actions == [.cityCrown] :
                 interactionProfile == "pulsar" ? actions == [.pulsarLight] :
                 displayMode == "digital" ? actions == digitalActions :
                 handNames.isSuperset(of: chronographHands) && actions.isSubset(of: analogActions)

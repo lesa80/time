@@ -1,0 +1,28 @@
+{
+  "catalog": {
+    "id": 6711,
+    "sectionCode": "specialized",
+    "code": "goroda",
+    "name": "Города",
+    "isNew": true,
+    "isSoldOut": false,
+    "availability": "available",
+    "lastmod": 1795184854,
+    "price": 230000,
+    "discount": 0,
+    "previewPicture": "https://admin.raketa.com/upload/iblock/f44/73zn9mpmh236hld8v6ev0733iw5j2xvw.png",
+    "limitedEdition": false,
+    "limitedProduction": false,
+    "productURL": "https://raketa.com/product/goroda"
+  },
+  "article": "W-14-16-10-0343",
+  "capturedOn": "2026-11-22",
+  "manual": "https://admin.raketa.com/upload/iblock/8cb/2ilb4rm04zaepb2idcih4m3vil9xxn74.pdf",
+  "restorationReferences": [
+    "https://admin.raketa.com/upload/iblock/b90/hdmkn22xqi17qs2izn2fdtxnhpbsz49o.jpg",
+    "https://admin.raketa.com/upload/iblock/bad/52a59z961hli75lh7lfaw156z8lvnjoy.jpg",
+    "https://admin.raketa.com/upload/iblock/90f/33hm5sxqc0n2u81f8571yal01rqd6xz3.jpg",
+    "https://admin.raketa.com/upload/iblock/8f9/5kprqezxwbsk7vyab1qdg267azyb3hqx.jpg",
+    "https://admin.raketa.com/upload/iblock/e8e/ylcs13wzk8pz1bhdt9pzwr6b2q6gdklw.jpg"
+  ]
+}

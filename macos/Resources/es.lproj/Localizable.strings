@@ -65,7 +65,7 @@
 "The original code, Minimalism theme geometry, and menu bar icon are MIT licensed. The БОЛТ42 logo, app icon, and manufacturer graphics have a separate rights status; sources and restrictions are listed below and in the third-party notices.\n\nThe app works locally, without analytics, an account, or background network requests." = "El código original, la geometría de las esferas Minimalismo y el icono de la barra de menús tienen licencia MIT. El logotipo БОЛТ42, el icono de la app y los gráficos del fabricante tienen derechos separados; las fuentes y restricciones figuran abajo y en los avisos de terceros.\n\nLa app funciona localmente, sin analítica, cuenta ni solicitudes de red en segundo plano.";
 "Licenses and sources" = "Licencias y fuentes";
 "All %ld Raketa models: dials, cases, and straps" = "Los %ld modelos Raketa: esferas, cajas y correas";
-"A fixed catalog snapshot from October 18, 2026. Dial photographs have been prepared to display the time; they are not production designs. The model list does not update automatically." = "Una instantánea fija del catálogo del 18 de octubre de 2026. Las fotografías de las esferas están adaptadas para mostrar la hora; no son diseños de producción. La lista no se actualiza automáticamente.";
+"Models are added to this collection with app updates. The dial photographs are adapted to display the time." = "Se añaden modelos a esta colección con las actualizaciones de la aplicación. Las fotografías de las esferas están adaptadas para mostrar la hora.";
 "Collection in the app · %ld models" = "Colección en la app · %ld modelos";
 "Official watch catalog ↗" = "Catálogo oficial de relojes ↗";
 "Home page · raketa.com ↗" = "Página principal · raketa.com ↗";
@@ -216,3 +216,13 @@
 "Breitling Navitimer Ref. 806 · 1959" = "Breitling Navitimer Ref. 806 · 1959";
 
 "Stopwatch start times and states are saved automatically. Running stopwatches include time while the app is closed; manual pause and reset remain in effect after relaunch." = "Las horas de inicio y los estados de los cronómetros se guardan automáticamente. Si están en marcha, incluyen el tiempo con la app cerrada; la pausa manual y el reinicio a cero se conservan al volver a abrirla.";
+
+"World Time 0343" = "Hora mundial 0343";
+
+"City ring −1 time zone" = "Disco de ciudades −1 huso";
+"City ring +1 time zone" = "Disco de ciudades +1 huso";
+"Reset city ring" = "Restablecer el disco de ciudades";
+"City ring" = "Disco de ciudades";
+"City ring crown" = "Corona del disco de ciudades";
+"Drag or scroll the city ring in one-hour steps." = "Arrastra el disco de ciudades o desplázate sobre él para girarlo en pasos de una hora.";
+"Drag or scroll the upper crown or the city ring in one-hour steps." = "Arrastra la corona superior o el disco de ciudades, o desplázate sobre ellos. El disco gira en pasos de una hora.";

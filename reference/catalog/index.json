@@ -1,7 +1,7 @@
 {
   "source": "https://raketa.com/watches",
   "capturedAt": "2026-10-17T23:08:10.517Z",
-  "total": 21,
+  "total": 22,
   "items": [
     {
       "id": 727,
@@ -114,6 +114,22 @@
       "limitedEdition": false,
       "limitedProduction": false,
       "productURL": "https://raketa.com/product/baykonur-0325"
+    },
+    {
+      "id": 6711,
+      "sectionCode": "specialized",
+      "code": "goroda",
+      "name": "Города",
+      "isNew": true,
+      "isSoldOut": false,
+      "availability": "available",
+      "lastmod": 1795184854,
+      "price": 230000,
+      "discount": 0,
+      "previewPicture": "https://admin.raketa.com/upload/iblock/f44/73zn9mpmh236hld8v6ev0733iw5j2xvw.png",
+      "limitedEdition": false,
+      "limitedProduction": false,
+      "productURL": "https://raketa.com/product/goroda"
     },
     {
       "id": 1749,
